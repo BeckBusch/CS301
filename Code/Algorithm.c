@@ -35,13 +35,41 @@ int main() {
         // Use ASCII code for 1, not 1 itself.
         if (seq == 49) {
             printf("%s", "██");
+        } else if (seq == 48) {
+            printf("▒▒");
         } else if (seq == 10) {
             printf("\n");
-        } else {
-            printf("  ");
         }
         // printf("%c", seq);
     }
+
+    // Close the stream.
+    fclose(fp);
+
+    struct queue {
+        int grid[100];
+        int start;
+        int end;
+    }
+
+    int x1; int y1; int x2; int y2;
+
+    // Print statements to prompt the user for the start and end co-ordinates.
+    printf("\nFrom what point should the traversal start?\n");
+    printf("Please enter the x co-ordinate:\n");
+    scanf("%d", &x1);
+    printf("Please enter the y co-ordinate:\n");
+    scanf("%d", &y1);
+
+    printf("\nFrom what point should the traversal end?\n");
+    printf("Please enter the x co-ordinate:\n");
+    scanf("%d", &x2);
+    printf("Please enter the y co-ordinate:\n");
+    scanf("%d", &y2);
+
+    BFS(x1, y1, x2, y2);
+
+    //█ is for the completed path...
 
     // Keep the window open indefinitely.
     while (1) {
