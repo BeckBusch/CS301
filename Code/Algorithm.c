@@ -4,6 +4,9 @@
 #include <limits.h>
 #include <unistd.h>
 
+// Unicode things
+#include <Windows.h>
+
 int main() {
 
     // Get current working directory.
@@ -21,6 +24,7 @@ int main() {
     fp = fopen(buf, "r");
 
     char seq;
+    SetConsoleOutputCP(CP_UTF8);
 
     // Read characters from the file and print them until we reach EOF.
     while (1) {
@@ -28,7 +32,15 @@ int main() {
             break;
         }
         seq = fgetc((FILE*)fp);
-        printf("%c", seq);
+        // Use ASCII code for 1, not 1 itself.
+        if (seq == 49) {
+            printf("%s", "██");
+        } else if (seq == 10) {
+            printf("\n");
+        } else {
+            printf("  ");
+        }
+        // printf("%c", seq);
     }
 
     // Keep the window open indefinitely.
