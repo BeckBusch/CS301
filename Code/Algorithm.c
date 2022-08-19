@@ -8,7 +8,7 @@
 #include <Windows.h>
 
 typedef struct Queue {
-    int start, end;
+    int start, end, size;
     unsigned capacity;
     int *array;
 } Queue;
@@ -16,13 +16,37 @@ typedef struct Queue {
 // Colour enum for seeing if vertices have been visited.
 enum Colour { WHITE, GREY, BLACK };
 
-void push(int vertex) {
+struct Queue* makeQueue(unsigned size) {
 
-
+    // We need to make a pointer to the queue so that we can pass it by reference from the function we call push/pop from.
+    struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
+    queue->capacity = size;
+    queue->start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
+    queue->size = 0; // Queue is empty to begin with.
+    queue->end = queue->capacity - 1;
+    queue->array = (int *) malloc(queue->capacity * sizeof(int)); // Using sizeof(int) means we allocate enough memory.
+    // Initialise all values to minus one so that we can tell if the queue is empty or not (there is a vertex zero).
+    memset(queue->array, -1, queue->capacity);
 
 }
 
-void pop(int vertex) {
+void push(struct Queue* queue, int vertex) {
+
+    // Move the end marker along one, if we reach capacity, go back to the beginning.
+    queue->end = (queue->end + 1) % queue->capacity;
+    queue->array[queue->end] = vertex;
+    queue->size = queue->size + 1;
+
+}
+
+int pop(struct Queue* queue) {
+
+    // Get the vertex from the start of the queue.
+    int vertex = queue->array[queue->start];
+    // Move the start marker along one, if we reach capacity, go back to the beginning.
+    queue->start = (queue->start + 1) % queue->capacity;
+    queue->size = queue->size - 1;
+    return vertex;
 
 }
 
@@ -39,20 +63,11 @@ void BFS(int source, int target, int adjlist[][4], int size) {
     vertices[source] = grey;
 
     // Set up the queue.
-    Queue queue;
-
-    queue.capacity = size;
-    queue.start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
-    queue.end = queue.capacity - 1;
-    queue.array = (int *) malloc(queue.capacity);
-
-    // Initialise all values to minus one so that we can tell if the queue is empty or not (there is a vertex zero).
-    memset(queue.array, -1, queue.capacity);
-
-    push(vertices[source]);
+    struct Queue* queue = makeQueue(size);
+    push(queue, source);
 
     // While the queue still has vertices to visit, visit them.
-    // while (1) {
+    // while (queue->size != 0) {
 
     // }
 
@@ -60,7 +75,7 @@ void BFS(int source, int target, int adjlist[][4], int size) {
 
 // Implementation of the A* algorithm.
 void ASTAR() {
-    
+
 }
 
 int main() {
