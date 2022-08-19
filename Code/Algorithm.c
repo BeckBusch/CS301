@@ -7,11 +7,16 @@
 // Unicode things
 #include <Windows.h>
 
-typedef struct Queue {
+struct Queue {
     int start, end, size;
     unsigned capacity;
     int *array;
-} Queue;
+}
+
+struct Vertex {
+    Colour colour;
+    int distance;
+}
 
 // Colour enum for seeing if vertices have been visited.
 enum Colour { WHITE, GREY, BLACK };
@@ -53,23 +58,47 @@ int pop(struct Queue* queue) {
 // Implementation of the BFS algorithm.
 void BFS(int source, int target, int adjlist[][4], int size) {
 
-    // Set up enum values
-    enum Colour white = WHITE;
-    enum Colour grey = GREY;
-    enum Colour black = BLACK;
+    // // Set up enum values
+    // enum Colour white = WHITE;
+    // enum Colour grey = GREY;
+    // enum Colour black = BLACK;
 
-    int vertices[size];
-    memset(vertices, white, size);
-    vertices[source] = grey;
+    struct Vertex vertices[size];
+    memset(vertices.colour, WHITE, size);
+    memset(vertices.distance, INT_MAX, size);
+
+    // int vertices[size];
+    // int distances[size];
+    // memset(vertices, white, size);
+    // memset(distances, INT_MAX, size);
+
+    vertices[source].colour = GREY;
+    vertices[source].distance = 0;
 
     // Set up the queue.
     struct Queue* queue = makeQueue(size);
     push(queue, source);
 
     // While the queue still has vertices to visit, visit them.
-    // while (queue->size != 0) {
-
-    // }
+    while (queue->size != 0) {
+        // Pop the front of the queue, this is the key in adjlist.
+        int key = pop(queue);
+        /* For each connected entry in adjlist, check if it has been visited.
+           Then, mark it as grey if it has yet to be visited, and add it to the queue. 
+           Make sure to update distance as well. */
+        for (int i = 0; i < 4; i++) {
+            int entry = adjlist[key][i];
+            // If entry is -1 it means there is no valid entry here (vacancy).
+            if (entry != -1) {
+                if (vertices[entry].colour == WHITE) {
+                    vertices[entry].Colour = GREY;
+                    vertices[entry].distance = vertices[key].distance + 1;
+                    push(entry);
+                }
+            }
+        }
+        vertices[key].colour = BLACK;
+    }
 
 }
 
@@ -148,7 +177,7 @@ int main() {
 
     // Each zero can only be adjacent to 4 zeroes maximum.
     int adjlist[xydim][4];
-    memset(adjlist, 0, sizeof adjlist);
+    memset(adjlist, -1, sizeof adjlist);
     int cnode;
 
     /* Construct the adjacency list.
@@ -200,7 +229,7 @@ int main() {
     int target = y2 * xdim + x2;
 
     BFS(source, target, adjlist, xydim);
-    ASTAR();
+    //ASTAR();
 
     //█ is for the completed path...
 
