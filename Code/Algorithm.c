@@ -13,16 +13,54 @@ typedef struct Queue {
     int *array;
 } Queue;
 
-void push() {
+// Colour enum for seeing if vertices have been visited.
+enum Colour { WHITE, GREY, BLACK };
+
+void push(int vertex) {
+
+
 
 }
 
-void pop() {
+void pop(int vertex) {
 
 }
 
-void BFS() {
+// Implementation of the BFS algorithm.
+void BFS(int source, int target, int adjlist[][4], int size) {
 
+    // Set up enum values
+    enum Colour white = WHITE;
+    enum Colour grey = GREY;
+    enum Colour black = BLACK;
+
+    int vertices[size];
+    memset(vertices, white, size);
+    vertices[source] = grey;
+
+    // Set up the queue.
+    Queue queue;
+
+    queue.capacity = size;
+    queue.start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
+    queue.end = queue.capacity - 1;
+    queue.array = (int *) malloc(queue.capacity);
+
+    // Initialise all values to minus one so that we can tell if the queue is empty or not (there is a vertex zero).
+    memset(queue.array, -1, queue.capacity);
+
+    push(vertices[source]);
+
+    // While the queue still has vertices to visit, visit them.
+    // while (1) {
+
+    // }
+
+}
+
+// Implementation of the A* algorithm.
+void ASTAR() {
+    
 }
 
 int main() {
@@ -94,13 +132,14 @@ int main() {
     // Now the array is stored in memory.
 
     // Each zero can only be adjacent to 4 zeroes maximum.
-    int adjlist[xydim][4] = {0};
+    int adjlist[xydim][4];
+    memset(adjlist, 0, sizeof adjlist);
     int cnode;
 
     /* Construct the adjacency list.
        Numbered reading from left to right, top down. */
-    for (int i = 0; i < ydim) {
-        for (int j = 0; j < xdim) {
+    for (int i = 0; i < ydim; i++) {
+        for (int j = 0; j < xdim; j++) {
             // For loops go through rows, cols.
             if (array[i][j] == 0) {
                 cnode = i * xdim + j; 
@@ -127,14 +166,6 @@ int main() {
     // Close the stream.
     fclose(fp);
 
-    // Set up the queue.
-    Queue queue;
-
-    queue.capacity = xydim;
-    queue.start = 0;
-    queue.end = queue.capacity - 1;
-    queue.array = (int *) malloc(queue.capacity);
-
     int x1; int y1; int x2; int y2;
 
     // Print statements to prompt the user for the start and end co-ordinates.
@@ -150,7 +181,11 @@ int main() {
     printf("Please enter the y co-ordinate:\n");
     scanf("%d", &y2);
 
-    //BFS(x1, y1, x2, y2);
+    int source = y1 * xdim + x1;
+    int target = y2 * xdim + x2;
+
+    BFS(source, target, adjlist, xydim);
+    ASTAR();
 
     //█ is for the completed path...
 
