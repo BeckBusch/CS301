@@ -11,15 +11,13 @@ struct Queue {
     int start, end, size;
     unsigned capacity;
     int *array;
-}
+} Queue;
 
 struct Vertex {
-    Colour colour;
+    // Colour enum for seeing if vertices have been visited.
+    enum { WHITE, GREY, BLACK } colour;
     int distance;
-}
-
-// Colour enum for seeing if vertices have been visited.
-enum Colour { WHITE, GREY, BLACK };
+} Vertex;
 
 struct Queue* makeQueue(unsigned size) {
 
@@ -58,19 +56,10 @@ int pop(struct Queue* queue) {
 // Implementation of the BFS algorithm.
 void BFS(int source, int target, int adjlist[][4], int size) {
 
-    // // Set up enum values
-    // enum Colour white = WHITE;
-    // enum Colour grey = GREY;
-    // enum Colour black = BLACK;
-
+    // Set up an array of vertices to track progress.
     struct Vertex vertices[size];
-    memset(vertices.colour, WHITE, size);
-    memset(vertices.distance, INT_MAX, size);
-
-    // int vertices[size];
-    // int distances[size];
-    // memset(vertices, white, size);
-    // memset(distances, INT_MAX, size);
+    memset(&vertices->colour, WHITE, size);
+    memset(&vertices->distance, INT_MAX, size);
 
     vertices[source].colour = GREY;
     vertices[source].distance = 0;
@@ -91,12 +80,13 @@ void BFS(int source, int target, int adjlist[][4], int size) {
             // If entry is -1 it means there is no valid entry here (vacancy).
             if (entry != -1) {
                 if (vertices[entry].colour == WHITE) {
-                    vertices[entry].Colour = GREY;
+                    vertices[entry].colour = GREY;
                     vertices[entry].distance = vertices[key].distance + 1;
-                    push(entry);
+                    push(queue, entry);
                 }
             }
         }
+        // Mark the key vertex as visited.
         vertices[key].colour = BLACK;
     }
 
