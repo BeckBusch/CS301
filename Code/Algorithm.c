@@ -45,7 +45,7 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 
     // Store the dimensions of the map so we can't go outside of it later on.
-    int xydim, ydim = 0;
+    int xydim, xdim, ydim = 0;
 
     // Read characters from the file and print them until we reach EOF.
     // This part is only for demonstration purposes, we don't need this in the final code.
@@ -66,12 +66,13 @@ int main() {
             ydim++;
         }
     }
+    xdim = xydim / ydim;
 
     // Start reading the file from the top again.
     rewind(fp);
 
     // Re-read the characters from the file, but this time, store them inside an array we just initialised.
-    int array[ydim][xydim / ydim];
+    int array[ydim][xdim];
     int countx, county = 0;
     while (1) {
         if (feof(fp) != 0) {
@@ -91,6 +92,34 @@ int main() {
         countx++;
     }
     // Now the array is stored in memory.
+
+    // Each zero can only be adjacent to 4 zeroes maximum.
+    int adjlist[xydim][4] = {0};
+    int cnode;
+
+    /* Construct the adjacency list.
+       Numbered reading from left to right, top down. */
+    for (int i = 0; i < ydim) {
+        for (int j = 0; j < xdim) {
+            // For loops go through rows, cols.
+            if (array[i][j] == 0) {
+                cnode = i * xdim + j; 
+                if (array[i - 1][j] == 0) {
+                    // Row above.
+                    adjlist[cnode][0] = (i - 1) * xdim + j;
+                } else if (array[i + 1][j] == 0) {
+                    // Row below.
+                    adjlist[cnode][1] = (i + 1) * xdim + j;
+                } else if (array[i][j - 1] == 0) {
+                    // Column left.
+                    adjlist[cnode][2] = i * xdim + j - 1;
+                } else if (array[i][j + 1] == 0) {
+                    // Column right.
+                    adjlist[cnode][3] = i * xdim + j + 1;
+                }
+            }
+        }
+    }
 
     // Print dimension for debugging purpose.
     printf("(Size of the array is %d)\n", xydim);
