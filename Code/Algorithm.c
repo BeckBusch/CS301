@@ -28,8 +28,15 @@ struct Queue* makeQueue(unsigned size) {
     queue->size = 0; // Queue is empty to begin with.
     queue->end = queue->capacity - 1;
     queue->array = (int *) malloc(queue->capacity * sizeof(int)); // Using sizeof(int) means we allocate enough memory.
+
+}
+
+void init(struct Queue* queue, int size) {
+
     // Initialise all values to minus one so that we can tell if the queue is empty or not (there is a vertex zero).
-    memset(queue->array, -1, queue->capacity);
+    for (int i = 0; i < size; i++) {
+        queue->array[i] = -1;
+    }
 
 }
 
@@ -46,6 +53,8 @@ int pop(struct Queue* queue) {
 
     // Get the vertex from the start of the queue.
     int vertex = queue->array[queue->start];
+    // Reset to empty value of -1.
+    queue->array[queue->start] = -1;
     // Move the start marker along one, if we reach capacity, go back to the beginning.
     queue->start = (queue->start + 1) % queue->capacity;
     queue->size = queue->size - 1;
@@ -58,14 +67,17 @@ void BFS(int source, int target, int adjlist[][4], int size) {
 
     // Set up an array of vertices to track progress.
     struct Vertex vertices[size];
-    memset(&vertices->colour, WHITE, size);
-    memset(&vertices->distance, INT_MAX, size);
+    for (int i = 0; i < size; i++) {
+        vertices[i].colour = WHITE;
+        vertices[i].distance = INT_MAX;
+    }
 
     vertices[source].colour = GREY;
     vertices[source].distance = 0;
 
     // Set up the queue.
     struct Queue* queue = makeQueue(size);
+    init(queue, size);
     push(queue, source);
 
     // While the queue still has vertices to visit, visit them.
@@ -89,6 +101,7 @@ void BFS(int source, int target, int adjlist[][4], int size) {
         // Mark the key vertex as visited.
         vertices[key].colour = BLACK;
     }
+    printf("%d", vertices[58].distance);
 
 }
 
@@ -211,21 +224,24 @@ int main() {
 
     // Print statements to prompt the user for the start and end co-ordinates.
     printf("\nFrom what point should the traversal start?\n");
-    printf("Please enter the x co-ordinate:\n");
-    scanf("%d", &x1);
-    printf("Please enter the y co-ordinate:\n");
-    scanf("%d", &y1);
+    // printf("Please enter the x co-ordinate:\n");
+    // scanf("%d", &x1);
+    // printf("Please enter the y co-ordinate:\n");
+    // scanf("%d", &y1);
 
-    printf("\nFrom what point should the traversal end?\n");
-    printf("Please enter the x co-ordinate:\n");
-    scanf("%d", &x2);
-    printf("Please enter the y co-ordinate:\n");
-    scanf("%d", &y2);
+    // printf("\nFrom what point should the traversal end?\n");
+    // printf("Please enter the x co-ordinate:\n");
+    // scanf("%d", &x2);
+    // printf("Please enter the y co-ordinate:\n");
+    // scanf("%d", &y2);
 
-    // int source = y1 * xdim + x1;
-    // int target = y2 * xdim + x2;
+    //int source = y1 * xdim + x1;
+    //int target = y2 * xdim + x2;
+    int source = 1 * xdim + 1;
+    int target = 13 * xdim + 17;
 
-    // BFS(source, target, adjlist, xydim);
+    BFS(source, target, adjlist, xydim);
+    printf("Pathfinding complete.\n");
     //ASTAR();
 
     //█ is for the completed path...
