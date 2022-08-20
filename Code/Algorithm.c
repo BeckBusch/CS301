@@ -89,6 +89,7 @@ void BFS(int source, int target, int adjlist[][4], int size) {
            Make sure to update distance as well. */
         for (int i = 0; i < 4; i++) {
             int entry = adjlist[key][i];
+            //printf("%d\n", entry);
             // If entry is -1 it means there is no valid entry here (vacancy).
             if (entry != -1) {
                 if (vertices[entry].colour == WHITE) {
@@ -101,7 +102,7 @@ void BFS(int source, int target, int adjlist[][4], int size) {
         // Mark the key vertex as visited.
         vertices[key].colour = BLACK;
     }
-    printf("%d", vertices[58].distance);
+    printf("The target is %d blocks from the source.\n", vertices[target].distance);
 
 }
 
@@ -200,13 +201,13 @@ int main() {
                 if (array[i - 1][j] == 0) {
                     // Row above.
                     adjlist[cnode][0] = (i - 1) * xdim + j;
-                } else if (array[i + 1][j] == 0) {
+                } if (array[i + 1][j] == 0) {
                     // Row below.
                     adjlist[cnode][1] = (i + 1) * xdim + j;
-                } else if (array[i][j - 1] == 0) {
+                } if (array[i][j - 1] == 0) {
                     // Column left.
                     adjlist[cnode][2] = i * xdim + j - 1;
-                } else if (array[i][j + 1] == 0) {
+                } if (array[i][j + 1] == 0) {
                     // Column right.
                     adjlist[cnode][3] = i * xdim + j + 1;
                 }
@@ -237,7 +238,7 @@ int main() {
 
     //int source = y1 * xdim + x1;
     //int target = y2 * xdim + x2;
-    int source = 1 * xdim + 1;
+    int source = 39;
     int target = 13 * xdim + 17;
 
     BFS(source, target, adjlist, xydim);
