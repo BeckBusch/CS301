@@ -121,6 +121,7 @@ int main() {
 
     // Read characters from the file and print them until we reach EOF.
     // This part is only for demonstration purposes, we don't need this in the final code.
+    // We may need to get xdim and ydim from here however.
     while (1) {
         if (feof(fp) != 0) {
             break;
@@ -144,55 +145,59 @@ int main() {
     rewind(fp);
 
     // Re-read the characters from the file, but this time, store them inside an array we just initialised.
-    int array[ydim][xdim];
-    int countx, county = 0;
-    while (1) {
-        if (feof(fp) != 0) {
-            break;
+    // Using 1 dimensional array because there were problems with initialising a 2d array...
+    int array[xydim];
+    for (int county = 0; county < ydim; county++) {
+        for (int countx = 0; countx < xdim; countx++) {
+            seq = fgetc((FILE*)fp);
+            if (seq == 49) {
+                array[county * xdim + countx] = 1;
+            } else if (seq == 48) {
+                array[county * xdim + countx] = 0;
+            } else if (seq == 10) {
+                // Decrement the counter because we don't want to change the index where there is a newline.
+                countx--;
+            }
         }
-        seq = fgetc((FILE*)fp);
-        // Use ASCII code for 1, not 1 itself.
-        if (seq == 49) {
-            array[county][countx] = 1;
-            countx++;
-        } else if (seq == 48) {
-            array[county][countx] = 0;
-            countx++;
-        } else if (seq == 10) {
-            county++;
+    }
+
+    // Verify the values have been copied over correctly.
+    for (int county = 0; county < ydim; county++) {
+        for (int countx = 0; countx < xdim; countx++) {
+            printf("%d", array[county * xdim + countx]);
         }
-        countx++;
+        printf("\n");
     }
     // Now the array is stored in memory.
 
     // Each zero can only be adjacent to 4 zeroes maximum.
-    int adjlist[xydim][4];
-    memset(adjlist, -1, sizeof adjlist);
-    int cnode;
+    // int adjlist[xydim][4];
+    // memset(adjlist, -1, sizeof(adjlist) * sizeof(int));
+    // int cnode;
 
     /* Construct the adjacency list.
        Numbered reading from left to right, top down. */
-    for (int i = 0; i < ydim; i++) {
-        for (int j = 0; j < xdim; j++) {
-            // For loops go through rows, cols.
-            if (array[i][j] == 0) {
-                cnode = i * xdim + j; 
-                if (array[i - 1][j] == 0) {
-                    // Row above.
-                    adjlist[cnode][0] = (i - 1) * xdim + j;
-                } else if (array[i + 1][j] == 0) {
-                    // Row below.
-                    adjlist[cnode][1] = (i + 1) * xdim + j;
-                } else if (array[i][j - 1] == 0) {
-                    // Column left.
-                    adjlist[cnode][2] = i * xdim + j - 1;
-                } else if (array[i][j + 1] == 0) {
-                    // Column right.
-                    adjlist[cnode][3] = i * xdim + j + 1;
-                }
-            }
-        }
-    }
+    // for (int i = 0; i < ydim; i++) {
+    //     for (int j = 0; j < xdim; j++) {
+    //         // For loops go through rows, cols.
+    //         if (array[i][j] == 0) {
+    //             cnode = i * xdim + j; 
+    //             if (array[i - 1][j] == 0) {
+    //                 // Row above.
+    //                 adjlist[cnode][0] = (i - 1) * xdim + j;
+    //             } else if (array[i + 1][j] == 0) {
+    //                 // Row below.
+    //                 adjlist[cnode][1] = (i + 1) * xdim + j;
+    //             } else if (array[i][j - 1] == 0) {
+    //                 // Column left.
+    //                 adjlist[cnode][2] = i * xdim + j - 1;
+    //             } else if (array[i][j + 1] == 0) {
+    //                 // Column right.
+    //                 adjlist[cnode][3] = i * xdim + j + 1;
+    //             }
+    //         }
+    //     }
+    // }
 
     // Print dimension for debugging purpose.
     printf("(Size of the array is %d)\n", xydim);
@@ -215,10 +220,10 @@ int main() {
     printf("Please enter the y co-ordinate:\n");
     scanf("%d", &y2);
 
-    int source = y1 * xdim + x1;
-    int target = y2 * xdim + x2;
+    // int source = y1 * xdim + x1;
+    // int target = y2 * xdim + x2;
 
-    BFS(source, target, adjlist, xydim);
+    // BFS(source, target, adjlist, xydim);
     //ASTAR();
 
     //█ is for the completed path...
