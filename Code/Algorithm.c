@@ -70,28 +70,36 @@ int pop(struct Queue* queue) {
 
 }
 
-// int remove(struct Queue* queue, int size) {
+int remove(struct Queue* queue, int size) {
 
-//     // This function operates like pop but differs in that the priority queue is out of order.
-//     for (int i = 0; i < size; i++) {
-//         if (queue->array[queue->start + i]) {
+    // This function operates like pop but differs in that the priority queue is out of order.
+    int maxPriority = INT_MAX;
+    int pos;
+    for (int i = 0; i < size; i++) {
+        // Although maxPriority is an indicator of what to prioritise, lower values should be visited first despite the name.
+        if (queue->array[queue->start + i].priority < maxPriority) {
+            maxPriority = queue->array[queue->start + i].priority;
+            pos = queue->start + i;
+        }
+    }
 
-//         }
-//     }
+    // Call to delete subroutine.
+    delete(queue, pos, size);
+    // Return the vertex value.
+    return queue->array[pos].value;
 
-//     for (int j = 0; j < size; j++) {
+}
 
-//     }
+void delete(struct Queue* queue, int pos, size) {
 
-// }
+    // Replace each entry in the array with the next entry until the end.
+    for (int i = 0; i < queue->end - pos; i++) {
+        queue->array[pos + i] = queue->array[pos + i + 1];
+    }
+    // Move the end pointer over.
+    queue->end--;
 
-// void delete(struct Queue* queue, int vertex, size) {
-
-//     for (int i = 0; i < size; i++) {
-        
-//     }
-
-// }
+}
 
 // Implementation of the BFS algorithm.
 void BFS(int source, int target, int adjlist[][4], int size) {
