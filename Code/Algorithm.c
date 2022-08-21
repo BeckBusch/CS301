@@ -70,12 +70,24 @@ int pop(struct Queue* queue) {
 
 }
 
-int remove(struct Queue* queue, int size) {
+bool contains(int visited[], int vertex, int size) {
+
+    // If the vertex has been visited return true, else return false.
+    for (int i = 0; i < size; i++) {
+        if (visited[i] == vertex) {
+            return true;
+        }
+    }
+    return false;
+
+}
+
+int remove(struct Queue* queue) {
 
     // This function operates like pop but differs in that the priority queue is out of order.
     int maxPriority = INT_MAX;
     int pos;
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < queue->end - queue->start; i++) {
         // Although maxPriority is an indicator of what to prioritise, lower values should be visited first despite the name.
         if (queue->array[queue->start + i].priority < maxPriority) {
             maxPriority = queue->array[queue->start + i].priority;
@@ -84,13 +96,13 @@ int remove(struct Queue* queue, int size) {
     }
 
     // Call to delete subroutine.
-    delete(queue, pos, size);
+    delete(queue, pos);
     // Return the vertex value.
     return queue->array[pos].value;
 
 }
 
-void delete(struct Queue* queue, int pos, size) {
+void delete(struct Queue* queue, int pos) {
 
     // Replace each entry in the array with the next entry until the end.
     for (int i = 0; i < queue->end - pos; i++) {
@@ -146,14 +158,16 @@ void BFS(int source, int target, int adjlist[][4], int size) {
 }
 
 // Implementation of the A* algorithm.
-// void ASTAR(int source, int target, int adjlist[][4], int size) {
+void ASTAR(int source, int target, int adjlist[][4], int size) {
 
-//     // Set up the queue.
-//     struct Queue* queue = makeQueue(size);
+    // Set up the queue.
+    struct Queue* queue = makeQueue(size);
+    init(queue, size);
+    push(queue, source);
 
-//     while (queue->)
+    //while (queue->)
 
-// }
+}
 
 int main() {
 
