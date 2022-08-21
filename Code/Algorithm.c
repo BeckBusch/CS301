@@ -7,10 +7,15 @@
 // Unicode things
 #include <Windows.h>
 
+struct PriorityInt {
+    int value;
+    int priority;
+} PriorityInt;
+
 struct Queue {
     int start, end, size;
     unsigned capacity;
-    int *array;
+    struct PriorityInt *array;
 } Queue;
 
 struct Vertex {
@@ -27,7 +32,7 @@ struct Queue* makeQueue(unsigned size) {
     queue->start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
     queue->size = 0; // Queue is empty to begin with.
     queue->end = queue->capacity - 1;
-    queue->array = (int *) malloc(queue->capacity * sizeof(int)); // Using sizeof(int) means we allocate enough memory.
+    queue->array = (struct PriorityInt *) malloc(queue->capacity * sizeof(struct PriorityInt)); // Using sizeof(int) means we allocate enough memory.
 
 }
 
@@ -35,7 +40,8 @@ void init(struct Queue* queue, int size) {
 
     // Initialise all values to minus one so that we can tell if the queue is empty or not (there is a vertex zero).
     for (int i = 0; i < size; i++) {
-        queue->array[i] = -1;
+        struct PriorityInt defaultValue = { .value = -1, .priority = 0 };
+        queue->array[i] = defaultValue;
     }
 
 }
@@ -44,7 +50,8 @@ void push(struct Queue* queue, int vertex) {
 
     // Move the end marker along one, if we reach capacity, go back to the beginning.
     queue->end = (queue->end + 1) % queue->capacity;
-    queue->array[queue->end] = vertex;
+    struct PriorityInt newVertex = { .value = vertex, .priority = 0 };
+    queue->array[queue->end] = newVertex;
     queue->size = queue->size + 1;
 
 }
@@ -52,15 +59,39 @@ void push(struct Queue* queue, int vertex) {
 int pop(struct Queue* queue) {
 
     // Get the vertex from the start of the queue.
-    int vertex = queue->array[queue->start];
+    struct PriorityInt vertex = queue->array[queue->start];
     // Reset to empty value of -1.
-    queue->array[queue->start] = -1;
+    struct PriorityInt defaultValue = { .value = -1, .priority = 0 };
+    queue->array[queue->start] = defaultValue;
     // Move the start marker along one, if we reach capacity, go back to the beginning.
     queue->start = (queue->start + 1) % queue->capacity;
     queue->size = queue->size - 1;
-    return vertex;
+    return vertex.value;
 
 }
+
+// int remove(struct Queue* queue, int size) {
+
+//     // This function operates like pop but differs in that the priority queue is out of order.
+//     for (int i = 0; i < size; i++) {
+//         if (queue->array[queue->start + i]) {
+
+//         }
+//     }
+
+//     for (int j = 0; j < size; j++) {
+
+//     }
+
+// }
+
+// void delete(struct Queue* queue, int vertex, size) {
+
+//     for (int i = 0; i < size; i++) {
+        
+//     }
+
+// }
 
 // Implementation of the BFS algorithm.
 void BFS(int source, int target, int adjlist[][4], int size) {
@@ -107,9 +138,14 @@ void BFS(int source, int target, int adjlist[][4], int size) {
 }
 
 // Implementation of the A* algorithm.
-void ASTAR() {
+// void ASTAR(int source, int target, int adjlist[][4], int size) {
 
-}
+//     // Set up the queue.
+//     struct Queue* queue = makeQueue(size);
+
+//     while (queue->)
+
+// }
 
 int main() {
 
@@ -239,11 +275,12 @@ int main() {
     //int source = y1 * xdim + x1;
     //int target = y2 * xdim + x2;
     int source = 39;
-    int target = 13 * xdim + 17;
+    int target = 68;
 
     BFS(source, target, adjlist, xydim);
-    printf("Pathfinding complete.\n");
-    //ASTAR();
+    //printf("Pathfinding complete.\n");
+    // ASTAR(source, target, adjlist, xydim);
+    printf("Pathfinding complete. \n");
 
     //█ is for the completed path...
 
