@@ -3,19 +3,20 @@
 #include <limits.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 // Unicode things
 #include <Windows.h>
 
-struct PriorityInt {
+struct PriorityVertex {
     int value;
     int priority;
-} PriorityInt;
+} PriorityVertex;
 
 struct Queue {
     int start, end, size;
     unsigned capacity;
-    struct PriorityInt *array;
+    struct PriorityVertex *array;
 } Queue;
 
 struct Vertex {
@@ -32,7 +33,7 @@ struct Queue* makeQueue(unsigned size) {
     queue->start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
     queue->size = 0; // Queue is empty to begin with.
     queue->end = queue->capacity - 1;
-    queue->array = (struct PriorityInt *) malloc(queue->capacity * sizeof(struct PriorityInt)); // Using sizeof(int) means we allocate enough memory.
+    queue->array = (struct PriorityVertex *) malloc(queue->capacity * sizeof(struct PriorityVertex)); // Using sizeof(int) means we allocate enough memory.
 
 }
 
@@ -40,7 +41,7 @@ void init(struct Queue* queue, int size) {
 
     // Initialise all values to minus one so that we can tell if the queue is empty or not (there is a vertex zero).
     for (int i = 0; i < size; i++) {
-        struct PriorityInt defaultValue = { .value = -1, .priority = 0 };
+        struct PriorityVertex defaultValue = { .value = -1, .priority = 0 };
         queue->array[i] = defaultValue;
     }
 
@@ -50,7 +51,7 @@ void push(struct Queue* queue, int vertex) {
 
     // Move the end marker along one, if we reach capacity, go back to the beginning.
     queue->end = (queue->end + 1) % queue->capacity;
-    struct PriorityInt newVertex = { .value = vertex, .priority = 0 };
+    struct PriorityVertex newVertex = { .value = vertex, .priority = 0 };
     queue->array[queue->end] = newVertex;
     queue->size = queue->size + 1;
 
@@ -59,9 +60,9 @@ void push(struct Queue* queue, int vertex) {
 int pop(struct Queue* queue) {
 
     // Get the vertex from the start of the queue.
-    struct PriorityInt vertex = queue->array[queue->start];
+    struct PriorityVertex vertex = queue->array[queue->start];
     // Reset to empty value of -1.
-    struct PriorityInt defaultValue = { .value = -1, .priority = 0 };
+    struct PriorityVertex defaultValue = { .value = -1, .priority = 0 };
     queue->array[queue->start] = defaultValue;
     // Move the start marker along one, if we reach capacity, go back to the beginning.
     queue->start = (queue->start + 1) % queue->capacity;
@@ -82,23 +83,16 @@ bool contains(int visited[], int vertex, int size) {
 
 }
 
-int remove(struct Queue* queue) {
+bool queueContains(Struct Queue* queue, int vertex) {
 
-    // This function operates like pop but differs in that the priority queue is out of order.
-    int maxPriority = INT_MAX;
-    int pos;
-    for (int i = 0; i < queue->end - queue->start; i++) {
-        // Although maxPriority is an indicator of what to prioritise, lower values should be visited first despite the name.
-        if (queue->array[queue->start + i].priority < maxPriority) {
-            maxPriority = queue->array[queue->start + i].priority;
-            pos = queue->start + i;
+    // If the queue contains the vertex return true, else return false.
+    for (int i = 0; i < queue->capacity; i++) {
+        struct PriorityVertex currentVertex = queue->array[queue->start + i];
+        if (currentVertex.value == vertex) {
+            return true;
         }
     }
-
-    // Call to delete subroutine.
-    delete(queue, pos);
-    // Return the vertex value.
-    return queue->array[pos].value;
+    return false;
 
 }
 
@@ -110,6 +104,26 @@ void delete(struct Queue* queue, int pos) {
     }
     // Move the end pointer over.
     queue->end--;
+
+}
+
+int removeVertex(struct Queue* queue) {
+
+    // This function operates like pop but differs in that the priority queue is out of order.
+    int maxPriority = INT_MAX;
+    int pos;
+    for (int i = 0; i < queue->capacity; i++) {
+        // Although maxPriority is an indicator of what to prioritise, lower values should be visited first despite the name.
+        if (queue->array[queue->start + i].priority < maxPriority) {
+            maxPriority = queue->array[queue->start + i].priority;
+            pos = queue->start + i;
+        }
+    }
+
+    // Call to delete subroutine.
+    delete(queue, pos);
+    // Return the vertex value.
+    return queue->array[pos].value;
 
 }
 
@@ -140,7 +154,6 @@ void BFS(int source, int target, int adjlist[][4], int size) {
            Make sure to update distance as well. */
         for (int i = 0; i < 4; i++) {
             int entry = adjlist[key][i];
-            //printf("%d\n", entry);
             // If entry is -1 it means there is no valid entry here (vacancy).
             if (entry != -1) {
                 if (vertices[entry].colour == WHITE) {
@@ -165,7 +178,48 @@ void ASTAR(int source, int target, int adjlist[][4], int size) {
     init(queue, size);
     push(queue, source);
 
-    //while (queue->)
+    // Set up arrays to track the visited vertices and the distances.
+    int visited[size];
+    int distances[size];
+    for (int i = 0; i < size; i++) {
+
+        visited[i] = -1;
+        distances[i] = INT_MAX;
+
+    }
+    int end = -1;
+
+    // While we have yet to reach the destination, keep looping.
+    while (1) {
+
+        int currentVertex = remove(queue);
+        visited[end + 1] = currentVertex;
+        end++;
+
+        if (currentVertex == target) {
+            printf("The target is %d blocks from the source.\n", something result);//
+            return;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int entry = adjlist[key][i];
+            // If entry is -1 it means there is no valid entry here (vacancy).
+            if (entry != -1) {
+                if (contains(visited, entry, size)) { continue; }
+
+                if (distances[entry]) {
+                    distances[entry] = new cost;//
+
+
+
+                    if ()
+
+                }
+
+            }
+        }
+
+    }
 
 }
 
@@ -299,9 +353,9 @@ int main() {
     int source = 39;
     int target = 68;
 
-    BFS(source, target, adjlist, xydim);
+    //BFS(source, target, adjlist, xydim);
     //printf("Pathfinding complete.\n");
-    // ASTAR(source, target, adjlist, xydim);
+    ASTAR(source, target, adjlist, xydim);
     printf("Pathfinding complete. \n");
 
     //█ is for the completed path...
