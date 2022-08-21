@@ -41,7 +41,7 @@ void init(struct Queue* queue, int size) {
 
     // Initialise all values to minus one so that we can tell if the queue is empty or not (there is a vertex zero).
     for (int i = 0; i < size; i++) {
-        struct PriorityVertex defaultValue = { .value = -1, .priority = 0 };
+        struct PriorityVertex defaultValue = { .value = -1, .priority = 0, };
         queue->array[i] = defaultValue;
     }
 
@@ -87,8 +87,8 @@ bool queueContains(Struct Queue* queue, int vertex) {
 
     // If the queue contains the vertex return true, else return false.
     for (int i = 0; i < queue->capacity; i++) {
-        struct PriorityVertex currentVertex = queue->array[queue->start + i];
-        if (currentVertex.value == vertex) {
+        struct PriorityVertex key = queue->array[queue->start + i];
+        if (key.value == vertex) {
             return true;
         }
     }
@@ -181,10 +181,12 @@ void ASTAR(int source, int target, int adjlist[][4], int size) {
     // Set up arrays to track the visited vertices and the distances.
     int visited[size];
     int distances[size];
+    int parents[size];
     for (int i = 0; i < size; i++) {
 
         visited[i] = -1;
         distances[i] = INT_MAX;
+        parents[i] = -1;
 
     }
     int end = -1;
@@ -192,11 +194,11 @@ void ASTAR(int source, int target, int adjlist[][4], int size) {
     // While we have yet to reach the destination, keep looping.
     while (1) {
 
-        int currentVertex = remove(queue);
-        visited[end + 1] = currentVertex;
+        int key = remove(queue);
+        visited[end + 1] = key;
         end++;
 
-        if (currentVertex == target) {
+        if (key == target) {
             printf("The target is %d blocks from the source.\n", something result);//
             return;
         }
@@ -205,14 +207,21 @@ void ASTAR(int source, int target, int adjlist[][4], int size) {
             int entry = adjlist[key][i];
             // If entry is -1 it means there is no valid entry here (vacancy).
             if (entry != -1) {
+                // If we have already visited this neighbour just continue.
                 if (contains(visited, entry, size)) { continue; }
 
-                if (distances[entry]) {
-                    distances[entry] = new cost;//
+
+                int newDistance = distances[parents[entry]]++;//
+                if (newDistance < distances[entry] || !queueContains(queue, entry)) {
+
+                    distances[entry] = newDistance + heuristic();
+                    parents[entry] = key;
 
 
-
-                    if ()
+                    // If the neighbour is not in the priority queue already, add it.
+                    if (!queueContains(queue, entry)) {
+                        push(queue, entry);
+                    }
 
                 }
 
