@@ -1,0 +1,6 @@
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|4ca653dd-83cb-46e4-9c33-c8c56a3d38f1
+\\files.auckland.ac.nz\myhome\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|4976215d-9d23-4ef0-80b2-69dcb3848e18
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|abbb086b-5603-43b1-9439-b2c18f1822ae
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|71aa4d0b-d996-441b-8704-4052cb24692d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|0e968fd4-a561-490d-b3a0-452a44b5663d
+\\files.auckland.ac.nz\myhome\Documents\301 Project\301 Project\Sensor Test.cydsn\Sensor Test.cyprj|e764a1ea-c7b9-4932-a120-529d561e3c58
