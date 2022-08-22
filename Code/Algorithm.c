@@ -23,6 +23,7 @@ struct Vertex {
     // Colour enum for seeing if vertices have been visited.
     enum { WHITE, GREY, BLACK } colour;
     int distance;
+    bool visited;
 } Vertex;
 
 struct Queue* makeQueue(unsigned size) {
@@ -74,25 +75,25 @@ int pop(struct Queue* queue) {
 bool contains(struct Vertex vertices[], int vertex) {
 
     // If the vertex has been visited return true, else return false.
-    if (vertices[vertex].distance != INT_MAX) {
+    if (vertices[vertex].visited == true) {
         return true;
     }
     return false;
 
 }
 
-bool queueContains(struct Queue* queue, int vertex) {
+// bool queueContains(struct Queue* queue, int vertex) {
 
-    // If the queue contains the vertex return true, else return false.
-    for (int i = 0; i < queue->capacity; i++) {
-        struct PriorityVertex key = queue->array[queue->start + i];
-        if (key.value == vertex) {
-            return true;
-        }
-    }
-    return false;
+//     // If the queue contains the vertex return true, else return false.
+//     for (int i = 0; i < queue->capacity; i++) {
+//         struct PriorityVertex key = queue->array[queue->start + i];
+//         if (key.value == vertex) {
+//             return true;
+//         }
+//     }
+//     return false;
 
-}
+// }
 
 void delete(struct Queue* queue, int pos) {
 
@@ -118,10 +119,9 @@ struct PriorityVertex removeVertex(struct Queue* queue) {
         }
     }
 
+    struct PriorityVertex returnVertex = { .value = queue->array[pos].value, .priority = queue->array[pos].priority };
     // Call to delete subroutine.
     delete(queue, pos);
-
-    struct PriorityVertex returnVertex = { .value = queue->array[pos].value, .priority = queue->array[pos].priority };
     // Return the vertex.
     return returnVertex;
 
@@ -186,21 +186,23 @@ void ASTAR(int source, int target, int adjlist[][4], int size, int array[15][19]
 
         // We don't care about vertex colour for this implementation.
         vertices[i].distance = INT_MAX;
+        vertices[i].visited = false;
         //parents[i] = -1;
 
     }
-    int end = -1;
+    //int end = -1;
 
     // While we have yet to reach the destination, keep looping.
     while (1) {
 
         struct PriorityVertex key = removeVertex(queue);
-        vertices[key.value].distance = key.priority;//??? not sure
+        vertices[key.value].visited = true;
+        //vertices[key.value].distance = key.priority;//??? not sure
         // printf("%d", key);
         // while(1) {
 
         // }
-        printf("%d ", key);
+        // printf("%d ", key);
 
         if (key.value == target) {
             printf("The target is %d blocks from the source.\n", 999);//
@@ -208,15 +210,14 @@ void ASTAR(int source, int target, int adjlist[][4], int size, int array[15][19]
         }
 
         int ydim = size / xdim;
-        if (key.value == 184) {
-            for (int i = 0; i < size; i++) {
-                printf("%d\n", queue->array[i].value);
-            }
+            // for (int i = 0; i < size; i++) {
+            //     printf("%d\n", queue->array[i].value);
+            // }
             printf("\n");
             for (int county = 0; county < ydim; county++) {
                 for (int countx = 0; countx < xdim; countx++) {
                     if (array[county][countx] == 0) {
-                        if (vertices[county * xdim + countx].distance != INT_MAX) {
+                        if (vertices[county * xdim + countx].visited == true) {
                             printf("%s", "  ");
                         } else {
                             printf("▒▒");
@@ -227,19 +228,25 @@ void ASTAR(int source, int target, int adjlist[][4], int size, int array[15][19]
                 }
                 printf("\n");
             }
-            break;
-        }
+            printf("\n\n\n\n\n\n\n\n\n\n\n\n");
+
+            // NO-OP to delay print statements.
+            for (int i = 0; i < 500000000; i++) {
+                (void)0;
+            }
+
 
         for (int i = 0; i < 4; i++) {
             int entry = adjlist[key.value][i];
+
             // If entry is -1 it means there is no valid entry here (vacancy).
             if (entry != -1) {
-                // If we have already vertices this neighbour just continue.
-                if (contains(vertices, entry)) { continue; }
+                // If we have already visited this neighbour just continue.
+                if (vertices[entry].visited == true) { continue; }
 
                 // printf("(%d, %d)", key, end);
-                int newDistance = key.priority + 1;//
-                if (newDistance < vertices[entry].distance || !queueContains(queue, entry)) {
+                int newDistance = vertices[key.value].distance + 1;//
+                if (newDistance < vertices[entry].distance || vertices[entry].distance == INT_MAX) {
 
                     vertices[entry].distance = newDistance + 0;//heuristic();
                     // for (int i = 0; i < 4; i++) {
@@ -247,18 +254,22 @@ void ASTAR(int source, int target, int adjlist[][4], int size, int array[15][19]
                     // }
 
                     // If the neighbour is not in the priority queue already, add it.
-                    if (!queueContains(queue, entry)) {
-                        push(queue, entry, vertices[entry].distance);
-                    }
+                    push(queue, entry, vertices[entry].distance);
+                    // printf("(");
                     // for (int i = 0; i < queue->capacity; i++) {
-                    //     printf("%d, ", queue->array[i].value);
+                    
+                    //     if (queue->array[i].value != -1) {
+                    //         printf("%d, ", queue->array[i].value);
+                    //     }
                     // }
+                    // printf(")");
                     // printf("\n");
 
                 }
 
             }
         }
+        printf("\n");
 
     }
 
