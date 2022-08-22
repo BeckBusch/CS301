@@ -72,29 +72,6 @@ int pop(struct Queue* queue) {
 
 }
 
-bool contains(struct Vertex vertices[], int vertex) {
-
-    // If the vertex has been visited return true, else return false.
-    if (vertices[vertex].visited == true) {
-        return true;
-    }
-    return false;
-
-}
-
-// bool queueContains(struct Queue* queue, int vertex) {
-
-//     // If the queue contains the vertex return true, else return false.
-//     for (int i = 0; i < queue->capacity; i++) {
-//         struct PriorityVertex key = queue->array[queue->start + i];
-//         if (key.value == vertex) {
-//             return true;
-//         }
-//     }
-//     return false;
-
-// }
-
 void delete(struct Queue* queue, int pos) {
 
     // Replace each entry in the array with the next entry until the end.
@@ -127,8 +104,38 @@ struct PriorityVertex removeVertex(struct Queue* queue) {
 
 }
 
+void draw(int xdim, int ydim, int array[15][19], struct Vertex vertices[15*19], bool BFS) {
+
+    // Function to draw the map to the console - not important later on.
+    for (int county = 0; county < ydim; county++) {
+        for (int countx = 0; countx < xdim; countx++) {
+            if (array[county][countx] == 0) {
+                if ((vertices[county * xdim + countx].visited == true && BFS == false) || 
+                (vertices[county * xdim + countx].colour == GREY || vertices[county * xdim + countx].colour == BLACK && BFS == true)) {
+                    printf("%s", "  ");
+                } else {
+                    printf("▒▒");
+                } 
+            } else {
+                printf("%s", "██");
+            }
+        }
+        printf("\n");
+    }
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n");
+
+    // NO-OP to delay print statements.
+    for (int i = 0; i < 50000000; i++) {
+        (void)0;
+    }
+
+}
+
 // Implementation of the BFS algorithm.
-void BFS(int source, int target, int adjlist[][4], int size) {
+void BFS(int source, int target, int adjlist[][4], int xdim, int ydim, int array[15][19]) {
+
+    // Dimension.
+    int size = xdim * ydim;
 
     // Set up an array of vertices to track progress.
     struct Vertex vertices[size];
@@ -149,6 +156,13 @@ void BFS(int source, int target, int adjlist[][4], int size) {
     while (queue->size != 0) {
         // Pop the front of the queue, this is the key in adjlist.
         int key = pop(queue);
+
+        // Draw to the console.
+        draw(xdim, ydim, array, vertices, true);
+
+        // If we have reached our target, we can stop the search.
+        if (key == target) { break; }
+
         /* For each connected entry in adjlist, check if it has been visited.
            Then, mark it as grey if it has yet to be visited, and add it to the queue. 
            Make sure to update distance as well. */
@@ -171,7 +185,10 @@ void BFS(int source, int target, int adjlist[][4], int size) {
 }
 
 // Implementation of the A* algorithm.
-void ASTAR(int source, int target, int adjlist[][4], int size, int array[15][19], int xdim) {
+void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int array[15][19]) {
+
+    // Dimension.
+    int size = xdim * ydim;
 
     // Set up the queue.
     struct Queue* queue = makeQueue(size);
@@ -208,31 +225,30 @@ void ASTAR(int source, int target, int adjlist[][4], int size, int array[15][19]
             return;
         }
 
-        int ydim = size / xdim;
-            // for (int i = 0; i < size; i++) {
-            //     printf("%d\n", queue->array[i].value);
-            // }
-            // printf("\n");
-            // for (int county = 0; county < ydim; county++) {
-            //     for (int countx = 0; countx < xdim; countx++) {
-            //         if (array[county][countx] == 0) {
-            //             if (vertices[county * xdim + countx].visited == true) {
-            //                 printf("%s", "  ");
-            //             } else {
-            //                 printf("▒▒");
-            //             }
-            //         } else {
-            //             printf("%s", "██");
-            //         }
-            //     }
-            //     printf("\n");
-            // }
-            // printf("\n\n\n\n\n\n\n\n\n\n\n\n");
+            for (int i = 0; i < size; i++) {
+                printf("%d\n", queue->array[i].value);
+            }
+            printf("\n");
+            for (int county = 0; county < ydim; county++) {
+                for (int countx = 0; countx < xdim; countx++) {
+                    if (array[county][countx] == 0) {
+                        if (vertices[county * xdim + countx].visited == true) {
+                            printf("%s", "  ");
+                        } else {
+                            printf("▒▒");
+                        }
+                    } else {
+                        printf("%s", "██");
+                    }
+                }
+                printf("\n");
+            }
+            printf("\n\n\n\n\n\n\n\n\n\n\n\n");
 
-            // // NO-OP to delay print statements.
-            // for (int i = 0; i < 500000000; i++) {
-            //     (void)0;
-            // }
+            // NO-OP to delay print statements.
+            for (int i = 0; i < 500000000; i++) {
+                (void)0;
+            }
 
         for (int i = 0; i < 4; i++) {
             int entry = adjlist[key.value][i];
@@ -406,8 +422,8 @@ int main() {
     int source = 20;
     int target = 68;
 
-    BFS(source, target, adjlist, xydim);
-    //ASTAR(source, target, adjlist, xydim, array, xdim);
+    BFS(source, target, adjlist, xdim, ydim, array);
+    //ASTAR(source, target, adjlist, xdim, ydim, array);
     printf("Pathfinding complete. \n");
 
     //█ is for the completed path...
