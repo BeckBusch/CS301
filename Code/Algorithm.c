@@ -83,6 +83,18 @@ void delete(struct Queue* queue, int pos) {
 
 }
 
+int heuristic(int entry, int target, int xdim) {
+
+    // Calculate square of horizontal using modulo.
+    int horiz = (target % xdim - entry % xdim) * (target % xdim - entry % xdim);
+
+    // Calculate square of vertical using division (truncation).
+    int vert = (target / xdim - entry / xdim) * (target / xdim - entry / xdim);
+
+    return (horiz + vert) / 10;
+
+}
+
 struct PriorityVertex removeVertex(struct Queue* queue) {
 
     // This function operates like pop but differs in that the priority queue is out of order.
@@ -110,11 +122,18 @@ void draw(int xdim, int ydim, int array[15][19], struct Vertex vertices[15*19], 
     for (int county = 0; county < ydim; county++) {
         for (int countx = 0; countx < xdim; countx++) {
             if (array[county][countx] == 0) {
-                if ((vertices[county * xdim + countx].visited == true && BFS == false) || 
-                (vertices[county * xdim + countx].colour == GREY || vertices[county * xdim + countx].colour == BLACK && BFS == true)) {
-                    printf("%s", "  ");
+                if (BFS == false) {
+                    if (vertices[county * xdim + countx].visited == true) {
+                        printf("%s", "  ");
+                    } else {
+                        printf("▒▒");
+                    }
                 } else {
-                    printf("▒▒");
+                    if (vertices[county * xdim + countx].colour == GREY || vertices[county * xdim + countx].colour == BLACK) {
+                        printf("%s", "  ");
+                    } else {
+                        printf("▒▒");
+                    }
                 } 
             } else {
                 printf("%s", "██");
@@ -193,63 +212,41 @@ void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
     // Set up the queue.
     struct Queue* queue = makeQueue(size);
     init(queue, size);
-    // Source distance is zero...
     push(queue, source, 0);
 
     // Set up an array to track vertices and their distances (INT_MAX means a vertex has yet to be visited).
     struct Vertex vertices[size];
-    //int parents[size];
     for (int i = 0; i < size; i++) {
 
         // We don't care about vertex colour for this implementation.
         vertices[i].distance = INT_MAX;
         vertices[i].visited = false;
-        //parents[i] = -1;
 
     }
 
     vertices[source].distance = 0;
-    //int lastDistance;
+
     // While we have yet to reach the destination, keep looping.
     while (1) {
 
+        // Get the vertex with the highest priority.
         struct PriorityVertex key = removeVertex(queue);
-        vertices[key.value].visited = true;
-        //lastDistance = vertices[key.value].distance;
 
+        // Set the visited status to true.
+        vertices[key.value].visited = true;
+
+        // Draw to the console.
+        draw(xdim, ydim, array, vertices, false);
+
+        // If we have reached our target, then we can stop searching.
         if (key.value == target) {
-            // for (int i = 0; i < size; i++) {
-            //     printf("%d ", vertices[i].distance);
-            // }
+
             printf("The target is %d blocks from the source.\n", vertices[key.value].distance );//
             return;
+
         }
 
-            for (int i = 0; i < size; i++) {
-                printf("%d\n", queue->array[i].value);
-            }
-            printf("\n");
-            for (int county = 0; county < ydim; county++) {
-                for (int countx = 0; countx < xdim; countx++) {
-                    if (array[county][countx] == 0) {
-                        if (vertices[county * xdim + countx].visited == true) {
-                            printf("%s", "  ");
-                        } else {
-                            printf("▒▒");
-                        }
-                    } else {
-                        printf("%s", "██");
-                    }
-                }
-                printf("\n");
-            }
-            printf("\n\n\n\n\n\n\n\n\n\n\n\n");
-
-            // NO-OP to delay print statements.
-            for (int i = 0; i < 500000000; i++) {
-                (void)0;
-            }
-
+        // Search through all possible neighbours.
         for (int i = 0; i < 4; i++) {
             int entry = adjlist[key.value][i];
 
@@ -258,33 +255,20 @@ void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
                 // If we have already visited this neighbour just continue.
                 if (vertices[entry].visited == true) { continue; }
 
-                // printf("(%d, %d)", key, end);
-                int newDistance = vertices[key.value].distance + 1;//
+                // Update the distances.
+                int newDistance = vertices[key.value].distance + 1;
                 if (newDistance < vertices[entry].distance || vertices[entry].distance == INT_MAX) {
 
-                    vertices[entry].distance = newDistance + 0;//heuristic();
-                    // for (int i = 0; i < 4; i++) {
-                    //     parents[adjlist[entry][i]] = entry;
-                    // }
+                    // Priority is the sum of the new distance plus the heuristic function result.
+                    int priority = newDistance + heuristic(entry, target, xdim);
+                    vertices[entry].distance = newDistance;
 
                     // If the neighbour is not in the priority queue already, add it.
-                    
-                    push(queue, entry, vertices[entry].distance);
-                    // printf("(");
-                    // for (int i = 0; i < queue->capacity; i++) {
-                    
-                    //     if (queue->array[i].value != -1) {
-                    //         printf("%d, ", queue->array[i].value);
-                    //     }
-                    // }
-                    // printf(")");
-                    // printf("\n");
+                    push(queue, entry, priority);
 
                 }
-
             }
         }
-        printf("\n");
 
     }
 
@@ -422,11 +406,9 @@ int main() {
     int source = 20;
     int target = 68;
 
-    BFS(source, target, adjlist, xdim, ydim, array);
-    //ASTAR(source, target, adjlist, xdim, ydim, array);
+    //BFS(source, target, adjlist, xdim, ydim, array);
+    ASTAR(source, target, adjlist, xdim, ydim, array);
     printf("Pathfinding complete. \n");
-
-    //█ is for the completed path...
 
     // Keep the window open indefinitely.
     while (1) {
