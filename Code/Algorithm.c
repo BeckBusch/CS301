@@ -190,22 +190,21 @@ void ASTAR(int source, int target, int adjlist[][4], int size, int array[15][19]
         //parents[i] = -1;
 
     }
-    //int end = -1;
 
+    vertices[source].distance = 0;
+    //int lastDistance;
     // While we have yet to reach the destination, keep looping.
     while (1) {
 
         struct PriorityVertex key = removeVertex(queue);
         vertices[key.value].visited = true;
-        //vertices[key.value].distance = key.priority;//??? not sure
-        // printf("%d", key);
-        // while(1) {
-
-        // }
-        // printf("%d ", key);
+        //lastDistance = vertices[key.value].distance;
 
         if (key.value == target) {
-            printf("The target is %d blocks from the source.\n", 999);//
+            // for (int i = 0; i < size; i++) {
+            //     printf("%d ", vertices[i].distance);
+            // }
+            printf("The target is %d blocks from the source.\n", vertices[key.value].distance );//
             return;
         }
 
@@ -213,28 +212,27 @@ void ASTAR(int source, int target, int adjlist[][4], int size, int array[15][19]
             // for (int i = 0; i < size; i++) {
             //     printf("%d\n", queue->array[i].value);
             // }
-            printf("\n");
-            for (int county = 0; county < ydim; county++) {
-                for (int countx = 0; countx < xdim; countx++) {
-                    if (array[county][countx] == 0) {
-                        if (vertices[county * xdim + countx].visited == true) {
-                            printf("%s", "  ");
-                        } else {
-                            printf("▒▒");
-                        }
-                    } else {
-                        printf("%s", "██");
-                    }
-                }
-                printf("\n");
-            }
-            printf("\n\n\n\n\n\n\n\n\n\n\n\n");
+            // printf("\n");
+            // for (int county = 0; county < ydim; county++) {
+            //     for (int countx = 0; countx < xdim; countx++) {
+            //         if (array[county][countx] == 0) {
+            //             if (vertices[county * xdim + countx].visited == true) {
+            //                 printf("%s", "  ");
+            //             } else {
+            //                 printf("▒▒");
+            //             }
+            //         } else {
+            //             printf("%s", "██");
+            //         }
+            //     }
+            //     printf("\n");
+            // }
+            // printf("\n\n\n\n\n\n\n\n\n\n\n\n");
 
-            // NO-OP to delay print statements.
-            for (int i = 0; i < 500000000; i++) {
-                (void)0;
-            }
-
+            // // NO-OP to delay print statements.
+            // for (int i = 0; i < 500000000; i++) {
+            //     (void)0;
+            // }
 
         for (int i = 0; i < 4; i++) {
             int entry = adjlist[key.value][i];
@@ -254,6 +252,7 @@ void ASTAR(int source, int target, int adjlist[][4], int size, int array[15][19]
                     // }
 
                     // If the neighbour is not in the priority queue already, add it.
+                    
                     push(queue, entry, vertices[entry].distance);
                     // printf("(");
                     // for (int i = 0; i < queue->capacity; i++) {
@@ -407,9 +406,8 @@ int main() {
     int source = 20;
     int target = 68;
 
-    //BFS(source, target, adjlist, xydim);
-    //printf("Pathfinding complete.\n");
-    ASTAR(source, target, adjlist, xydim, array, xdim);
+    BFS(source, target, adjlist, xydim);
+    //ASTAR(source, target, adjlist, xydim, array, xdim);
     printf("Pathfinding complete. \n");
 
     //█ is for the completed path...
