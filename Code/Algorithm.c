@@ -80,7 +80,19 @@ void delete(struct Queue* queue, int pos) {
     }
     // Move the end pointer over.
     queue->end--;
+    queue->size--;
 
+}
+
+bool queueContains(struct Queue* queue, int vertex) {
+
+    // If the queue contains the vertex return true, else return false.
+    for (int i = 0; i < queue->size; i++) {
+        if (queue->array[queue->start + i].value == vertex) {
+            return true;
+        }
+    }
+    return false;
 }
 
 int heuristic(int entry, int target, int xdim) {
@@ -100,7 +112,7 @@ struct PriorityVertex removeVertex(struct Queue* queue) {
     // This function operates like pop but differs in that the priority queue is out of order.
     int maxPriority = INT_MAX;
     int pos;
-    for (int i = 0; i < queue->capacity; i++) {
+    for (int i = 0; i < queue->size; i++) {
         // Although maxPriority is an indicator of what to prioritise, lower values should be visited first despite the name.
         if (queue->array[queue->start + i].priority < maxPriority) {
             maxPriority = queue->array[queue->start + i].priority;
@@ -227,7 +239,7 @@ void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
     vertices[source].distance = 0;
 
     // While we have yet to reach the destination, keep looping.
-    while (1) {
+    while (queue->size != 0) {
 
         // Get the vertex with the highest priority.
         struct PriorityVertex key = removeVertex(queue);
@@ -257,14 +269,16 @@ void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
 
                 // Update the distances.
                 int newDistance = vertices[key.value].distance + 1;
-                if (newDistance < vertices[entry].distance || vertices[entry].distance == INT_MAX) {
+                if (newDistance < vertices[entry].distance) {
 
                     // Priority is the sum of the new distance plus the heuristic function result.
                     int priority = newDistance + heuristic(entry, target, xdim);
                     vertices[entry].distance = newDistance;
 
-                    // If the neighbour is not in the priority queue already, add it.
-                    push(queue, entry, priority);
+                    if (!queueContains(queue, entry)) {
+                        // If the neighbour is not in the priority queue already, add it.
+                        push(queue, entry, priority);
+                    }
 
                 }
             }
@@ -281,7 +295,7 @@ int main() {
     getcwd(cwd, PATH_MAX);
 
     // Set the specific file to be read from.
-    char filename[] = "map_1.txt";
+    char filename[] = "map_8.txt";
 
     char buf[PATH_MAX];
     sprintf(buf, "%s\\%s", cwd, filename);
@@ -337,6 +351,7 @@ int main() {
     }
 
     // Verify the values have been copied over correctly.
+    printf("\n");
     for (int county = 0; county < ydim; county++) {
         for (int countx = 0; countx < xdim; countx++) {
             printf("%d", array[county][countx]);
@@ -404,7 +419,7 @@ int main() {
     // int source = 39;
     // int target = 68;
     int source = 20;
-    int target = 68;
+    int target = 252;
 
     //BFS(source, target, adjlist, xdim, ydim, array);
     ASTAR(source, target, adjlist, xdim, ydim, array);
