@@ -1,0 +1,176 @@
+Added Component: Designator=C1(RAD-0.3)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "RAD-0.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "56nF"; VariantName = "[No Variations]"
+Added Component: Designator=C2(RAD-0.3)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "RAD-0.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "56nF"; VariantName = "[No Variations]"
+Added Component: Designator=C3(RAD-0.3)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "RAD-0.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "56nF"; VariantName = "[No Variations]"
+Added Component: Designator=C4(RAD-0.3)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "RAD-0.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "56nF"; VariantName = "[No Variations]"
+Added Component: Designator=C5(RAD-0.3)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "RAD-0.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "56nF"; VariantName = "[No Variations]"
+Added Component: Designator=D4(LED0.1/5MM)
+Added Component: Designator=Q1(VEMT3700)
+Added Component: Designator=Q2(VEMT3700)
+Added Component: Designator=Q3(VEMT3700)
+Added Component: Designator=Q4(VEMT3700)
+Added Component: Designator=Q5(VEMT3700)
+Added Component: Designator=R1(AXIAL0.4)
+Added Component: Designator=R2(AXIAL0.4)
+Added Component: Designator=R3(AXIAL0.4)
+Added Component: Designator=R4(AXIAL0.4)
+Added Component: Designator=R5(AXIAL0.4)
+Added Component: Designator=R6(AXIAL0.4)
+Added Component: Designator=R7(AXIAL0.4)
+Added Component: Designator=R8(AXIAL0.4)
+Added Component: Designator=R9(AXIAL0.4)
+Added Component: Designator=R10(AXIAL0.4)
+Added Component: Designator=R11(AXIAL0.4)
+Added Component: Designator=R12(AXIAL0.4)
+Added Component: Designator=R13(AXIAL0.4)
+Added Component: Designator=R14(AXIAL0.4)
+Added Component: Designator=R15(AXIAL0.4)
+Added Component: Designator=R16(AXIAL0.4)
+Added Component: Designator=R17(AXIAL0.4)
+Added Component: Designator=R18(AXIAL0.4)
+Added Pin To Net: NetName=GND Pin=+5V-3
+Added Pin To Net: NetName=GND Pin=+5V-4
+Added Pin To Net: NetName=GND Pin=5V-3
+Added Pin To Net: NetName=GND Pin=5V-4
+Added Pin To Net: NetName=NetC2_1 Pin=C2-1
+Added Pin To Net: NetName=NetC2_2 Pin=C2-2
+Added Pin To Net: NetName=NetC3_1 Pin=C3-1
+Added Pin To Net: NetName=NetC5_1 Pin=C5-1
+Added Pin To Net: NetName=NetC5_2 Pin=C5-2
+Added Pin To Net: NetName=NetD1_A Pin=D1-A
+Added Pin To Net: NetName=NetD2_A Pin=D2-A
+Added Pin To Net: NetName=NetD3_A Pin=D3-A
+Added Pin To Net: NetName=5V Pin=Q1-1
+Added Pin To Net: NetName=5V Pin=Q2-1
+Added Pin To Net: NetName=5V Pin=Q3-1
+Added Pin To Net: NetName=NetC2_1 Pin=Q3-2
+Added Pin To Net: NetName=5V Pin=Q4-1
+Added Pin To Net: NetName=NetC3_1 Pin=Q4-2
+Added Pin To Net: NetName=5V Pin=Q5-1
+Added Pin To Net: NetName=NetC5_1 Pin=Q5-2
+Added Pin To Net: NetName=5V Pin=R1-2
+Added Pin To Net: NetName=5V Pin=R2-2
+Added Pin To Net: NetName=NetC2_2 Pin=R3-1
+Added Pin To Net: NetName=5V Pin=R3-2
+Added Pin To Net: NetName=5V Pin=R4-2
+Added Pin To Net: NetName=NetC5_2 Pin=R5-1
+Added Pin To Net: NetName=5V Pin=R5-2
+Added Pin To Net: NetName=GND Pin=R6-1
+Added Pin To Net: NetName=GND Pin=R7-1
+Added Pin To Net: NetName=GND Pin=R8-1
+Added Pin To Net: NetName=GND Pin=R9-1
+Added Pin To Net: NetName=GND Pin=R10-1
+Added Pin To Net: NetName=NetC2_1 Pin=R10-2
+Added Pin To Net: NetName=GND Pin=R11-1
+Added Pin To Net: NetName=NetC2_2 Pin=R11-2
+Added Pin To Net: NetName=GND Pin=R12-1
+Added Pin To Net: NetName=NetC3_1 Pin=R12-2
+Added Pin To Net: NetName=GND Pin=R13-1
+Added Pin To Net: NetName=GND Pin=R14-1
+Added Pin To Net: NetName=NetC5_1 Pin=R14-2
+Added Pin To Net: NetName=GND Pin=R15-1
+Added Pin To Net: NetName=NetC5_2 Pin=R15-2
+Added Pin To Net: NetName=NetD1_A Pin=R16-1
+Added Pin To Net: NetName=NetD2_A Pin=R17-1
+Added Pin To Net: NetName=NetD3_A Pin=R18-2
+Added Pin To Net: NetName=+5V Pin=5V-1
+Added Pin To Net: NetName=+5V Pin=5V-2
+Added Pin To Net: NetName=+5V Pin=+5V-1
+Added Pin To Net: NetName=+5V Pin=+5V-2
+Added Net: Name=+5V
+Added Pin To Net: NetName=NetC1_1 Pin=C1-1
+Added Pin To Net: NetName=NetC1_1 Pin=Q2-2
+Added Pin To Net: NetName=NetC1_1 Pin=R8-2
+Added Net: Name=NetC1_1
+Added Pin To Net: NetName=NetC1_2 Pin=C1-2
+Added Pin To Net: NetName=NetC1_2 Pin=R2-1
+Added Pin To Net: NetName=NetC1_2 Pin=R9-2
+Added Net: Name=NetC1_2
+Added Pin To Net: NetName=NetC3_2 Pin=C3-2
+Added Pin To Net: NetName=NetC3_2 Pin=R4-1
+Added Pin To Net: NetName=NetC3_2 Pin=R13-2
+Added Net: Name=NetC3_2
+Added Pin To Net: NetName=NetC4_1 Pin=C4-1
+Added Pin To Net: NetName=NetC4_1 Pin=D4-K
+Added Pin To Net: NetName=NetC4_1 Pin=Q1-2
+Added Pin To Net: NetName=NetC4_1 Pin=R6-2
+Added Net: Name=NetC4_1
+Added Pin To Net: NetName=NetC4_2 Pin=C4-2
+Added Pin To Net: NetName=NetC4_2 Pin=R1-1
+Added Pin To Net: NetName=NetC4_2 Pin=R7-2
+Added Net: Name=NetC4_2
+Change Class Name : Old Net Name=Sensor and Marker New Net Name=cs301_YourGroupNumber---------------
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component +5V 5V
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component 5V
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component C1 Cap
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component C2 Cap
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component C3 Cap
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component C4 Cap
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component C5 Cap
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component D4 LED
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component J13 CON10
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component J18 CON10
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component P0
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component P1
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component P2
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component P3
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component P12
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component P15
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component Q1 VEMT3700
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component Q2 VEMT3700
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component Q3 VEMT3700
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component Q4 VEMT3700
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component Q5 VEMT3700
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R1 220k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R2 220k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R3 220k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R4 220k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R5 220k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R6 47k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R7 68k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R8 47k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R9 68k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R10 47k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R11 68k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R12 47k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R13 68k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R14 47k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R15 68k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R16 RES2
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R17 RES2
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R18 RES2
+Added Room: Name=cs301_YourGroupNumber---------------
