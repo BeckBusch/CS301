@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=NetD5_A Pin=D5-A
+Removed Pin From Net: NetName=NetC1_1 Pin=D5-K
+Removed Pin From Net: NetName=NetC4_1 Pin=Q1-2
+Removed Pin From Net: NetName=NetC2_1 Pin=Q3-2
+Removed Pin From Net: NetName=NetC3_1 Pin=Q4-2
+Removed Pin From Net: NetName=NetC5_1 Pin=Q5-2
+Change Component Comment : Designator=D1 Old Comment=LED_S New Comment=LED
+Change Component Comment : Designator=D2 Old Comment=LED_S New Comment=LED
+Change Component Comment : Designator=D3 Old Comment=LED_S New Comment=LED
+Added Component: Designator=D5(LED0.1/5MM)
+Added Pin To Net: NetName=NetD5_A Pin=D5-A

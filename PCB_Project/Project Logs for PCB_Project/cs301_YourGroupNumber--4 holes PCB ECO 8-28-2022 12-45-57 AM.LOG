@@ -1,0 +1,15 @@
+Added Component: Designator=D5(LED0.1/5MM)
+Added Component: Designator=D6(LED0.1/5MM)
+Added Component: Designator=D7(LED0.1/5MM)
+Added Component: Designator=D8(LED0.1/5MM)
+Added Pin To Net: NetName=NetC1_1 Pin=D5-K
+Added Pin To Net: NetName=NetC2_1 Pin=D6-K
+Added Pin To Net: NetName=NetC3_1 Pin=D7-K
+Added Pin To Net: NetName=NetC5_1 Pin=D8-K
+Added Pin To Net: NetName=NetD5_A Pin=D5-A
+Added Pin To Net: NetName=NetD5_A Pin=Q2-2
+Added Net: Name=NetD5_A
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component D5 LED
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component D6 LED
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component D7 LED
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component D8 LED
