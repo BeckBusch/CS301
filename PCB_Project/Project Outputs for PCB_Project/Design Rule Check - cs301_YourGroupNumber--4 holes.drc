@@ -1,19 +1,18 @@
 Protel Design System Design Rule Check
 PCB File : C:\Users\User\Documents\GitHub\project-project-group-7\PCB_Project\cs301_YourGroupNumber--4 holes.PcbDoc
 Date     : 8/28/2022
-Time     : 11:49:40 PM
+Time     : 11:57:45 PM
 
 Processing Rule : Clearance Constraint (Gap=10mil) (All),(All)
-Rule Violations :0
+   Violation between Clearance Constraint: (7.058mil < 10mil) Between Polygon Region (152 hole(s)) Top Layer And Track (-1095mil,-1360mil)(-995mil,-1360mil) on Top Layer 
+   Violation between Clearance Constraint: (7.058mil < 10mil) Between Polygon Region (152 hole(s)) Top Layer And Track (990mil,-1360mil)(1090mil,-1360mil) on Top Layer 
+Rule Violations :2
 
 Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
 
 Processing Rule : Un-Routed Net Constraint ( (All) )
-   Violation between Un-Routed Net Constraint: Net +5V Between Pad +5V-2(-1095mil,-1360mil) on Multi-Layer And Pad +5V-1(-995mil,-1360mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net +5V Between Pad +5V-1(-995mil,-1360mil) on Multi-Layer And Pad 5V-2(990mil,-1360mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net +5V Between Pad 5V-2(990mil,-1360mil) on Multi-Layer And Pad 5V-1(1090mil,-1360mil) on Multi-Layer 
-Rule Violations :3
+Rule Violations :0
 
 Processing Rule : Width Constraint (Min=10mil) (Max=30mil) (Preferred=10mil) (All)
 Rule Violations :0
@@ -178,59 +177,13 @@ Rule Violations :27
 Processing Rule : Net Antennae (Tolerance=0mil) (All)
 Rule Violations :0
 
-Processing Rule : Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------'))
-   Violation between Room Definition: Between Component +5V-5V (-995mil,-1360mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
-   Violation between Room Definition: Between Component 5V-5V (1090mil,-1360mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
-   Violation between Room Definition: Between DIP Component J13-CON10 (-1095mil,720mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
-   Violation between Room Definition: Between DIP Component J18-CON10 (1090mil,-55mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
-   Violation between Room Definition: Between DIP Component P0-P0 (-1095mil,-605mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
-   Violation between Room Definition: Between DIP Component P12-P12 (990mil,-250mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
-   Violation between Room Definition: Between DIP Component P15-P15 (-1095mil,125mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
-   Violation between Room Definition: Between DIP Component P1-P1 (1090mil,545mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
-   Violation between Room Definition: Between DIP Component P2-P2 (1090mil,-1045mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
-   Violation between Room Definition: Between DIP Component P3-P3 (-1095mil,1205mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component C1-Cap (1270mil,1460mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component C2-Cap (100mil,-1920mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component C3-Cap (-1480mil,-60mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component C4-Cap (-830mil,1620mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component C5-Cap (1460mil,-140mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component D1-LED (-1574.803mil,2189.764mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component D2-LED (-1574.803mil,-2239.37mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component D3-LED (1574.803mil,-2239.37mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component Q1-VEMT3700 (-980mil,2420mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component Q2-VEMT3700 (1330mil,1840mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component Q3-VEMT3700 (-440mil,-2485mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component Q4-VEMT3700 (-1780mil,940mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component Q5-VEMT3700 (1260mil,895mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R10-47k (-300mil,-2330mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R11-68k (450mil,-2330mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R1-220k (-500mil,1930mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R12-47k (-1620mil,-740mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R13-68k (-1410mil,-740mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R14-47k (1410mil,-800mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R15-68k (1610mil,-800mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R16-RES2 (-1580mil,1850mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R17-RES2 (-1570mil,-2100mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R18-RES2 (1570mil,-1610mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R19-68 (-570mil,-830mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R20-68 (-310mil,-820mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R21-68 (0mil,-830mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R2-220k (980mil,1930mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R22-68 (270mil,-830mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R23-68 (550mil,-850mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R3-220k (650mil,-1990mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R4-220k (-1400mil,440mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R5-220k (1620mil,400mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R6-47k (-1130mil,1370mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R7-68k (-500mil,1360mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R8-47k (1480mil,1320mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R9-68k (1030mil,1270mil) on Top Layer 
-Rule Violations :46
+Processing Rule : Room cs301_Group7 (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------'))
+Rule Violations :0
 
 Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
 Rule Violations :0
 
 
-Violations Detected : 188
+Violations Detected : 141
 Waived Violations : 0
 Time Elapsed        : 00:00:02
