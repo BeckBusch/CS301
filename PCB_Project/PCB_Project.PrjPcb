@@ -41,13 +41,13 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
-DocumentPath=cs301_YourGroupNumber---------------.SchDoc
+DocumentPath=cs301_group7.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
-AnnotateOrder=-1
+AnnotateOrder=0
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=1
@@ -58,7 +58,7 @@ GenerateClassCluster=0
 DocumentUniqueId=RPIWRWHR
 
 [Document2]
-DocumentPath=cs301_YourGroupNumber--4 holes.PcbDoc
+DocumentPath=cs301_group7.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -75,6 +75,10 @@ GenerateClassCluster=0
 DocumentUniqueId=ONUDHDFY
 
 [GeneratedDocument1]
+DocumentPath=Project Outputs for PCB_Project\Design Rule Check - cs301_group7.html
+DItemRevisionGUID=
+
+[GeneratedDocument2]
 DocumentPath=Project Outputs for PCB_Project\Design Rule Check - cs301_YourGroupNumber--4 holes.html
 DItemRevisionGUID=
 

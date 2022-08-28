@@ -1,0 +1,18 @@
+Removed Pin From Net: NetName=5V Pin=R1-2
+Removed Pin From Net: NetName=5V Pin=R2-2
+Removed Pin From Net: NetName=5V Pin=R3-2
+Removed Pin From Net: NetName=5V Pin=R4-2
+Removed Pin From Net: NetName=5V Pin=R5-2
+Added Pin To Net: NetName=GND Pin=R1-2
+Added Pin To Net: NetName=GND Pin=R2-2
+Added Pin To Net: NetName=GND Pin=R3-2
+Added Pin To Net: NetName=GND Pin=R4-2
+Added Pin To Net: NetName=GND Pin=R5-2
+Change Class Name : Old Net Name=cs301_YourGroupNumber--------------- New Net Name=cs301_group7
+Added Member To Class: ClassName=cs301_group7 Member=Component D4 LED
+Added Member To Class: ClassName=cs301_group7 Member=Component D5 LED
+Added Member To Class: ClassName=cs301_group7 Member=Component D6 LED
+Added Member To Class: ClassName=cs301_group7 Member=Component D7 LED
+Added Member To Class: ClassName=cs301_group7 Member=Component D8 LED
+Change Room Name: Old Name=cs301_Group7 New Name=cs301_group7
+Change Room Scope: Old Scope=InComponentClass('cs301_YourGroupNumber---------------') New Scope=InComponentClass('cs301_group7')
