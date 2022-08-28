@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\Users\User\Documents\GitHub\project-project-group-7\PCB_Project\cs301_YourGroupNumber--4 holes.PcbDoc
 Date     : 8/28/2022
-Time     : 3:12:54 PM
+Time     : 3:42:10 PM
 
 Processing Rule : Clearance Constraint (Gap=10mil) (All),(All)
 Rule Violations :0
@@ -10,12 +10,9 @@ Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
 
 Processing Rule : Un-Routed Net Constraint ( (All) )
-   Violation between Un-Routed Net Constraint: Net +5V Between Pad +5V-2(-1095mil,-1360mil) on Multi-Layer And Pad +5V-1(-995mil,-1360mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net +5V Between Pad +5V-1(-995mil,-1360mil) on Multi-Layer And Pad 5V-2(990mil,-1360mil) on Multi-Layer 
    Violation between Un-Routed Net Constraint: Net GND Between Pad +5V-4(-1095mil,-1260mil) on Multi-Layer And Pad +5V-3(-995mil,-1260mil) on Multi-Layer 
    Violation between Un-Routed Net Constraint: Net GND Between Pad +5V-3(-995mil,-1260mil) on Multi-Layer And Pad R10-1(-300mil,-2330mil) on Multi-Layer 
    Violation between Un-Routed Net Constraint: Net GND Between Pad R13-1(-1410mil,-740mil) on Multi-Layer And Pad +5V-4(-1095mil,-1260mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net +5V Between Pad 5V-2(990mil,-1360mil) on Multi-Layer And Pad 5V-1(1090mil,-1360mil) on Multi-Layer 
    Violation between Un-Routed Net Constraint: Net GND Between Pad 5V-4(990mil,-1260mil) on Multi-Layer And Pad 5V-3(1090mil,-1260mil) on Multi-Layer 
    Violation between Un-Routed Net Constraint: Net GND Between Pad 5V-3(1090mil,-1260mil) on Multi-Layer And Pad R14-1(1410mil,-800mil) on Multi-Layer 
    Violation between Un-Routed Net Constraint: Net GND Between Pad R11-1(450mil,-2330mil) on Multi-Layer And Pad 5V-4(990mil,-1260mil) on Multi-Layer 
@@ -26,8 +23,9 @@ Processing Rule : Un-Routed Net Constraint ( (All) )
    Violation between Un-Routed Net Constraint: Net 5V Between Pad Q2-1(1180mil,1940mil) on Multi-Layer And Pad Q5-1(1410mil,795mil) on Multi-Layer 
    Violation between Un-Routed Net Constraint: Net 5V Between Pad R4-2(-1400mil,840mil) on Multi-Layer And Pad Q3-1(-870mil,-2385mil) on Multi-Layer 
    Violation between Un-Routed Net Constraint: Net GND Between Pad R14-1(1410mil,-800mil) on Multi-Layer And Pad R8-1(1480mil,1320mil) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net 5V Between Track (-870mil,-2385mil)(-869.703mil,-2385.296mil) on Top Layer And Pad R3-2(650mil,-2390mil) on Multi-Layer 
    Violation between Un-Routed Net Constraint: Net GND Between Pad R7-1(-500mil,1360mil) on Multi-Layer And Pad R9-1(1030mil,1270mil) on Multi-Layer 
-Rule Violations :17
+Rule Violations :15
 
 Processing Rule : Width Constraint (Min=10mil) (Max=30mil) (Preferred=10mil) (All)
 Rule Violations :0
@@ -235,6 +233,6 @@ Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (
 Rule Violations :0
 
 
-Violations Detected : 192
+Violations Detected : 190
 Waived Violations : 0
-Time Elapsed        : 00:00:01
+Time Elapsed        : 00:00:02
