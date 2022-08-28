@@ -1,0 +1,10 @@
+Change Component Designator: OldDesignator=R3 NewDesignator=R2
+Added Component: Designator=R16(AXIAL0.4)
+Added Pin To Net: NetName=NetD1_A Pin=R16-1
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component C1 Cap
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component D5 LED
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component Q2 VEMT3700
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R3 220k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R8 47k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R9 68k
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R16 RES2

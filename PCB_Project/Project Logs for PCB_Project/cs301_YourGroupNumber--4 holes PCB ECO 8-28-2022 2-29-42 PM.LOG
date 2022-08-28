@@ -1,0 +1,4 @@
+Added Pin To Net: NetName=NetD6_A Pin=D6-A
+Added Pin To Net: NetName=NetD6_A Pin=Q3-2
+Added Net: Name=NetD6_A
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R3 220k
