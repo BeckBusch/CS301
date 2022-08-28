@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\Users\User\Documents\GitHub\project-project-group-7\PCB_Project\cs301_YourGroupNumber--4 holes.PcbDoc
 Date     : 8/28/2022
-Time     : 3:42:10 PM
+Time     : 11:49:40 PM
 
 Processing Rule : Clearance Constraint (Gap=10mil) (All),(All)
 Rule Violations :0
@@ -10,22 +10,10 @@ Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
 
 Processing Rule : Un-Routed Net Constraint ( (All) )
-   Violation between Un-Routed Net Constraint: Net GND Between Pad +5V-4(-1095mil,-1260mil) on Multi-Layer And Pad +5V-3(-995mil,-1260mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad +5V-3(-995mil,-1260mil) on Multi-Layer And Pad R10-1(-300mil,-2330mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad R13-1(-1410mil,-740mil) on Multi-Layer And Pad +5V-4(-1095mil,-1260mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad 5V-4(990mil,-1260mil) on Multi-Layer And Pad 5V-3(1090mil,-1260mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad 5V-3(1090mil,-1260mil) on Multi-Layer And Pad R14-1(1410mil,-800mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad R11-1(450mil,-2330mil) on Multi-Layer And Pad 5V-4(990mil,-1260mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetD1_A Between Pad R16-1(-1580mil,1850mil) on Multi-Layer And Pad D1-A(-1574.803mil,2189.764mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetD2_A Between Pad D2-A(-1574.803mil,-2239.37mil) on Multi-Layer And Pad R17-1(-1570mil,-2100mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetD3_A Between Pad R18-2(1570mil,-2010mil) on Multi-Layer And Pad D3-A(1574.803mil,-2239.37mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net 5V Between Pad R4-2(-1400mil,840mil) on Multi-Layer And Pad Q1-1(-830mil,2320mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net 5V Between Pad Q2-1(1180mil,1940mil) on Multi-Layer And Pad Q5-1(1410mil,795mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net 5V Between Pad R4-2(-1400mil,840mil) on Multi-Layer And Pad Q3-1(-870mil,-2385mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad R14-1(1410mil,-800mil) on Multi-Layer And Pad R8-1(1480mil,1320mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net 5V Between Track (-870mil,-2385mil)(-869.703mil,-2385.296mil) on Top Layer And Pad R3-2(650mil,-2390mil) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad R7-1(-500mil,1360mil) on Multi-Layer And Pad R9-1(1030mil,1270mil) on Multi-Layer 
-Rule Violations :15
+   Violation between Un-Routed Net Constraint: Net +5V Between Pad +5V-2(-1095mil,-1360mil) on Multi-Layer And Pad +5V-1(-995mil,-1360mil) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net +5V Between Pad +5V-1(-995mil,-1360mil) on Multi-Layer And Pad 5V-2(990mil,-1360mil) on Multi-Layer 
+   Violation between Un-Routed Net Constraint: Net +5V Between Pad 5V-2(990mil,-1360mil) on Multi-Layer And Pad 5V-1(1090mil,-1360mil) on Multi-Layer 
+Rule Violations :3
 
 Processing Rule : Width Constraint (Min=10mil) (Max=30mil) (Preferred=10mil) (All)
 Rule Violations :0
@@ -47,22 +35,22 @@ Processing Rule : Minimum Solder Mask Sliver (Gap=10mil) (All),(All)
 Rule Violations :0
 
 Processing Rule : Silk To Solder Mask (Clearance=10mil) (IsPad),(All)
-   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-1130mil,2100mil) on Top Overlay And Pad D4-A(-1130mil,2150mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-1130mil,2100mil) on Top Overlay And Pad D4-K(-1130mil,2050mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (1470mil,140mil) on Top Overlay And Pad D8-A(1470mil,190mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (1470mil,140mil) on Top Overlay And Pad D8-K(1470mil,90mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (1470mil,2150mil) on Top Overlay And Pad D5-A(1470mil,2200mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (1470mil,2150mil) on Top Overlay And Pad D5-K(1470mil,2100mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-1490mil,230mil) on Top Overlay And Pad D7-A(-1490mil,280mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-1490mil,230mil) on Top Overlay And Pad D7-K(-1490mil,180mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (0mil,-1100mil) on Top Overlay And Pad D6-A(0mil,-1050mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (0mil,-1100mil) on Top Overlay And Pad D6-K(0mil,-1150mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
    Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-1574.803mil,2239.764mil) on Top Overlay And Pad D1-A(-1574.803mil,2189.764mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
    Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-1574.803mil,2239.764mil) on Top Overlay And Pad D1-K(-1574.803mil,2289.764mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
    Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-1574.803mil,-2289.37mil) on Top Overlay And Pad D2-A(-1574.803mil,-2239.37mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
    Violation between Silk To Solder Mask Clearance Constraint: (9.559mil < 10mil) Between Arc (-1574.803mil,-2289.37mil) on Top Overlay And Pad D2-K(-1574.803mil,-2337.795mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [9.559mil]
    Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (1574.803mil,-2289.37mil) on Top Overlay And Pad D3-A(1574.803mil,-2239.37mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
    Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (1574.803mil,-2289.37mil) on Top Overlay And Pad D3-K(1574.803mil,-2339.37mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-600mil,-2130mil) on Top Overlay And Pad D6-A(-600mil,-2080mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-600mil,-2130mil) on Top Overlay And Pad D6-K(-600mil,-2180mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (270mil,-1100mil) on Top Overlay And Pad D7-A(270mil,-1050mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (270mil,-1100mil) on Top Overlay And Pad D7-K(270mil,-1150mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-300mil,-1110mil) on Top Overlay And Pad D5-A(-300mil,-1060mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-300mil,-1110mil) on Top Overlay And Pad D5-K(-300mil,-1160mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (550mil,-1090mil) on Top Overlay And Pad D8-A(550mil,-1040mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (550mil,-1090mil) on Top Overlay And Pad D8-K(550mil,-1140mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-570mil,-1110mil) on Top Overlay And Pad D4-A(-570mil,-1060mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (7.984mil < 10mil) Between Arc (-570mil,-1110mil) on Top Overlay And Pad D4-K(-570mil,-1160mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.984mil]
    Violation between Silk To Solder Mask Clearance Constraint: (4mil < 10mil) Between Pad +5V-1(-995mil,-1360mil) on Multi-Layer And Track (-1045mil,-1310mil)(-945mil,-1310mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4mil]
    Violation between Silk To Solder Mask Clearance Constraint: (4mil < 10mil) Between Pad +5V-1(-995mil,-1360mil) on Multi-Layer And Track (-1045mil,-1410mil)(-1045mil,-1310mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4mil]
    Violation between Silk To Solder Mask Clearance Constraint: (4mil < 10mil) Between Pad +5V-1(-995mil,-1360mil) on Multi-Layer And Track (-1145mil,-1410mil)(-945mil,-1410mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4mil]
@@ -92,17 +80,17 @@ Processing Rule : Silk To Solder Mask (Clearance=10mil) (IsPad),(All)
    Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D1-A(-1574.803mil,2189.764mil) on Multi-Layer And Track (-1639.803mil,2139.764mil)(-1516.803mil,2139.764mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
    Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D2-A(-1574.803mil,-2239.37mil) on Multi-Layer And Track (-1632.803mil,-2189.37mil)(-1509.803mil,-2189.37mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
    Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D3-A(1574.803mil,-2239.37mil) on Multi-Layer And Track (1516.803mil,-2189.37mil)(1639.803mil,-2189.37mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D4-A(-1130mil,2150mil) on Multi-Layer And Track (-1188mil,2200mil)(-1065mil,2200mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D5-A(1470mil,2200mil) on Multi-Layer And Track (1412mil,2250mil)(1535mil,2250mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D6-A(-600mil,-2080mil) on Multi-Layer And Track (-658mil,-2030mil)(-535mil,-2030mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D7-A(-1490mil,280mil) on Multi-Layer And Track (-1548mil,330mil)(-1425mil,330mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D8-A(1470mil,190mil) on Multi-Layer And Track (1412mil,240mil)(1535mil,240mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D4-A(-570mil,-1060mil) on Multi-Layer And Track (-628mil,-1010mil)(-505mil,-1010mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D5-A(-300mil,-1060mil) on Multi-Layer And Track (-358mil,-1010mil)(-235mil,-1010mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D6-A(0mil,-1050mil) on Multi-Layer And Track (-58mil,-1000mil)(65mil,-1000mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D7-A(270mil,-1050mil) on Multi-Layer And Track (212mil,-1000mil)(335mil,-1000mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (8.984mil < 10mil) Between Pad D8-A(550mil,-1040mil) on Multi-Layer And Track (492mil,-990mil)(615mil,-990mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.984mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad Q1-1(-830mil,2320mil) on Multi-Layer And Track (-830mil,2320mil)(-780mil,2175mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad Q1-2(-830mil,2025mil) on Multi-Layer And Track (-880mil,2175mil)(-830mil,2025mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad Q2-1(1180mil,1940mil) on Multi-Layer And Track (1130mil,2085mil)(1180mil,1940mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad Q2-2(1180mil,2235mil) on Multi-Layer And Track (1180mil,2235mil)(1230mil,2085mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad Q3-1(-870mil,-2385mil) on Multi-Layer And Track (-920mil,-2240mil)(-870mil,-2385mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad Q3-2(-870mil,-2090mil) on Multi-Layer And Track (-870mil,-2090mil)(-820mil,-2240mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad Q3-1(-590mil,-2385mil) on Multi-Layer And Track (-640mil,-2240mil)(-590mil,-2385mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad Q3-2(-590mil,-2090mil) on Multi-Layer And Track (-590mil,-2090mil)(-540mil,-2240mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad Q4-1(-1630mil,840mil) on Multi-Layer And Track (-1630mil,840mil)(-1580mil,695mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad Q4-2(-1630mil,545mil) on Multi-Layer And Track (-1680mil,695mil)(-1630mil,545mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad Q5-1(1410mil,795mil) on Multi-Layer And Track (1410mil,795mil)(1460mil,650mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
@@ -128,8 +116,18 @@ Processing Rule : Silk To Solder Mask (Clearance=10mil) (IsPad),(All)
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R17-2(-1570mil,-1700mil) on Multi-Layer And Track (-1570mil,-1780mil)(-1570mil,-1700mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R18-1(1570mil,-1610mil) on Multi-Layer And Track (1570mil,-1690mil)(1570mil,-1610mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R18-2(1570mil,-2010mil) on Multi-Layer And Track (1570mil,-2010mil)(1570mil,-1930mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R19-1(-570mil,-830mil) on Multi-Layer And Track (-570mil,-830mil)(-570mil,-750mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R19-2(-570mil,-430mil) on Multi-Layer And Track (-570mil,-510mil)(-570mil,-430mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R20-1(-310mil,-820mil) on Multi-Layer And Track (-310mil,-820mil)(-310mil,-740mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R20-2(-310mil,-420mil) on Multi-Layer And Track (-310mil,-500mil)(-310mil,-420mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R2-1(980mil,1930mil) on Multi-Layer And Track (980mil,1930mil)(980mil,2010mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R21-1(0mil,-830mil) on Multi-Layer And Track (0mil,-830mil)(0mil,-750mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R21-2(0mil,-430mil) on Multi-Layer And Track (0mil,-510mil)(0mil,-430mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R2-2(980mil,2330mil) on Multi-Layer And Track (980mil,2250mil)(980mil,2330mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R22-1(270mil,-830mil) on Multi-Layer And Track (270mil,-830mil)(270mil,-750mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R22-2(270mil,-430mil) on Multi-Layer And Track (270mil,-510mil)(270mil,-430mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R23-1(550mil,-850mil) on Multi-Layer And Track (550mil,-850mil)(550mil,-770mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R23-2(550mil,-450mil) on Multi-Layer And Track (550mil,-530mil)(550mil,-450mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R3-1(650mil,-1990mil) on Multi-Layer And Track (650mil,-2070mil)(650mil,-1990mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R3-2(650mil,-2390mil) on Multi-Layer And Track (650mil,-2390mil)(650mil,-2310mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R4-1(-1400mil,440mil) on Multi-Layer And Track (-1400mil,440mil)(-1400mil,520mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
@@ -145,7 +143,7 @@ Processing Rule : Silk To Solder Mask (Clearance=10mil) (IsPad),(All)
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R9-1(1030mil,1270mil) on Multi-Layer And Track (1030mil,1270mil)(1030mil,1350mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R9-2(1030mil,1670mil) on Multi-Layer And Text "Put your design here" (-890mil,1630mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
    Violation between Silk To Solder Mask Clearance Constraint: (Collision < 10mil) Between Pad R9-2(1030mil,1670mil) on Multi-Layer And Track (1030mil,1590mil)(1030mil,1670mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]
-Rule Violations :98
+Rule Violations :108
 
 Processing Rule : Silk to Silk (Clearance=10mil) (All),(All)
    Violation between Silk To Silk Clearance Constraint: (8.576mil < 10mil) Between Text "12.1" (1160mil,-270mil) on Top Overlay And Track (1235mil,-215mil)(1685mil,-215mil) on Top Overlay Silk Text to Silk Clearance [8.576mil]
@@ -180,59 +178,59 @@ Rule Violations :27
 Processing Rule : Net Antennae (Tolerance=0mil) (All)
 Rule Violations :0
 
-Processing Rule : Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components'))
-   Violation between Room Definition: Between Component +5V-5V (-995mil,-1360mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) 
-   Violation between Room Definition: Between Component 5V-5V (1090mil,-1360mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) 
-   Violation between Room Definition: Between DIP Component J13-CON10 (-1095mil,720mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) 
-   Violation between Room Definition: Between DIP Component J18-CON10 (1090mil,-55mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) 
-   Violation between Room Definition: Between DIP Component P0-P0 (-1095mil,-605mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) 
-   Violation between Room Definition: Between DIP Component P12-P12 (990mil,-250mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) 
-   Violation between Room Definition: Between DIP Component P15-P15 (-1095mil,125mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) 
-   Violation between Room Definition: Between DIP Component P1-P1 (1090mil,545mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) 
-   Violation between Room Definition: Between DIP Component P2-P2 (1090mil,-1045mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) 
-   Violation between Room Definition: Between DIP Component P3-P3 (-1095mil,1205mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component C1-Cap (1270mil,1460mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component C2-Cap (100mil,-1920mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component C3-Cap (-1480mil,-60mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component C4-Cap (-830mil,1620mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component C5-Cap (1460mil,-140mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component D1-LED (-1574.803mil,2189.764mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component D2-LED (-1574.803mil,-2239.37mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component D3-LED (1574.803mil,-2239.37mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component D4-LED (-1130mil,2150mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component D5-LED (1470mil,2200mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component D6-LED (-600mil,-2080mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component D7-LED (-1490mil,280mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component D8-LED (1470mil,190mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component Q1-VEMT3700 (-980mil,2420mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component Q2-VEMT3700 (1330mil,1840mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component Q3-VEMT3700 (-720mil,-2485mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component Q4-VEMT3700 (-1780mil,940mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component Q5-VEMT3700 (1260mil,895mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R10-47k (-300mil,-2330mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R11-68k (450mil,-2330mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R1-220k (-500mil,1930mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R12-47k (-1620mil,-740mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R13-68k (-1410mil,-740mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R14-47k (1410mil,-800mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R15-68k (1610mil,-800mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R16-RES2 (-1580mil,1850mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R17-RES2 (-1570mil,-2100mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R18-RES2 (1570mil,-1610mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R2-220k (980mil,1930mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R3-220k (650mil,-1990mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R4-220k (-1400mil,440mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R5-220k (1620mil,400mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R6-47k (-1130mil,1370mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R7-68k (-500mil,1360mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R8-47k (1480mil,1320mil) on Top Layer 
-   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('All Components')) And Small Component R9-68k (1030mil,1270mil) on Top Layer 
+Processing Rule : Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------'))
+   Violation between Room Definition: Between Component +5V-5V (-995mil,-1360mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
+   Violation between Room Definition: Between Component 5V-5V (1090mil,-1360mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
+   Violation between Room Definition: Between DIP Component J13-CON10 (-1095mil,720mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
+   Violation between Room Definition: Between DIP Component J18-CON10 (1090mil,-55mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
+   Violation between Room Definition: Between DIP Component P0-P0 (-1095mil,-605mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
+   Violation between Room Definition: Between DIP Component P12-P12 (990mil,-250mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
+   Violation between Room Definition: Between DIP Component P15-P15 (-1095mil,125mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
+   Violation between Room Definition: Between DIP Component P1-P1 (1090mil,545mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
+   Violation between Room Definition: Between DIP Component P2-P2 (1090mil,-1045mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
+   Violation between Room Definition: Between DIP Component P3-P3 (-1095mil,1205mil) on Top Layer And Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component C1-Cap (1270mil,1460mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component C2-Cap (100mil,-1920mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component C3-Cap (-1480mil,-60mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component C4-Cap (-830mil,1620mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component C5-Cap (1460mil,-140mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component D1-LED (-1574.803mil,2189.764mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component D2-LED (-1574.803mil,-2239.37mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component D3-LED (1574.803mil,-2239.37mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component Q1-VEMT3700 (-980mil,2420mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component Q2-VEMT3700 (1330mil,1840mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component Q3-VEMT3700 (-440mil,-2485mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component Q4-VEMT3700 (-1780mil,940mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component Q5-VEMT3700 (1260mil,895mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R10-47k (-300mil,-2330mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R11-68k (450mil,-2330mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R1-220k (-500mil,1930mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R12-47k (-1620mil,-740mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R13-68k (-1410mil,-740mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R14-47k (1410mil,-800mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R15-68k (1610mil,-800mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R16-RES2 (-1580mil,1850mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R17-RES2 (-1570mil,-2100mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R18-RES2 (1570mil,-1610mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R19-68 (-570mil,-830mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R20-68 (-310mil,-820mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R21-68 (0mil,-830mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R2-220k (980mil,1930mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R22-68 (270mil,-830mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R23-68 (550mil,-850mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R3-220k (650mil,-1990mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R4-220k (-1400mil,440mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R5-220k (1620mil,400mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R6-47k (-1130mil,1370mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R7-68k (-500mil,1360mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R8-47k (1480mil,1320mil) on Top Layer 
+   Violation between Room Definition: Between Room cs301_YourGroupNumber--------------- (Bounding Region = (11860mil, 1060mil, 17490mil, 1660mil) (InComponentClass('cs301_YourGroupNumber---------------')) And Small Component R9-68k (1030mil,1270mil) on Top Layer 
 Rule Violations :46
 
 Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
 Rule Violations :0
 
 
-Violations Detected : 190
+Violations Detected : 188
 Waived Violations : 0
 Time Elapsed        : 00:00:02

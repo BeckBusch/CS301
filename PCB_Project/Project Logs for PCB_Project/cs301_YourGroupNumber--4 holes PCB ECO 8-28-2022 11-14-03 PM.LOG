@@ -1,0 +1,46 @@
+Removed Pin From Net: NetName=NetD4_A Pin=D4-A
+Removed Pin From Net: NetName=NetC4_1 Pin=D4-K
+Removed Pin From Net: NetName=NetD5_A Pin=D5-A
+Removed Pin From Net: NetName=NetC1_1 Pin=D5-K
+Removed Pin From Net: NetName=NetD6_A Pin=D6-A
+Removed Pin From Net: NetName=NetC2_1 Pin=D6-K
+Removed Pin From Net: NetName=NetD7_A Pin=D7-A
+Removed Pin From Net: NetName=NetC3_1 Pin=D7-K
+Removed Pin From Net: NetName=NetD8_A Pin=D8-A
+Removed Pin From Net: NetName=NetC5_1 Pin=D8-K
+Removed Pin From Net: NetName=NetD4_A Pin=Q1-2
+Removed Pin From Net: NetName=NetD5_A Pin=Q2-2
+Removed Pin From Net: NetName=NetD6_A Pin=Q3-2
+Removed Pin From Net: NetName=NetD7_A Pin=Q4-2
+Removed Pin From Net: NetName=NetD8_A Pin=Q5-2
+Added Component: Designator=D4(LED0.1/5MM)
+Added Component: Designator=D5(LED0.1/5MM)
+Added Component: Designator=D6(LED0.1/5MM)
+Added Component: Designator=D7(LED0.1/5MM)
+Added Component: Designator=D8(LED0.1/5MM)
+Added Component: Designator=R19(AXIAL0.4)
+Added Component: Designator=R20(AXIAL0.4)
+Added Component: Designator=R21(AXIAL0.4)
+Added Component: Designator=R22(AXIAL0.4)
+Added Component: Designator=R23(AXIAL0.4)
+Added Pin To Net: NetName=NetD4_A Pin=D4-A
+Added Pin To Net: NetName=NetD5_A Pin=D5-A
+Added Pin To Net: NetName=NetD6_A Pin=D6-A
+Added Pin To Net: NetName=NetD7_A Pin=D7-A
+Added Pin To Net: NetName=NetD8_A Pin=D8-A
+Added Pin To Net: NetName=NetC4_1 Pin=Q1-2
+Added Pin To Net: NetName=NetC1_1 Pin=Q2-2
+Added Pin To Net: NetName=NetC2_1 Pin=Q3-2
+Added Pin To Net: NetName=NetC3_1 Pin=Q4-2
+Added Pin To Net: NetName=NetC5_1 Pin=Q5-2
+Added Pin To Net: NetName=NetD4_A Pin=R19-1
+Added Pin To Net: NetName=NetD5_A Pin=R20-1
+Added Pin To Net: NetName=NetD6_A Pin=R21-1
+Added Pin To Net: NetName=NetD7_A Pin=R22-1
+Added Pin To Net: NetName=NetD8_A Pin=R23-1
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R19 68
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R20 68
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R21 68
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R22 68
+Added Member To Class: ClassName=cs301_YourGroupNumber--------------- Member=Component R23 68
+Change Room Scope: Old Scope=InComponentClass('All Components') New Scope=InComponentClass('cs301_YourGroupNumber---------------')
