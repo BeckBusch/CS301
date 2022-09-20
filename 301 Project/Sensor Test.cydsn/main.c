@@ -52,16 +52,16 @@ int main(void){
     //isr_timer_Enable();
     
     // Start the ADC and begin conversions (in free running mode so will continue to convert).
-    ADC_SAR_1_Start();
-    ADC_SAR_1_StartConvert();
+    ADC_SAR_Seq_1_Start();
+    ADC_SAR_Seq_1_StartConvert();
     //Timer_1_Start();
         
     while(1) {
            
         // If the conversion result is ready, put it into a variable and convert it into millivolts.
-        ADC_SAR_1_IsEndConversion(ADC_SAR_1_WAIT_FOR_RESULT);
-        ADCResult = ADC_SAR_1_GetResult16();
-        milliVoltReading = ADC_SAR_1_CountsTo_mVolts(ADCResult);
+        ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
+        ADCResult = ADC_SAR_Seq_1_GetResult16(channel);
+        milliVoltReading = ADC_SAR_Seq_1_CountsTo_mVolts(ADCResult);
         
         // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
         if (milliVoltReading >= 800) {
