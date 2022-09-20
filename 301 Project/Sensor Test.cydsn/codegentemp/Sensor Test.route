@@ -8,8 +8,8 @@ net ClockBlock_BUS_CLK
 	term   ":interrupt_2.clock"
 	switch ":clockblockcell.clk_bus_glb==>:interrupt_3.clock"
 	term   ":interrupt_3.clock"
-	switch ":clockblockcell.clk_bus_glb==>:interrupt_17.clock"
-	term   ":interrupt_17.clock"
+	switch ":clockblockcell.clk_bus_glb==>:interrupt_4.clock"
+	term   ":interrupt_4.clock"
 end ClockBlock_BUS_CLK
 net Net_16
 	term   ":sarcell_1.eof_udb"
@@ -77,13 +77,19 @@ net Net_9
 	switch ":interrupt_idmux_2.interrupt_idmux_2__out==>:interrupt_2.interrupt"
 	term   ":interrupt_2.interrupt"
 end Net_9
-net Net_27
-	term   ":timercell_0.irq"
-	switch ":timercell_0.irq==>Stub-:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v24+:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v26"
-	switch "Stub-:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v24+:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v26==>:interrupt_idmux_17.in_0"
-	switch ":interrupt_idmux_17.interrupt_idmux_17__out==>:interrupt_17.interrupt"
-	term   ":interrupt_17.interrupt"
-end Net_27
+net Net_34
+	term   ":timercell_0.tc"
+	switch ":timercell_0.tc==>Stub-:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v16+:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v18"
+	switch "OStub-:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v16+:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v18"
+	switch ":dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:16,67"
+	switch ":hvswitch@[UDB=(3,3)][side=left]:hseg_67_f"
+	switch ":hvswitch@[UDB=(3,4)][side=left]:hseg_67_f"
+	switch ":dsiswitch_bottom@[DSI=(1,5)][side=bottom]:dsihc_bottom:56,67_f"
+	switch "IStub-:dsiswitch_bottom@[DSI=(1,5)][side=bottom]:dsihc_bottom:v56+:dsiswitch_bottom@[DSI=(1,5)][side=bottom]:dsihc_bottom:v58"
+	switch "Stub-:dsiswitch_bottom@[DSI=(1,5)][side=bottom]:dsihc_bottom:v56+:dsiswitch_bottom@[DSI=(1,5)][side=bottom]:dsihc_bottom:v58==>:interrupt_idmux_4.in_2"
+	switch ":interrupt_idmux_4.interrupt_idmux_4__out==>:interrupt_4.interrupt"
+	term   ":interrupt_4.interrupt"
+end Net_34
 net __ONE__
 	term   ":udb@[UDB=(1,3)]:pld0:mc0.q"
 	switch ":udb@[UDB=(1,3)]:pld0:mc0.q==>:udb@[UDB=(1,3)]:pld0:output_permute2.q_0"

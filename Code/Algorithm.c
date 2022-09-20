@@ -295,7 +295,7 @@ int main() {
     getcwd(cwd, PATH_MAX);
 
     // Set the specific file to be read from.
-    char filename[] = "map_8.txt";
+    char filename[] = "map.txt";
 
     char buf[PATH_MAX];
     sprintf(buf, "%s\\%s", cwd, filename);

@@ -2,7 +2,7 @@
 --	Conversion of Sensor Test.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Wed Aug 24 01:16:01 2022
+--	Fri Aug 26 19:36:23 2022
 --
 
 USE cypress.cypress.all;
@@ -137,7 +137,7 @@ SIGNAL \Timer_1:Net_51\ : bit;
 SIGNAL \Timer_1:Net_261\ : bit;
 SIGNAL \Timer_1:Net_57\ : bit;
 SIGNAL Net_27 : bit;
-SIGNAL Net_28 : bit;
+SIGNAL Net_34 : bit;
 SIGNAL \Timer_1:Net_102\ : bit;
 BEGIN
 
@@ -790,12 +790,12 @@ timer_clock:cy_clock_v1_0
 		enable=>tmpOE__LED_1_net_0,
 		capture=>zero,
 		timer_reset=>zero,
-		tc=>\Timer_1:Net_51\,
+		tc=>Net_34,
 		compare=>\Timer_1:Net_261\,
-		interrupt=>Net_27);
+		interrupt=>\Timer_1:Net_57\);
 isr_timer:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
 		is_nmi=>'0')
-	PORT MAP(int_signal=>Net_27);
+	PORT MAP(int_signal=>Net_34);
 
 END R_T_L;

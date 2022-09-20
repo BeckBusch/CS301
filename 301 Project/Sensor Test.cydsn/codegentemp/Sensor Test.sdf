@@ -1,10 +1,10 @@
 (DELAYFILE
  (SDFVERSION "IEEE 1497 4.0")
- (DATE "2022-08-23T13:16:05Z")
+ (DATE "2022-08-26T07:36:37Z")
  (DESIGN "Sensor Test")
  (VENDOR "Cypress Semiconductor")
  (PROGRAM "PSoC Creator")
- (VERSION " 4.4")
+ (VERSION " 4.2")
  (DIVIDER .)
  (TIMESCALE 1 ns)
  (CELL
@@ -19,7 +19,7 @@
     (INTERCONNECT ClockBlock.clk_bus_glb isr_timer.clock (0.000:0.000:0.000))
     (INTERCONNECT \\ADC_SAR_2\:ADC_SAR\\.eof_udb \\ADC_SAR_2\:IRQ\\.interrupt (10.328:10.328:10.328))
     (INTERCONNECT \\ADC_SAR_2\:ADC_SAR\\.eof_udb isr_eoc_2.interrupt (10.104:10.104:10.104))
-    (INTERCONNECT \\Timer_1\:TimerHW\\.irq isr_timer.interrupt (1.000:1.000:1.000))
+    (INTERCONNECT \\Timer_1\:TimerHW\\.tc isr_timer.interrupt (3.430:3.430:3.430))
     (INTERCONNECT \\ADC_SAR_1\:ADC_SAR\\.eof_udb \\ADC_SAR_1\:IRQ\\.interrupt (9.136:9.136:9.136))
     (INTERCONNECT \\ADC_SAR_1\:ADC_SAR\\.eof_udb isr_eoc_1.interrupt (9.137:9.137:9.137))
     (INTERCONNECT __ONE__.q \\Timer_1\:TimerHW\\.enable (0.000:0.000:0.000))

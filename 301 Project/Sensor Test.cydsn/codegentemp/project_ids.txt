@@ -1,6 +1,6 @@
-C:\Users\GGPC\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Sensor Test.cyprj|b6e09456-873e-4185-b481-90a75ba6af6a
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|834f2e88-3654-4545-aaca-46fc6ea3da5d
-C:\Users\GGPC\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|e3fe0fc4-9194-4283-9e99-d024906a1c5a
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|eb8544bf-b6d5-4906-a2e2-ff58d6e21b89
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|553bdcb7-1c93-47e5-8f83-b77eea1ce5de
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|2a8724bb-17a1-40be-acd2-97635ad5a0d7
+\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Sensor Test.cyprj|12f199ff-cfb6-4032-84ce-38cdef50b0a9
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|f20fa75e-f484-437a-9e48-55b7631d75b4
+\\files.auckland.ac.nz\myhome\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|6242d5ca-c727-4949-a01c-5ba925be272d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|4542cacf-bff8-4c7d-a7fb-304f7393e2b7
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|c3394023-6666-4a69-b694-3416841b9d07
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|7d29fd2e-af85-44c8-aae8-ca37611697ac
