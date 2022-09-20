@@ -897,7 +897,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x4330
+.debug_info     0x00000000     0x433b
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x224 .\CortexM3\ARM_GCC_541\Debug\main.o
  .debug_info    0x00000224      0x528 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
@@ -910,9 +910,9 @@ END GROUP
  .debug_info    0x00001670     0x1374 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
  .debug_info    0x000029e4      0xa2a .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
  .debug_info    0x0000340e      0x2d2 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
- .debug_info    0x000036e0       0xb3 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyBootAsmGnu.o)
- .debug_info    0x00003793      0x64d .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
- .debug_info    0x00003de0      0x550 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
+ .debug_info    0x000036e0       0xbe .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyBootAsmGnu.o)
+ .debug_info    0x0000379e      0x64d .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
+ .debug_info    0x00003deb      0x550 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
 
 .debug_abbrev   0x00000000     0x11a1
  *(.debug_abbrev)
@@ -970,34 +970,34 @@ END GROUP
  .debug_frame   0x00001348       0x28 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
  .debug_frame   0x00001370       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
 
-.debug_str      0x00000000     0x1958
+.debug_str      0x00000000     0x1963
  *(.debug_str)
- .debug_str     0x00000000      0x255 .\CortexM3\ARM_GCC_541\Debug\main.o
-                                0x29d (size before relaxing)
- .debug_str     0x00000255      0x177 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
-                                0x33c (size before relaxing)
- .debug_str     0x000003cc       0x7f .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
-                                0x207 (size before relaxing)
- .debug_str     0x0000044b      0x144 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
-                                0x32d (size before relaxing)
- .debug_str     0x0000058f       0x5f .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
-                                0x205 (size before relaxing)
- .debug_str     0x000005ee      0x25e .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
-                                0x4e0 (size before relaxing)
- .debug_str     0x0000084c       0x35 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
-                                0x1be (size before relaxing)
- .debug_str     0x00000881      0x20d .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
-                                0x3d8 (size before relaxing)
- .debug_str     0x00000a8e      0x7f2 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
-                                0xa6a (size before relaxing)
- .debug_str     0x00001280      0x365 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
-                                0x756 (size before relaxing)
- .debug_str     0x000015e5      0x10c .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
-                                0x301 (size before relaxing)
- .debug_str     0x000016f1      0x1bb .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
+ .debug_str     0x00000000      0x260 .\CortexM3\ARM_GCC_541\Debug\main.o
+                                0x2a8 (size before relaxing)
+ .debug_str     0x00000260      0x177 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                                0x347 (size before relaxing)
+ .debug_str     0x000003d7       0x7f .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+                                0x212 (size before relaxing)
+ .debug_str     0x00000456      0x144 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+                                0x338 (size before relaxing)
+ .debug_str     0x0000059a       0x5f .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
+                                0x210 (size before relaxing)
+ .debug_str     0x000005f9      0x25e .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
+                                0x4eb (size before relaxing)
+ .debug_str     0x00000857       0x35 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
+                                0x1c9 (size before relaxing)
+ .debug_str     0x0000088c      0x20d .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
                                 0x3e3 (size before relaxing)
- .debug_str     0x000018ac       0xac .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
-                                0x35b (size before relaxing)
+ .debug_str     0x00000a99      0x7f2 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
+                                0xa75 (size before relaxing)
+ .debug_str     0x0000128b      0x365 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
+                                0x761 (size before relaxing)
+ .debug_str     0x000015f0      0x10c .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
+                                0x30c (size before relaxing)
+ .debug_str     0x000016fc      0x1bb .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
+                                0x3ee (size before relaxing)
+ .debug_str     0x000018b7       0xac .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
+                                0x366 (size before relaxing)
 
 .debug_loc      0x00000000     0x1e98
  *(.debug_loc)
@@ -1128,4 +1128,4 @@ END GROUP
 
 /DISCARD/
  *(.note.GNU-stack)
-OUTPUT(\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\CortexM3\ARM_GCC_541\Debug\Sensor Test.elf elf32-littlearm)
+OUTPUT(\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\CortexM3\ARM_GCC_541\Debug\Sensor Test.elf elf32-littlearm)

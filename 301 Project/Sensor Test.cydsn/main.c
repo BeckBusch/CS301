@@ -43,7 +43,6 @@ int main(void){
     //ADC_SAR_2_Start();
     //Timer_1_Start();
     LED_1_Write(1); 
-    
         
     while(1) {
         
@@ -55,9 +54,9 @@ int main(void){
             ADC_SAR_1_IsEndConversion(ADC_SAR_1_WAIT_FOR_RESULT);
             uint16 ADCResult1 = ADC_SAR_1_GetResult16();
             uint16 milliVoltReading = ADC_SAR_1_CountsTo_mVolts(ADCResult1);
-            
+                        
             // If the millivolt reading is above the required threshold, write the LED high, else write low.
-            if (milliVoltReading <= 1000) {
+            if (milliVoltReading >= 800) {
                 LED_1_Write(1);
             } else {
                 LED_1_Write(0);
