@@ -18,6 +18,9 @@
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\cyfitteriar.inc" value="HEADER;;;;;" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\cyfitter.h" value="HEADER;;;;;" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\cydisabledsheets.h" value="HEADER;;;;;" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M2_IN2_aliases.h" value="HEADER;;;;;M2_IN2" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M2_IN2.c" value="SOURCE_C;CortexM3;;;;M2_IN2" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M2_IN2.h" value="HEADER;;;;;M2_IN2" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\ADC_SAR_Seq_1.c" value="SOURCE_C;CortexM3;;;;ADC_SAR_Seq_1" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\ADC_SAR_Seq_1.h" value="HEADER;;;;;ADC_SAR_Seq_1" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\ADC_SAR_Seq_1_PM.c" value="SOURCE_C;CortexM3;;;;ADC_SAR_Seq_1" />
@@ -39,6 +42,15 @@
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\PWM_2.c" value="SOURCE_C;CortexM3;;;;PWM_2" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\PWM_2.h" value="HEADER;;;;;PWM_2" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\PWM_2_PM.c" value="SOURCE_C;CortexM3;;;;PWM_2" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M1_IN2_aliases.h" value="HEADER;;;;;M1_IN2" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M1_IN2.c" value="SOURCE_C;CortexM3;;;;M1_IN2" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M1_IN2.h" value="HEADER;;;;;M1_IN2" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M2_IN1_aliases.h" value="HEADER;;;;;M2_IN1" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M2_IN1.c" value="SOURCE_C;CortexM3;;;;M2_IN1" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M2_IN1.h" value="HEADER;;;;;M2_IN1" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M1_IN1_aliases.h" value="HEADER;;;;;M1_IN1" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M1_IN1.c" value="SOURCE_C;CortexM3;;;;M1_IN1" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\M1_IN1.h" value="HEADER;;;;;M1_IN1" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\input_signal_3_aliases.h" value="HEADER;;;;;input_signal_3" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\input_signal_3.c" value="SOURCE_C;CortexM3;;;;input_signal_3" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\input_signal_3.h" value="HEADER;;;;;input_signal_3" />

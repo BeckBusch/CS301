@@ -54,6 +54,14 @@ int main(void){
     // Start the ADC and begin conversions (in free running mode so will continue to convert).
     ADC_SAR_Seq_1_Start();
     ADC_SAR_Seq_1_StartConvert();
+    
+    PWM_1_WritePeriod(250);
+    PWM_1_Start();
+    PWM_1_WriteCompare(80);
+    
+    PWM_2_WritePeriod(250);
+    PWM_2_Start();
+    PWM_2_WriteCompare(80);
     //Timer_1_Start();
         
     while(1) {
@@ -173,6 +181,7 @@ int main(void){
                 move_forward();
             }
         }
+    return 0;
     
 }
 

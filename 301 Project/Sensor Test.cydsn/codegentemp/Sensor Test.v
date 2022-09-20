@@ -1,6 +1,6 @@
 // ======================================================================
 // Sensor Test.v generated from TopDesign.cysch
-// 09/20/2022 at 20:19
+// 09/20/2022 at 21:28
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1068,13 +1068,26 @@ module PWM_v3_30_3 (
 
 endmodule
 
+// Component: not_v1_0
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0\not_v1_0.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0\not_v1_0.v"
+`endif
+
 // top
 module top ;
 
           wire  Net_2708;
+          wire  Net_2719;
           wire  Net_2704;
           wire  Net_2703;
-          wire  Net_2702;
           wire  Net_2701;
           wire  Net_2700;
           wire  Net_2699;
@@ -1086,7 +1099,6 @@ module top ;
           wire  Net_2691;
           wire  Net_2676;
           wire  Net_2675;
-          wire  Net_2674;
           wire  Net_2673;
           wire  Net_2672;
           wire  Net_2671;
@@ -1096,210 +1108,288 @@ module top ;
           wire  Net_2666;
           wire  Net_2665;
           wire  Net_2663;
-    electrical  Net_606;
-    electrical  Net_605;
-    electrical  Net_604;
-    electrical  Net_603;
-    electrical  Net_602;
-    electrical  Net_601;
-    electrical  Net_600;
-    electrical  Net_599;
-    electrical  Net_598;
-    electrical  Net_597;
-    electrical  Net_596;
-    electrical  Net_595;
-    electrical  Net_594;
-    electrical  Net_593;
-    electrical  Net_592;
-    electrical  Net_591;
-    electrical  Net_590;
-    electrical  Net_589;
-    electrical  Net_588;
-    electrical  Net_587;
-    electrical  Net_586;
-    electrical  Net_585;
-    electrical  Net_584;
-    electrical  Net_583;
-    electrical  Net_582;
-    electrical  Net_581;
-    electrical  Net_580;
-    electrical  Net_579;
-    electrical  Net_578;
-    electrical  Net_577;
-    electrical  Net_576;
-    electrical  Net_575;
-    electrical  Net_574;
-    electrical  Net_573;
-    electrical  Net_572;
-    electrical  Net_571;
-    electrical  Net_570;
-    electrical  Net_569;
-    electrical  Net_568;
-    electrical  Net_567;
-    electrical  Net_566;
-    electrical  Net_565;
-    electrical  Net_564;
-    electrical  Net_563;
-    electrical  Net_562;
-    electrical  Net_561;
-    electrical  Net_560;
-    electrical  Net_559;
-    electrical  Net_558;
-    electrical  Net_557;
-    electrical  Net_556;
-    electrical  Net_555;
-    electrical  Net_554;
-    electrical  Net_553;
-    electrical  Net_552;
-    electrical  Net_551;
-    electrical  Net_550;
-    electrical  Net_549;
-    electrical  Net_548;
-    electrical  Net_547;
-    electrical  Net_546;
-    electrical  Net_545;
-    electrical  Net_544;
-    electrical  Net_543;
-    electrical  Net_542;
-    electrical  Net_541;
-    electrical  Net_540;
-    electrical  Net_539;
-    electrical  Net_538;
-    electrical  Net_537;
-    electrical  Net_536;
-    electrical  Net_535;
-    electrical  Net_534;
-    electrical  Net_533;
-    electrical  Net_532;
-    electrical  Net_531;
-    electrical  Net_530;
-    electrical  Net_529;
-    electrical  Net_528;
-    electrical  Net_527;
-    electrical  Net_526;
-    electrical  Net_525;
-    electrical  Net_524;
-    electrical  Net_523;
-    electrical  Net_522;
-    electrical  Net_521;
-    electrical  Net_2073;
-    electrical  Net_519;
-    electrical  Net_2072;
-    electrical  Net_516;
-    electrical  Net_2071;
-          wire  Net_509;
-          wire  Net_508;
-          wire  Net_507;
+    electrical  Net_2813;
+    electrical  Net_2812;
+    electrical  Net_2811;
+    electrical  Net_2810;
+    electrical  Net_2809;
+    electrical  Net_2808;
+    electrical  Net_2807;
+    electrical  Net_2806;
+    electrical  Net_2805;
+    electrical  Net_2804;
+    electrical  Net_2803;
+    electrical  Net_2802;
+    electrical  Net_2801;
+    electrical  Net_2800;
+    electrical  Net_2799;
+    electrical  Net_2798;
+    electrical  Net_2797;
+    electrical  Net_2796;
+    electrical  Net_2795;
+    electrical  Net_2794;
+    electrical  Net_2793;
+    electrical  Net_2792;
+    electrical  Net_2791;
+    electrical  Net_2790;
+    electrical  Net_2789;
+    electrical  Net_2788;
+    electrical  Net_2787;
+    electrical  Net_2786;
+    electrical  Net_2785;
+    electrical  Net_2784;
+    electrical  Net_2783;
+    electrical  Net_2782;
+    electrical  Net_2781;
+    electrical  Net_2780;
+    electrical  Net_2779;
+    electrical  Net_2778;
+    electrical  Net_2777;
+    electrical  Net_2776;
+    electrical  Net_2775;
+    electrical  Net_2774;
+    electrical  Net_2773;
+    electrical  Net_2772;
+    electrical  Net_2771;
+    electrical  Net_2770;
+    electrical  Net_2769;
+    electrical  Net_2768;
+    electrical  Net_2767;
+    electrical  Net_2766;
+    electrical  Net_2765;
+    electrical  Net_2764;
+    electrical  Net_2763;
+    electrical  Net_2762;
+    electrical  Net_2761;
+    electrical  Net_2760;
+    electrical  Net_2759;
+    electrical  Net_2758;
+    electrical  Net_2757;
+    electrical  Net_2756;
+    electrical  Net_2755;
+    electrical  Net_2754;
+    electrical  Net_2753;
+    electrical  Net_2752;
+    electrical  Net_2751;
+    electrical  Net_2750;
+    electrical  Net_2749;
+    electrical  Net_2748;
+    electrical  Net_2747;
+    electrical  Net_2746;
+    electrical  Net_2745;
+    electrical  Net_2744;
+    electrical  Net_2743;
+    electrical  Net_2742;
+    electrical  Net_2741;
+    electrical  Net_2740;
+    electrical  Net_2739;
+    electrical  Net_2738;
+    electrical  Net_2737;
+    electrical  Net_2736;
+    electrical  Net_2735;
+    electrical  Net_2734;
+    electrical  Net_2733;
+    electrical  Net_2732;
+    electrical  Net_2731;
+    electrical  Net_2730;
+    electrical  Net_2729;
+    electrical  Net_2728;
+    electrical  Net_2727;
+    electrical  Net_2726;
+    electrical  Net_2725;
+    electrical  Net_2724;
+    electrical  Net_2723;
+          wire  Net_2722;
+          wire  Net_2721;
+          wire  Net_2720;
+          wire  Net_2819;
+    electrical  Net_959;
+    electrical  Net_1565;
+    electrical  Net_1003;
+    electrical  Net_520;
+          wire  Net_9;
+    electrical  Net_514;
+          wire  Net_2716;
+          wire  Net_2718;
           wire  Net_2698;
           wire  Net_2664;
-    electrical  Net_514;
-          wire  Net_9;
-    electrical  Net_520;
-    electrical  Net_1003;
-    electrical  Net_1565;
-    electrical  Net_959;
+
+	wire [0:0] tmpOE__M2_IN2_net;
+	wire [0:0] tmpFB_0__M2_IN2_net;
+	wire [0:0] tmpIO_0__M2_IN2_net;
+	wire [0:0] tmpINTERRUPT_0__M2_IN2_net;
+	electrical [0:0] tmpSIOVREF__M2_IN2_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("f378b091-b703-4736-a91c-3fdd0763d11c"),
+		  .drive_mode(3'b110),
+		  .ibuf_enabled(1'b1),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b1),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("O"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .sio_hifreq(""),
+		  .sio_vohsel(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		M2_IN2
+		 (.oe(tmpOE__M2_IN2_net),
+		  .y({Net_2819}),
+		  .fb({tmpFB_0__M2_IN2_net[0:0]}),
+		  .io({tmpIO_0__M2_IN2_net[0:0]}),
+		  .siovref(tmpSIOVREF__M2_IN2_net),
+		  .interrupt({tmpINTERRUPT_0__M2_IN2_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__M2_IN2_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
     ADC_SAR_SEQ_v2_10_1 ADC_SAR_Seq_1 (
         .soc(1'b0),
         .aclk(1'b0),
-        .sdone(Net_509),
+        .sdone(Net_2722),
         .eoc(Net_9),
         .AIN_10(Net_1565),
         .AIN1(Net_959),
-        .AIN_20(Net_2071),
+        .AIN_20(Net_2723),
         .AIN_21(Net_514),
         .AIN_30(Net_1003),
-        .AIN_31(Net_516),
+        .AIN_31(Net_2724),
         .AIN3(Net_520),
-        .AIN_40(Net_2072),
-        .AIN_41(Net_519),
-        .AIN_50(Net_2073),
-        .AIN_51(Net_521),
-        .AIN5(Net_522),
-        .AIN_60(Net_523),
-        .AIN_61(Net_524),
-        .AIN_70(Net_525),
-        .AIN_71(Net_526),
-        .AIN7(Net_527),
-        .AIN_80(Net_528),
-        .AIN_81(Net_529),
-        .AIN_90(Net_530),
-        .AIN_91(Net_531),
-        .AIN9(Net_532),
-        .AIN_100(Net_533),
-        .AIN_101(Net_534),
-        .AIN_110(Net_535),
-        .AIN_111(Net_536),
-        .AIN11(Net_537),
-        .AIN_120(Net_538),
-        .AIN_121(Net_539),
-        .AIN_130(Net_540),
-        .AIN_131(Net_541),
-        .AIN13(Net_542),
-        .AIN_140(Net_543),
-        .AIN_141(Net_544),
-        .AIN_150(Net_545),
-        .AIN_151(Net_546),
-        .AIN15(Net_547),
-        .AIN_160(Net_548),
-        .AIN_161(Net_549),
-        .AIN_170(Net_550),
-        .AIN_171(Net_551),
-        .AIN17(Net_552),
-        .AIN_180(Net_553),
-        .AIN_181(Net_554),
-        .AIN_190(Net_555),
-        .AIN_191(Net_556),
-        .AIN19(Net_557),
-        .AIN_200(Net_558),
-        .AIN_201(Net_559),
-        .AIN_210(Net_560),
-        .AIN_211(Net_561),
-        .AIN21(Net_562),
-        .AIN_220(Net_563),
-        .AIN_221(Net_564),
-        .AIN_230(Net_565),
-        .AIN_231(Net_566),
-        .AIN23(Net_567),
-        .AIN_240(Net_568),
-        .AIN_241(Net_569),
-        .AIN_250(Net_570),
-        .AIN_251(Net_571),
-        .AIN25(Net_572),
-        .AIN_260(Net_573),
-        .AIN_261(Net_574),
-        .AIN_270(Net_575),
-        .AIN_271(Net_576),
-        .AIN27(Net_577),
-        .AIN_280(Net_578),
-        .AIN_281(Net_579),
-        .AIN_290(Net_580),
-        .AIN_291(Net_581),
-        .AIN29(Net_582),
-        .AIN_300(Net_583),
-        .AIN_301(Net_584),
-        .AIN_310(Net_585),
-        .AIN_311(Net_586),
-        .AIN31(Net_587),
-        .AIN_320(Net_588),
-        .AIN_321(Net_589),
-        .AIN49(Net_590),
-        .AIN50(Net_591),
-        .AIN51(Net_592),
-        .AIN52(Net_593),
-        .AIN53(Net_594),
-        .AIN54(Net_595),
-        .AIN55(Net_596),
-        .AIN56(Net_597),
-        .AIN57(Net_598),
-        .AIN58(Net_599),
-        .AIN59(Net_600),
-        .AIN60(Net_601),
-        .AIN61(Net_602),
-        .AIN62(Net_603),
-        .AIN63(Net_604),
-        .AIN64(Net_605),
-        .vdac_ref(Net_606));
+        .AIN_40(Net_2725),
+        .AIN_41(Net_2726),
+        .AIN_50(Net_2727),
+        .AIN_51(Net_2728),
+        .AIN5(Net_2729),
+        .AIN_60(Net_2730),
+        .AIN_61(Net_2731),
+        .AIN_70(Net_2732),
+        .AIN_71(Net_2733),
+        .AIN7(Net_2734),
+        .AIN_80(Net_2735),
+        .AIN_81(Net_2736),
+        .AIN_90(Net_2737),
+        .AIN_91(Net_2738),
+        .AIN9(Net_2739),
+        .AIN_100(Net_2740),
+        .AIN_101(Net_2741),
+        .AIN_110(Net_2742),
+        .AIN_111(Net_2743),
+        .AIN11(Net_2744),
+        .AIN_120(Net_2745),
+        .AIN_121(Net_2746),
+        .AIN_130(Net_2747),
+        .AIN_131(Net_2748),
+        .AIN13(Net_2749),
+        .AIN_140(Net_2750),
+        .AIN_141(Net_2751),
+        .AIN_150(Net_2752),
+        .AIN_151(Net_2753),
+        .AIN15(Net_2754),
+        .AIN_160(Net_2755),
+        .AIN_161(Net_2756),
+        .AIN_170(Net_2757),
+        .AIN_171(Net_2758),
+        .AIN17(Net_2759),
+        .AIN_180(Net_2760),
+        .AIN_181(Net_2761),
+        .AIN_190(Net_2762),
+        .AIN_191(Net_2763),
+        .AIN19(Net_2764),
+        .AIN_200(Net_2765),
+        .AIN_201(Net_2766),
+        .AIN_210(Net_2767),
+        .AIN_211(Net_2768),
+        .AIN21(Net_2769),
+        .AIN_220(Net_2770),
+        .AIN_221(Net_2771),
+        .AIN_230(Net_2772),
+        .AIN_231(Net_2773),
+        .AIN23(Net_2774),
+        .AIN_240(Net_2775),
+        .AIN_241(Net_2776),
+        .AIN_250(Net_2777),
+        .AIN_251(Net_2778),
+        .AIN25(Net_2779),
+        .AIN_260(Net_2780),
+        .AIN_261(Net_2781),
+        .AIN_270(Net_2782),
+        .AIN_271(Net_2783),
+        .AIN27(Net_2784),
+        .AIN_280(Net_2785),
+        .AIN_281(Net_2786),
+        .AIN_290(Net_2787),
+        .AIN_291(Net_2788),
+        .AIN29(Net_2789),
+        .AIN_300(Net_2790),
+        .AIN_301(Net_2791),
+        .AIN_310(Net_2792),
+        .AIN_311(Net_2793),
+        .AIN31(Net_2794),
+        .AIN_320(Net_2795),
+        .AIN_321(Net_2796),
+        .AIN49(Net_2797),
+        .AIN50(Net_2798),
+        .AIN51(Net_2799),
+        .AIN52(Net_2800),
+        .AIN53(Net_2801),
+        .AIN54(Net_2802),
+        .AIN55(Net_2803),
+        .AIN56(Net_2804),
+        .AIN57(Net_2805),
+        .AIN58(Net_2806),
+        .AIN59(Net_2807),
+        .AIN60(Net_2808),
+        .AIN61(Net_2809),
+        .AIN62(Net_2810),
+        .AIN63(Net_2811),
+        .AIN64(Net_2812),
+        .vdac_ref(Net_2813));
 
 	wire [0:0] tmpOE__input_signal_0_net;
 	wire [0:0] tmpFB_0__input_signal_0_net;
@@ -1389,7 +1479,7 @@ module top ;
         .enable(1'b1),
         .trigger(1'b0),
         .cmp_sel(1'b0),
-        .pwm(Net_2674),
+        .pwm(Net_2718),
         .ph1(Net_2675),
         .ph2(Net_2676));
     defparam PWM_1.Resolution = 8;
@@ -1565,10 +1655,241 @@ module top ;
         .enable(1'b1),
         .trigger(1'b0),
         .cmp_sel(1'b0),
-        .pwm(Net_2702),
+        .pwm(Net_2716),
         .ph1(Net_2703),
         .ph2(Net_2704));
     defparam PWM_2.Resolution = 8;
+
+	wire [0:0] tmpOE__M1_IN2_net;
+	wire [0:0] tmpFB_0__M1_IN2_net;
+	wire [0:0] tmpIO_0__M1_IN2_net;
+	wire [0:0] tmpINTERRUPT_0__M1_IN2_net;
+	electrical [0:0] tmpSIOVREF__M1_IN2_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("0dc3ed87-3ccc-4ec6-aac0-2537f5320ef0"),
+		  .drive_mode(3'b110),
+		  .ibuf_enabled(1'b1),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b1),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("O"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .sio_hifreq(""),
+		  .sio_vohsel(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		M1_IN2
+		 (.oe(tmpOE__M1_IN2_net),
+		  .y({Net_2719}),
+		  .fb({tmpFB_0__M1_IN2_net[0:0]}),
+		  .io({tmpIO_0__M1_IN2_net[0:0]}),
+		  .siovref(tmpSIOVREF__M1_IN2_net),
+		  .interrupt({tmpINTERRUPT_0__M1_IN2_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__M1_IN2_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+
+    assign Net_2719 = ~Net_2718;
+
+
+    assign Net_2819 = ~Net_2716;
+
+	wire [0:0] tmpOE__M2_IN1_net;
+	wire [0:0] tmpFB_0__M2_IN1_net;
+	wire [0:0] tmpIO_0__M2_IN1_net;
+	wire [0:0] tmpINTERRUPT_0__M2_IN1_net;
+	electrical [0:0] tmpSIOVREF__M2_IN1_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("33ffa339-5dc8-4938-8d7f-629e577b4d9f"),
+		  .drive_mode(3'b110),
+		  .ibuf_enabled(1'b1),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b1),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("O"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .sio_hifreq(""),
+		  .sio_vohsel(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		M2_IN1
+		 (.oe(tmpOE__M2_IN1_net),
+		  .y({Net_2716}),
+		  .fb({tmpFB_0__M2_IN1_net[0:0]}),
+		  .io({tmpIO_0__M2_IN1_net[0:0]}),
+		  .siovref(tmpSIOVREF__M2_IN1_net),
+		  .interrupt({tmpINTERRUPT_0__M2_IN1_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__M2_IN1_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+	wire [0:0] tmpOE__M1_IN1_net;
+	wire [0:0] tmpFB_0__M1_IN1_net;
+	wire [0:0] tmpIO_0__M1_IN1_net;
+	wire [0:0] tmpINTERRUPT_0__M1_IN1_net;
+	electrical [0:0] tmpSIOVREF__M1_IN1_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("4c686335-22c2-4d80-ab95-fb07537cd2c5"),
+		  .drive_mode(3'b110),
+		  .ibuf_enabled(1'b1),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b1),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("O"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .sio_hifreq(""),
+		  .sio_vohsel(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		M1_IN1
+		 (.oe(tmpOE__M1_IN1_net),
+		  .y({Net_2718}),
+		  .fb({tmpFB_0__M1_IN1_net[0:0]}),
+		  .io({tmpIO_0__M1_IN1_net[0:0]}),
+		  .siovref(tmpSIOVREF__M1_IN1_net),
+		  .interrupt({tmpINTERRUPT_0__M1_IN1_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__M1_IN1_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
 	wire [0:0] tmpOE__input_signal_3_net;
 	wire [0:0] tmpFB_0__input_signal_3_net;
@@ -1727,7 +2048,7 @@ module top ;
 		#(.id("7928c0af-5b9f-4716-8af3-051f065cf12b"),
 		  .source_clock_id(""),
 		  .divisor(0),
-		  .period("83333333.3333333"),
+		  .period("1000000000"),
 		  .is_direct(0),
 		  .is_digital(1))
 		Clock_PWM

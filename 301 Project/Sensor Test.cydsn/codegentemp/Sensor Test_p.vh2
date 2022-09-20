@@ -1,8 +1,13 @@
 -- Project:   Sensor Test
--- Generated: 09/20/2022 20:20:16
+-- Generated: 09/20/2022 21:29:11
 -- PSoC Creator  4.2
 
 ENTITY \Sensor Test\ IS
+    PORT(
+        M2_IN2(0)_PAD : OUT std_ulogic;
+        M1_IN2(0)_PAD : OUT std_ulogic;
+        M2_IN1(0)_PAD : OUT std_ulogic;
+        M1_IN1(0)_PAD : OUT std_ulogic);
     ATTRIBUTE voltage_VDDABUF OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VDDA OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VUSB OF __DEFAULT__ : ENTITY IS 5e0;
@@ -26,10 +31,18 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     SIGNAL ClockBlock_PLL_OUT : bit;
     SIGNAL ClockBlock_XTAL : bit;
     SIGNAL ClockBlock_XTAL_32KHZ : bit;
+    SIGNAL M1_IN1(0)__PA : bit;
+    SIGNAL M1_IN2(0)__PA : bit;
+    SIGNAL M2_IN1(0)__PA : bit;
+    SIGNAL M2_IN2(0)__PA : bit;
     SIGNAL Net_2664 : bit;
     ATTRIBUTE global_signal OF Net_2664 : SIGNAL IS true;
     SIGNAL Net_2664_local : bit;
-    SIGNAL Net_509 : bit;
+    SIGNAL Net_2716 : bit;
+    SIGNAL Net_2718 : bit;
+    SIGNAL Net_2719 : bit;
+    SIGNAL Net_2722 : bit;
+    SIGNAL Net_2819 : bit;
     SIGNAL Net_9 : bit;
     SIGNAL \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active\ : bit;
     ATTRIBUTE soft OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active\ : SIGNAL IS 1;
@@ -145,10 +158,8 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     SIGNAL \ADC_SAR_Seq_1:clock_local\ : bit;
     SIGNAL \ADC_SAR_Seq_1:nrq\ : bit;
     SIGNAL \PWM_1:Net_54\ : bit;
-    SIGNAL \PWM_1:Net_57\ : bit;
     SIGNAL \PWM_1:Net_63\ : bit;
     SIGNAL \PWM_2:Net_54\ : bit;
-    SIGNAL \PWM_2:Net_57\ : bit;
     SIGNAL \PWM_2:Net_63\ : bit;
     SIGNAL __ONE__ : bit;
     ATTRIBUTE POWER OF __ONE__ : SIGNAL IS true;
@@ -159,103 +170,113 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     SIGNAL input_signal_2(0)__PA : bit;
     SIGNAL input_signal_3(0)__PA : bit;
     SIGNAL input_signal_4(0)__PA : bit;
-    SIGNAL one : bit;
-    ATTRIBUTE POWER OF one : SIGNAL IS true;
+    SIGNAL tmpOE__M2_IN2_net_0 : bit;
+    ATTRIBUTE POWER OF tmpOE__M2_IN2_net_0 : SIGNAL IS true;
     SIGNAL zero : bit;
     ATTRIBUTE GROUND OF zero : SIGNAL IS true;
-    SIGNAL \ClockBlock.dclk_glb_ff_0__sig\ : bit;
+    SIGNAL \ClockBlock.dclk_glb_ff_1__sig\ : bit;
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active_split\ : LABEL IS "macrocell1";
-    ATTRIBUTE lib_model OF input_signal_0(0) : LABEL IS "iocell1";
+    ATTRIBUTE lib_model OF M2_IN2(0) : LABEL IS "iocell1";
+    ATTRIBUTE Location OF M2_IN2(0) : LABEL IS "P0[1]";
+    ATTRIBUTE lib_model OF input_signal_0(0) : LABEL IS "iocell2";
     ATTRIBUTE Location OF input_signal_0(0) : LABEL IS "P2[0]";
-    ATTRIBUTE lib_model OF input_signal_1(0) : LABEL IS "iocell2";
+    ATTRIBUTE lib_model OF input_signal_1(0) : LABEL IS "iocell3";
     ATTRIBUTE Location OF input_signal_1(0) : LABEL IS "P2[1]";
-    ATTRIBUTE lib_model OF input_signal_2(0) : LABEL IS "iocell3";
+    ATTRIBUTE lib_model OF input_signal_2(0) : LABEL IS "iocell4";
     ATTRIBUTE Location OF input_signal_2(0) : LABEL IS "P2[2]";
-    ATTRIBUTE lib_model OF input_signal_3(0) : LABEL IS "iocell4";
+    ATTRIBUTE lib_model OF M1_IN2(0) : LABEL IS "iocell5";
+    ATTRIBUTE Location OF M1_IN2(0) : LABEL IS "P0[0]";
+    ATTRIBUTE lib_model OF M2_IN1(0) : LABEL IS "iocell6";
+    ATTRIBUTE Location OF M2_IN1(0) : LABEL IS "P0[2]";
+    ATTRIBUTE lib_model OF M1_IN1(0) : LABEL IS "iocell7";
+    ATTRIBUTE Location OF M1_IN1(0) : LABEL IS "P0[3]";
+    ATTRIBUTE lib_model OF input_signal_3(0) : LABEL IS "iocell8";
     ATTRIBUTE Location OF input_signal_3(0) : LABEL IS "P2[3]";
-    ATTRIBUTE lib_model OF input_signal_4(0) : LABEL IS "iocell5";
+    ATTRIBUTE lib_model OF input_signal_4(0) : LABEL IS "iocell9";
     ATTRIBUTE Location OF input_signal_4(0) : LABEL IS "P2[4]";
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active\ : LABEL IS "macrocell2";
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:cnt_enable\ : LABEL IS "macrocell3";
+    ATTRIBUTE lib_model OF Net_2719 : LABEL IS "macrocell4";
+    ATTRIBUTE lib_model OF Net_2819 : LABEL IS "macrocell5";
     ATTRIBUTE Location OF \ADC_SAR_Seq_1:SAR:ADC_SAR\ : LABEL IS "F(SAR,0)";
-    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell4";
+    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell6";
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:CtrlReg\ : LABEL IS "controlcell1";
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:EOCSts\ : LABEL IS "statuscell1";
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:TempBuf\ : LABEL IS "drqcell1";
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:FinalBuf\ : LABEL IS "drqcell2";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\ : LABEL IS "macrocell5";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_4\ : LABEL IS "macrocell6";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_3\ : LABEL IS "macrocell7";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_2\ : LABEL IS "macrocell8";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_1\ : LABEL IS "macrocell9";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_0\ : LABEL IS "macrocell10";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_0\ : LABEL IS "macrocell11";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_1\ : LABEL IS "macrocell12";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_2\ : LABEL IS "macrocell13";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_3\ : LABEL IS "macrocell14";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_4\ : LABEL IS "macrocell15";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_5\ : LABEL IS "macrocell16";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_6\ : LABEL IS "macrocell17";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_7\ : LABEL IS "macrocell18";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_8\ : LABEL IS "macrocell19";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_9\ : LABEL IS "macrocell20";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_10\ : LABEL IS "macrocell21";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_11\ : LABEL IS "macrocell22";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_12\ : LABEL IS "macrocell23";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_13\ : LABEL IS "macrocell24";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_14\ : LABEL IS "macrocell25";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_15\ : LABEL IS "macrocell26";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_16\ : LABEL IS "macrocell27";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_17\ : LABEL IS "macrocell28";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_18\ : LABEL IS "macrocell29";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_19\ : LABEL IS "macrocell30";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_20\ : LABEL IS "macrocell31";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_21\ : LABEL IS "macrocell32";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_22\ : LABEL IS "macrocell33";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_23\ : LABEL IS "macrocell34";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_24\ : LABEL IS "macrocell35";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_25\ : LABEL IS "macrocell36";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_26\ : LABEL IS "macrocell37";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_27\ : LABEL IS "macrocell38";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_28\ : LABEL IS "macrocell39";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_29\ : LABEL IS "macrocell40";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_30\ : LABEL IS "macrocell41";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_31\ : LABEL IS "macrocell42";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_32\ : LABEL IS "macrocell43";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_33\ : LABEL IS "macrocell44";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_34\ : LABEL IS "macrocell45";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_35\ : LABEL IS "macrocell46";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_36\ : LABEL IS "macrocell47";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_37\ : LABEL IS "macrocell48";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_38\ : LABEL IS "macrocell49";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_39\ : LABEL IS "macrocell50";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_40\ : LABEL IS "macrocell51";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_41\ : LABEL IS "macrocell52";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_42\ : LABEL IS "macrocell53";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_43\ : LABEL IS "macrocell54";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_44\ : LABEL IS "macrocell55";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_45\ : LABEL IS "macrocell56";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_46\ : LABEL IS "macrocell57";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_47\ : LABEL IS "macrocell58";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_48\ : LABEL IS "macrocell59";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_49\ : LABEL IS "macrocell60";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_50\ : LABEL IS "macrocell61";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_51\ : LABEL IS "macrocell62";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_52\ : LABEL IS "macrocell63";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_53\ : LABEL IS "macrocell64";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_54\ : LABEL IS "macrocell65";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_55\ : LABEL IS "macrocell66";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_56\ : LABEL IS "macrocell67";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_57\ : LABEL IS "macrocell68";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_58\ : LABEL IS "macrocell69";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_59\ : LABEL IS "macrocell70";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_60\ : LABEL IS "macrocell71";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_61\ : LABEL IS "macrocell72";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_62\ : LABEL IS "macrocell73";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_63\ : LABEL IS "macrocell74";
-    ATTRIBUTE lib_model OF Net_9 : LABEL IS "macrocell75";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:bus_clk_nrq_reg\ : LABEL IS "macrocell76";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:nrq_reg\ : LABEL IS "macrocell77";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\ : LABEL IS "macrocell7";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_4\ : LABEL IS "macrocell8";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_3\ : LABEL IS "macrocell9";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_2\ : LABEL IS "macrocell10";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_1\ : LABEL IS "macrocell11";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_0\ : LABEL IS "macrocell12";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_0\ : LABEL IS "macrocell13";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_1\ : LABEL IS "macrocell14";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_2\ : LABEL IS "macrocell15";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_3\ : LABEL IS "macrocell16";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_4\ : LABEL IS "macrocell17";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_5\ : LABEL IS "macrocell18";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_6\ : LABEL IS "macrocell19";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_7\ : LABEL IS "macrocell20";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_8\ : LABEL IS "macrocell21";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_9\ : LABEL IS "macrocell22";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_10\ : LABEL IS "macrocell23";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_11\ : LABEL IS "macrocell24";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_12\ : LABEL IS "macrocell25";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_13\ : LABEL IS "macrocell26";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_14\ : LABEL IS "macrocell27";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_15\ : LABEL IS "macrocell28";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_16\ : LABEL IS "macrocell29";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_17\ : LABEL IS "macrocell30";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_18\ : LABEL IS "macrocell31";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_19\ : LABEL IS "macrocell32";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_20\ : LABEL IS "macrocell33";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_21\ : LABEL IS "macrocell34";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_22\ : LABEL IS "macrocell35";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_23\ : LABEL IS "macrocell36";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_24\ : LABEL IS "macrocell37";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_25\ : LABEL IS "macrocell38";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_26\ : LABEL IS "macrocell39";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_27\ : LABEL IS "macrocell40";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_28\ : LABEL IS "macrocell41";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_29\ : LABEL IS "macrocell42";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_30\ : LABEL IS "macrocell43";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_31\ : LABEL IS "macrocell44";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_32\ : LABEL IS "macrocell45";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_33\ : LABEL IS "macrocell46";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_34\ : LABEL IS "macrocell47";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_35\ : LABEL IS "macrocell48";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_36\ : LABEL IS "macrocell49";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_37\ : LABEL IS "macrocell50";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_38\ : LABEL IS "macrocell51";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_39\ : LABEL IS "macrocell52";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_40\ : LABEL IS "macrocell53";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_41\ : LABEL IS "macrocell54";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_42\ : LABEL IS "macrocell55";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_43\ : LABEL IS "macrocell56";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_44\ : LABEL IS "macrocell57";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_45\ : LABEL IS "macrocell58";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_46\ : LABEL IS "macrocell59";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_47\ : LABEL IS "macrocell60";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_48\ : LABEL IS "macrocell61";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_49\ : LABEL IS "macrocell62";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_50\ : LABEL IS "macrocell63";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_51\ : LABEL IS "macrocell64";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_52\ : LABEL IS "macrocell65";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_53\ : LABEL IS "macrocell66";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_54\ : LABEL IS "macrocell67";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_55\ : LABEL IS "macrocell68";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_56\ : LABEL IS "macrocell69";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_57\ : LABEL IS "macrocell70";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_58\ : LABEL IS "macrocell71";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_59\ : LABEL IS "macrocell72";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_60\ : LABEL IS "macrocell73";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_61\ : LABEL IS "macrocell74";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_62\ : LABEL IS "macrocell75";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_63\ : LABEL IS "macrocell76";
+    ATTRIBUTE lib_model OF Net_9 : LABEL IS "macrocell77";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:bus_clk_nrq_reg\ : LABEL IS "macrocell78";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:nrq_reg\ : LABEL IS "macrocell79";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -578,11 +599,103 @@ BEGIN
             clk_bus => ClockBlock_BUS_CLK_local,
             dsi_clkin_div => open,
             dsi_glb_div => open,
-            dclk_glb_0 => Net_2664,
-            dclk_0 => Net_2664_local,
-            dclk_glb_1 => \ADC_SAR_Seq_1:clock\,
-            dclk_1 => \ADC_SAR_Seq_1:clock_local\,
-            dclk_glb_ff_0 => \ClockBlock.dclk_glb_ff_0__sig\);
+            dclk_glb_0 => \ADC_SAR_Seq_1:clock\,
+            dclk_0 => \ADC_SAR_Seq_1:clock_local\,
+            dclk_glb_1 => Net_2664,
+            dclk_1 => Net_2664_local,
+            dclk_glb_ff_1 => \ClockBlock.dclk_glb_ff_1__sig\);
+
+    M2_IN2:logicalport
+        GENERIC MAP(
+            drive_mode => "110",
+            ibuf_enabled => "1",
+            id => "f378b091-b703-4736-a91c-3fdd0763d11c",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "1",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "O",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    M2_IN2(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "M2_IN2",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+        PORT MAP(
+            pa_out => M2_IN2(0)__PA,
+            oe => open,
+            pin_input => Net_2819,
+            pad_out => M2_IN2(0)_PAD,
+            pad_in => M2_IN2(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
 
     input_signal_0:logicalport
         GENERIC MAP(
@@ -854,6 +967,282 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
+    M1_IN2:logicalport
+        GENERIC MAP(
+            drive_mode => "110",
+            ibuf_enabled => "1",
+            id => "0dc3ed87-3ccc-4ec6-aac0-2537f5320ef0",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "1",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "O",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    M1_IN2(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "M1_IN2",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+        PORT MAP(
+            pa_out => M1_IN2(0)__PA,
+            oe => open,
+            pin_input => Net_2719,
+            pad_out => M1_IN2(0)_PAD,
+            pad_in => M1_IN2(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
+    M2_IN1:logicalport
+        GENERIC MAP(
+            drive_mode => "110",
+            ibuf_enabled => "1",
+            id => "33ffa339-5dc8-4938-8d7f-629e577b4d9f",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "1",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "O",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    M2_IN1(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "M2_IN1",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+        PORT MAP(
+            pa_out => M2_IN1(0)__PA,
+            oe => open,
+            pin_input => Net_2716,
+            pad_out => M2_IN1(0)_PAD,
+            pad_in => M2_IN1(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
+    M1_IN1:logicalport
+        GENERIC MAP(
+            drive_mode => "110",
+            ibuf_enabled => "1",
+            id => "4c686335-22c2-4d80-ab95-fb07537cd2c5",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "1",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "O",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    M1_IN1(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "M1_IN1",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+        PORT MAP(
+            pa_out => M1_IN1(0)__PA,
+            oe => open,
+            pin_input => Net_2718,
+            pad_out => M1_IN1(0)_PAD,
+            pad_in => M1_IN1(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
     input_signal_3:logicalport
         GENERIC MAP(
             drive_mode => "000",
@@ -1059,8 +1448,26 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => \ADC_SAR_Seq_1:bSAR_SEQ:cnt_enable\,
-            main_0 => Net_509,
+            main_0 => Net_2722,
             main_1 => \ADC_SAR_Seq_1:bSAR_SEQ:load_period\);
+
+    Net_2719:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0)",
+            regmode => 0,
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_2719,
+            main_0 => Net_2718);
+
+    Net_2819:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0)",
+            regmode => 0,
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_2819,
+            main_0 => Net_2716);
 
     \ADC_SAR_Seq_1:SAR:ADC_SAR\:sarcell
         GENERIC MAP(
@@ -1077,7 +1484,7 @@ BEGIN
             vn_ctl_udb_1 => open,
             vn_ctl_udb_0 => open,
             irq => \ADC_SAR_Seq_1:SAR:Net_252\,
-            next => Net_509,
+            next => Net_2722,
             data_out_udb_11 => \ADC_SAR_Seq_1:SAR:Net_207_11\,
             data_out_udb_10 => \ADC_SAR_Seq_1:SAR:Net_207_10\,
             data_out_udb_9 => \ADC_SAR_Seq_1:SAR:Net_207_9\,
@@ -1205,13 +1612,13 @@ BEGIN
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            clock => \ClockBlock.dclk_glb_ff_0__sig\,
+            clock => \ClockBlock.dclk_glb_ff_1__sig\,
             kill => open,
             enable => __ONE__,
             capture => open,
             timer_reset => open,
             tc => \PWM_1:Net_63\,
-            cmp => \PWM_1:Net_57\,
+            cmp => Net_2718,
             irq => \PWM_1:Net_54\);
 
     isr_eoc_1:interrupt
@@ -1226,13 +1633,13 @@ BEGIN
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            clock => \ClockBlock.dclk_glb_ff_0__sig\,
+            clock => \ClockBlock.dclk_glb_ff_1__sig\,
             kill => open,
             enable => __ONE__,
             capture => open,
             timer_reset => open,
             tc => \PWM_2:Net_63\,
-            cmp => \PWM_2:Net_57\,
+            cmp => Net_2716,
             irq => \PWM_2:Net_54\);
 
     \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\:macrocell
