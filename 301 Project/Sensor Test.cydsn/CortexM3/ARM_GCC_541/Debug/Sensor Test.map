@@ -67,6 +67,14 @@ Discarded input sections
  .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m/crt0.o
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\main.o
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\main.o
+ .text.move_forward
+                0x00000000        0x4 .\CortexM3\ARM_GCC_541\Debug\main.o
+ .text.correction
+                0x00000000        0x4 .\CortexM3\ARM_GCC_541\Debug\main.o
+ .text.turn_left
+                0x00000000        0x4 .\CortexM3\ARM_GCC_541\Debug\main.o
+ .text.turn_right
+                0x00000000        0x4 .\CortexM3\ARM_GCC_541\Debug\main.o
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
@@ -863,140 +871,140 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x740
+.debug_aranges  0x00000000      0x760
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x28 .\CortexM3\ARM_GCC_541\Debug\main.o
+                0x00000000       0x48 .\CortexM3\ARM_GCC_541\Debug\main.o
  .debug_aranges
-                0x00000028       0x58 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000048       0x58 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .debug_aranges
-                0x00000080       0x18 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+                0x000000a0       0x18 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
  .debug_aranges
-                0x00000098       0x48 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+                0x000000b8       0x48 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
  .debug_aranges
-                0x000000e0       0x38 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
+                0x00000100       0x38 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
  .debug_aranges
-                0x00000118       0xa8 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
+                0x00000138       0xa8 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
  .debug_aranges
-                0x000001c0       0x20 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
+                0x000001e0       0x20 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
  .debug_aranges
-                0x000001e0       0x80 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
+                0x00000200       0x80 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
  .debug_aranges
-                0x00000260      0x2a0 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
+                0x00000280      0x2a0 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
  .debug_aranges
-                0x00000500       0x98 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
+                0x00000520       0x98 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
  .debug_aranges
-                0x00000598       0x80 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
+                0x000005b8       0x80 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
  .debug_aranges
-                0x00000618       0x20 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyBootAsmGnu.o)
+                0x00000638       0x20 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyBootAsmGnu.o)
  .debug_aranges
-                0x00000638       0x88 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
+                0x00000658       0x88 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
  .debug_aranges
-                0x000006c0       0x80 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
+                0x000006e0       0x80 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x433b
+.debug_info     0x00000000     0x437f
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x224 .\CortexM3\ARM_GCC_541\Debug\main.o
- .debug_info    0x00000224      0x528 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_info    0x0000074c      0x134 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
- .debug_info    0x00000880      0x3bb .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
- .debug_info    0x00000c3b      0x11f .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
- .debug_info    0x00000d5a      0x5c0 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
- .debug_info    0x0000131a       0x92 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
- .debug_info    0x000013ac      0x2c4 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
- .debug_info    0x00001670     0x1374 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
- .debug_info    0x000029e4      0xa2a .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
- .debug_info    0x0000340e      0x2d2 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
- .debug_info    0x000036e0       0xbe .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyBootAsmGnu.o)
- .debug_info    0x0000379e      0x64d .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
- .debug_info    0x00003deb      0x550 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
+ .debug_info    0x00000000      0x268 .\CortexM3\ARM_GCC_541\Debug\main.o
+ .debug_info    0x00000268      0x528 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_info    0x00000790      0x134 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+ .debug_info    0x000008c4      0x3bb .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_info    0x00000c7f      0x11f .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
+ .debug_info    0x00000d9e      0x5c0 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
+ .debug_info    0x0000135e       0x92 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
+ .debug_info    0x000013f0      0x2c4 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
+ .debug_info    0x000016b4     0x1374 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
+ .debug_info    0x00002a28      0xa2a .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
+ .debug_info    0x00003452      0x2d2 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
+ .debug_info    0x00003724       0xbe .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyBootAsmGnu.o)
+ .debug_info    0x000037e2      0x64d .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
+ .debug_info    0x00003e2f      0x550 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
 
-.debug_abbrev   0x00000000     0x11a1
+.debug_abbrev   0x00000000     0x11b7
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0xfe .\CortexM3\ARM_GCC_541\Debug\main.o
- .debug_abbrev  0x000000fe      0x1fe .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_abbrev  0x000002fc       0x5d .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
- .debug_abbrev  0x00000359      0x1e8 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
- .debug_abbrev  0x00000541       0x90 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
- .debug_abbrev  0x000005d1      0x1ac .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
- .debug_abbrev  0x0000077d       0x42 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
- .debug_abbrev  0x000007bf      0x121 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
- .debug_abbrev  0x000008e0      0x254 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
- .debug_abbrev  0x00000b34      0x1ab .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
- .debug_abbrev  0x00000cdf      0x173 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
- .debug_abbrev  0x00000e52       0x14 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyBootAsmGnu.o)
- .debug_abbrev  0x00000e66      0x1a7 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
- .debug_abbrev  0x0000100d      0x194 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
+ .debug_abbrev  0x00000000      0x114 .\CortexM3\ARM_GCC_541\Debug\main.o
+ .debug_abbrev  0x00000114      0x1fe .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_abbrev  0x00000312       0x5d .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+ .debug_abbrev  0x0000036f      0x1e8 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_abbrev  0x00000557       0x90 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
+ .debug_abbrev  0x000005e7      0x1ac .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
+ .debug_abbrev  0x00000793       0x42 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
+ .debug_abbrev  0x000007d5      0x121 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
+ .debug_abbrev  0x000008f6      0x254 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
+ .debug_abbrev  0x00000b4a      0x1ab .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
+ .debug_abbrev  0x00000cf5      0x173 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
+ .debug_abbrev  0x00000e68       0x14 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x00000e7c      0x1a7 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
+ .debug_abbrev  0x00001023      0x194 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
 
-.debug_line     0x00000000     0x1d46
+.debug_line     0x00000000     0x1d97
  *(.debug_line)
- .debug_line    0x00000000      0x1ab .\CortexM3\ARM_GCC_541\Debug\main.o
- .debug_line    0x000001ab      0x1ea .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_line    0x00000395      0x141 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
- .debug_line    0x000004d6      0x234 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
- .debug_line    0x0000070a       0x92 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
- .debug_line    0x0000079c      0x21e .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
- .debug_line    0x000009ba       0x56 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
- .debug_line    0x00000a10      0x1a3 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
- .debug_line    0x00000bb3      0x816 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
- .debug_line    0x000013c9      0x367 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
- .debug_line    0x00001730      0x136 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
- .debug_line    0x00001866       0x66 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyBootAsmGnu.o)
- .debug_line    0x000018cc      0x21a .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
- .debug_line    0x00001ae6      0x260 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
+ .debug_line    0x00000000      0x1fc .\CortexM3\ARM_GCC_541\Debug\main.o
+ .debug_line    0x000001fc      0x1ea .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_line    0x000003e6      0x141 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+ .debug_line    0x00000527      0x234 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_line    0x0000075b       0x92 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
+ .debug_line    0x000007ed      0x21e .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
+ .debug_line    0x00000a0b       0x56 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
+ .debug_line    0x00000a61      0x1a3 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
+ .debug_line    0x00000c04      0x816 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
+ .debug_line    0x0000141a      0x367 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
+ .debug_line    0x00001781      0x136 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
+ .debug_line    0x000018b7       0x66 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyBootAsmGnu.o)
+ .debug_line    0x0000191d      0x21a .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
+ .debug_line    0x00001b37      0x260 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
 
-.debug_frame    0x00000000     0x1390
+.debug_frame    0x00000000     0x13d0
  *(.debug_frame)
- .debug_frame   0x00000000       0x3c .\CortexM3\ARM_GCC_541\Debug\main.o
- .debug_frame   0x0000003c       0xfc .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_frame   0x00000138       0xb8 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
- .debug_frame   0x000001f0       0x50 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
- .debug_frame   0x00000240      0x1b0 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
- .debug_frame   0x000003f0       0x20 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
- .debug_frame   0x00000410      0x100 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
- .debug_frame   0x00000510      0x738 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
- .debug_frame   0x00000c48      0x1f8 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
- .debug_frame   0x00000e40      0x104 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
- .debug_frame   0x00000f44      0x194 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
- .debug_frame   0x000010d8      0x180 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
- .debug_frame   0x00001258       0x44 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
- .debug_frame   0x0000129c       0x38 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
- .debug_frame   0x000012d4       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
- .debug_frame   0x000012f4       0x28 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
- .debug_frame   0x0000131c       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
- .debug_frame   0x00001348       0x28 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x00001370       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .debug_frame   0x00000000       0x7c .\CortexM3\ARM_GCC_541\Debug\main.o
+ .debug_frame   0x0000007c       0xfc .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_frame   0x00000178       0xb8 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_frame   0x00000230       0x50 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
+ .debug_frame   0x00000280      0x1b0 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
+ .debug_frame   0x00000430       0x20 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
+ .debug_frame   0x00000450      0x100 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
+ .debug_frame   0x00000550      0x738 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
+ .debug_frame   0x00000c88      0x1f8 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
+ .debug_frame   0x00000e80      0x104 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
+ .debug_frame   0x00000f84      0x194 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
+ .debug_frame   0x00001118      0x180 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
+ .debug_frame   0x00001298       0x44 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .debug_frame   0x000012dc       0x38 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00001314       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x00001334       0x28 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .debug_frame   0x0000135c       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .debug_frame   0x00001388       0x28 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x000013b0       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
 
-.debug_str      0x00000000     0x1963
+.debug_str      0x00000000     0x1990
  *(.debug_str)
- .debug_str     0x00000000      0x260 .\CortexM3\ARM_GCC_541\Debug\main.o
-                                0x2a8 (size before relaxing)
- .debug_str     0x00000260      0x177 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_str     0x00000000      0x28d .\CortexM3\ARM_GCC_541\Debug\main.o
+                                0x2d5 (size before relaxing)
+ .debug_str     0x0000028d      0x177 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
                                 0x347 (size before relaxing)
- .debug_str     0x000003d7       0x7f .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+ .debug_str     0x00000404       0x7f .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
                                 0x212 (size before relaxing)
- .debug_str     0x00000456      0x144 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_str     0x00000483      0x144 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
                                 0x338 (size before relaxing)
- .debug_str     0x0000059a       0x5f .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
+ .debug_str     0x000005c7       0x5f .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
                                 0x210 (size before relaxing)
- .debug_str     0x000005f9      0x25e .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
+ .debug_str     0x00000626      0x25e .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
                                 0x4eb (size before relaxing)
- .debug_str     0x00000857       0x35 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
+ .debug_str     0x00000884       0x35 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
                                 0x1c9 (size before relaxing)
- .debug_str     0x0000088c      0x20d .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
+ .debug_str     0x000008b9      0x20d .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
                                 0x3e3 (size before relaxing)
- .debug_str     0x00000a99      0x7f2 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
+ .debug_str     0x00000ac6      0x7f2 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
                                 0xa75 (size before relaxing)
- .debug_str     0x0000128b      0x365 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
+ .debug_str     0x000012b8      0x365 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
                                 0x761 (size before relaxing)
- .debug_str     0x000015f0      0x10c .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
+ .debug_str     0x0000161d      0x10c .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
                                 0x30c (size before relaxing)
- .debug_str     0x000016fc      0x1bb .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
+ .debug_str     0x00001729      0x1bb .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
                                 0x3ee (size before relaxing)
- .debug_str     0x000018b7       0xac .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
+ .debug_str     0x000018e4       0xac .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
                                 0x366 (size before relaxing)
 
 .debug_loc      0x00000000     0x1e98
@@ -1016,20 +1024,20 @@ END GROUP
 .debug_macinfo
  *(.debug_macinfo)
 
-.debug_ranges   0x00000000      0x648
+.debug_ranges   0x00000000      0x668
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x18 .\CortexM3\ARM_GCC_541\Debug\main.o
- .debug_ranges  0x00000018       0x48 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_ranges  0x00000060       0x38 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
- .debug_ranges  0x00000098       0x28 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
- .debug_ranges  0x000000c0       0x98 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
- .debug_ranges  0x00000158       0x10 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
- .debug_ranges  0x00000168       0x70 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
- .debug_ranges  0x000001d8      0x290 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
- .debug_ranges  0x00000468       0x88 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
- .debug_ranges  0x000004f0       0x70 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
- .debug_ranges  0x00000560       0x78 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
- .debug_ranges  0x000005d8       0x70 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
+ .debug_ranges  0x00000000       0x38 .\CortexM3\ARM_GCC_541\Debug\main.o
+ .debug_ranges  0x00000038       0x48 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_ranges  0x00000080       0x38 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_ranges  0x000000b8       0x28 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(LED_1.o)
+ .debug_ranges  0x000000e0       0x98 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1.o)
+ .debug_ranges  0x00000178       0x10 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_INT.o)
+ .debug_ranges  0x00000188       0x70 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(ADC_SAR_1_theACLK.o)
+ .debug_ranges  0x000001f8      0x290 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyLib.o)
+ .debug_ranges  0x00000488       0x88 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(cyPm.o)
+ .debug_ranges  0x00000510       0x70 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(isr_eoc_1.o)
+ .debug_ranges  0x00000580       0x78 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CyFlash.o)
+ .debug_ranges  0x000005f8       0x70 .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a(CySpc.o)
 
 .comment        0x00000000       0x6e
  .comment       0x00000000       0x6e .\CortexM3\ARM_GCC_541\Debug\main.o

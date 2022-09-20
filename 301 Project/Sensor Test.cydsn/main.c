@@ -1,4 +1,5 @@
 #include "project.h"
+#include "motors.c"
 
 CY_ISR_PROTO(isr_eoc_1);
 CY_ISR_PROTO(isr_eoc_2);
