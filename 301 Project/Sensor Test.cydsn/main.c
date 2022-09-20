@@ -1,31 +1,35 @@
 #include "project.h"
 #include "motors.c"
 
+#define ON 1
+#define OFF 0
+
+#define FL 0
+#define FR 1
+#define CL 2
+#define CR 3
+#define BC 4
+
 CY_ISR_PROTO(isr_eoc_1);
 CY_ISR_PROTO(isr_eoc_2);
 CY_ISR_PROTO(isr_timer);
 
-uint8 flagA = 0;
-uint8 flagB = 0;
+uint8 channel = 0;
 
+uint16 ADCResult;
+uint16 milliVoltReading;
 uint16 count = 0;
 
+uint8 sensor_state[5];
+
 CY_ISR(isr_eoc_1){
-    // Flag which is set upon completion of an ADC conversion.
-    flagA = 1;
+    // Change the ADC channel each time an eoc interrupt is generated.
+    if (channel == 4) {
+        channel = 0;
+    } else {
+        channel++;
+    }
 }
-
-//CY_ISR(isr_timer){
-  //  ADC_SAR_1_StartConvert();
-    //ADC_SAR_2_StartConvert();
-    //if (count <= 1000) { 
-      //  count = count + 1;
-    //} else {
-      //  count = 0;
-      //  LED_1_Write(!LED_1_Read());
-    //}
-
-//}
 
 int main(void){
     
@@ -41,60 +45,46 @@ int main(void){
     // Start the ADC and begin conversions (in free running mode so will continue to convert).
     ADC_SAR_1_Start();
     ADC_SAR_1_StartConvert();
-    //ADC_SAR_2_Start();
     //Timer_1_Start();
-    LED_1_Write(1); 
         
     while(1) {
+           
+        // If the conversion result is ready, put it into a variable and convert it into millivolts.
+        ADC_SAR_1_IsEndConversion(ADC_SAR_1_WAIT_FOR_RESULT);
+        ADCResult = ADC_SAR_1_GetResult16();
+        milliVoltReading = ADC_SAR_1_CountsTo_mVolts(ADCResult);
         
-        // If the flag is set, enter the loop else keep checking.
-        if (flagA == 1) {
-            flagA = 0;
-            
-            // If the conversion result is ready, put it into a variable and convert it into millivolts.
-            ADC_SAR_1_IsEndConversion(ADC_SAR_1_WAIT_FOR_RESULT);
-            uint16 ADCResult1 = ADC_SAR_1_GetResult16();
-            uint16 milliVoltReading = ADC_SAR_1_CountsTo_mVolts(ADCResult1);
-                        
-            // If the millivolt reading is above the required threshold, write the LED high, else write low.
-            if (milliVoltReading >= 800) {
-                LED_1_Write(1);
-            } else {
-                LED_1_Write(0);
+        // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
+        if (milliVoltReading >= 800) {
+            // If the flag is set, enter the loop else keep checking.
+            if (channel == 0) {
+                sensor_state[FL] = ON;
+            } else if (channel == 1) {
+                sensor_state[FR] = ON;
+            } else if (channel == 2) {
+                sensor_state[CL] = ON;
+            } else if (channel == 3) {
+                sensor_state[CR] = ON;
+            } else if (channel == 4) {
+                sensor_state[BC] = ON;
             }
+        } else {
+            if (channel == 0) {
+                sensor_state[FL] = OFF;
+            } else if (channel == 1) {
+                sensor_state[FR] = OFF;
+            } else if (channel == 2) {
+                sensor_state[CL] = OFF;
+            } else if (channel == 3) {
+                sensor_state[CR] = OFF;
+            } else if (channel == 4) {
+                sensor_state[BC] = OFF;
+            }
+
         }
         
     }
     
-    
-    //for(;;){ // main loop
-        //if (flagA==1){ // if both flags are set
-            //flagA = 0; // reset flags
-            //flagB = 0;
-            
-            //ADC_SAR_1_IsEndConversion(ADC_SAR_1_WAIT_FOR_RESULT); // make sure both adcs are done
-            //ADC_SAR_2_IsEndConversion(ADC_SAR_2_WAIT_FOR_RESULT);
-            
-            //uint16 numberA = ADC_SAR_1_GetResult16(); // get both results
-            //uint16 numberB = ADC_SAR_2_GetResult16();
-            
-            //float voltsConvertA = ADC_SAR_1_CountsTo_mVolts(numberA); // convert to mv
-            //float voltsConvertB = ADC_SAR_2_CountsTo_mVolts(numberB);
-            
-            //     ##### These are the voltage checks #####
-            //if (voltsConvertA >= 1000){ // if pin 2.2 is smaller than 37mV, turn led on, else off
-              //  LED_1_Write(1);
-            //} else {
-              //  LED_1_Write(0);
-            //}
-            
-            //if (voltsConvertB <= 1000){ // if pin 2.0 is smaller than 37mV, turn led on, else off
-              //  LED_2_Write(1);
-            //} else {
-                //LED_2_Write(0);
-            //}
-        //}
-    //}
 }
 
 /* [] END OF FILE */
