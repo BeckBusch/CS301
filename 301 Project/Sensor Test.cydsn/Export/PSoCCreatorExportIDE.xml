@@ -25,7 +25,7 @@
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
   </Toolchains>
-  <Project Name="Sensor Test" Path="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn" Version="5.70" Type="Normal">
+  <Project Name="Sensor Test" Path="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn" Version="5.70" Type="Normal">
     <CMSIS_SVD_File>Sensor Test.svd</CMSIS_SVD_File>
     <Datasheet />
     <LinkerFiles>
@@ -34,16 +34,16 @@
       <LinkerFile Toolchain="ARM IAR Generic">.\Generated_Source\PSoC5\Cm3Iar.icf</LinkerFile>
     </LinkerFiles>
     <Folders>
-      <Folder BuildType="STRICT" Path="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn">
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn">
           <File BuildType="BUILD" Toolchain="">main.c</File>
           <File BuildType="BUILD" Toolchain="">motors.c</File>
           <File BuildType="BUILD" Toolchain="">motors.h</File>
           <File BuildType="BUILD" Toolchain="">cyapicallbacks.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\Generated_Source\PSoC5">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Generated_Source\PSoC5">
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn">
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyfitter_cfg.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyfitter_cfg.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cymetadata.c</File>
@@ -95,6 +95,9 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareimport.scat</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_eoc_1.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_eoc_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_1_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_PM.c</File>
@@ -146,52 +149,85 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_IN1_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_IN1.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_IN1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\L_ENCD_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\L_ENCD.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\L_ENCD.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\L_ENCD2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\L_ENCD2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\L_ENCD2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_2_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\R_ENCD_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\R_ENCD.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\R_ENCD.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\R_ENCD2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\R_ENCD2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\R_ENCD2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_ENCD.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_ENCD.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_speed_timer.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_speed_timer.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_2_Cnt16.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_2_Cnt16.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_2_Cnt16_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_1_Cnt16.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_1_Cnt16.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_1_Cnt16_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\led_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\led.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\led.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\timer_clock.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\timer_clock.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\Export\ARM_GCC_Generic">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Export\ARM_GCC_Generic">
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn">
           <File BuildType="BUILD" Toolchain="ARM GCC Generic">.\Export\ARM_GCC_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\Export\ARM_MDK_Generic">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Export\ARM_MDK_Generic">
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn">
           <File BuildType="BUILD" Toolchain="ARM MDK Generic">.\Export\ARM_MDK_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\Export\ARM_IAR_Generic">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Export\ARM_IAR_Generic">
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn">
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">.\Export\ARM_IAR_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\codegentemp">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn" />
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_441">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn" />
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_473">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn" />
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051_Keil_952">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn" />
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn" />
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn" />
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0p">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn" />
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM3">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn" />
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM4">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn" />
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM7">
-        <Files Root="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn" />
+        <Files Root="C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn" />
       </Folder>
     </Folders>
   </Project>

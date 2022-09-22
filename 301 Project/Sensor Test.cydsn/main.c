@@ -18,89 +18,131 @@
 #define CORRECTION 3
 
 // Prototype declarations.
-CY_ISR_PROTO(isr_eoc_1);
+CY_ISR_PROTO(isr_TC);
 
-uint8 channel = 0;
 
-uint16 ADCResult;
-uint16 milliVoltReading;
-uint16 count = 0;
-uint16 state = FORWARD;
 
-uint8 sensor_state[5];
 
-CY_ISR(isr_eoc_1){
-    // Change the ADC channel each time an eoc interrupt is generated.
-    if (channel == 4) {
-        channel = 0;
-    } else {
-        channel++;
-    }
+uint16 speed;
+uint16 revs;
+uint16 distance;
+
+uint16 speed2;
+uint16 revs2;
+
+uint16 scale = 228;
+uint16 counts[2] = {0};
+
+uint32 goal = 160000;
+uint16 pwmIN = 100;
+uint16 pwmIN2 = 100;
+
+
+
+CY_ISR(isr_TC){
+   // left end
+   counts[0] = QuadDec_1_GetCounter() * 100;
+    // right end
+   counts[1] = QuadDec_2_GetCounter() * 100;
+
+    distance = counts[0] / scale;
+    distance = revs * 204;
+    //speed = speed / 100;
+    speed = speed / 5;
+    
+    revs2 = counts[1] / scale;
+    speed2 = revs2 * 204;
+    //speed2 = speed2 / 100;
+    speed2 = speed2 / 5;
+    // speed ends up in mm per ms
+    
+    // left start
+    //QuadDec_1_SetCounter(0);
+    // left start
+    //QuadDec_2_SetCounter(0);
+    
+    Timer_1_Start();
 }
 
 int main(void){
-    
     // Enable global interrupts as well as start and enable the isr.
     CyGlobalIntEnable;
-    isr_eoc_1_StartEx(isr_eoc_1);
-    //isr_eoc_1_Enable();
-    //isr_eoc_2_StartEx(isr_eoc_2);
-    //isr_eoc_2_Enable();
-    //isr_timer_StartEx(isr_timer);
-    //isr_timer_Enable();
-    
-    // Start the ADC and begin conversions (in free running mode so will continue to convert).
-    ADC_SAR_Seq_1_Start();
-    ADC_SAR_Seq_1_StartConvert();
-    
-    //PWM_1_WritePeriod(250);
-    //PWM_1_Start();
-    //PWM_1_WriteCompare(83);
-        
-    //PWM_2_WritePeriod(250);
-    //PWM_2_Start();
-    //PWM_2_WriteCompare(90);
-    
+    //timer_clock_Start();
     //Timer_1_Start();
+    
+    //isr_speed_timer_StartEx(isr_TC);
+    
+ 
+    //isr_speed_timer_Enable();
+    
+    
+    QuadDec_1_Start();
+    QuadDec_1_Enable();
+    QuadDec_2_Start();
+    QuadDec_2_Enable();
         
+    PWM_1_WritePeriod(250);
+    PWM_1_Start();
+    PWM_2_WritePeriod(250);
+    PWM_2_Start();
+    
+    PWM_1_WriteCompare(83); 
+    PWM_2_WriteCompare(90);
+    
+    
+    QuadDec_1_SetCounter(0);
+    QuadDec_2_SetCounter(0);
+    
     while(1) {
+       
+      /*  
+      if (speed < goal){
+        led_Write(1);
+        pwmIN = pwmIN + 5;
+    } else {
+        led_Write(0);
+        pwmIN = pwmIN - 5;
+    }
+    if (speed2 < goal){
+        pwmIN2 = pwmIN2 + 5;
+    } else {
+        pwmIN2 = pwmIN2 - 5;
+    }*/
         
-// If the conversion result is ready, put it into a variable and convert it into millivolts.
-        ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
-        ADCResult = ADC_SAR_Seq_1_GetResult16(channel);
-        milliVoltReading = ADC_SAR_Seq_1_CountsTo_mVolts(ADCResult);
+    counts[0] = QuadDec_1_GetCounter();
+    // right end
+   //counts[1] = QuadDec_2_GetCounter() * 100;
+
+    revs = counts[0] / scale;
+    speed = revs * 204;
+    speed = speed / 100;
+    //speed = speed / 5;
+    
+    //revs2 = counts[1] / scale;
+    //speed2 = revs2 * 204;
+    //speed2 = speed2 / 100;
+    //speed2=  speed2 / 5;
+    // speed ends up in mm per ms
+    
+    // left start
+    //QuadDec_1_SetCounter(0);
+    // left start
+    //QuadDec_2_SetCounter(0);
+     //
         
-        if (milliVoltReading >= 800) {
-            turn_left();
-        }
-            
-        // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
-        if (milliVoltReading >= 800) {
-            // Change the position in the sensor_state array depending on the channel being read.
-            if (channel == 0) {
-                sensor_state[FL] = ON;
-            } else if (channel == 1) {
-                sensor_state[FR] = ON;
-            } else if (channel == 2) {
-                sensor_state[CL] = ON;
-            } else if (channel == 3) {
-                sensor_state[CR] = ON;
-            } else if (channel == 4) {
-                sensor_state[BC] = ON;
-            }
-        } else {
-            if (channel == 0) {
-                sensor_state[FL] = OFF;
-            } else if (channel == 1) {
-                sensor_state[FR] = OFF;
-            } else if (channel == 2) {
-                sensor_state[CL] = OFF;
-            } else if (channel == 3) {
-                sensor_state[CR] = OFF;
-            } else if (channel == 4) {
-                sensor_state[BC] = OFF;
-            }
-        }
+        
+    
+    uint32 dis = (QuadDec_1_GetCounter() /228);
+    if (dis >= goal) {
+        led_Write(1);
+        PWM_1_WriteCompare(125); 
+        PWM_2_WriteCompare(125);
+    }
+        
+    
+        
+    //PWM_1_WriteCompare(pwmIN); 
+    //PWM_2_WriteCompare(pwmIN2); 
         
         /* STRAIGHT: 
          * MOVE forward
@@ -128,74 +170,7 @@ int main(void){
          */
         
         // Implementation of a state machine to control the robot.
-        if (state == FORWARD) {
-            if (sensor_state[FL] == OFF) {
-                state = TURNING_LEFT;
-            } else if (sensor_state[FR] == OFF) {
-                state = TURNING_RIGHT;
-            } else if (sensor_state[BC] == OFF) {
-                state = CORRECTION;
-            }
-            stop();
-            move_forward();
-        } else if (state == TURNING_LEFT) {
-            while(sensor_state[CL] == ON) {
-                stop();
-                turn_left();
-            }
-            while(sensor_state[BC] == ON) {
-                stop();
-                move_forward();
-            }
-            while(sensor_state[FL] == OFF) {
-                stop();
-                turn_left();
-            }
-            while(sensor_state[FL] == ON) {
-                stop();
-                turn_left();
-            }
-            state = FORWARD;
-        } else if (state == TURNING_RIGHT) {
-            while(sensor_state[CR] == ON) {
-                stop();
-                turn_right();
-            }
-            while(sensor_state[BC] == ON) {
-                stop();
-                move_forward();
-            }
-            while(sensor_state[FR] == OFF) {
-                stop();
-                turn_right();
-            }
-            while(sensor_state[FR] == ON) {
-                stop();
-                turn_right();
-            }
-            state = FORWARD;
-        } else if (state == CORRECTION) {
-            while(sensor_state[FL] == ON && sensor_state[FR] == ON) {
-                stop();
-                move_forward();
-            }
-            if (sensor_state[FL] == OFF) {
-                while(sensor_state[BC] == ON) {
-                    stop();
-                    turn_left();
-                }
-                state = FORWARD;
-            } else if (sensor_state[FR] == OFF) {
-                while(sensor_state[BC] == ON) {
-                    stop();
-                    turn_right();
-                }
-                state = FORWARD;
-            }
-            } else {
-                stop();
-                move_forward();
-            }
+        
 
         }
     return 0;

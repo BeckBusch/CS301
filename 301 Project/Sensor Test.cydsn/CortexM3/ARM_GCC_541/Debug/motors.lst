@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
   28:motors.c      ****  * TURN left UNTIL CL off
   29:motors.c      ****  * MOVE forward UNTIL BC off
   30:motors.c      ****  * TURN left UNTIL FL on -> off
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 2
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 2
 
 
   31:motors.c      ****  * MOVE forward
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
   64              	turn_left:
   65              	.LFB64:
   49:motors.c      ****     
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 3
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 3
 
 
   50:motors.c      **** }
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
   65:motors.c      ****     // Right turning.
   66:motors.c      ****     PWM_1_Start();
  105              		.loc 1 66 0
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 4
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 4
 
 
  106 0002 FFF7FEFF 		bl	PWM_1_Start
@@ -236,9 +236,9 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  152 000c 4F000000 		.4byte	.LASF24
  153 0010 0C       		.byte	0xc
  154 0011 F7000000 		.4byte	.LASF25
- 155 0015 43010000 		.4byte	.LASF26
+ 155 0015 AA010000 		.4byte	.LASF26
  156 0019 00000000 		.4byte	.Ldebug_ranges0+0
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 5
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 5
 
 
  157 001d 00000000 		.4byte	0
@@ -246,7 +246,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  159 0025 02       		.uleb128 0x2
  160 0026 01       		.byte	0x1
  161 0027 06       		.byte	0x6
- 162 0028 D5010000 		.4byte	.LASF0
+ 162 0028 65010000 		.4byte	.LASF0
  163 002c 02       		.uleb128 0x2
  164 002d 01       		.byte	0x1
  165 002e 08       		.byte	0x8
@@ -254,20 +254,20 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  167 0033 02       		.uleb128 0x2
  168 0034 02       		.byte	0x2
  169 0035 05       		.byte	0x5
- 170 0036 10020000 		.4byte	.LASF2
+ 170 0036 A0010000 		.4byte	.LASF2
  171 003a 02       		.uleb128 0x2
  172 003b 02       		.byte	0x2
  173 003c 07       		.byte	0x7
  174 003d 0E000000 		.4byte	.LASF3
  175 0041 03       		.uleb128 0x3
- 176 0042 ED010000 		.4byte	.LASF9
+ 176 0042 7D010000 		.4byte	.LASF9
  177 0046 02       		.byte	0x2
  178 0047 3F       		.byte	0x3f
  179 0048 4C000000 		.4byte	0x4c
  180 004c 02       		.uleb128 0x2
  181 004d 04       		.byte	0x4
  182 004e 05       		.byte	0x5
- 183 004f B3010000 		.4byte	.LASF4
+ 183 004f 43010000 		.4byte	.LASF4
  184 0053 02       		.uleb128 0x2
  185 0054 04       		.byte	0x4
  186 0055 07       		.byte	0x7
@@ -289,21 +289,21 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  202 0071 07       		.byte	0x7
  203 0072 21000000 		.4byte	.LASF8
  204 0076 03       		.uleb128 0x3
- 205 0077 1A020000 		.4byte	.LASF10
+ 205 0077 00020000 		.4byte	.LASF10
  206 007b 03       		.byte	0x3
  207 007c 2C       		.byte	0x2c
  208 007d 41000000 		.4byte	0x41
  209 0081 02       		.uleb128 0x2
  210 0082 04       		.byte	0x4
  211 0083 04       		.byte	0x4
- 212 0084 0A020000 		.4byte	.LASF11
+ 212 0084 9A010000 		.4byte	.LASF11
  213 0088 02       		.uleb128 0x2
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 6
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 6
 
 
  214 0089 08       		.byte	0x8
  215 008a 04       		.byte	0x4
- 216 008b BC010000 		.4byte	.LASF12
+ 216 008b 4C010000 		.4byte	.LASF12
  217 008f 02       		.uleb128 0x2
  218 0090 01       		.byte	0x1
  219 0091 08       		.byte	0x8
@@ -311,11 +311,11 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  221 0096 02       		.uleb128 0x2
  222 0097 08       		.byte	0x8
  223 0098 04       		.byte	0x4
- 224 0099 E1010000 		.4byte	.LASF14
+ 224 0099 71010000 		.4byte	.LASF14
  225 009d 02       		.uleb128 0x2
  226 009e 04       		.byte	0x4
  227 009f 07       		.byte	0x7
- 228 00a0 35020000 		.4byte	.LASF15
+ 228 00a0 1B020000 		.4byte	.LASF15
  229 00a4 05       		.uleb128 0x5
  230 00a5 17010000 		.4byte	.LASF16
  231 00a9 01       		.byte	0x1
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  268 00f8 D8010000 		.4byte	0x1d8
  269 00fc 08       		.uleb128 0x8
  270 00fd 01       		.uleb128 0x1
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 7
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 7
 
 
  271 00fe 50       		.byte	0x50
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  325 016a B7010000 		.4byte	0x1b7
  326 016e 79010000 		.4byte	0x179
  327 0172 08       		.uleb128 0x8
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 8
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 8
 
 
  328 0173 01       		.uleb128 0x1
@@ -439,7 +439,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  343 0188 00       		.byte	0
  344 0189 00       		.byte	0
  345 018a 0A       		.uleb128 0xa
- 346 018b C3010000 		.4byte	.LASF27
+ 346 018b 53010000 		.4byte	.LASF27
  347 018f 01       		.byte	0x1
  348 0190 48       		.byte	0x48
  349 0191 00000000 		.4byte	.LFB66
@@ -447,7 +447,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  351 0199 01       		.uleb128 0x1
  352 019a 9C       		.byte	0x9c
  353 019b 0B       		.uleb128 0xb
- 354 019c C8010000 		.4byte	.LASF28
+ 354 019c 58010000 		.4byte	.LASF28
  355 01a0 07       		.byte	0x7
  356 01a1 1207     		.2byte	0x712
  357 01a3 A7010000 		.4byte	0x1a7
@@ -459,8 +459,8 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  363 01b5 04       		.byte	0x4
  364 01b6 92       		.byte	0x92
  365 01b7 0D       		.uleb128 0xd
- 366 01b8 F7010000 		.4byte	.LASF20
- 367 01bc F7010000 		.4byte	.LASF20
+ 366 01b8 87010000 		.4byte	.LASF20
+ 367 01bc 87010000 		.4byte	.LASF20
  368 01c0 04       		.byte	0x4
  369 01c1 C3       		.byte	0xc3
  370 01c2 0D       		.uleb128 0xd
@@ -469,8 +469,8 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  373 01cb 05       		.byte	0x5
  374 01cc 92       		.byte	0x92
  375 01cd 0D       		.uleb128 0xd
- 376 01ce 22020000 		.4byte	.LASF22
- 377 01d2 22020000 		.4byte	.LASF22
+ 376 01ce 08020000 		.4byte	.LASF22
+ 377 01d2 08020000 		.4byte	.LASF22
  378 01d6 05       		.byte	0x5
  379 01d7 C3       		.byte	0xc3
  380 01d8 0D       		.uleb128 0xd
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  382 01dd DD000000 		.4byte	.LASF23
  383 01e1 06       		.byte	0x6
  384 01e2 76       		.byte	0x76
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 9
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 9
 
 
  385 01e3 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  439 0033 08       		.uleb128 0x8
  440 0034 00       		.byte	0
  441 0035 00       		.byte	0
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 10
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 10
 
 
  442 0036 05       		.uleb128 0x5
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  496 0076 01       		.byte	0x1
  497 0077 11       		.uleb128 0x11
  498 0078 01       		.uleb128 0x1
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 11
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 11
 
 
  499 0079 31       		.uleb128 0x31
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  553 00b0 3C       		.uleb128 0x3c
  554 00b1 19       		.uleb128 0x19
  555 00b2 6E       		.uleb128 0x6e
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 12
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 12
 
 
  556 00b3 0E       		.uleb128 0xe
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  602      7420756E 
  602      7369676E 
  602      65642069 
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 13
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 13
 
 
  602      6E7400
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  624 0117 6D6F7665 		.ascii	"move_forward\000"
  624      5F666F72 
  624      77617264 
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 14
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 14
 
 
  624      00
@@ -794,76 +794,71 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 1
  629              	.LASF13:
  630 013e 63686172 		.ascii	"char\000"
  630      00
- 631              	.LASF26:
- 632 0143 5C5C6669 		.ascii	"\\\\files.auckland.ac.nz\\myhome\\Downloads\\ENGGEN"
- 632      6C65732E 
- 632      6175636B 
- 632      6C616E64 
- 632      2E61632E 
- 633 0171 20323039 		.ascii	" 209 Github\\project-project-group-7\\301 Project\\"
- 633      20476974 
- 633      6875625C 
- 633      70726F6A 
- 633      6563742D 
- 634 01a1 53656E73 		.ascii	"Sensor Test.cydsn\000"
- 634      6F722054 
- 634      6573742E 
- 634      63796473 
- 634      6E00
- 635              	.LASF4:
- 636 01b3 6C6F6E67 		.ascii	"long int\000"
- 636      20696E74 
+ 631              	.LASF4:
+ 632 0143 6C6F6E67 		.ascii	"long int\000"
+ 632      20696E74 
+ 632      00
+ 633              	.LASF12:
+ 634 014c 646F7562 		.ascii	"double\000"
+ 634      6C6500
+ 635              	.LASF27:
+ 636 0153 73746F70 		.ascii	"stop\000"
  636      00
- 637              	.LASF12:
- 638 01bc 646F7562 		.ascii	"double\000"
- 638      6C6500
- 639              	.LASF27:
- 640 01c3 73746F70 		.ascii	"stop\000"
- 640      00
- 641              	.LASF28:
- 642 01c8 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 642      52784275 
- 642      66666572 
- 642      00
- 643              	.LASF0:
- 644 01d5 7369676E 		.ascii	"signed char\000"
- 644      65642063 
- 644      68617200 
- 645              	.LASF14:
- 646 01e1 6C6F6E67 		.ascii	"long double\000"
- 646      20646F75 
- 646      626C6500 
- 647              	.LASF9:
- 648 01ed 5F5F696E 		.ascii	"__int32_t\000"
- 648      7433325F 
+ 637              	.LASF28:
+ 638 0158 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 638      52784275 
+ 638      66666572 
+ 638      00
+ 639              	.LASF0:
+ 640 0165 7369676E 		.ascii	"signed char\000"
+ 640      65642063 
+ 640      68617200 
+ 641              	.LASF14:
+ 642 0171 6C6F6E67 		.ascii	"long double\000"
+ 642      20646F75 
+ 642      626C6500 
+ 643              	.LASF9:
+ 644 017d 5F5F696E 		.ascii	"__int32_t\000"
+ 644      7433325F 
+ 644      7400
+ 645              	.LASF20:
+ 646 0187 50574D5F 		.ascii	"PWM_1_WriteCompare\000"
+ 646      315F5772 
+ 646      69746543 
+ 646      6F6D7061 
+ 646      726500
+ 647              	.LASF11:
+ 648 019a 666C6F61 		.ascii	"float\000"
  648      7400
- 649              	.LASF20:
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccKcmkCE.s 			page 15
+ 649              	.LASF2:
+ 650 01a0 73686F72 		.ascii	"short int\000"
+ 650      7420696E 
+ 650      7400
+ 651              	.LASF26:
+ 652 01aa 433A5C55 		.ascii	"C:\\Users\\beckb\\Documents\\GitHub\\project-projec"
+ 652      73657273 
+ 652      5C626563 
+ARM GAS  C:\Users\beckb\AppData\Local\Temp\ccWBGbWX.s 			page 15
 
 
- 650 01f7 50574D5F 		.ascii	"PWM_1_WriteCompare\000"
- 650      315F5772 
- 650      69746543 
- 650      6F6D7061 
- 650      726500
- 651              	.LASF11:
- 652 020a 666C6F61 		.ascii	"float\000"
- 652      7400
- 653              	.LASF2:
- 654 0210 73686F72 		.ascii	"short int\000"
- 654      7420696E 
- 654      7400
- 655              	.LASF10:
- 656 021a 696E7433 		.ascii	"int32_t\000"
- 656      325F7400 
- 657              	.LASF22:
- 658 0222 50574D5F 		.ascii	"PWM_2_WriteCompare\000"
- 658      325F5772 
- 658      69746543 
- 658      6F6D7061 
- 658      726500
- 659              	.LASF15:
- 660 0235 73697A65 		.ascii	"sizetype\000"
- 660      74797065 
- 660      00
- 661              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 652      6B625C44 
+ 652      6F63756D 
+ 653 01d8 742D6772 		.ascii	"t-group-7\\301 Project\\Sensor Test.cydsn\000"
+ 653      6F75702D 
+ 653      375C3330 
+ 653      31205072 
+ 653      6F6A6563 
+ 654              	.LASF10:
+ 655 0200 696E7433 		.ascii	"int32_t\000"
+ 655      325F7400 
+ 656              	.LASF22:
+ 657 0208 50574D5F 		.ascii	"PWM_2_WriteCompare\000"
+ 657      325F5772 
+ 657      69746543 
+ 657      6F6D7061 
+ 657      726500
+ 658              	.LASF15:
+ 659 021b 73697A65 		.ascii	"sizetype\000"
+ 659      74797065 
+ 659      00
+ 660              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
