@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
   29:Generated_Source\PSoC5/cyfitter_cfg.c **** 
   30:Generated_Source\PSoC5/cyfitter_cfg.c **** #if defined(__GNUC__) || defined(__ARMCC_VERSION)
   31:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED 
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 2
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 2
 
 
   32:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED_ATTR __attribute__ ((packed))
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
   86:Generated_Source\PSoC5/cyfitter_cfg.c **** 	(void)memcpy(dest, src, n);
   87:Generated_Source\PSoC5/cyfitter_cfg.c **** }
   88:Generated_Source\PSoC5/cyfitter_cfg.c **** CY_CFG_UNUSED
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 3
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 3
 
 
   89:Generated_Source\PSoC5/cyfitter_cfg.c **** static void CYCONFIGCPYCODE(void *dest, const void *src, size_t n);
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
   41              		.thumb
   42              		.thumb_func
   43              		.type	cfg_write_bytes32, %function
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 4
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 4
 
 
   44              	cfg_write_bytes32:
@@ -205,7 +205,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  148:Generated_Source\PSoC5/cyfitter_cfg.c **** }
  149:Generated_Source\PSoC5/cyfitter_cfg.c **** #endif
  150:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 151:Generated_Source\PSoC5/cyfitter_cfg.c **** #define CY_CFG_BASE_ADDR_COUNT 35u
+ 151:Generated_Source\PSoC5/cyfitter_cfg.c **** #define CY_CFG_BASE_ADDR_COUNT 33u
  152:Generated_Source\PSoC5/cyfitter_cfg.c **** CYPACKED typedef struct
  153:Generated_Source\PSoC5/cyfitter_cfg.c **** {
  154:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint8 offset;
@@ -213,32 +213,32 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  156:Generated_Source\PSoC5/cyfitter_cfg.c **** } CYPACKED_ATTR cy_cfg_addrvalue_t;
  157:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  158:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_addr_table ((const uint32 CYFAR *)0x48000000u)
- 159:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x4800008Cu)
+ 159:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x48000084u)
  160:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  161:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_0 Address: CYREG_PRT0_DM0 Size (bytes): 8 */
- 162:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_0_VAL ((const uint8 CYFAR *)0x480004CCu)
+ 162:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_0_VAL ((const uint8 CYFAR *)0x480004D0u)
  163:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  164:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_7 Address: CYREG_PRT12_DM0 Size (bytes): 8 */
- 165:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x480004D4u)
+ 165:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x480004D8u)
  166:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  167:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_8 Address: CYREG_PRT15_DM0 Size (bytes): 8 */
- 168:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_8_VAL ((const uint8 CYFAR *)0x480004DCu)
+ 168:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_8_VAL ((const uint8 CYFAR *)0x480004E0u)
  169:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  170:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_1 Address: CYREG_PRT1_DM0 Size (bytes): 8 */
- 171:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x480004E4u)
+ 171:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x480004E8u)
  172:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  173:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_2 Address: CYREG_PRT2_DM0 Size (bytes): 8 */
- 174:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x480004ECu)
+ 174:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x480004F0u)
  175:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  176:Generated_Source\PSoC5/cyfitter_cfg.c **** /* PHUB_CFGMEM1 Address: CYREG_PHUB_CFGMEM1_CFG0 Size (bytes): 4 */
- 177:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_PHUB_CFGMEM1_VAL ((const uint8 CYFAR *)0x480004F4u)
+ 177:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_PHUB_CFGMEM1_VAL ((const uint8 CYFAR *)0x480004F8u)
  178:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  179:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  180:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
  181:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: cfg_write_bytes32
  182:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
  183:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 5
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 5
 
 
  184:Generated_Source\PSoC5/cyfitter_cfg.c **** *  This function is used for setting up the chip configuration areas that
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
   79              	.L6:
  205:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
  206:Generated_Source\PSoC5/cyfitter_cfg.c **** 			CY_SET_REG8((void *)(baseAddr + data_table[j].offset), data_table[j].value);
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 6
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 6
 
 
   80              		.loc 1 206 0
@@ -329,7 +329,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  101              	.L4:
  199:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
  102              		.loc 1 199 0 is_stmt 0 discriminator 1
- 103 002c 222F     		cmp	r7, #34
+ 103 002c 202F     		cmp	r7, #32
  104 002e EBD9     		bls	.L7
  209:Generated_Source\PSoC5/cyfitter_cfg.c **** 		}
  210:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  125              		.cfi_startproc
  126              		@ args = 0, pretend = 0, frame = 0
  127              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 7
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 7
 
 
  128              	.LVL12:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  233:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint8 pllLock;
  234:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  235:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 8
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 8
 
 
  236:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure Digital Clocks based on settings from Clock DWR */
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  197 003c 41F25122 		movw	r2, #4689
  198 0040 023B     		subs	r3, r3, #2
  199 0042 1A80     		strh	r2, [r3]	@ movhi
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 9
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 9
 
 
  200              	.LVL15:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  267:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_MSTR0), 0x0100u);
  237              		.loc 1 267 0
  238 0072 124B     		ldr	r3, .L17+28
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 10
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 10
 
 
  239 0074 4FF48072 		mov	r2, #256
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  286              	AnalogSetDefault:
  287              	.LFB6:
  275:Generated_Source\PSoC5/cyfitter_cfg.c **** }
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 11
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 11
 
 
  276:Generated_Source\PSoC5/cyfitter_cfg.c **** 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  315              		.loc 1 302 0
  316 0014 03F00701 		and	r1, r3, #7
  317 0018 144A     		ldr	r2, .L21+12
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 12
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 12
 
 
  318 001a 1170     		strb	r1, [r2]
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  359 0056 3470     		strb	r4, [r6]
  316:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)CYREG_PUMP_CR0, 0x44u);
  360              		.loc 1 316 0
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 13
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 13
 
 
  361 0058 4422     		movs	r2, #68
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  319:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  320:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
  321:Generated_Source\PSoC5/cyfitter_cfg.c **** * Function Name: SetAnalogRoutingPumps
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 14
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 14
 
 
  322:Generated_Source\PSoC5/cyfitter_cfg.c **** ********************************************************************************
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  438              		.align	2
  439              	.L28:
  440 0018 76580040 		.word	1073764470
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 15
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 15
 
 
  441              		.cfi_endproc
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  377:Generated_Source\PSoC5/cyfitter_cfg.c **** #endif
  378:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  379:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Enable/Disable Debug functionality based on settings from System DWR */
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 16
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 16
 
 
  380:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)CYREG_MLOGIC_DEBUG, (CY_GET_XTND_REG8((void CYFAR *)CYREG_MLOGIC_DE
@@ -921,7 +921,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  388:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  389:Generated_Source\PSoC5/cyfitter_cfg.c **** 		static const cfg_memset_t CYCODE cfg_memset_list[] = {
  390:Generated_Source\PSoC5/cyfitter_cfg.c **** 			/* address, size */
- 391:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_TMR0_CFG0), 24u},
+ 391:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_TMR0_CFG0), 36u},
  392:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_PRT3_DR), 64u},
  393:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B0_P0_U0_BASE), 4096u},
  394:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B1_P2_U0_BASE), 2048u},
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  494              	.LBE4:
  403:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
  495              		.loc 1 403 0 discriminator 3
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 17
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 17
 
 
  496 0028 0134     		adds	r4, r4, #1
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  535 0068 2370     		strb	r3, [r4]
  421:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG8((void CYFAR *)CYREG_PM_AVAIL_CR2, CY_GET_XTND_REG8((void CYFAR *)CYREG_PM_AVAIL_
  536              		.loc 1 421 0
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 18
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 18
 
 
  537 006a A2F58632 		sub	r2, r2, #68608
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  435:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CACHE_CC_CTL), (((CYDEV_INSTRUCT_CACHE_ENABLED) != 0) ? 0x61
  578              		.loc 1 435 0
  579 00b4 1B4D     		ldr	r5, .L34+76
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 19
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 19
 
 
  580 00b6 6123     		movs	r3, #97
@@ -1119,26 +1119,26 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  604              	.L34:
  605 00d8 E8460040 		.word	1073759976
  606 00dc 00000000 		.word	.LANCHOR0
- 607 00e0 8C000048 		.word	1207959692
+ 607 00e0 84000048 		.word	1207959684
  608 00e4 00760040 		.word	1073772032
- 609 00e8 F4040048 		.word	1207960820
+ 609 00e8 F8040048 		.word	1207960824
  610 00ec 08760040 		.word	1073772040
  611 00f0 03500140 		.word	1073827843
  612 00f4 A0430040 		.word	1073759136
- 613 00f8 CC040048 		.word	1207960780
+ 613 00f8 D0040048 		.word	1207960784
  614 00fc 02510040 		.word	1073762562
- 615 0100 D4040048 		.word	1207960788
+ 615 0100 D8040048 		.word	1207960792
  616 0104 C2510040 		.word	1073762754
- 617 0108 DC040048 		.word	1207960796
+ 617 0108 E0040048 		.word	1207960800
  618 010c F2510040 		.word	1073762802
- 619 0110 E4040048 		.word	1207960804
+ 619 0110 E8040048 		.word	1207960808
  620 0114 12510040 		.word	1073762578
- 621 0118 EC040048 		.word	1207960812
+ 621 0118 F0040048 		.word	1207960816
  622 011c 22510040 		.word	1073762594
  623 0120 22430040 		.word	1073759010
  624 0124 00480040 		.word	1073760256
  625 0128 04000840 		.word	1074266116
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 20
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 20
 
 
  626 012c B0430040 		.word	1073759152
@@ -1152,7 +1152,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  634              		.size	cfg_memset_list.5015, 42
  635              	cfg_memset_list.5015:
  636 0000 004F0040 		.word	1073762048
- 637 0004 1800     		.short	24
+ 637 0004 2400     		.short	36
  638 0006 30510040 		.4byte	1073762608
  639 000a 4000     		.short	64
  640 000c 00000140 		.word	1073807360
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  680 0039 07       		.byte	0x7
  681 003a 3E020000 		.4byte	.LASF0
  682 003e 04       		.uleb128 0x4
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 21
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 21
 
 
  683 003f 08       		.byte	0x8
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  737 00a1 61000000 		.4byte	0x61
  738 00a5 06       		.uleb128 0x6
  739 00a6 37020000 		.4byte	.LASF15
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 22
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 22
 
 
  740 00aa 03       		.byte	0x3
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  794 011c 01       		.uleb128 0x1
  795 011d 9C       		.byte	0x9c
  796 011e 30010000 		.4byte	0x130
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 23
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 23
 
 
  797 0122 0B       		.uleb128 0xb
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  851 0196 01       		.byte	0x1
  852 0197 CA       		.byte	0xca
  853 0198 8D000000 		.4byte	0x8d
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 24
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 24
 
 
  854 019c 51000000 		.4byte	.LLST3
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  908 0201 01       		.uleb128 0x1
  909 0202 51       		.byte	0x51
  910 0203 00       		.byte	0
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 25
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 25
 
 
  911 0204 00       		.byte	0
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  965 0278 01       		.byte	0x1
  966 0279 2B01     		.2byte	0x12b
  967 027b 8D000000 		.4byte	0x8d
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 26
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 26
 
 
  968 027f 05010000 		.4byte	.LLST8
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1022 02fd 01       		.uleb128 0x1
  1023 02fe 50       		.byte	0x50
  1024 02ff 03       		.uleb128 0x3
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 27
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 27
 
 
  1025 0300 F3       		.byte	0xf3
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1079 035e 9C       		.byte	0x9c
  1080 035f 65050000 		.4byte	0x565
  1081 0363 1E       		.uleb128 0x1e
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 28
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 28
 
 
  1082 0364 0E000000 		.4byte	.LBB3
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1136 03e3 1F040000 		.4byte	0x41f
  1137 03e7 18       		.uleb128 0x18
  1138 03e8 6D7300   		.ascii	"ms\000"
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 29
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 29
 
 
  1139 03eb 01       		.byte	0x1
@@ -1732,13 +1732,13 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1187 0435 51       		.byte	0x51
  1188 0436 05       		.uleb128 0x5
  1189 0437 0C       		.byte	0xc
- 1190 0438 8C000048 		.4byte	0x4800008c
+ 1190 0438 84000048 		.4byte	0x48000084
  1191 043c 00       		.byte	0
  1192 043d 15       		.uleb128 0x15
  1193 043e 42000000 		.4byte	.LVL41
  1194 0442 B8010000 		.4byte	0x1b8
  1195 0446 59040000 		.4byte	0x459
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 30
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 30
 
 
  1196 044a 14       		.uleb128 0x14
@@ -1767,7 +1767,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1219 046d 51       		.byte	0x51
  1220 046e 05       		.uleb128 0x5
  1221 046f 0C       		.byte	0xc
- 1222 0470 F4040048 		.4byte	0x480004f4
+ 1222 0470 F8040048 		.4byte	0x480004f8
  1223 0474 14       		.uleb128 0x14
  1224 0475 01       		.uleb128 0x1
  1225 0476 52       		.byte	0x52
@@ -1790,7 +1790,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1242 0493 51       		.byte	0x51
  1243 0494 05       		.uleb128 0x5
  1244 0495 0C       		.byte	0xc
- 1245 0496 CC040048 		.4byte	0x480004cc
+ 1245 0496 D0040048 		.4byte	0x480004d0
  1246 049a 14       		.uleb128 0x14
  1247 049b 01       		.uleb128 0x1
  1248 049c 52       		.byte	0x52
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1250 049e 38       		.byte	0x38
  1251 049f 00       		.byte	0
  1252 04a0 15       		.uleb128 0x15
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 31
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 31
 
 
  1253 04a1 8C000000 		.4byte	.LVL45
@@ -1815,7 +1815,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1264 04b8 51       		.byte	0x51
  1265 04b9 05       		.uleb128 0x5
  1266 04ba 0C       		.byte	0xc
- 1267 04bb D4040048 		.4byte	0x480004d4
+ 1267 04bb D8040048 		.4byte	0x480004d8
  1268 04bf 14       		.uleb128 0x14
  1269 04c0 01       		.uleb128 0x1
  1270 04c1 52       		.byte	0x52
@@ -1837,7 +1837,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1286 04dd 51       		.byte	0x51
  1287 04de 05       		.uleb128 0x5
  1288 04df 0C       		.byte	0xc
- 1289 04e0 DC040048 		.4byte	0x480004dc
+ 1289 04e0 E0040048 		.4byte	0x480004e0
  1290 04e4 14       		.uleb128 0x14
  1291 04e5 01       		.uleb128 0x1
  1292 04e6 52       		.byte	0x52
@@ -1858,11 +1858,11 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1307 0501 01       		.uleb128 0x1
  1308 0502 51       		.byte	0x51
  1309 0503 05       		.uleb128 0x5
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 32
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 32
 
 
  1310 0504 0C       		.byte	0xc
- 1311 0505 E4040048 		.4byte	0x480004e4
+ 1311 0505 E8040048 		.4byte	0x480004e8
  1312 0509 14       		.uleb128 0x14
  1313 050a 01       		.uleb128 0x1
  1314 050b 52       		.byte	0x52
@@ -1884,7 +1884,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1330 0527 51       		.byte	0x51
  1331 0528 05       		.uleb128 0x5
  1332 0529 0C       		.byte	0xc
- 1333 052a EC040048 		.4byte	0x480004ec
+ 1333 052a F0040048 		.4byte	0x480004f0
  1334 052e 14       		.uleb128 0x14
  1335 052f 01       		.uleb128 0x1
  1336 0530 52       		.byte	0x52
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1364 0561 01       		.uleb128 0x1
  1365 0562 3E       		.byte	0x3e
  1366 0563 00       		.byte	0
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 33
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 33
 
 
  1367 0564 00       		.byte	0
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1421 0022 0E       		.uleb128 0xe
  1422 0023 3A       		.uleb128 0x3a
  1423 0024 0B       		.uleb128 0xb
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 34
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 34
 
 
  1424 0025 3B       		.uleb128 0x3b
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1478 005b 13       		.uleb128 0x13
  1479 005c 00       		.byte	0
  1480 005d 00       		.byte	0
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 35
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 35
 
 
  1481 005e 09       		.uleb128 0x9
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1535 0096 00       		.byte	0
  1536 0097 0C       		.uleb128 0xc
  1537 0098 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 36
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 36
 
 
  1538 0099 01       		.byte	0x1
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1592 00d0 49       		.uleb128 0x49
  1593 00d1 13       		.uleb128 0x13
  1594 00d2 02       		.uleb128 0x2
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 37
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 37
 
 
  1595 00d3 17       		.uleb128 0x17
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1649 0110 01       		.byte	0x1
  1650 0111 11       		.uleb128 0x11
  1651 0112 01       		.uleb128 0x1
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 38
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 38
 
 
  1652 0113 31       		.uleb128 0x31
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1706 014a 13       		.uleb128 0x13
  1707 014b 02       		.uleb128 0x2
  1708 014c 17       		.uleb128 0x17
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 39
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 39
 
 
  1709 014d 00       		.byte	0
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1763 0184 3B       		.uleb128 0x3b
  1764 0185 05       		.uleb128 0x5
  1765 0186 49       		.uleb128 0x49
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 40
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 40
 
 
  1766 0187 13       		.uleb128 0x13
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1820 01bd 13       		.uleb128 0x13
  1821 01be 38       		.uleb128 0x38
  1822 01bf 0B       		.uleb128 0xb
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 41
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 41
 
 
  1823 01c0 00       		.byte	0
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1877 01f8 0B       		.uleb128 0xb
  1878 01f9 3B       		.uleb128 0x3b
  1879 01fa 0B       		.uleb128 0xb
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 42
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 42
 
 
  1880 01fb 00       		.byte	0
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1934 0082 0400     		.2byte	0x4
  1935 0084 F3       		.byte	0xf3
  1936 0085 01       		.uleb128 0x1
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 43
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 43
 
 
  1937 0086 50       		.byte	0x50
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  1991 010f 53       		.byte	0x53
  1992 0110 00000000 		.4byte	0
  1993 0114 00000000 		.4byte	0
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 44
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 44
 
 
  1994              	.LLST9:
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  2048 0199 00000000 		.4byte	0
  2049 019d 00000000 		.4byte	0
  2050              	.LLST14:
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 45
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 45
 
 
  2051 01a1 0E000000 		.4byte	.LVL35
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  2105 0028 00000000 		.4byte	.LFB5
  2106 002c C8000000 		.4byte	.LFE5-.LFB5
  2107 0030 00000000 		.4byte	.LFB6
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 46
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 46
 
 
  2108 0034 80000000 		.4byte	.LFE6-.LFB6
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  2149      61756C74 
  2149      00
  2150              	.LASF31:
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 47
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 47
 
 
  2151 0031 74696D65 		.ascii	"timeout\000"
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  2174              	.LASF42:
  2175 010a 73697A65 		.ascii	"size\000"
  2175      00
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 48
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 48
 
 
  2176              	.LASF49:
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  2197      74746572 
  2197      5F636667 
  2197      00
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 49
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 49
 
 
  2198              	.LASF24:
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 1
  2223      75726365 
  2223      5C50536F 
  2224              	.LASF46:
-ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccQbiP1U.s 			page 50
+ARM GAS  C:\Users\smas270\AppData\Local\Temp\ccRTRRSf.s 			page 50
 
 
  2225 02bd 43794465 		.ascii	"CyDelayUs\000"

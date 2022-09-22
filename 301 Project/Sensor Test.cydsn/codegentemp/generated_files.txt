@@ -59,6 +59,11 @@
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\input_signal_4.h" value="HEADER;;;;;input_signal_4" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\Clock_PWM.c" value="SOURCE_C;CortexM3;;;;Clock_PWM" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\Clock_PWM.h" value="HEADER;;;;;Clock_PWM" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\Timer_1.c" value="SOURCE_C;CortexM3;;;;Timer_1" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\Timer_1.h" value="HEADER;;;;;Timer_1" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\Timer_1_PM.c" value="SOURCE_C;CortexM3;;;;Timer_1" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\isr_timer_1.c" value="SOURCE_C;CortexM3;;;;isr_timer_1" />
+  <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\isr_timer_1.h" value="HEADER;;;;;isr_timer_1" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\ADC_SAR_Seq_1_SAR.c" value="SOURCE_C;CortexM3;;;;ADC_SAR_Seq_1_SAR" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\ADC_SAR_Seq_1_SAR.h" value="HEADER;;;;;ADC_SAR_Seq_1_SAR" />
   <file name="\\files.auckland.ac.nz\myhome\Downloads\ENGGEN 209 Github\project-project-group-7\301 Project\Sensor Test.cydsn\codegentemp\ADC_SAR_Seq_1_SAR_INT.c" value="SOURCE_C;CortexM3;;;;ADC_SAR_Seq_1_SAR" />

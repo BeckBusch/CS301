@@ -1,5 +1,5 @@
 -- Project:   Sensor Test
--- Generated: 09/22/2022 13:22:01
+-- Generated: 09/22/2022 17:27:11
 -- PSoC Creator  4.2
 
 ENTITY \Sensor Test\ IS
@@ -43,6 +43,7 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     SIGNAL Net_2722 : bit;
     SIGNAL Net_2819 : bit;
     ATTRIBUTE GROUND OF Net_2819 : SIGNAL IS true;
+    SIGNAL Net_2875 : bit;
     SIGNAL Net_9 : bit;
     SIGNAL \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active\ : bit;
     ATTRIBUTE soft OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active\ : SIGNAL IS 1;
@@ -161,6 +162,8 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     SIGNAL \PWM_1:Net_63\ : bit;
     SIGNAL \PWM_2:Net_54\ : bit;
     SIGNAL \PWM_2:Net_63\ : bit;
+    SIGNAL \Timer_1:Net_261\ : bit;
+    SIGNAL \Timer_1:Net_57\ : bit;
     SIGNAL __ONE__ : bit;
     ATTRIBUTE POWER OF __ONE__ : SIGNAL IS true;
     SIGNAL __ZERO__ : bit;
@@ -172,6 +175,7 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     SIGNAL input_signal_4(0)__PA : bit;
     SIGNAL tmpOE__M2_IN2_net_0 : bit;
     ATTRIBUTE POWER OF tmpOE__M2_IN2_net_0 : SIGNAL IS true;
+    SIGNAL \ClockBlock.clk_bus_glb_ff__sig\ : bit;
     SIGNAL \ClockBlock.dclk_glb_ff_1__sig\ : bit;
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active_split\ : LABEL IS "macrocell1";
     ATTRIBUTE lib_model OF M2_IN2(0) : LABEL IS "iocell1";
@@ -599,6 +603,7 @@ BEGIN
             dclk_0 => \ADC_SAR_Seq_1:clock_local\,
             dclk_glb_1 => Net_2664,
             dclk_1 => Net_2664_local,
+            clk_bus_glb_ff => \ClockBlock.clk_bus_glb_ff__sig\,
             dclk_glb_ff_1 => \ClockBlock.dclk_glb_ff_1__sig\);
 
     M2_IN2:logicalport
@@ -1615,6 +1620,27 @@ BEGIN
             tc => \PWM_2:Net_63\,
             cmp => Net_2716,
             irq => \PWM_2:Net_54\);
+
+    \Timer_1:TimerHW\:timercell
+        GENERIC MAP(
+            cy_registers => "")
+        PORT MAP(
+            clock => \ClockBlock.clk_bus_glb_ff__sig\,
+            kill => open,
+            enable => __ONE__,
+            capture => open,
+            timer_reset => open,
+            tc => Net_2875,
+            cmp => \Timer_1:Net_261\,
+            irq => \Timer_1:Net_57\);
+
+    isr_timer_1:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_2875,
+            clock => ClockBlock_BUS_CLK);
 
     \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\:macrocell
         GENERIC MAP(

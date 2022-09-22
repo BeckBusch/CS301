@@ -6,7 +6,7 @@
 
 #Build Date:         Dec  5 2017 15:35:27
 
-#File Generated:     Sep 22 2022 13:22:01
+#File Generated:     Sep 22 2022 17:27:11
 
 #Purpose:            
 
@@ -79,12 +79,13 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 9
+Number of clocks: 10
 Clock: ADC_SAR_Seq_1_IntClock | Frequency:  31.4 MHz | Target:   1.6 MHz
 Clock: ADC_SAR_Seq_1_IntClock(routed) | Frequency: N/A       | Target:   1.6 MHz
 Clock: Clock_PWM            | Frequency: N/A       | Target:   1.0 MHz
 Clock: Clock_PWM(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
 Clock: CyBUS_CLK            | Frequency:  62.1 MHz | Target:  24.0 MHz
+Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
@@ -100,12 +101,13 @@ Phase 7
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 9
+Number of clocks: 10
 Clock: ADC_SAR_Seq_1_IntClock | Frequency:   3.0 MHz | Target:   1.6 MHz
 Clock: ADC_SAR_Seq_1_IntClock(routed) | Frequency: N/A       | Target:   1.6 MHz
 Clock: Clock_PWM            | Frequency: N/A       | Target:   1.0 MHz
 Clock: Clock_PWM(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
 Clock: CyBUS_CLK            | Frequency:   3.0 MHz | Target:  24.0 MHz
+Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
@@ -144,12 +146,13 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 9
+Number of clocks: 10
 Clock: ADC_SAR_Seq_1_IntClock | Frequency:   3.0 MHz | Target:   1.6 MHz
 Clock: ADC_SAR_Seq_1_IntClock(routed) | Frequency: N/A       | Target:   1.6 MHz
 Clock: Clock_PWM            | Frequency: N/A       | Target:   1.0 MHz
 Clock: Clock_PWM(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
 Clock: CyBUS_CLK            | Frequency:   3.0 MHz | Target:  24.0 MHz
+Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
@@ -164,5 +167,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 2.4 sec.
+I2076: Total run-time: 2.3 sec.
 

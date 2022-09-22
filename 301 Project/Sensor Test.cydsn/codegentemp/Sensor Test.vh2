@@ -2,7 +2,7 @@
 --	Conversion of Sensor Test.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu Sep 22 13:21:32 2022
+--	Thu Sep 22 17:26:41 2022
 --
 
 USE cypress.cypress.all;
@@ -409,6 +409,16 @@ SIGNAL tmpFB_0__input_signal_4_net_0 : bit;
 SIGNAL tmpIO_0__input_signal_4_net_0 : bit;
 TERMINAL tmpSIOVREF__input_signal_4_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__input_signal_4_net_0 : bit;
+SIGNAL Net_10 : bit;
+SIGNAL Net_12 : bit;
+SIGNAL \Timer_1:Net_260\ : bit;
+SIGNAL \Timer_1:Net_266\ : bit;
+SIGNAL \Timer_1:Net_51\ : bit;
+SIGNAL \Timer_1:Net_261\ : bit;
+SIGNAL \Timer_1:Net_57\ : bit;
+SIGNAL Net_2867 : bit;
+SIGNAL Net_2875 : bit;
+SIGNAL \Timer_1:Net_102\ : bit;
 SIGNAL \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\\D\ : bit;
 SIGNAL \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_4\\D\ : bit;
 SIGNAL \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_3\\D\ : bit;
@@ -1574,6 +1584,30 @@ Clock_PWM:cy_clock_v1_0
 		is_digital=>'1')
 	PORT MAP(clock_out=>Net_2664,
 		dig_domain_out=>open);
+timer_clock:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"c0fb34bd-1044-4931-9788-16b01ce89812",
+		source_clock_id=>"75C2148C-3656-4d8a-846D-0CAE99AB6FF7",
+		divisor=>0,
+		period=>"0",
+		is_direct=>'1',
+		is_digital=>'1')
+	PORT MAP(clock_out=>Net_10,
+		dig_domain_out=>open);
+\Timer_1:TimerHW\:cy_psoc3_timer_v1_0
+	GENERIC MAP(cy_registers=>"")
+	PORT MAP(clock=>Net_10,
+		kill=>Net_2819,
+		enable=>tmpOE__M2_IN2_net_0,
+		capture=>Net_2819,
+		timer_reset=>Net_2819,
+		tc=>Net_2875,
+		compare=>\Timer_1:Net_261\,
+		interrupt=>\Timer_1:Net_57\);
+isr_timer_1:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
+	PORT MAP(int_signal=>Net_2875);
 \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\:cy_dff
 	PORT MAP(d=>\ADC_SAR_Seq_1:ch_addr_5\,
 		clk=>\ADC_SAR_Seq_1:clock\,
