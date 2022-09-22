@@ -1,5 +1,5 @@
 #include "project.h"
-#include "motors.c"
+#include "motors.h"
 
 #define ON 1
 #define OFF 0
@@ -19,8 +19,6 @@
 
 // Prototype declarations.
 CY_ISR_PROTO(isr_eoc_1);
-CY_ISR_PROTO(isr_eoc_2);
-CY_ISR_PROTO(isr_timer);
 
 uint8 channel = 0;
 
@@ -55,22 +53,27 @@ int main(void){
     ADC_SAR_Seq_1_Start();
     ADC_SAR_Seq_1_StartConvert();
     
-    PWM_1_WritePeriod(250);
-    PWM_1_Start();
-    PWM_1_WriteCompare(80);
+    //PWM_1_WritePeriod(250);
+    //PWM_1_Start();
+    //PWM_1_WriteCompare(83);
+        
+    //PWM_2_WritePeriod(250);
+    //PWM_2_Start();
+    //PWM_2_WriteCompare(90);
     
-    PWM_2_WritePeriod(250);
-    PWM_2_Start();
-    PWM_2_WriteCompare(80);
     //Timer_1_Start();
         
     while(1) {
-           
-        // If the conversion result is ready, put it into a variable and convert it into millivolts.
+        
+// If the conversion result is ready, put it into a variable and convert it into millivolts.
         ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
         ADCResult = ADC_SAR_Seq_1_GetResult16(channel);
         milliVoltReading = ADC_SAR_Seq_1_CountsTo_mVolts(ADCResult);
         
+        if (milliVoltReading >= 800) {
+            turn_left();
+        }
+            
         // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
         if (milliVoltReading >= 800) {
             // Change the position in the sensor_state array depending on the channel being read.
@@ -133,56 +136,70 @@ int main(void){
             } else if (sensor_state[BC] == OFF) {
                 state = CORRECTION;
             }
+            stop();
             move_forward();
         } else if (state == TURNING_LEFT) {
             while(sensor_state[CL] == ON) {
+                stop();
                 turn_left();
             }
             while(sensor_state[BC] == ON) {
+                stop();
                 move_forward();
             }
             while(sensor_state[FL] == OFF) {
+                stop();
                 turn_left();
             }
             while(sensor_state[FL] == ON) {
+                stop();
                 turn_left();
             }
             state = FORWARD;
         } else if (state == TURNING_RIGHT) {
             while(sensor_state[CR] == ON) {
+                stop();
                 turn_right();
             }
             while(sensor_state[BC] == ON) {
+                stop();
                 move_forward();
             }
             while(sensor_state[FR] == OFF) {
+                stop();
                 turn_right();
             }
             while(sensor_state[FR] == ON) {
+                stop();
                 turn_right();
             }
             state = FORWARD;
         } else if (state == CORRECTION) {
             while(sensor_state[FL] == ON && sensor_state[FR] == ON) {
+                stop();
                 move_forward();
             }
             if (sensor_state[FL] == OFF) {
                 while(sensor_state[BC] == ON) {
+                    stop();
                     turn_left();
                 }
                 state = FORWARD;
             } else if (sensor_state[FR] == OFF) {
                 while(sensor_state[BC] == ON) {
+                    stop();
                     turn_right();
                 }
                 state = FORWARD;
             }
             } else {
+                stop();
                 move_forward();
             }
+
         }
     return 0;
-    
+        
 }
 
 /* [] END OF FILE */

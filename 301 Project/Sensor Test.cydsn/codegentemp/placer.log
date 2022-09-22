@@ -6,7 +6,7 @@
 
 #Build Date:         Dec  5 2017 15:35:27
 
-#File Generated:     Sep 20 2022 21:29:11
+#File Generated:     Sep 22 2022 13:22:01
 
 #Purpose:            
 
@@ -44,7 +44,7 @@ Phase 2
 Phase 3
 
 Design Statistics after Packing
-    Number of Combinational MCs 	:	6
+    Number of Combinational MCs 	:	4
     Number of Sequential MCs    	:	73
     Number of DPs               	:	0
     Number of Controls          	:	2
@@ -53,7 +53,7 @@ Design Statistics after Packing
     Number of count7cells       	:	1
 
 Device Utilization Summary after Packing
-    Macrocells                  :	79/192
+    Macrocells                  :	77/192
     UDBS                        :	11/24
     IOs                         :	9/72
 
@@ -80,7 +80,7 @@ analysis after routing.
                      Clock Summary 
 ======================================================================
 Number of clocks: 9
-Clock: ADC_SAR_Seq_1_IntClock | Frequency:  31.2 MHz | Target:   1.6 MHz
+Clock: ADC_SAR_Seq_1_IntClock | Frequency:  31.4 MHz | Target:   1.6 MHz
 Clock: ADC_SAR_Seq_1_IntClock(routed) | Frequency: N/A       | Target:   1.6 MHz
 Clock: Clock_PWM            | Frequency: N/A       | Target:   1.0 MHz
 Clock: Clock_PWM(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
@@ -117,7 +117,7 @@ Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
 D2088: Phase 7, elapsed time : 1.5 (sec)
 
 Final Design Statistics
-    Number of Combinational MCs 	:	6
+    Number of Combinational MCs 	:	4
     Number of Sequential MCs    	:	73
     Number of DPs               	:	0
     Number of Controls          	:	2
@@ -127,7 +127,7 @@ Final Design Statistics
     Number of IOs       	:	9
 
 Device Utilization Summary
-    Macrocells                  :	79/192
+    Macrocells                  :	77/192
     IOs                         :	9/72
 
 
@@ -164,5 +164,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 2.3 sec.
+I2076: Total run-time: 2.4 sec.
 

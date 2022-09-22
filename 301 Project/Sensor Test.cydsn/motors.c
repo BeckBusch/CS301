@@ -10,6 +10,9 @@
  * ========================================
 */
 
+#include "project.h"
+#include "motors.h"
+
 /* STRAIGHT: 
  * MOVE forward
  *
@@ -37,18 +40,42 @@
 
 void move_forward() {
     
+    // Forward movement.
+    PWM_1_Start();
+    PWM_1_WriteCompare(83);  
+    PWM_2_Start();
+    PWM_2_WriteCompare(90);
+    CyDelay(50);
+    
 }
 
-void correction() {
-
-}
 
 void turn_left() {
+    
+    // Left turning.
+    //PWM_1_Stop();
+    PWM_2_Start();
+    PWM_2_WriteCompare(90);
+    CyDelay(50);
 
 }
 
 void turn_right() {
     
+    // Right turning.
+    PWM_1_Start();
+    PWM_1_WriteCompare(83);
+    CyDelay(50);
+    
 }
+
+void stop() {
+    
+    // Stop both motors.
+    //PWM_1_Stop();
+    //PWM_2_Stop();
+    
+}
+    
 
 /* [] END OF FILE */
