@@ -1,5 +1,5 @@
 -- Project:   Sensor Test
--- Generated: 09/22/2022 17:27:11
+-- Generated: 09/23/2022 17:35:01
 -- PSoC Creator  4.2
 
 ENTITY \Sensor Test\ IS
@@ -35,6 +35,9 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     SIGNAL M1_IN2(0)__PA : bit;
     SIGNAL M2_IN1(0)__PA : bit;
     SIGNAL M2_IN2(0)__PA : bit;
+    SIGNAL Net_10 : bit;
+    ATTRIBUTE global_signal OF Net_10 : SIGNAL IS true;
+    SIGNAL Net_10_local : bit;
     SIGNAL Net_2664 : bit;
     ATTRIBUTE global_signal OF Net_2664 : SIGNAL IS true;
     SIGNAL Net_2664_local : bit;
@@ -175,8 +178,8 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     SIGNAL input_signal_4(0)__PA : bit;
     SIGNAL tmpOE__M2_IN2_net_0 : bit;
     ATTRIBUTE POWER OF tmpOE__M2_IN2_net_0 : SIGNAL IS true;
-    SIGNAL \ClockBlock.clk_bus_glb_ff__sig\ : bit;
-    SIGNAL \ClockBlock.dclk_glb_ff_1__sig\ : bit;
+    SIGNAL \ClockBlock.dclk_glb_ff_0__sig\ : bit;
+    SIGNAL \ClockBlock.dclk_glb_ff_2__sig\ : bit;
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active_split\ : LABEL IS "macrocell1";
     ATTRIBUTE lib_model OF M2_IN2(0) : LABEL IS "iocell1";
     ATTRIBUTE Location OF M2_IN2(0) : LABEL IS "P12[5]";
@@ -599,12 +602,14 @@ BEGIN
             clk_bus => ClockBlock_BUS_CLK_local,
             dsi_clkin_div => open,
             dsi_glb_div => open,
-            dclk_glb_0 => \ADC_SAR_Seq_1:clock\,
-            dclk_0 => \ADC_SAR_Seq_1:clock_local\,
-            dclk_glb_1 => Net_2664,
-            dclk_1 => Net_2664_local,
-            clk_bus_glb_ff => \ClockBlock.clk_bus_glb_ff__sig\,
-            dclk_glb_ff_1 => \ClockBlock.dclk_glb_ff_1__sig\);
+            dclk_glb_0 => Net_10,
+            dclk_0 => Net_10_local,
+            dclk_glb_1 => \ADC_SAR_Seq_1:clock\,
+            dclk_1 => \ADC_SAR_Seq_1:clock_local\,
+            dclk_glb_2 => Net_2664,
+            dclk_2 => Net_2664_local,
+            dclk_glb_ff_0 => \ClockBlock.dclk_glb_ff_0__sig\,
+            dclk_glb_ff_2 => \ClockBlock.dclk_glb_ff_2__sig\);
 
     M2_IN2:logicalport
         GENERIC MAP(
@@ -1591,7 +1596,7 @@ BEGIN
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            clock => \ClockBlock.dclk_glb_ff_1__sig\,
+            clock => \ClockBlock.dclk_glb_ff_2__sig\,
             kill => open,
             enable => __ONE__,
             capture => open,
@@ -1612,7 +1617,7 @@ BEGIN
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            clock => \ClockBlock.dclk_glb_ff_1__sig\,
+            clock => \ClockBlock.dclk_glb_ff_2__sig\,
             kill => open,
             enable => __ONE__,
             capture => open,
@@ -1625,7 +1630,7 @@ BEGIN
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            clock => \ClockBlock.clk_bus_glb_ff__sig\,
+            clock => \ClockBlock.dclk_glb_ff_0__sig\,
             kill => open,
             enable => __ONE__,
             capture => open,

@@ -15,7 +15,10 @@
 #define FORWARD 0
 #define TURNING_LEFT 1
 #define TURNING_RIGHT 2
-#define CORRECTION 3
+#define EXIT_LEFT 3
+#define EXIT_RIGHT 4
+#define CONTINUE_FROM_LEFT 5
+#define CONTINUE_FROM_RIGHT 6
 
 // Prototype declarations.
 CY_ISR_PROTO(isr_eoc_1);
@@ -97,13 +100,53 @@ int main(void){
             for (int i = 0; i < 5; i++) {
                 pastValues[i] = maxValues[i];
                 maxValues[i] = 0;
-                reset = 0;
             }
+            
+            if (state == TURNING_LEFT) {
+                if (sensor_state[FL] == OFF) {
+                    state = EXIT_LEFT;
+                }
+                turn_left();
+            } else if (state == EXIT_LEFT) {
+                if (sensor_state[FR] == OFF) {
+                    state = CONTINUE_FROM_LEFT;
+                }
+                move_forward();
+            } else if (state == CONTINUE_FROM_LEFT) {
+                if (sensor_state[BC] == OFF) {
+                    state = FORWARD;
+                }
+                turn_right();
+            } else if (state == FORWARD) {
+            if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[BC] == ON) {
+                move_forward();
+                //state = FORWARD;
+            } 
+            if (sensor_state[FL] == OFF && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[BC] == OFF) {
+                turn_left();
+                //state = FORWARD;
+            } 
+            if (sensor_state[FR] == OFF && sensor_state[FL] == ON && sensor_state[CL] == ON && sensor_state[BC] == OFF) {
+                turn_right();
+                //state = FORWARD;
+            } 
+            if (sensor_state[CL] == OFF && sensor_state[CR] == OFF && sensor_state[FL] == ON && sensor_state[FR] == ON && (sensor_state[BC] == ON || sensor_state[BC] == OFF)) {
+                stop();
+                state = TURNING_LEFT;
+                turn_left();
+            } else {
+                move_forward();
+                state = FORWARD;
+            }
+            }
+                     
+            reset = 0;
+            
         }     
         
         // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
         if (pastValues[channel] >= 800) {
-            // Change the position in the sensor_state array depending on the channel being read.
+            // Change the position in the sen0sor_state array depending on the channel being read.
             if (channel == 0) {
                 sensor_state[FL] = ON;
             } else if (channel == 1) {
@@ -128,8 +171,8 @@ int main(void){
                 sensor_state[BC] = OFF;
             }
         }
-        
-                /* STRAIGHT: 
+                
+        /* STRAIGHT: 
          * MOVE forward
          *
          * CORRECTION:
@@ -155,70 +198,8 @@ int main(void){
          */
         
         // Implementation of a state machine to control the robot.
-        if (state == FORWARD) {
-            move_forward();
-            if (sensor_state[FL] == OFF) {
-                state = TURNING_LEFT;
-            } else if (sensor_state[FR] == OFF) {
-                state = TURNING_RIGHT;
-            } else if (sensor_state[BC] == OFF) {
-                state = CORRECTION;
-            }
-            stop();
-        } else if (state == TURNING_LEFT) {
-            while(sensor_state[CL] == ON) {
-                turn_left();
-            }
-            while(sensor_state[BC] == ON) {
-                move_forward();
-            }
-            while(sensor_state[FL] == OFF) {
-                turn_left();
-            }
-            while(sensor_state[FL] == ON) {
-                turn_left();
-            }
-            stop();
-            state = FORWARD;
-        } else if (state == TURNING_RIGHT) {
-            while(sensor_state[CR] == ON) {
-                turn_right();
-            }
-            while(sensor_state[BC] == ON) {
-                move_forward();
-            }
-            while(sensor_state[FR] == OFF) {
-                turn_right();
-            }
-            while(sensor_state[FR] == ON) {
-                turn_right();
-            }
-            stop();
-            state = FORWARD;
-        } else if (state == CORRECTION) {
-            while(sensor_state[FL] == ON && sensor_state[FR] == ON) {
-                move_forward();
-            }
-            if (sensor_state[FL] == OFF) {
-                while(sensor_state[BC] == ON) {
-                    turn_left();
-                }
-                stop();
-                state = FORWARD;
-            } else if (sensor_state[FR] == OFF) {
-                while(sensor_state[BC] == ON) {
-                    turn_right();
-                }
-                stop();
-                state = FORWARD;
-            }
-            } else {
-                move_forward();
-            }
-            stop();
-            state = FORWARD;
-                        
-        }
+
+    }
     return 0;
                
 }

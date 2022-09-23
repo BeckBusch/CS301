@@ -6,7 +6,7 @@
 
 #Build Date:         Dec  5 2017 15:35:27
 
-#File Generated:     Sep 22 2022 17:27:11
+#File Generated:     Sep 23 2022 17:35:01
 
 #Purpose:            
 
@@ -79,17 +79,18 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 10
+Number of clocks: 11
 Clock: ADC_SAR_Seq_1_IntClock | Frequency:  31.4 MHz | Target:   1.6 MHz
 Clock: ADC_SAR_Seq_1_IntClock(routed) | Frequency: N/A       | Target:   1.6 MHz
 Clock: Clock_PWM            | Frequency: N/A       | Target:   1.0 MHz
 Clock: Clock_PWM(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
 Clock: CyBUS_CLK            | Frequency:  62.1 MHz | Target:  24.0 MHz
-Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
+Clock: timer_clock          | Frequency: N/A       | Target:   1.0 MHz
+Clock: timer_clock(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
 
 ======================================================================
                      End of Clock Summary
@@ -101,22 +102,23 @@ Phase 7
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 10
+Number of clocks: 11
 Clock: ADC_SAR_Seq_1_IntClock | Frequency:   3.0 MHz | Target:   1.6 MHz
 Clock: ADC_SAR_Seq_1_IntClock(routed) | Frequency: N/A       | Target:   1.6 MHz
 Clock: Clock_PWM            | Frequency: N/A       | Target:   1.0 MHz
 Clock: Clock_PWM(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
 Clock: CyBUS_CLK            | Frequency:   3.0 MHz | Target:  24.0 MHz
-Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
+Clock: timer_clock          | Frequency: N/A       | Target:   1.0 MHz
+Clock: timer_clock(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
 
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 1.5 (sec)
+D2088: Phase 7, elapsed time : 1.4 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	4
@@ -146,17 +148,18 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 10
+Number of clocks: 11
 Clock: ADC_SAR_Seq_1_IntClock | Frequency:   3.0 MHz | Target:   1.6 MHz
 Clock: ADC_SAR_Seq_1_IntClock(routed) | Frequency: N/A       | Target:   1.6 MHz
 Clock: Clock_PWM            | Frequency: N/A       | Target:   1.0 MHz
 Clock: Clock_PWM(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
 Clock: CyBUS_CLK            | Frequency:   3.0 MHz | Target:  24.0 MHz
-Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
+Clock: timer_clock          | Frequency: N/A       | Target:   1.0 MHz
+Clock: timer_clock(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
 
 ======================================================================
                      End of Clock Summary
@@ -167,5 +170,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 2.3 sec.
+I2076: Total run-time: 2.2 sec.
 

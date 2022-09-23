@@ -42,6 +42,7 @@
 #include "input_signal_4_aliases.h"
 #include "input_signal_4.h"
 #include "Clock_PWM.h"
+#include "timer_clock.h"
 #include "Timer_1.h"
 #include "isr_timer_1.h"
 #include "ADC_SAR_Seq_1_SAR.h"
