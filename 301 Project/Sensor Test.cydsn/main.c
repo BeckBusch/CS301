@@ -117,27 +117,40 @@ int main(void){
                     state = FORWARD;
                 }
                 turn_right();
+                // WHEN THE RIGHT SENSOR IS FIXED UNCOMMENT THE BELOW
+            //} else if (state == TURNING_RIGHT) {
+            //    if (sensor_state[FR] == OFF) {
+            //        state = EXIT_RIGHT;
+            //    }
+            //    turn_right();
+            //} else if (state == EXIT_RIGHT) {
+            //    if (sensor_state[FL] == OFF) {
+            //        state = CONTINUE_FROM_RIGHT;
+            //    }
+            //    move_forward();
+            //} else if (state == CONTINUE_FROM_RIGHT) {
+            //    if (sensor_state[BC] == OFF) {
+            //        state = FORWARD;
+            //    }
+            //    turn_left();
             } else if (state == FORWARD) {
-            if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[BC] == ON) {
-                move_forward();
-                //state = FORWARD;
-            } 
-            if (sensor_state[FL] == OFF && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[BC] == OFF) {
-                turn_left();
-                //state = FORWARD;
-            } 
-            if (sensor_state[FR] == OFF && sensor_state[FL] == ON && sensor_state[CL] == ON && sensor_state[BC] == OFF) {
-                turn_right();
-                //state = FORWARD;
-            } 
-            if (sensor_state[CL] == OFF && sensor_state[CR] == OFF && sensor_state[FL] == ON && sensor_state[FR] == ON && (sensor_state[BC] == ON || sensor_state[BC] == OFF)) {
-                stop();
-                state = TURNING_LEFT;
-                turn_left();
-            } else {
-                move_forward();
-                state = FORWARD;
-            }
+                if (sensor_state[FL] == OFF) {
+                    turn_left();
+                } else if (sensor_state[FR] == OFF) {
+                    turn_right();
+                    // WHEN THE RIGHT SENSOR IS FIXED, CHANGE sensor_state[CR] == OFF to sensor_state[CR] == ON
+                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == OFF && sensor_state[CR] == OFF) {
+                    stop();
+                    state = TURNING_LEFT;
+                    turn_left();
+                    // WHEN THE RIGHT SENSOR IS FIXED UNCOMMENT THE BELOW
+                //} else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF) {
+                //    stop();
+                //    state = TURNING_RIGHT;
+                //    turn_right();
+                } else {
+                    move_forward();
+                }
             }
                      
             reset = 0;
@@ -146,7 +159,7 @@ int main(void){
         
         // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
         if (pastValues[channel] >= 800) {
-            // Change the position in the sen0sor_state array depending on the channel being read.
+            // Change the position in the sensor_state array depending on the channel being read.
             if (channel == 0) {
                 sensor_state[FL] = ON;
             } else if (channel == 1) {
