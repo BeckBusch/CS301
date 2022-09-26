@@ -1,5 +1,7 @@
 #include "project.h"
 #include "motors.h"
+#include "USBUART.h"
+#include <stdio.h>
 
 #define ON 1
 #define OFF 0
@@ -91,6 +93,11 @@ int main(void){
         ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
         ADCResult = ADC_SAR_Seq_1_GetResult16(channel);
         milliVoltReading = ADC_SAR_Seq_1_CountsTo_mVolts(ADCResult);
+        char send[100];
+        sprintf(send,"%d\r\n",milliVoltReading);
+        USBUART_1_PutString(send);
+        
+        CyDelay(100);
         
         if (milliVoltReading > maxValues[channel]) {
             maxValues[channel] = milliVoltReading;
