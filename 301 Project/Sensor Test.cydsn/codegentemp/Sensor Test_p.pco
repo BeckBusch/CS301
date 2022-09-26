@@ -144,7 +144,7 @@ set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active_split\" macrocell 0 4 1 
 set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_9\" macrocell 1 5 1 2
 set_location "\QuadDec_2:bQuadDec:quad_A_delayed_1\" macrocell 1 1 1 0
 set_location "\ADC_SAR_Seq_1:TempBuf\" drqcell -1 -1 1
-set_io "L_ENCD(0)" iocell 0 6
+set_io "L_ENCD(0)" iocell 0 7
 set_location "\ADC_SAR_Seq_1:bSAR_SEQ:CtrlReg\" controlcell 0 3 6 
 set_location "\ADC_SAR_Seq_1:FinalBuf\" drqcell -1 -1 0
 set_location "\ADC_SAR_Seq_1:bSAR_SEQ:EOCSts\" statuscell 0 2 3 
@@ -166,7 +166,7 @@ set_io "M1_IN2(0)" iocell 15 5
 # Note: port 12 is the logical name for port 7
 set_io "M2_IN2(0)" iocell 12 5
 set_io "led(0)" iocell 2 1
-set_io "L_ENCD2(0)" iocell 0 7
+set_io "L_ENCD2(0)" iocell 0 6
 # Note: port 12 is the logical name for port 7
 set_io "M2_IN1(0)" iocell 12 4
 set_location "\ADC_SAR_Seq_1:Sync:genblk1[0]:INST\" synccell 1 2 5 0

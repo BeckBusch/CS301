@@ -1,5 +1,5 @@
 -- Project:   Sensor Test
--- Generated: 09/22/2022 15:26:47
+-- Generated: 09/26/2022 13:41:51
 -- PSoC Creator  4.2
 
 ENTITY \Sensor Test\ IS
@@ -326,9 +326,9 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     ATTRIBUTE lib_model OF input_signal_4(0) : LABEL IS "iocell9";
     ATTRIBUTE Location OF input_signal_4(0) : LABEL IS "P2[6]";
     ATTRIBUTE lib_model OF L_ENCD(0) : LABEL IS "iocell10";
-    ATTRIBUTE Location OF L_ENCD(0) : LABEL IS "P0[6]";
+    ATTRIBUTE Location OF L_ENCD(0) : LABEL IS "P0[7]";
     ATTRIBUTE lib_model OF L_ENCD2(0) : LABEL IS "iocell11";
-    ATTRIBUTE Location OF L_ENCD2(0) : LABEL IS "P0[7]";
+    ATTRIBUTE Location OF L_ENCD2(0) : LABEL IS "P0[6]";
     ATTRIBUTE lib_model OF R_ENCD(0) : LABEL IS "iocell12";
     ATTRIBUTE Location OF R_ENCD(0) : LABEL IS "P1[6]";
     ATTRIBUTE lib_model OF R_ENCD2(0) : LABEL IS "iocell13";

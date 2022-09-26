@@ -1,6 +1,6 @@
-C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Sensor Test.cyprj|fef909fc-d031-4065-8ee4-b6f2af416d6a
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|6d1b4e86-d356-48d9-b71c-e46a8e434d6a
-C:\Users\beckb\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|b8c44d02-40fa-40c7-9026-4bca52b4d241
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|41442eae-97ca-4672-a1dc-a5336344f3f2
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|4c33e6a8-02b8-45aa-9bfd-bacc8a00e2a0
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|410f7395-c98d-4fa3-bc05-3fede767a392
+C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Sensor Test.cyprj|83c4157b-1144-4086-a6d5-86b6b8d23217
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|f69edc6d-281a-473b-b4d1-e7230b8aaa7c
+C:\Users\beckb\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|937eadb1-a791-4bea-ae82-dbc57cab8912
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|9b4e9150-9962-4bef-a266-e5fdecad9932
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|df96bd9a-df1b-4094-8452-4e5b4c74c7df
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|c84235fa-1e33-4efb-8451-346ff5e485d7

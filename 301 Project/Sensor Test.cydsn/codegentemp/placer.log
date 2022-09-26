@@ -6,7 +6,7 @@
 
 #Build Date:         Dec  5 2017 15:35:27
 
-#File Generated:     Sep 22 2022 15:26:47
+#File Generated:     Sep 26 2022 13:41:51
 
 #Purpose:            
 
@@ -90,8 +90,8 @@ Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
-Clock: timer_clock          | Frequency: N/A       | Target:   1.0 MHz
-Clock: timer_clock(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
+Clock: timer_clock          | Frequency: N/A       | Target:   0.0 MHz
+Clock: timer_clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
 
 ======================================================================
                      End of Clock Summary
@@ -114,13 +114,13 @@ Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
-Clock: timer_clock          | Frequency: N/A       | Target:   1.0 MHz
-Clock: timer_clock(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
+Clock: timer_clock          | Frequency: N/A       | Target:   0.0 MHz
+Clock: timer_clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
 
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 3.1 (sec)
+D2088: Phase 7, elapsed time : 2.8 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	22
@@ -161,8 +161,8 @@ Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
-Clock: timer_clock          | Frequency: N/A       | Target:   1.0 MHz
-Clock: timer_clock(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
+Clock: timer_clock          | Frequency: N/A       | Target:   0.0 MHz
+Clock: timer_clock(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
 
 ======================================================================
                      End of Clock Summary
@@ -173,5 +173,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 3.8 sec.
+I2076: Total run-time: 3.6 sec.
 
