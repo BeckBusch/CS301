@@ -16,15 +16,15 @@
       <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
       <block name="CounterUDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
       <block name="int_vm" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-      <register name="QuadDec_1_Cnt16_COUNTER" address="0x40006400" bitWidth="16" desc="UDB.A0 - Current Counter Value" hidden="false" />
-      <register name="QuadDec_1_Cnt16_PERIOD" address="0x40006420" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
-      <register name="QuadDec_1_Cnt16_COMPARE" address="0x40006430" bitWidth="16" desc="UDB.D1 - Assigned Compare Value" hidden="false" />
-      <register name="QuadDec_1_Cnt16_Control_Reg" address="0x40006472" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
+      <register name="QuadDec_1_Cnt16_COUNTER" address="0x40006404" bitWidth="16" desc="UDB.A0 - Current Counter Value" hidden="false" />
+      <register name="QuadDec_1_Cnt16_PERIOD" address="0x40006424" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
+      <register name="QuadDec_1_Cnt16_COMPARE" address="0x40006434" bitWidth="16" desc="UDB.D1 - Assigned Compare Value" hidden="false" />
+      <register name="QuadDec_1_Cnt16_Control_Reg" address="0x40006473" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
         <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable Counter" hidden="false" />
         <field name="CTRL_CAPMODE" from="4" to="3" access="RW" resetVal="" desc="Capture mode" hidden="false" />
         <field name="CTRL_CMPMODE" from="2" to="0" access="RW" resetVal="" desc="Compare mode" hidden="false" />
       </register>
-      <register name="QuadDec_1_Cnt16_STATUS_MASK" address="0x40006484" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
+      <register name="QuadDec_1_Cnt16_STATUS_MASK" address="0x40006482" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
         <field name="COUNTER_STS_CMP" from="0" to="0" access="RW" resetVal="" desc="Compare output status" hidden="false" />
         <field name="COUNTER_STS_A0ZERO" from="1" to="1" access="RW" resetVal="" desc="A0 Zero ouput status" hidden="false" />
         <field name="COUNTER_STS_OVERFLOW" from="2" to="2" access="RW" resetVal="" desc="Overflow status " hidden="false" />
@@ -33,7 +33,7 @@
         <field name="COUNTER_STS_FIFO_FULL" from="5" to="5" access="RW" resetVal="" desc="FIFO Full Status " hidden="false" />
         <field name="COUNTER_STS_FIFO_NEMPTY" from="6" to="6" access="RW" resetVal="" desc="FIFO Not Empty Status " hidden="false" />
       </register>
-      <register name="QuadDec_1_Cnt16_STATUS_AUX_CTRL" address="0x40006494" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+      <register name="QuadDec_1_Cnt16_STATUS_AUX_CTRL" address="0x40006492" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
         <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear" hidden="false">
           <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
           <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -64,8 +64,8 @@
     <block name="VirtualMux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="not_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="bQuadDec" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="QuadDec_1_Cnt16_COUNTER" address="0x40006400" bitWidth="16" desc="Counter value" hidden="false" />
-    <register name="QuadDec_1_STATUS_REG" address="0x40006463" bitWidth="8" desc="Quadrature Decoder Status Register" hidden="false">
+    <register name="QuadDec_1_Cnt16_COUNTER" address="0x40006404" bitWidth="16" desc="Counter value" hidden="false" />
+    <register name="QuadDec_1_STATUS_REG" address="0x40006465" bitWidth="8" desc="Quadrature Decoder Status Register" hidden="false">
       <field name="OVERFLOW" from="0" to="0" access="R" resetVal="" desc="Counter overflow" hidden="false" />
       <field name="UNDERFLOW" from="1" to="1" access="R" resetVal="" desc="Counter underflow" hidden="false" />
       <field name="RESET" from="2" to="2" access="R" resetVal="" desc="Counter Reset due index" hidden="false" />
@@ -90,15 +90,15 @@
       <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
       <block name="CounterUDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
       <block name="int_vm" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-      <register name="QuadDec_2_Cnt16_COUNTER" address="0x40006506" bitWidth="16" desc="UDB.A0 - Current Counter Value" hidden="false" />
-      <register name="QuadDec_2_Cnt16_PERIOD" address="0x40006526" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
-      <register name="QuadDec_2_Cnt16_COMPARE" address="0x40006536" bitWidth="16" desc="UDB.D1 - Assigned Compare Value" hidden="false" />
-      <register name="QuadDec_2_Cnt16_Control_Reg" address="0x40006575" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
+      <register name="QuadDec_2_Cnt16_COUNTER" address="0x40006406" bitWidth="16" desc="UDB.A0 - Current Counter Value" hidden="false" />
+      <register name="QuadDec_2_Cnt16_PERIOD" address="0x40006426" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
+      <register name="QuadDec_2_Cnt16_COMPARE" address="0x40006436" bitWidth="16" desc="UDB.D1 - Assigned Compare Value" hidden="false" />
+      <register name="QuadDec_2_Cnt16_Control_Reg" address="0x40006477" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
         <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable Counter" hidden="false" />
         <field name="CTRL_CAPMODE" from="4" to="3" access="RW" resetVal="" desc="Capture mode" hidden="false" />
         <field name="CTRL_CMPMODE" from="2" to="0" access="RW" resetVal="" desc="Compare mode" hidden="false" />
       </register>
-      <register name="QuadDec_2_Cnt16_STATUS_MASK" address="0x40006587" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
+      <register name="QuadDec_2_Cnt16_STATUS_MASK" address="0x40006488" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
         <field name="COUNTER_STS_CMP" from="0" to="0" access="RW" resetVal="" desc="Compare output status" hidden="false" />
         <field name="COUNTER_STS_A0ZERO" from="1" to="1" access="RW" resetVal="" desc="A0 Zero ouput status" hidden="false" />
         <field name="COUNTER_STS_OVERFLOW" from="2" to="2" access="RW" resetVal="" desc="Overflow status " hidden="false" />
@@ -107,7 +107,7 @@
         <field name="COUNTER_STS_FIFO_FULL" from="5" to="5" access="RW" resetVal="" desc="FIFO Full Status " hidden="false" />
         <field name="COUNTER_STS_FIFO_NEMPTY" from="6" to="6" access="RW" resetVal="" desc="FIFO Not Empty Status " hidden="false" />
       </register>
-      <register name="QuadDec_2_Cnt16_STATUS_AUX_CTRL" address="0x40006597" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+      <register name="QuadDec_2_Cnt16_STATUS_AUX_CTRL" address="0x40006498" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
         <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear" hidden="false">
           <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
           <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -138,13 +138,13 @@
     <block name="VirtualMux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="not_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="bQuadDec" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="QuadDec_2_STATUS_REG" address="0x40006466" bitWidth="8" desc="Quadrature Decoder Status Register" hidden="false">
+    <register name="QuadDec_2_Cnt16_COUNTER" address="0x40006406" bitWidth="16" desc="Counter value" hidden="false" />
+    <register name="QuadDec_2_STATUS_REG" address="0x40006567" bitWidth="8" desc="Quadrature Decoder Status Register" hidden="false">
       <field name="OVERFLOW" from="0" to="0" access="R" resetVal="" desc="Counter overflow" hidden="false" />
       <field name="UNDERFLOW" from="1" to="1" access="R" resetVal="" desc="Counter underflow" hidden="false" />
       <field name="RESET" from="2" to="2" access="R" resetVal="" desc="Counter Reset due index" hidden="false" />
       <field name="INVALID_IN" from="3" to="3" access="R" resetVal="" desc="Invalid state transition on the A and B inputs" hidden="false" />
     </register>
-    <register name="QuadDec_2_Cnt16_COUNTER" address="0x40006506" bitWidth="16" desc="Counter value" hidden="false" />
   </block>
   <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="L_ENCD" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -391,6 +391,6 @@
   <block name="input_signal_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="M2_IN1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="M1_IN2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="cy_constant_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="cy_constant_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
 </blockRegMap>

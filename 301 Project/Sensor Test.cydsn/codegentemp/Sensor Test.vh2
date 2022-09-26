@@ -2,7 +2,7 @@
 --	Conversion of Sensor Test.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Sep 26 13:41:45 2022
+--	Mon Sep 26 15:29:23 2022
 --
 
 USE cypress.cypress.all;
@@ -1002,6 +1002,8 @@ SIGNAL \QuadDec_1:bQuadDec:state_1\\D\ : bit;
 SIGNAL \QuadDec_1:bQuadDec:state_0\\D\ : bit;
 BEGIN
 
+zero <=  ('0') ;
+
 tmpOE__M2_IN2_net_0 <=  ('1') ;
 
 \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active\ <= ((not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\ and not \ADC_SAR_Seq_1:ch_addr_5\ and not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_4\ and not \ADC_SAR_Seq_1:ch_addr_4\ and not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_3\ and not \ADC_SAR_Seq_1:ch_addr_3\ and not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_2\ and not \ADC_SAR_Seq_1:ch_addr_2\ and not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_1\ and not \ADC_SAR_Seq_1:ch_addr_1\ and not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_0\ and not \ADC_SAR_Seq_1:ch_addr_0\)
@@ -1237,7 +1239,9 @@ tmpOE__M2_IN2_net_0 <=  ('1') ;
 	OR (not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_2\ and not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_1\ and \ADC_SAR_Seq_1:ch_addr_1\)
 	OR (not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_2\ and \ADC_SAR_Seq_1:ch_addr_2\));
 
-Net_2819 <=  ('0') ;
+Net_2719 <= (not Net_2718);
+
+Net_2819 <= (not Net_2716);
 
 \QuadDec_2:Cnt16:CounterUDB:reload\ <= (\QuadDec_2:Cnt16:CounterUDB:overflow\
 	OR \QuadDec_2:Cnt16:CounterUDB:status_1\
@@ -1446,12 +1450,12 @@ M2_IN2:cy_psoc3_pins_v1_10
 		io=>(tmpIO_0__M2_IN2_net_0),
 		siovref=>(tmpSIOVREF__M2_IN2_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__M2_IN2_net_0);
 \ADC_SAR_Seq_1:AMuxHw_2\:cy_psoc3_amux_v1_0
 	GENERIC MAP(cy_registers=>"",
@@ -1508,10 +1512,10 @@ M2_IN2:cy_psoc3_pins_v1_10
 		vref=>\ADC_SAR_Seq_1:SAR:Net_248\,
 		clock=>\ADC_SAR_Seq_1:clock\,
 		pump_clock=>\ADC_SAR_Seq_1:clock\,
-		sof_udb=>Net_2819,
-		clk_udb=>Net_2819,
-		vp_ctl_udb=>(Net_2819, Net_2819, Net_2819, Net_2819),
-		vn_ctl_udb=>(Net_2819, Net_2819, Net_2819, Net_2819),
+		sof_udb=>zero,
+		clk_udb=>zero,
+		vp_ctl_udb=>(zero, zero, zero, zero),
+		vn_ctl_udb=>(zero, zero, zero, zero),
 		irq=>\ADC_SAR_Seq_1:SAR:Net_252\,
 		next_out=>Net_2722,
 		data_out=>(\ADC_SAR_Seq_1:SAR:Net_207_11\, \ADC_SAR_Seq_1:SAR:Net_207_10\, \ADC_SAR_Seq_1:SAR:Net_207_9\, \ADC_SAR_Seq_1:SAR:Net_207_8\,
@@ -1566,7 +1570,7 @@ M2_IN2:cy_psoc3_pins_v1_10
 		cy_ctrl_mode_1=>"00000110",
 		cy_ctrl_mode_0=>"00000111",
 		cy_ext_reset=>'0')
-	PORT MAP(reset=>Net_2819,
+	PORT MAP(reset=>zero,
 		clock=>\ADC_SAR_Seq_1:bSAR_SEQ:clk_ctrl\,
 		control=>(\ADC_SAR_Seq_1:bSAR_SEQ:control_7\, \ADC_SAR_Seq_1:bSAR_SEQ:control_6\, \ADC_SAR_Seq_1:bSAR_SEQ:control_5\, \ADC_SAR_Seq_1:bSAR_SEQ:control_4\,
 			\ADC_SAR_Seq_1:bSAR_SEQ:control_3\, \ADC_SAR_Seq_1:bSAR_SEQ:control_2\, \ADC_SAR_Seq_1:bSAR_SEQ:load_period\, \ADC_SAR_Seq_1:bSAR_SEQ:enable\));
@@ -1577,7 +1581,7 @@ M2_IN2:cy_psoc3_pins_v1_10
 		cy_route_en=>'1',
 		cy_alt_mode=>'0')
 	PORT MAP(clock=>\ADC_SAR_Seq_1:bSAR_SEQ:clk_fin\,
-		reset=>Net_2819,
+		reset=>zero,
 		load=>\ADC_SAR_Seq_1:bSAR_SEQ:load_period\,
 		enable=>\ADC_SAR_Seq_1:bSAR_SEQ:cnt_enable\,
 		count=>(\ADC_SAR_Seq_1:bSAR_SEQ:count_6\, \ADC_SAR_Seq_1:ch_addr_5\, \ADC_SAR_Seq_1:ch_addr_4\, \ADC_SAR_Seq_1:ch_addr_3\,
@@ -1586,10 +1590,10 @@ M2_IN2:cy_psoc3_pins_v1_10
 \ADC_SAR_Seq_1:bSAR_SEQ:EOCSts\:cy_psoc3_status
 	GENERIC MAP(cy_force_order=>'1',
 		cy_md_select=>"00000001")
-	PORT MAP(reset=>Net_2819,
+	PORT MAP(reset=>zero,
 		clock=>\ADC_SAR_Seq_1:bSAR_SEQ:clk_fin\,
-		status=>(Net_2819, Net_2819, Net_2819, Net_2819,
-			Net_2819, Net_2819, Net_2819, Net_9));
+		status=>(zero, zero, zero, zero,
+			zero, zero, zero, Net_9));
 \ADC_SAR_Seq_1:IntClock\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"2a6f0d60-d934-468c-aa66-b42e774828e2/9725d809-97e7-404e-b621-dfdbe78d0ca9",
@@ -1604,13 +1608,13 @@ M2_IN2:cy_psoc3_pins_v1_10
 	GENERIC MAP(drq_type=>"00",
 		num_tds=>0)
 	PORT MAP(drq=>\ADC_SAR_Seq_1:Net_3830\,
-		trq=>Net_2819,
+		trq=>zero,
 		nrq=>\ADC_SAR_Seq_1:Net_3698\);
 \ADC_SAR_Seq_1:FinalBuf\:cy_dma_v1_0
 	GENERIC MAP(drq_type=>"00",
 		num_tds=>0)
 	PORT MAP(drq=>\ADC_SAR_Seq_1:Net_3698\,
-		trq=>Net_2819,
+		trq=>zero,
 		nrq=>\ADC_SAR_Seq_1:nrq\);
 \ADC_SAR_Seq_1:BusClock\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
@@ -1699,26 +1703,26 @@ input_signal_0:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>(Net_2819),
+		y=>(zero),
 		fb=>(tmpFB_0__input_signal_0_net_0),
 		analog=>Net_1565,
 		io=>(tmpIO_0__input_signal_0_net_0),
 		siovref=>(tmpSIOVREF__input_signal_0_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__input_signal_0_net_0);
 \PWM_1:PWMHW\:cy_psoc3_timer_v1_0
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(clock=>Net_2664,
-		kill=>Net_2819,
+		kill=>zero,
 		enable=>tmpOE__M2_IN2_net_0,
-		capture=>Net_2819,
-		timer_reset=>Net_2819,
+		capture=>zero,
+		timer_reset=>zero,
 		tc=>\PWM_1:Net_63\,
 		compare=>Net_2718,
 		interrupt=>\PWM_1:Net_54\);
@@ -1779,18 +1783,18 @@ input_signal_1:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>(Net_2819),
+		y=>(zero),
 		fb=>(tmpFB_0__input_signal_1_net_0),
 		analog=>Net_959,
 		io=>(tmpIO_0__input_signal_1_net_0),
 		siovref=>(tmpSIOVREF__input_signal_1_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__input_signal_1_net_0);
 input_signal_2:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"6e14491f-4c2d-4f41-958b-bade54024523",
@@ -1849,18 +1853,18 @@ input_signal_2:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>(Net_2819),
+		y=>(zero),
 		fb=>(tmpFB_0__input_signal_2_net_0),
 		analog=>Net_514,
 		io=>(tmpIO_0__input_signal_2_net_0),
 		siovref=>(tmpSIOVREF__input_signal_2_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__input_signal_2_net_0);
 isr_eoc_1:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
@@ -1869,10 +1873,10 @@ isr_eoc_1:cy_isr_v1_0
 \PWM_2:PWMHW\:cy_psoc3_timer_v1_0
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(clock=>Net_2664,
-		kill=>Net_2819,
+		kill=>zero,
 		enable=>tmpOE__M2_IN2_net_0,
-		capture=>Net_2819,
-		timer_reset=>Net_2819,
+		capture=>zero,
+		timer_reset=>zero,
 		tc=>\PWM_2:Net_63\,
 		compare=>Net_2716,
 		interrupt=>\PWM_2:Net_54\);
@@ -1933,18 +1937,18 @@ M1_IN2:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>Net_2819,
+		y=>Net_2719,
 		fb=>(tmpFB_0__M1_IN2_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__M1_IN2_net_0),
 		siovref=>(tmpSIOVREF__M1_IN2_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__M1_IN2_net_0);
 M2_IN1:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"33ffa339-5dc8-4938-8d7f-629e577b4d9f",
@@ -2009,12 +2013,12 @@ M2_IN1:cy_psoc3_pins_v1_10
 		io=>(tmpIO_0__M2_IN1_net_0),
 		siovref=>(tmpSIOVREF__M2_IN1_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__M2_IN1_net_0);
 M1_IN1:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"4c686335-22c2-4d80-ab95-fb07537cd2c5",
@@ -2079,12 +2083,12 @@ M1_IN1:cy_psoc3_pins_v1_10
 		io=>(tmpIO_0__M1_IN1_net_0),
 		siovref=>(tmpSIOVREF__M1_IN1_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__M1_IN1_net_0);
 input_signal_3:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"fe1e9477-24dc-472f-a6c8-4651373d1da7",
@@ -2143,18 +2147,18 @@ input_signal_3:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>(Net_2819),
+		y=>(zero),
 		fb=>(tmpFB_0__input_signal_3_net_0),
 		analog=>Net_1003,
 		io=>(tmpIO_0__input_signal_3_net_0),
 		siovref=>(tmpSIOVREF__input_signal_3_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__input_signal_3_net_0);
 input_signal_4:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"9e993143-184a-49bb-8dff-1bee0026012a",
@@ -2213,18 +2217,18 @@ input_signal_4:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>(Net_2819),
+		y=>(zero),
 		fb=>(tmpFB_0__input_signal_4_net_0),
 		analog=>Net_520,
 		io=>(tmpIO_0__input_signal_4_net_0),
 		siovref=>(tmpSIOVREF__input_signal_4_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__input_signal_4_net_0);
 Clock_PWM:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
@@ -2293,18 +2297,18 @@ L_ENCD:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>(Net_2819),
+		y=>(zero),
 		fb=>Net_2868,
 		analog=>(open),
 		io=>(tmpIO_0__L_ENCD_net_0),
 		siovref=>(tmpSIOVREF__L_ENCD_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__L_ENCD_net_0);
 L_ENCD2:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"3312ca28-9285-44ef-9476-57195b5d81d9",
@@ -2363,18 +2367,18 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>(Net_2819),
+		y=>(zero),
 		fb=>Net_2869,
 		analog=>(open),
 		io=>(tmpIO_0__L_ENCD2_net_0),
 		siovref=>(tmpSIOVREF__L_ENCD2_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__L_ENCD2_net_0);
 \QuadDec_2:Cnt16:CounterUDB:clock_enable_block\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
@@ -2392,7 +2396,7 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		cy_ctrl_mode_1=>"00000000",
 		cy_ctrl_mode_0=>"11111111",
 		cy_ext_reset=>'0')
-	PORT MAP(reset=>Net_2819,
+	PORT MAP(reset=>zero,
 		clock=>\QuadDec_2:Cnt16:CounterUDB:Clk_Ctl_i\,
 		control=>(\QuadDec_2:Cnt16:CounterUDB:control_7\, \QuadDec_2:Cnt16:CounterUDB:control_6\, \QuadDec_2:Cnt16:CounterUDB:control_5\, \QuadDec_2:Cnt16:CounterUDB:control_4\,
 			\QuadDec_2:Cnt16:CounterUDB:control_3\, \QuadDec_2:Cnt16:CounterUDB:control_2\, \QuadDec_2:Cnt16:CounterUDB:control_1\, \QuadDec_2:Cnt16:CounterUDB:control_0\));
@@ -2402,7 +2406,7 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		cy_int_mask=>"1111111")
 	PORT MAP(reset=>\QuadDec_2:Net_1260\,
 		clock=>\QuadDec_2:Cnt16:CounterUDB:ClockOutFromEnBlock\,
-		status=>(\QuadDec_2:Cnt16:CounterUDB:status_6\, \QuadDec_2:Cnt16:CounterUDB:status_5\, Net_2819, \QuadDec_2:Cnt16:CounterUDB:status_3\,
+		status=>(\QuadDec_2:Cnt16:CounterUDB:status_6\, \QuadDec_2:Cnt16:CounterUDB:status_5\, zero, \QuadDec_2:Cnt16:CounterUDB:status_3\,
 			\QuadDec_2:Cnt16:CounterUDB:status_2\, \QuadDec_2:Cnt16:CounterUDB:status_1\, \QuadDec_2:Cnt16:CounterUDB:status_0\),
 		interrupt=>\QuadDec_2:Cnt16:Net_43\);
 \QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0\:cy_psoc3_dp
@@ -2427,15 +2431,15 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		f0_blk_sync=>'1',
 		f1_bus_sync=>'1',
 		f1_blk_sync=>'1')
-	PORT MAP(reset=>Net_2819,
+	PORT MAP(reset=>zero,
 		clk=>\QuadDec_2:Cnt16:CounterUDB:ClockOutFromEnBlock\,
 		cs_addr=>(\QuadDec_2:Net_1251\, \QuadDec_2:Cnt16:CounterUDB:count_enable\, \QuadDec_2:Cnt16:CounterUDB:reload\),
-		route_si=>Net_2819,
-		route_ci=>Net_2819,
-		f0_load=>Net_2819,
-		f1_load=>Net_2819,
-		d0_load=>Net_2819,
-		d1_load=>Net_2819,
+		route_si=>zero,
+		route_ci=>zero,
+		f0_load=>zero,
+		f1_load=>zero,
+		d0_load=>zero,
+		d1_load=>zero,
 		ce0=>\QuadDec_2:Cnt16:CounterUDB:nc16\,
 		cl0=>\QuadDec_2:Cnt16:CounterUDB:nc17\,
 		z0=>\QuadDec_2:Cnt16:CounterUDB:nc1\,
@@ -2468,28 +2472,28 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		f0_blk_stat_reg=>open,
 		f1_bus_stat_reg=>open,
 		f1_blk_stat_reg=>open,
-		ci=>Net_2819,
+		ci=>zero,
 		co=>\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:carry\,
-		sir=>Net_2819,
+		sir=>zero,
 		sor=>open,
 		sil=>\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:sh_right\,
 		sol=>\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:sh_left\,
 		msbi=>\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:msb\,
 		msbo=>open,
-		cei=>(Net_2819, Net_2819),
+		cei=>(zero, zero),
 		ceo=>(\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cmp_eq_1\, \QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cmp_eq_0\),
-		cli=>(Net_2819, Net_2819),
+		cli=>(zero, zero),
 		clo=>(\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cmp_lt_1\, \QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cmp_lt_0\),
-		zi=>(Net_2819, Net_2819),
+		zi=>(zero, zero),
 		zo=>(\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cmp_zero_1\, \QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cmp_zero_0\),
-		fi=>(Net_2819, Net_2819),
+		fi=>(zero, zero),
 		fo=>(\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cmp_ff_1\, \QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cmp_ff_0\),
-		capi=>(Net_2819, Net_2819),
+		capi=>(zero, zero),
 		capo=>(\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cap_1\, \QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cap_0\),
-		cfbi=>Net_2819,
+		cfbi=>zero,
 		cfbo=>\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cfb\,
-		pi=>(Net_2819, Net_2819, Net_2819, Net_2819,
-			Net_2819, Net_2819, Net_2819, Net_2819),
+		pi=>(zero, zero, zero, zero,
+			zero, zero, zero, zero),
 		po=>open);
 \QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u1\:cy_psoc3_dp
 	GENERIC MAP(cy_dpconfig=>"0000000001000000000000001000000001000000010000000000000010000000000000000100000000000000100000000010000001000000000000001000000011111111000000001111111111111111101011110000000000000001000001110000000000011000",
@@ -2513,15 +2517,15 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		f0_blk_sync=>'1',
 		f1_bus_sync=>'1',
 		f1_blk_sync=>'1')
-	PORT MAP(reset=>Net_2819,
+	PORT MAP(reset=>zero,
 		clk=>\QuadDec_2:Cnt16:CounterUDB:ClockOutFromEnBlock\,
 		cs_addr=>(\QuadDec_2:Net_1251\, \QuadDec_2:Cnt16:CounterUDB:count_enable\, \QuadDec_2:Cnt16:CounterUDB:reload\),
-		route_si=>Net_2819,
-		route_ci=>Net_2819,
-		f0_load=>Net_2819,
-		f1_load=>Net_2819,
-		d0_load=>Net_2819,
-		d1_load=>Net_2819,
+		route_si=>zero,
+		route_ci=>zero,
+		f0_load=>zero,
+		f1_load=>zero,
+		d0_load=>zero,
+		d1_load=>zero,
 		ce0=>\QuadDec_2:Cnt16:CounterUDB:per_equal\,
 		cl0=>\QuadDec_2:Cnt16:CounterUDB:nc43\,
 		z0=>\QuadDec_2:Cnt16:CounterUDB:status_1\,
@@ -2558,9 +2562,9 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		co=>open,
 		sir=>\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:sh_left\,
 		sor=>\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:sh_right\,
-		sil=>Net_2819,
+		sil=>zero,
 		sol=>open,
-		msbi=>Net_2819,
+		msbi=>zero,
 		msbo=>\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:msb\,
 		cei=>(\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cmp_eq_1\, \QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cmp_eq_0\),
 		ceo=>open,
@@ -2574,8 +2578,8 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		capo=>open,
 		cfbi=>\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:cfb\,
 		cfbo=>open,
-		pi=>(Net_2819, Net_2819, Net_2819, Net_2819,
-			Net_2819, Net_2819, Net_2819, Net_2819),
+		pi=>(zero, zero, zero, zero,
+			zero, zero, zero, zero),
 		po=>open);
 \QuadDec_2:bQuadDec:CtrlClkEn\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
@@ -2610,9 +2614,9 @@ L_ENCD2:cy_psoc3_pins_v1_10
 	GENERIC MAP(cy_force_order=>'1',
 		cy_md_select=>"0001111",
 		cy_int_mask=>"0001111")
-	PORT MAP(reset=>Net_2819,
+	PORT MAP(reset=>zero,
 		clock=>\QuadDec_2:bQuadDec:sync_clock\,
-		status=>(Net_2819, Net_2819, Net_2819, \QuadDec_2:bQuadDec:error\,
+		status=>(zero, zero, zero, \QuadDec_2:bQuadDec:error\,
 			\QuadDec_2:Net_1260\, \QuadDec_2:Net_611\, \QuadDec_2:Net_530\),
 		interrupt=>Net_2877);
 \QuadDec_1:Cnt16:CounterUDB:clock_enable_block\:cy_psoc3_udb_clock_enable_v1_0
@@ -2631,7 +2635,7 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		cy_ctrl_mode_1=>"00000000",
 		cy_ctrl_mode_0=>"11111111",
 		cy_ext_reset=>'0')
-	PORT MAP(reset=>Net_2819,
+	PORT MAP(reset=>zero,
 		clock=>\QuadDec_1:Cnt16:CounterUDB:Clk_Ctl_i\,
 		control=>(\QuadDec_1:Cnt16:CounterUDB:control_7\, \QuadDec_1:Cnt16:CounterUDB:control_6\, \QuadDec_1:Cnt16:CounterUDB:control_5\, \QuadDec_1:Cnt16:CounterUDB:control_4\,
 			\QuadDec_1:Cnt16:CounterUDB:control_3\, \QuadDec_1:Cnt16:CounterUDB:control_2\, \QuadDec_1:Cnt16:CounterUDB:control_1\, \QuadDec_1:Cnt16:CounterUDB:control_0\));
@@ -2641,7 +2645,7 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		cy_int_mask=>"1111111")
 	PORT MAP(reset=>\QuadDec_1:Net_1260\,
 		clock=>\QuadDec_1:Cnt16:CounterUDB:ClockOutFromEnBlock\,
-		status=>(\QuadDec_1:Cnt16:CounterUDB:status_6\, \QuadDec_1:Cnt16:CounterUDB:status_5\, Net_2819, \QuadDec_1:Cnt16:CounterUDB:status_3\,
+		status=>(\QuadDec_1:Cnt16:CounterUDB:status_6\, \QuadDec_1:Cnt16:CounterUDB:status_5\, zero, \QuadDec_1:Cnt16:CounterUDB:status_3\,
 			\QuadDec_1:Cnt16:CounterUDB:status_2\, \QuadDec_1:Cnt16:CounterUDB:status_1\, \QuadDec_1:Cnt16:CounterUDB:status_0\),
 		interrupt=>\QuadDec_1:Cnt16:Net_43\);
 \QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0\:cy_psoc3_dp
@@ -2666,15 +2670,15 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		f0_blk_sync=>'1',
 		f1_bus_sync=>'1',
 		f1_blk_sync=>'1')
-	PORT MAP(reset=>Net_2819,
+	PORT MAP(reset=>zero,
 		clk=>\QuadDec_1:Cnt16:CounterUDB:ClockOutFromEnBlock\,
 		cs_addr=>(\QuadDec_1:Net_1251\, \QuadDec_1:Cnt16:CounterUDB:count_enable\, \QuadDec_1:Cnt16:CounterUDB:reload\),
-		route_si=>Net_2819,
-		route_ci=>Net_2819,
-		f0_load=>Net_2819,
-		f1_load=>Net_2819,
-		d0_load=>Net_2819,
-		d1_load=>Net_2819,
+		route_si=>zero,
+		route_ci=>zero,
+		f0_load=>zero,
+		f1_load=>zero,
+		d0_load=>zero,
+		d1_load=>zero,
 		ce0=>\QuadDec_1:Cnt16:CounterUDB:nc16\,
 		cl0=>\QuadDec_1:Cnt16:CounterUDB:nc17\,
 		z0=>\QuadDec_1:Cnt16:CounterUDB:nc1\,
@@ -2707,28 +2711,28 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		f0_blk_stat_reg=>open,
 		f1_bus_stat_reg=>open,
 		f1_blk_stat_reg=>open,
-		ci=>Net_2819,
+		ci=>zero,
 		co=>\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:carry\,
-		sir=>Net_2819,
+		sir=>zero,
 		sor=>open,
 		sil=>\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:sh_right\,
 		sol=>\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:sh_left\,
 		msbi=>\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:msb\,
 		msbo=>open,
-		cei=>(Net_2819, Net_2819),
+		cei=>(zero, zero),
 		ceo=>(\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cmp_eq_1\, \QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cmp_eq_0\),
-		cli=>(Net_2819, Net_2819),
+		cli=>(zero, zero),
 		clo=>(\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cmp_lt_1\, \QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cmp_lt_0\),
-		zi=>(Net_2819, Net_2819),
+		zi=>(zero, zero),
 		zo=>(\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cmp_zero_1\, \QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cmp_zero_0\),
-		fi=>(Net_2819, Net_2819),
+		fi=>(zero, zero),
 		fo=>(\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cmp_ff_1\, \QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cmp_ff_0\),
-		capi=>(Net_2819, Net_2819),
+		capi=>(zero, zero),
 		capo=>(\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cap_1\, \QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cap_0\),
-		cfbi=>Net_2819,
+		cfbi=>zero,
 		cfbo=>\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cfb\,
-		pi=>(Net_2819, Net_2819, Net_2819, Net_2819,
-			Net_2819, Net_2819, Net_2819, Net_2819),
+		pi=>(zero, zero, zero, zero,
+			zero, zero, zero, zero),
 		po=>open);
 \QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u1\:cy_psoc3_dp
 	GENERIC MAP(cy_dpconfig=>"0000000001000000000000001000000001000000010000000000000010000000000000000100000000000000100000000010000001000000000000001000000011111111000000001111111111111111101011110000000000000001000001110000000000011000",
@@ -2752,15 +2756,15 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		f0_blk_sync=>'1',
 		f1_bus_sync=>'1',
 		f1_blk_sync=>'1')
-	PORT MAP(reset=>Net_2819,
+	PORT MAP(reset=>zero,
 		clk=>\QuadDec_1:Cnt16:CounterUDB:ClockOutFromEnBlock\,
 		cs_addr=>(\QuadDec_1:Net_1251\, \QuadDec_1:Cnt16:CounterUDB:count_enable\, \QuadDec_1:Cnt16:CounterUDB:reload\),
-		route_si=>Net_2819,
-		route_ci=>Net_2819,
-		f0_load=>Net_2819,
-		f1_load=>Net_2819,
-		d0_load=>Net_2819,
-		d1_load=>Net_2819,
+		route_si=>zero,
+		route_ci=>zero,
+		f0_load=>zero,
+		f1_load=>zero,
+		d0_load=>zero,
+		d1_load=>zero,
 		ce0=>\QuadDec_1:Cnt16:CounterUDB:per_equal\,
 		cl0=>\QuadDec_1:Cnt16:CounterUDB:nc43\,
 		z0=>\QuadDec_1:Cnt16:CounterUDB:status_1\,
@@ -2797,9 +2801,9 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		co=>open,
 		sir=>\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:sh_left\,
 		sor=>\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:sh_right\,
-		sil=>Net_2819,
+		sil=>zero,
 		sol=>open,
-		msbi=>Net_2819,
+		msbi=>zero,
 		msbo=>\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:msb\,
 		cei=>(\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cmp_eq_1\, \QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cmp_eq_0\),
 		ceo=>open,
@@ -2813,8 +2817,8 @@ L_ENCD2:cy_psoc3_pins_v1_10
 		capo=>open,
 		cfbi=>\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:cfb\,
 		cfbo=>open,
-		pi=>(Net_2819, Net_2819, Net_2819, Net_2819,
-			Net_2819, Net_2819, Net_2819, Net_2819),
+		pi=>(zero, zero, zero, zero,
+			zero, zero, zero, zero),
 		po=>open);
 \QuadDec_1:bQuadDec:CtrlClkEn\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
@@ -2849,9 +2853,9 @@ L_ENCD2:cy_psoc3_pins_v1_10
 	GENERIC MAP(cy_force_order=>'1',
 		cy_md_select=>"0001111",
 		cy_int_mask=>"0001111")
-	PORT MAP(reset=>Net_2819,
+	PORT MAP(reset=>zero,
 		clock=>\QuadDec_1:bQuadDec:sync_clock\,
-		status=>(Net_2819, Net_2819, Net_2819, \QuadDec_1:bQuadDec:error\,
+		status=>(zero, zero, zero, \QuadDec_1:bQuadDec:error\,
 			\QuadDec_1:Net_1260\, \QuadDec_1:Net_611\, \QuadDec_1:Net_530\),
 		interrupt=>Net_2872);
 R_ENCD:cy_psoc3_pins_v1_10
@@ -2911,25 +2915,25 @@ R_ENCD:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>(Net_2819),
+		y=>(zero),
 		fb=>Net_2873,
 		analog=>(open),
 		io=>(tmpIO_0__R_ENCD_net_0),
 		siovref=>(tmpSIOVREF__R_ENCD_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__R_ENCD_net_0);
 timer_clock:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"c0fb34bd-1044-4931-9788-16b01ce89812",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"1000000000000",
+		period=>"1000000000",
 		is_direct=>'0',
 		is_digital=>'1')
 	PORT MAP(clock_out=>Net_10,
@@ -2991,18 +2995,18 @@ R_ENCD2:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>(Net_2819),
+		y=>(zero),
 		fb=>Net_2874,
 		analog=>(open),
 		io=>(tmpIO_0__R_ENCD2_net_0),
 		siovref=>(tmpSIOVREF__R_ENCD2_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__R_ENCD2_net_0);
 Clock_ENCD:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
@@ -3017,10 +3021,10 @@ Clock_ENCD:cy_clock_v1_0
 \Timer_1:TimerHW\:cy_psoc3_timer_v1_0
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(clock=>Net_10,
-		kill=>Net_2819,
+		kill=>zero,
 		enable=>tmpOE__M2_IN2_net_0,
-		capture=>Net_2819,
-		timer_reset=>Net_2819,
+		capture=>zero,
+		timer_reset=>zero,
 		tc=>\Timer_1:Net_51\,
 		compare=>\Timer_1:Net_261\,
 		interrupt=>Net_2885);
@@ -3085,18 +3089,18 @@ led:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>(Net_2819),
+		y=>(zero),
 		fb=>(tmpFB_0__led_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__led_net_0),
 		siovref=>(tmpSIOVREF__led_net_0),
 		annotation=>(open),
-		in_clock=>Net_2819,
+		in_clock=>zero,
 		in_clock_en=>tmpOE__M2_IN2_net_0,
-		in_reset=>Net_2819,
-		out_clock=>Net_2819,
+		in_reset=>zero,
+		out_clock=>zero,
 		out_clock_en=>tmpOE__M2_IN2_net_0,
-		out_reset=>Net_2819,
+		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__led_net_0);
 \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\:cy_dff
 	PORT MAP(d=>\ADC_SAR_Seq_1:ch_addr_5\,
@@ -3395,7 +3399,7 @@ led:cy_psoc3_pins_v1_10
 		clk=>\QuadDec_2:bQuadDec:sync_clock\,
 		q=>\QuadDec_2:Net_1251\);
 \QuadDec_2:Cnt16:CounterUDB:prevCapture\:cy_dff
-	PORT MAP(d=>Net_2819,
+	PORT MAP(d=>zero,
 		clk=>\QuadDec_2:Cnt16:CounterUDB:ClockOutFromEnBlock\,
 		q=>\QuadDec_2:Cnt16:CounterUDB:prevCapture\);
 \QuadDec_2:Cnt16:CounterUDB:overflow_reg_i\:cy_dff
@@ -3455,7 +3459,7 @@ led:cy_psoc3_pins_v1_10
 		clk=>\QuadDec_1:bQuadDec:sync_clock\,
 		q=>\QuadDec_1:Net_1251\);
 \QuadDec_1:Cnt16:CounterUDB:prevCapture\:cy_dff
-	PORT MAP(d=>Net_2819,
+	PORT MAP(d=>zero,
 		clk=>\QuadDec_1:Cnt16:CounterUDB:ClockOutFromEnBlock\,
 		q=>\QuadDec_1:Cnt16:CounterUDB:prevCapture\);
 \QuadDec_1:Cnt16:CounterUDB:overflow_reg_i\:cy_dff

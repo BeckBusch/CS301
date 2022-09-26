@@ -27,8 +27,8 @@ uint16 speed1;
 uint16 speed2;
 
 uint16 goal = 10;
-uint16 pwmIN1 = 200;
-uint16 pwmIN2 = 200;
+uint16 pwmIN1 = 100;
+uint16 pwmIN2 = 100;
 
 
 
@@ -49,7 +49,49 @@ CY_ISR(isr_TC){
     speed1 = count1;
     speed2 = count2;
     
-    if(speed1 >= goal) {
+    // left start
+    QuadDec_1_SetCounter(0);
+    // left start
+    QuadDec_2_SetCounter(0);
+    
+    Timer_1_Start();
+}
+
+int main(void){
+    // Enable global interrupts as well as start and enable the isr.
+    CyGlobalIntEnable;
+    timer_clock_Start();
+    Timer_1_Start();
+    //isr_speed_timer_StartEx(isr_TC);
+    //isr_speed_timer_Enable();
+    
+    QuadDec_1_Start();
+    QuadDec_1_Enable();
+    QuadDec_2_Start();
+    QuadDec_2_Enable();
+        
+    PWM_1_WritePeriod(200);
+    PWM_1_Start();
+    PWM_2_WritePeriod(200);
+    PWM_2_Start();
+    
+    PWM_1_WriteCompare(pwmIN1); 
+    PWM_2_WriteCompare(pwmIN2);
+    
+    QuadDec_1_SetCounter(0);
+    QuadDec_2_SetCounter(0);
+    
+    while(1) {
+        PWM_1_WriteCompare(150); 
+        PWM_2_WriteCompare(150);
+        CyDelay(6000);
+        PWM_1_WriteCompare(200); 
+        PWM_2_WriteCompare(200);
+        CyDelay(6000);
+        
+        
+        /*
+        if(speed1 >= goal) {
         led_Write(0);
             pwmIN1 = pwmIN1 - 5;
         } else {
@@ -65,41 +107,7 @@ CY_ISR(isr_TC){
         
         PWM_1_WriteCompare(pwmIN1); 
         PWM_2_WriteCompare(pwmIN2);
-    
-    // left start
-    QuadDec_1_SetCounter(0);
-    // left start
-    QuadDec_2_SetCounter(0);
-    
-    Timer_1_Start();
-}
-
-int main(void){
-    // Enable global interrupts as well as start and enable the isr.
-    CyGlobalIntEnable;
-    timer_clock_Start();
-    Timer_1_Start();
-    isr_speed_timer_StartEx(isr_TC);
-    isr_speed_timer_Enable();
-    
-    QuadDec_1_Start();
-    QuadDec_1_Enable();
-    QuadDec_2_Start();
-    QuadDec_2_Enable();
-        
-    PWM_1_WritePeriod(250);
-    PWM_1_Start();
-    PWM_2_WritePeriod(250);
-    PWM_2_Start();
-    
-    PWM_1_WriteCompare(pwmIN1); 
-    PWM_2_WriteCompare(pwmIN2);
-    
-    QuadDec_1_SetCounter(0);
-    QuadDec_2_SetCounter(0);
-    
-    while(1) {
-         
+         */
         
         /* STRAIGHT: 
          * MOVE forward

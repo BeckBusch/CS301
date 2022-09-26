@@ -1,5 +1,5 @@
 -- Project:   Sensor Test
--- Generated: 09/26/2022 13:41:51
+-- Generated: 09/26/2022 15:29:29
 -- PSoC Creator  4.2
 
 ENTITY \Sensor Test\ IS
@@ -50,9 +50,9 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     SIGNAL Net_2664_local : bit;
     SIGNAL Net_2716 : bit;
     SIGNAL Net_2718 : bit;
+    SIGNAL Net_2719 : bit;
     SIGNAL Net_2722 : bit;
     SIGNAL Net_2819 : bit;
-    ATTRIBUTE GROUND OF Net_2819 : SIGNAL IS true;
     SIGNAL Net_2868 : bit;
     SIGNAL Net_2869 : bit;
     SIGNAL Net_2871 : bit;
@@ -279,6 +279,8 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     SIGNAL led(0)__PA : bit;
     SIGNAL tmpOE__M2_IN2_net_0 : bit;
     ATTRIBUTE POWER OF tmpOE__M2_IN2_net_0 : SIGNAL IS true;
+    SIGNAL zero : bit;
+    ATTRIBUTE GROUND OF zero : SIGNAL IS true;
     SIGNAL \ClockBlock.dclk_glb_ff_2__sig\ : bit;
     SIGNAL \ClockBlock.dclk_glb_ff_3__sig\ : bit;
     SIGNAL \QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.ce0__sig\ : bit;
@@ -337,24 +339,26 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     ATTRIBUTE Location OF led(0) : LABEL IS "P2[1]";
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active\ : LABEL IS "macrocell2";
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:cnt_enable\ : LABEL IS "macrocell3";
-    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell4";
-    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell5";
-    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell6";
-    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:status_3\ : LABEL IS "macrocell7";
-    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:count_enable\ : LABEL IS "macrocell8";
-    ATTRIBUTE lib_model OF \QuadDec_2:Net_530\ : LABEL IS "macrocell9";
-    ATTRIBUTE lib_model OF \QuadDec_2:Net_611\ : LABEL IS "macrocell10";
-    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell11";
-    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell12";
-    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell13";
-    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:status_3\ : LABEL IS "macrocell14";
-    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:count_enable\ : LABEL IS "macrocell15";
-    ATTRIBUTE lib_model OF \QuadDec_1:Net_1203_split\ : LABEL IS "macrocell16";
-    ATTRIBUTE lib_model OF \QuadDec_1:Net_530\ : LABEL IS "macrocell17";
-    ATTRIBUTE lib_model OF \QuadDec_1:Net_611\ : LABEL IS "macrocell18";
+    ATTRIBUTE lib_model OF Net_2719 : LABEL IS "macrocell4";
+    ATTRIBUTE lib_model OF Net_2819 : LABEL IS "macrocell5";
+    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell6";
+    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell7";
+    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell8";
+    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:status_3\ : LABEL IS "macrocell9";
+    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:count_enable\ : LABEL IS "macrocell10";
+    ATTRIBUTE lib_model OF \QuadDec_2:Net_530\ : LABEL IS "macrocell11";
+    ATTRIBUTE lib_model OF \QuadDec_2:Net_611\ : LABEL IS "macrocell12";
+    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell13";
+    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell14";
+    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell15";
+    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:status_3\ : LABEL IS "macrocell16";
+    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:count_enable\ : LABEL IS "macrocell17";
+    ATTRIBUTE lib_model OF \QuadDec_1:Net_1203_split\ : LABEL IS "macrocell18";
+    ATTRIBUTE lib_model OF \QuadDec_1:Net_530\ : LABEL IS "macrocell19";
+    ATTRIBUTE lib_model OF \QuadDec_1:Net_611\ : LABEL IS "macrocell20";
     ATTRIBUTE Location OF \ADC_SAR_Seq_1:SAR:ADC_SAR\ : LABEL IS "F(SAR,0)";
-    ATTRIBUTE lib_model OF \QuadDec_1:Net_1251_split\ : LABEL IS "macrocell19";
-    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell20";
+    ATTRIBUTE lib_model OF \QuadDec_1:Net_1251_split\ : LABEL IS "macrocell21";
+    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell22";
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:CtrlReg\ : LABEL IS "controlcell1";
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:EOCSts\ : LABEL IS "statuscell1";
     ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:TempBuf\ : LABEL IS "drqcell1";
@@ -363,125 +367,125 @@ ARCHITECTURE __DEFAULT__ OF \Sensor Test\ IS
     ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "statusicell1";
     ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0\ : LABEL IS "datapathcell1";
     ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u1\ : LABEL IS "datapathcell2";
-    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_A_delayed_0\ : LABEL IS "macrocell21";
-    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_A_delayed_1\ : LABEL IS "macrocell22";
-    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_A_delayed_2\ : LABEL IS "macrocell23";
-    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_B_delayed_0\ : LABEL IS "macrocell24";
-    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_B_delayed_1\ : LABEL IS "macrocell25";
-    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_B_delayed_2\ : LABEL IS "macrocell26";
+    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_A_delayed_0\ : LABEL IS "macrocell23";
+    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_A_delayed_1\ : LABEL IS "macrocell24";
+    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_A_delayed_2\ : LABEL IS "macrocell25";
+    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_B_delayed_0\ : LABEL IS "macrocell26";
+    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_B_delayed_1\ : LABEL IS "macrocell27";
+    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_B_delayed_2\ : LABEL IS "macrocell28";
     ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:Stsreg\ : LABEL IS "statusicell2";
     ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:sCTRLReg:ctrlreg\ : LABEL IS "controlcell3";
     ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "statusicell3";
     ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0\ : LABEL IS "datapathcell3";
     ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u1\ : LABEL IS "datapathcell4";
-    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_A_delayed_0\ : LABEL IS "macrocell27";
-    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_A_delayed_1\ : LABEL IS "macrocell28";
-    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_A_delayed_2\ : LABEL IS "macrocell29";
-    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_B_delayed_0\ : LABEL IS "macrocell30";
-    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_B_delayed_1\ : LABEL IS "macrocell31";
-    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_B_delayed_2\ : LABEL IS "macrocell32";
+    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_A_delayed_0\ : LABEL IS "macrocell29";
+    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_A_delayed_1\ : LABEL IS "macrocell30";
+    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_A_delayed_2\ : LABEL IS "macrocell31";
+    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_B_delayed_0\ : LABEL IS "macrocell32";
+    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_B_delayed_1\ : LABEL IS "macrocell33";
+    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_B_delayed_2\ : LABEL IS "macrocell34";
     ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:Stsreg\ : LABEL IS "statusicell4";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\ : LABEL IS "macrocell33";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_4\ : LABEL IS "macrocell34";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_3\ : LABEL IS "macrocell35";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_2\ : LABEL IS "macrocell36";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_1\ : LABEL IS "macrocell37";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_0\ : LABEL IS "macrocell38";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_0\ : LABEL IS "macrocell39";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_1\ : LABEL IS "macrocell40";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_2\ : LABEL IS "macrocell41";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_3\ : LABEL IS "macrocell42";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_4\ : LABEL IS "macrocell43";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_5\ : LABEL IS "macrocell44";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_6\ : LABEL IS "macrocell45";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_7\ : LABEL IS "macrocell46";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_8\ : LABEL IS "macrocell47";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_9\ : LABEL IS "macrocell48";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_10\ : LABEL IS "macrocell49";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_11\ : LABEL IS "macrocell50";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_12\ : LABEL IS "macrocell51";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_13\ : LABEL IS "macrocell52";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_14\ : LABEL IS "macrocell53";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_15\ : LABEL IS "macrocell54";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_16\ : LABEL IS "macrocell55";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_17\ : LABEL IS "macrocell56";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_18\ : LABEL IS "macrocell57";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_19\ : LABEL IS "macrocell58";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_20\ : LABEL IS "macrocell59";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_21\ : LABEL IS "macrocell60";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_22\ : LABEL IS "macrocell61";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_23\ : LABEL IS "macrocell62";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_24\ : LABEL IS "macrocell63";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_25\ : LABEL IS "macrocell64";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_26\ : LABEL IS "macrocell65";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_27\ : LABEL IS "macrocell66";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_28\ : LABEL IS "macrocell67";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_29\ : LABEL IS "macrocell68";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_30\ : LABEL IS "macrocell69";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_31\ : LABEL IS "macrocell70";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_32\ : LABEL IS "macrocell71";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_33\ : LABEL IS "macrocell72";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_34\ : LABEL IS "macrocell73";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_35\ : LABEL IS "macrocell74";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_36\ : LABEL IS "macrocell75";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_37\ : LABEL IS "macrocell76";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_38\ : LABEL IS "macrocell77";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_39\ : LABEL IS "macrocell78";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_40\ : LABEL IS "macrocell79";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_41\ : LABEL IS "macrocell80";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_42\ : LABEL IS "macrocell81";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_43\ : LABEL IS "macrocell82";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_44\ : LABEL IS "macrocell83";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_45\ : LABEL IS "macrocell84";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_46\ : LABEL IS "macrocell85";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_47\ : LABEL IS "macrocell86";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_48\ : LABEL IS "macrocell87";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_49\ : LABEL IS "macrocell88";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_50\ : LABEL IS "macrocell89";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_51\ : LABEL IS "macrocell90";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_52\ : LABEL IS "macrocell91";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_53\ : LABEL IS "macrocell92";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_54\ : LABEL IS "macrocell93";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_55\ : LABEL IS "macrocell94";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_56\ : LABEL IS "macrocell95";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_57\ : LABEL IS "macrocell96";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_58\ : LABEL IS "macrocell97";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_59\ : LABEL IS "macrocell98";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_60\ : LABEL IS "macrocell99";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_61\ : LABEL IS "macrocell100";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_62\ : LABEL IS "macrocell101";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_63\ : LABEL IS "macrocell102";
-    ATTRIBUTE lib_model OF Net_9 : LABEL IS "macrocell103";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:bus_clk_nrq_reg\ : LABEL IS "macrocell104";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:nrq_reg\ : LABEL IS "macrocell105";
-    ATTRIBUTE lib_model OF \QuadDec_2:Net_1251\ : LABEL IS "macrocell106";
-    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell107";
-    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell108";
-    ATTRIBUTE lib_model OF \QuadDec_2:Net_1275\ : LABEL IS "macrocell109";
-    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell110";
-    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active_split\ : LABEL IS "macrocell111";
-    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell112";
-    ATTRIBUTE lib_model OF \QuadDec_2:Net_1203\ : LABEL IS "macrocell113";
-    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_A_filt\ : LABEL IS "macrocell114";
-    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_B_filt\ : LABEL IS "macrocell115";
-    ATTRIBUTE lib_model OF \QuadDec_2:Net_1260\ : LABEL IS "macrocell116";
-    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:error\ : LABEL IS "macrocell117";
-    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:state_1\ : LABEL IS "macrocell118";
-    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:state_0\ : LABEL IS "macrocell119";
-    ATTRIBUTE lib_model OF \QuadDec_1:Net_1251\ : LABEL IS "macrocell120";
-    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell121";
-    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell122";
-    ATTRIBUTE lib_model OF \QuadDec_1:Net_1275\ : LABEL IS "macrocell123";
-    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell124";
-    ATTRIBUTE lib_model OF \QuadDec_2:Net_1251_split\ : LABEL IS "macrocell125";
-    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell126";
-    ATTRIBUTE lib_model OF \QuadDec_1:Net_1203\ : LABEL IS "macrocell127";
-    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_A_filt\ : LABEL IS "macrocell128";
-    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_B_filt\ : LABEL IS "macrocell129";
-    ATTRIBUTE lib_model OF \QuadDec_1:Net_1260\ : LABEL IS "macrocell130";
-    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:error\ : LABEL IS "macrocell131";
-    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:state_1\ : LABEL IS "macrocell132";
-    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:state_0\ : LABEL IS "macrocell133";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\ : LABEL IS "macrocell35";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_4\ : LABEL IS "macrocell36";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_3\ : LABEL IS "macrocell37";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_2\ : LABEL IS "macrocell38";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_1\ : LABEL IS "macrocell39";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_0\ : LABEL IS "macrocell40";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_0\ : LABEL IS "macrocell41";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_1\ : LABEL IS "macrocell42";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_2\ : LABEL IS "macrocell43";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_3\ : LABEL IS "macrocell44";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_4\ : LABEL IS "macrocell45";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_5\ : LABEL IS "macrocell46";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_6\ : LABEL IS "macrocell47";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_7\ : LABEL IS "macrocell48";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_8\ : LABEL IS "macrocell49";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_9\ : LABEL IS "macrocell50";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_10\ : LABEL IS "macrocell51";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_11\ : LABEL IS "macrocell52";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_12\ : LABEL IS "macrocell53";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_13\ : LABEL IS "macrocell54";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_14\ : LABEL IS "macrocell55";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_15\ : LABEL IS "macrocell56";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_16\ : LABEL IS "macrocell57";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_17\ : LABEL IS "macrocell58";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_18\ : LABEL IS "macrocell59";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_19\ : LABEL IS "macrocell60";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_20\ : LABEL IS "macrocell61";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_21\ : LABEL IS "macrocell62";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_22\ : LABEL IS "macrocell63";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_23\ : LABEL IS "macrocell64";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_24\ : LABEL IS "macrocell65";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_25\ : LABEL IS "macrocell66";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_26\ : LABEL IS "macrocell67";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_27\ : LABEL IS "macrocell68";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_28\ : LABEL IS "macrocell69";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_29\ : LABEL IS "macrocell70";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_30\ : LABEL IS "macrocell71";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_31\ : LABEL IS "macrocell72";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_32\ : LABEL IS "macrocell73";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_33\ : LABEL IS "macrocell74";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_34\ : LABEL IS "macrocell75";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_35\ : LABEL IS "macrocell76";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_36\ : LABEL IS "macrocell77";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_37\ : LABEL IS "macrocell78";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_38\ : LABEL IS "macrocell79";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_39\ : LABEL IS "macrocell80";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_40\ : LABEL IS "macrocell81";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_41\ : LABEL IS "macrocell82";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_42\ : LABEL IS "macrocell83";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_43\ : LABEL IS "macrocell84";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_44\ : LABEL IS "macrocell85";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_45\ : LABEL IS "macrocell86";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_46\ : LABEL IS "macrocell87";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_47\ : LABEL IS "macrocell88";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_48\ : LABEL IS "macrocell89";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_49\ : LABEL IS "macrocell90";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_50\ : LABEL IS "macrocell91";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_51\ : LABEL IS "macrocell92";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_52\ : LABEL IS "macrocell93";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_53\ : LABEL IS "macrocell94";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_54\ : LABEL IS "macrocell95";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_55\ : LABEL IS "macrocell96";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_56\ : LABEL IS "macrocell97";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_57\ : LABEL IS "macrocell98";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_58\ : LABEL IS "macrocell99";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_59\ : LABEL IS "macrocell100";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_60\ : LABEL IS "macrocell101";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_61\ : LABEL IS "macrocell102";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_62\ : LABEL IS "macrocell103";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_63\ : LABEL IS "macrocell104";
+    ATTRIBUTE lib_model OF Net_9 : LABEL IS "macrocell105";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:bus_clk_nrq_reg\ : LABEL IS "macrocell106";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:bSAR_SEQ:nrq_reg\ : LABEL IS "macrocell107";
+    ATTRIBUTE lib_model OF \QuadDec_2:Net_1251\ : LABEL IS "macrocell108";
+    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell109";
+    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell110";
+    ATTRIBUTE lib_model OF \QuadDec_2:Net_1275\ : LABEL IS "macrocell111";
+    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell112";
+    ATTRIBUTE lib_model OF \ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active_split\ : LABEL IS "macrocell113";
+    ATTRIBUTE lib_model OF \QuadDec_2:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell114";
+    ATTRIBUTE lib_model OF \QuadDec_2:Net_1203\ : LABEL IS "macrocell115";
+    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_A_filt\ : LABEL IS "macrocell116";
+    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:quad_B_filt\ : LABEL IS "macrocell117";
+    ATTRIBUTE lib_model OF \QuadDec_2:Net_1260\ : LABEL IS "macrocell118";
+    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:error\ : LABEL IS "macrocell119";
+    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:state_1\ : LABEL IS "macrocell120";
+    ATTRIBUTE lib_model OF \QuadDec_2:bQuadDec:state_0\ : LABEL IS "macrocell121";
+    ATTRIBUTE lib_model OF \QuadDec_1:Net_1251\ : LABEL IS "macrocell122";
+    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell123";
+    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell124";
+    ATTRIBUTE lib_model OF \QuadDec_1:Net_1275\ : LABEL IS "macrocell125";
+    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell126";
+    ATTRIBUTE lib_model OF \QuadDec_2:Net_1251_split\ : LABEL IS "macrocell127";
+    ATTRIBUTE lib_model OF \QuadDec_1:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell128";
+    ATTRIBUTE lib_model OF \QuadDec_1:Net_1203\ : LABEL IS "macrocell129";
+    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_A_filt\ : LABEL IS "macrocell130";
+    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:quad_B_filt\ : LABEL IS "macrocell131";
+    ATTRIBUTE lib_model OF \QuadDec_1:Net_1260\ : LABEL IS "macrocell132";
+    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:error\ : LABEL IS "macrocell133";
+    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:state_1\ : LABEL IS "macrocell134";
+    ATTRIBUTE lib_model OF \QuadDec_1:bQuadDec:state_0\ : LABEL IS "macrocell135";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -1005,10 +1009,12 @@ BEGIN
             oe_sync_mode => 0,
             logicalport => "M2_IN2",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
         PORT MAP(
             pa_out => M2_IN2(0)__PA,
             oe => open,
+            pin_input => Net_2819,
+            pad_out => M2_IN2(0)_PAD,
             pad_in => M2_IN2(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
@@ -1365,10 +1371,12 @@ BEGIN
             oe_sync_mode => 0,
             logicalport => "M1_IN2",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
         PORT MAP(
             pa_out => M1_IN2(0)__PA,
             oe => open,
+            pin_input => Net_2719,
+            pad_out => M1_IN2(0)_PAD,
             pad_in => M1_IN2(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
@@ -2222,6 +2230,24 @@ BEGIN
             q => \ADC_SAR_Seq_1:bSAR_SEQ:cnt_enable\,
             main_0 => Net_2722,
             main_1 => \ADC_SAR_Seq_1:bSAR_SEQ:load_period\);
+
+    Net_2719:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0)",
+            regmode => 0,
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_2719,
+            main_0 => Net_2718);
+
+    Net_2819:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0)",
+            regmode => 0,
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_2819,
+            main_0 => Net_2716);
 
     \QuadDec_2:Cnt16:CounterUDB:reload\:macrocell
         GENERIC MAP(
