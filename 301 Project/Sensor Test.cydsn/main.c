@@ -26,9 +26,9 @@ uint16 count2;
 uint16 speed1;
 uint16 speed2;
 
-uint16 goal = 10;
-uint16 pwmIN1 = 100;
-uint16 pwmIN2 = 100;
+uint16 goal = 30;
+uint16 pwmIN1 = 150;
+uint16 pwmIN2 = 150;
 
 
 
@@ -36,6 +36,7 @@ CY_ISR(isr_TC){
     count1 = QuadDec_1_GetCounter();
     count2 = QuadDec_2_GetCounter();
     
+    /*
     count1 = count1 * 204;
     count1 = count1 / 5;
     count1 = count1 * 100;
@@ -45,15 +46,36 @@ CY_ISR(isr_TC){
     count2 = count2 / 5;
     count2 = count2 * 100;
     count2 = count2 / 228;
+    */
+    
+    count1 = count1 * 2000;
+    count1 = count1 / 228;
+    
+    count2 = count2 * 2000;
+    count2 = count2 / 228;
     
     speed1 = count1;
     speed2 = count2;
     
-    // left start
-    QuadDec_1_SetCounter(0);
-    // left start
-    QuadDec_2_SetCounter(0);
     
+    
+    if(speed1 >= goal) {
+            pwmIN1 = pwmIN1 - 1;
+        } else {
+            pwmIN1 = pwmIN1 + 1;
+        }
+        
+        if(speed2 > goal) {
+            pwmIN2 = pwmIN2 - 1;
+        } else {
+            pwmIN2 = pwmIN2 + 1;
+        }
+
+        
+        
+    
+    QuadDec_1_SetCounter(0);
+    QuadDec_2_SetCounter(0);
     Timer_1_Start();
 }
 
@@ -62,8 +84,8 @@ int main(void){
     CyGlobalIntEnable;
     timer_clock_Start();
     Timer_1_Start();
-    //isr_speed_timer_StartEx(isr_TC);
-    //isr_speed_timer_Enable();
+    isr_speed_timer_StartEx(isr_TC);
+    isr_speed_timer_Enable();
     
     QuadDec_1_Start();
     QuadDec_1_Enable();
@@ -81,62 +103,31 @@ int main(void){
     QuadDec_1_SetCounter(0);
     QuadDec_2_SetCounter(0);
     
+    //uint16 check = 3 * 19 * 4 * 2;
+    
     while(1) {
-        PWM_1_WriteCompare(150); 
-        PWM_2_WriteCompare(150);
-        CyDelay(6000);
-        PWM_1_WriteCompare(200); 
-        PWM_2_WriteCompare(200);
-        CyDelay(6000);
+        PWM_1_WriteCompare(pwmIN1); 
+        PWM_2_WriteCompare(pwmIN2);
         
         
         /*
         if(speed1 >= goal) {
-        led_Write(0);
-            pwmIN1 = pwmIN1 - 5;
+            pwmIN1 = pwmIN1 - 1;
         } else {
-            led_Write(1);
-            pwmIN1 = pwmIN1 + 5;
+            pwmIN1 = pwmIN1 + 1;
         }
         
         if(speed2 > goal) {
-            pwmIN2 = pwmIN2 - 10;
+            pwmIN2 = pwmIN2 - 1;
         } else {
-            pwmIN2 = pwmIN2 + 10;
+            pwmIN2 = pwmIN2 + 1;
         }
+
         
         PWM_1_WriteCompare(pwmIN1); 
         PWM_2_WriteCompare(pwmIN2);
-         */
-        
-        /* STRAIGHT: 
-         * MOVE forward
-         *
-         * CORRECTION:
-         * WAIT UNTIL BC off
-         * MOVE forward
-         * UNTIL FL OR FR off ->
-         * IF FL off TURN left UNTIL BC off
-         * IF FR off TURN right UNTIL BC off
-         *
-         * LEFT:
-         * WAIT UNTIL FL off
-         * TURN left UNTIL CL off
-         * MOVE forward UNTIL BC off
-         * TURN left UNTIL FL on -> off
-         * MOVE forward
-         *
-         * RIGHT:
-         * WAIT UNTIL FR off
-         * TURN right UNTIL CR off
-         * MOVE forward UNTIL BC off
-         * TURN right UNTIL FR on -> off
-         * MOVE forward
-         */
-        
-        // Implementation of a state machine to control the robot.
-        
-
+         
+*/
         }
     return 0;
         

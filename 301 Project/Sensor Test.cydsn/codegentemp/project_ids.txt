@@ -1,6 +1,6 @@
-C:\Users\beckb\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Sensor Test.cyprj|a2c56097-49f0-49ea-a430-09ae0ec593d2
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|0f379e16-e32c-4929-b4bf-ead031ec3c4e
-C:\Users\beckb\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|8f7f21d2-97ff-4079-a111-49fdaa79583a
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|b412e7ea-6243-477a-9aa5-54e1cb3d882c
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|9757e010-121a-4e71-b9d8-febca5b2537f
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|edee546b-6429-439e-8ddd-9ab8c227a585
+\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Sensor Test.cyprj|96c4beeb-fbce-4f56-aadb-78e868b1c2e4
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|127fe438-8917-4a99-a104-167b4062cb97
+\\files.auckland.ac.nz\myhome\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|9f035da4-13fd-46e1-a9a5-aa1759b71988
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|c3a871ee-3a79-49d4-8d48-f8861c266dfd
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|8658afdd-b9e4-4e60-9228-9d39e34df2b9
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|b5151eb4-edc9-404d-a7d2-e8b802ebd974

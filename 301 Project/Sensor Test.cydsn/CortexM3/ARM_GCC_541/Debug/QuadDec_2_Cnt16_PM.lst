@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
   28:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c **** *     Save the current user configuration
   29:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c **** *
   30:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c **** * Parameters:  
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 2
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 2
 
 
   31:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c **** *  void
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
   52:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c ****     #endif /* (!QuadDec_2_Cnt16_UsingFixedFunction) */
   53:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c **** }
   54:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c **** 
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 3
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 3
 
 
   55:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
   88              		.global	QuadDec_2_Cnt16_Sleep
   89              		.thumb
   90              		.thumb_func
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 4
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 4
 
 
   91              		.type	QuadDec_2_Cnt16_Sleep, %function
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  114:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c ****         else
  115:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c ****         {
  116:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c ****             /* Counter is disabled */
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 5
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 5
 
 
  117:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c ****             QuadDec_2_Cnt16_backup.CounterEnableState = 0u;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  143:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c **** *  void
  144:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c **** *
  145:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c **** * Global variables:
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 6
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 6
 
 
  146:Generated_Source\PSoC5/QuadDec_2_Cnt16_PM.c **** *  QuadDec_2_Cnt16_backup.enableState:  Is used to restore the enable state of 
@@ -358,22 +358,22 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  182 0000 DF010000 		.4byte	0x1df
  183 0004 0400     		.2byte	0x4
  184 0006 00000000 		.4byte	.Ldebug_abbrev0
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 7
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 7
 
 
  185 000a 04       		.byte	0x4
  186 000b 01       		.uleb128 0x1
  187 000c BD000000 		.4byte	.LASF31
  188 0010 0C       		.byte	0xc
- 189 0011 C9020000 		.4byte	.LASF32
- 190 0015 16020000 		.4byte	.LASF33
+ 189 0011 D8020000 		.4byte	.LASF32
+ 190 0015 86010000 		.4byte	.LASF33
  191 0019 00000000 		.4byte	.Ldebug_ranges0+0
  192 001d 00000000 		.4byte	0
  193 0021 00000000 		.4byte	.Ldebug_line0
  194 0025 02       		.uleb128 0x2
  195 0026 01       		.byte	0x1
  196 0027 06       		.byte	0x6
- 197 0028 27030000 		.4byte	.LASF0
+ 197 0028 36030000 		.4byte	.LASF0
  198 002c 02       		.uleb128 0x2
  199 002d 01       		.byte	0x1
  200 002e 08       		.byte	0x8
@@ -381,7 +381,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  202 0033 02       		.uleb128 0x2
  203 0034 02       		.byte	0x2
  204 0035 05       		.byte	0x5
- 205 0036 BF020000 		.4byte	.LASF2
+ 205 0036 CE020000 		.4byte	.LASF2
  206 003a 02       		.uleb128 0x2
  207 003b 02       		.byte	0x2
  208 003c 07       		.byte	0x7
@@ -389,19 +389,19 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  210 0041 02       		.uleb128 0x2
  211 0042 04       		.byte	0x4
  212 0043 05       		.byte	0x5
- 213 0044 F5020000 		.4byte	.LASF4
+ 213 0044 04030000 		.4byte	.LASF4
  214 0048 02       		.uleb128 0x2
  215 0049 04       		.byte	0x4
  216 004a 07       		.byte	0x7
- 217 004b AA010000 		.4byte	.LASF5
+ 217 004b 0F020000 		.4byte	.LASF5
  218 004f 02       		.uleb128 0x2
  219 0050 08       		.byte	0x8
  220 0051 05       		.byte	0x5
- 221 0052 88020000 		.4byte	.LASF6
+ 221 0052 97020000 		.4byte	.LASF6
  222 0056 02       		.uleb128 0x2
  223 0057 08       		.byte	0x8
  224 0058 07       		.byte	0x7
- 225 0059 FF010000 		.4byte	.LASF7
+ 225 0059 64020000 		.4byte	.LASF7
  226 005d 03       		.uleb128 0x3
  227 005e 04       		.byte	0x4
  228 005f 05       		.byte	0x5
@@ -409,16 +409,16 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  230 0064 02       		.uleb128 0x2
  231 0065 04       		.byte	0x4
  232 0066 07       		.byte	0x7
- 233 0067 B2020000 		.4byte	.LASF8
+ 233 0067 C1020000 		.4byte	.LASF8
  234 006b 04       		.uleb128 0x4
  235 006c 80010000 		.4byte	.LASF9
  236 0070 02       		.byte	0x2
  237 0071 E401     		.2byte	0x1e4
  238 0073 2C000000 		.4byte	0x2c
  239 0077 04       		.uleb128 0x4
- 240 0078 A3010000 		.4byte	.LASF10
+ 240 0078 08020000 		.4byte	.LASF10
  241 007c 02       		.byte	0x2
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 8
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 8
 
 
  242 007d E501     		.2byte	0x1e5
@@ -430,11 +430,11 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  248 008a 02       		.uleb128 0x2
  249 008b 08       		.byte	0x8
  250 008c 04       		.byte	0x4
- 251 008d 86010000 		.4byte	.LASF12
+ 251 008d EB010000 		.4byte	.LASF12
  252 0091 02       		.uleb128 0x2
  253 0092 01       		.byte	0x1
  254 0093 08       		.byte	0x8
- 255 0094 96020000 		.4byte	.LASF13
+ 255 0094 A5020000 		.4byte	.LASF13
  256 0098 04       		.uleb128 0x4
  257 0099 4B010000 		.4byte	.LASF14
  258 009d 02       		.byte	0x2
@@ -445,18 +445,18 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  263 00a9 02       		.uleb128 0x2
  264 00aa 08       		.byte	0x8
  265 00ab 04       		.byte	0x4
- 266 00ac 1B030000 		.4byte	.LASF15
+ 266 00ac 2A030000 		.4byte	.LASF15
  267 00b0 02       		.uleb128 0x2
  268 00b1 04       		.byte	0x4
  269 00b2 07       		.byte	0x7
- 270 00b3 6C020000 		.4byte	.LASF16
+ 270 00b3 7B020000 		.4byte	.LASF16
  271 00b7 06       		.uleb128 0x6
  272 00b8 06       		.byte	0x6
  273 00b9 03       		.byte	0x3
  274 00ba 40       		.byte	0x40
  275 00bb E4000000 		.4byte	0xe4
  276 00bf 07       		.uleb128 0x7
- 277 00c0 75020000 		.4byte	.LASF17
+ 277 00c0 84020000 		.4byte	.LASF17
  278 00c4 03       		.byte	0x3
  279 00c5 42       		.byte	0x42
  280 00c6 6B000000 		.4byte	0x6b
@@ -475,10 +475,10 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  293 00e2 04       		.byte	0x4
  294 00e3 00       		.byte	0
  295 00e4 08       		.uleb128 0x8
- 296 00e5 FE020000 		.4byte	.LASF20
+ 296 00e5 0D030000 		.4byte	.LASF20
  297 00e9 03       		.byte	0x3
  298 00ea 49       		.byte	0x49
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 9
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 9
 
 
  299 00eb B7000000 		.4byte	0xb7
@@ -499,7 +499,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  314 0112 AB010000 		.4byte	0x1ab
  315 0116 00       		.byte	0
  316 0117 09       		.uleb128 0x9
- 317 0118 BC010000 		.4byte	.LASF22
+ 317 0118 21020000 		.4byte	.LASF22
  318 011c 01       		.byte	0x1
  319 011d 4A       		.byte	0x4a
  320 011e 00000000 		.4byte	.LFB1
@@ -515,7 +515,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  330 013a C1010000 		.4byte	0x1c1
  331 013e 00       		.byte	0
  332 013f 09       		.uleb128 0x9
- 333 0140 8D010000 		.4byte	.LASF23
+ 333 0140 F2010000 		.4byte	.LASF23
  334 0144 01       		.byte	0x1
  335 0145 69       		.byte	0x69
  336 0146 00000000 		.4byte	.LFB2
@@ -531,14 +531,14 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  346 0162 EF000000 		.4byte	0xef
  347 0166 00       		.byte	0
  348 0167 09       		.uleb128 0x9
- 349 0168 33030000 		.4byte	.LASF24
+ 349 0168 42030000 		.4byte	.LASF24
  350 016c 01       		.byte	0x1
  351 016d 96       		.byte	0x96
  352 016e 00000000 		.4byte	.LFB3
  353 0172 18000000 		.4byte	.LFE3-.LFB3
  354 0176 01       		.uleb128 0x1
  355 0177 9C       		.byte	0x9c
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 10
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 10
 
 
  356 0178 8F010000 		.4byte	0x18f
@@ -573,8 +573,8 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  385 01bf 03       		.byte	0x3
  386 01c0 5A       		.byte	0x5a
  387 01c1 0C       		.uleb128 0xc
- 388 01c2 DA010000 		.4byte	.LASF28
- 389 01c6 DA010000 		.4byte	.LASF28
+ 388 01c2 3F020000 		.4byte	.LASF28
+ 389 01c6 3F020000 		.4byte	.LASF28
  390 01ca 03       		.byte	0x3
  391 01cb 56       		.byte	0x56
  392 01cc 0C       		.uleb128 0xc
@@ -583,8 +583,8 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  395 01d5 03       		.byte	0x3
  396 01d6 50       		.byte	0x50
  397 01d7 0C       		.uleb128 0xc
- 398 01d8 9B020000 		.4byte	.LASF30
- 399 01dc 9B020000 		.4byte	.LASF30
+ 398 01d8 AA020000 		.4byte	.LASF30
+ 399 01dc AA020000 		.4byte	.LASF30
  400 01e0 03       		.byte	0x3
  401 01e1 71       		.byte	0x71
  402 01e2 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  410 0005 13       		.uleb128 0x13
  411 0006 0B       		.uleb128 0xb
  412 0007 03       		.uleb128 0x3
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 11
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 11
 
 
  413 0008 0E       		.uleb128 0xe
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  467 003e 13       		.uleb128 0x13
  468 003f 01       		.byte	0x1
  469 0040 0B       		.uleb128 0xb
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 12
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 12
 
 
  470 0041 0B       		.uleb128 0xb
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  524 0077 40       		.uleb128 0x40
  525 0078 18       		.uleb128 0x18
  526 0079 9742     		.uleb128 0x2117
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 13
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 13
 
 
  527 007b 19       		.uleb128 0x19
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  581 000e 0000     		.2byte	0
  582 0010 00000000 		.4byte	.LFB0
  583 0014 18000000 		.4byte	.LFE0-.LFB0
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 14
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 14
 
 
  584 0018 00000000 		.4byte	.LFB1
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  616      52656164 
  617              	.LASF19:
  618 0075 436F756E 		.ascii	"CounterControlRegister\000"
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 15
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 15
 
 
  618      74657243 
@@ -893,120 +893,122 @@ ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 1
  635              	.LASF9:
  636 0180 75696E74 		.ascii	"uint8\000"
  636      3800
- 637              	.LASF12:
- 638 0186 646F7562 		.ascii	"double\000"
- 638      6C6500
- 639              	.LASF23:
- 640 018d 51756164 		.ascii	"QuadDec_2_Cnt16_Sleep\000"
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 16
+ 637              	.LASF33:
+ 638 0186 5C5C6669 		.ascii	"\\\\files.auckland.ac.nz\\myhome\\Documents\\GitHub"
+ 638      6C65732E 
+ 638      6175636B 
+ 638      6C616E64 
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 16
 
 
- 640      4465635F 
- 640      325F436E 
- 640      7431365F 
- 640      536C6565 
- 641              	.LASF10:
- 642 01a3 75696E74 		.ascii	"uint16\000"
- 642      313600
- 643              	.LASF5:
- 644 01aa 6C6F6E67 		.ascii	"long unsigned int\000"
- 644      20756E73 
- 644      69676E65 
- 644      6420696E 
- 644      7400
- 645              	.LASF22:
- 646 01bc 51756164 		.ascii	"QuadDec_2_Cnt16_RestoreConfig\000"
- 646      4465635F 
- 646      325F436E 
- 646      7431365F 
- 646      52657374 
- 647              	.LASF28:
- 648 01da 51756164 		.ascii	"QuadDec_2_Cnt16_WriteControlRegister\000"
- 648      4465635F 
- 648      325F436E 
- 648      7431365F 
- 648      57726974 
- 649              	.LASF7:
- 650 01ff 6C6F6E67 		.ascii	"long long unsigned int\000"
- 650      206C6F6E 
- 650      6720756E 
- 650      7369676E 
- 650      65642069 
- 651              	.LASF33:
- 652 0216 433A5C55 		.ascii	"C:\\Users\\beckb\\Documents\\GitHub\\project-projec"
- 652      73657273 
- 652      5C626563 
- 652      6B625C44 
- 652      6F63756D 
- 653 0244 742D6772 		.ascii	"t-group-7\\301 Project\\Sensor Test.cydsn\000"
- 653      6F75702D 
- 653      375C3330 
- 653      31205072 
- 653      6F6A6563 
- 654              	.LASF16:
- 655 026c 73697A65 		.ascii	"sizetype\000"
- 655      74797065 
- 655      00
- 656              	.LASF17:
- 657 0275 436F756E 		.ascii	"CounterEnableState\000"
- 657      74657245 
- 657      6E61626C 
- 657      65537461 
- 657      746500
- 658              	.LASF6:
- 659 0288 6C6F6E67 		.ascii	"long long int\000"
- 659      206C6F6E 
- 659      6720696E 
- 659      7400
-ARM GAS  C:\Users\beckb\AppData\Local\Temp\cc9MAhKe.s 			page 17
+ 638      2E61632E 
+ 639 01b4 5C70726F 		.ascii	"\\project-project-group-7\\301 Project\\Sensor Test"
+ 639      6A656374 
+ 639      2D70726F 
+ 639      6A656374 
+ 639      2D67726F 
+ 640 01e4 2E637964 		.ascii	".cydsn\000"
+ 640      736E00
+ 641              	.LASF12:
+ 642 01eb 646F7562 		.ascii	"double\000"
+ 642      6C6500
+ 643              	.LASF23:
+ 644 01f2 51756164 		.ascii	"QuadDec_2_Cnt16_Sleep\000"
+ 644      4465635F 
+ 644      325F436E 
+ 644      7431365F 
+ 644      536C6565 
+ 645              	.LASF10:
+ 646 0208 75696E74 		.ascii	"uint16\000"
+ 646      313600
+ 647              	.LASF5:
+ 648 020f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 648      20756E73 
+ 648      69676E65 
+ 648      6420696E 
+ 648      7400
+ 649              	.LASF22:
+ 650 0221 51756164 		.ascii	"QuadDec_2_Cnt16_RestoreConfig\000"
+ 650      4465635F 
+ 650      325F436E 
+ 650      7431365F 
+ 650      52657374 
+ 651              	.LASF28:
+ 652 023f 51756164 		.ascii	"QuadDec_2_Cnt16_WriteControlRegister\000"
+ 652      4465635F 
+ 652      325F436E 
+ 652      7431365F 
+ 652      57726974 
+ 653              	.LASF7:
+ 654 0264 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 654      206C6F6E 
+ 654      6720756E 
+ 654      7369676E 
+ 654      65642069 
+ 655              	.LASF16:
+ 656 027b 73697A65 		.ascii	"sizetype\000"
+ 656      74797065 
+ 656      00
+ 657              	.LASF17:
+ 658 0284 436F756E 		.ascii	"CounterEnableState\000"
+ 658      74657245 
+ 658      6E61626C 
+ 658      65537461 
+ 658      746500
+ 659              	.LASF6:
+ 660 0297 6C6F6E67 		.ascii	"long long int\000"
+ 660      206C6F6E 
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccvp8EPh.s 			page 17
 
 
- 660              	.LASF13:
- 661 0296 63686172 		.ascii	"char\000"
- 661      00
- 662              	.LASF30:
- 663 029b 51756164 		.ascii	"QuadDec_2_Cnt16_Enable\000"
- 663      4465635F 
- 663      325F436E 
- 663      7431365F 
- 663      456E6162 
- 664              	.LASF8:
- 665 02b2 756E7369 		.ascii	"unsigned int\000"
- 665      676E6564 
- 665      20696E74 
- 665      00
- 666              	.LASF2:
- 667 02bf 73686F72 		.ascii	"short int\000"
- 667      7420696E 
- 667      7400
- 668              	.LASF32:
- 669 02c9 47656E65 		.ascii	"Generated_Source\\PSoC5\\QuadDec_2_Cnt16_PM.c\000"
- 669      72617465 
- 669      645F536F 
- 669      75726365 
- 669      5C50536F 
- 670              	.LASF4:
- 671 02f5 6C6F6E67 		.ascii	"long int\000"
- 671      20696E74 
- 671      00
- 672              	.LASF20:
- 673 02fe 51756164 		.ascii	"QuadDec_2_Cnt16_backupStruct\000"
- 673      4465635F 
- 673      325F436E 
- 673      7431365F 
- 673      6261636B 
- 674              	.LASF15:
- 675 031b 6C6F6E67 		.ascii	"long double\000"
- 675      20646F75 
- 675      626C6500 
- 676              	.LASF0:
- 677 0327 7369676E 		.ascii	"signed char\000"
- 677      65642063 
- 677      68617200 
- 678              	.LASF24:
- 679 0333 51756164 		.ascii	"QuadDec_2_Cnt16_Wakeup\000"
- 679      4465635F 
- 679      325F436E 
- 679      7431365F 
- 679      57616B65 
- 680              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 660      6720696E 
+ 660      7400
+ 661              	.LASF13:
+ 662 02a5 63686172 		.ascii	"char\000"
+ 662      00
+ 663              	.LASF30:
+ 664 02aa 51756164 		.ascii	"QuadDec_2_Cnt16_Enable\000"
+ 664      4465635F 
+ 664      325F436E 
+ 664      7431365F 
+ 664      456E6162 
+ 665              	.LASF8:
+ 666 02c1 756E7369 		.ascii	"unsigned int\000"
+ 666      676E6564 
+ 666      20696E74 
+ 666      00
+ 667              	.LASF2:
+ 668 02ce 73686F72 		.ascii	"short int\000"
+ 668      7420696E 
+ 668      7400
+ 669              	.LASF32:
+ 670 02d8 47656E65 		.ascii	"Generated_Source\\PSoC5\\QuadDec_2_Cnt16_PM.c\000"
+ 670      72617465 
+ 670      645F536F 
+ 670      75726365 
+ 670      5C50536F 
+ 671              	.LASF4:
+ 672 0304 6C6F6E67 		.ascii	"long int\000"
+ 672      20696E74 
+ 672      00
+ 673              	.LASF20:
+ 674 030d 51756164 		.ascii	"QuadDec_2_Cnt16_backupStruct\000"
+ 674      4465635F 
+ 674      325F436E 
+ 674      7431365F 
+ 674      6261636B 
+ 675              	.LASF15:
+ 676 032a 6C6F6E67 		.ascii	"long double\000"
+ 676      20646F75 
+ 676      626C6500 
+ 677              	.LASF0:
+ 678 0336 7369676E 		.ascii	"signed char\000"
+ 678      65642063 
+ 678      68617200 
+ 679              	.LASF24:
+ 680 0342 51756164 		.ascii	"QuadDec_2_Cnt16_Wakeup\000"
+ 680      4465635F 
+ 680      325F436E 
+ 680      7431365F 
+ 680      57616B65 
+ 681              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

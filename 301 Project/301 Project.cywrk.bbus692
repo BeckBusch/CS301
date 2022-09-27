@@ -32,6 +32,8 @@
 <v>301 Project\Sensor Test\Header Files\cyapicallbacks.h</v>
 <v>301 Project\Sensor Test\Source Files</v>
 <v>301 Project\Sensor Test\Source Files\main.c</v>
+<v>301 Project\Sensor Test\Source Files\motors.c</v>
+<v>301 Project\Sensor Test\Source Files\motors.h</v>
 <v>301 Project\Sensor Test\Generated_Source</v>
 <v>301 Project\Sensor Test\Generated_Source\PSoC5</v>
 </ExpandedNodeIds>
@@ -53,43 +55,43 @@
 <v>301 Project\Sensor Test\Header Files\cyapicallbacks.h</v>
 <v>301 Project\Sensor Test\Source Files</v>
 <v>301 Project\Sensor Test\Source Files\main.c</v>
+<v>301 Project\Sensor Test\Source Files\motors.c</v>
+<v>301 Project\Sensor Test\Source Files\motors.h</v>
 <v>301 Project\Sensor Test\Generated_Source</v>
 <v>301 Project\Sensor Test\Generated_Source\PSoC5</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_1_Bypass</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_1_IRQ</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_1_theACLK</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_2</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_2_Bypass</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_2_IRQ</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_2_theACLK</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1_FinalBuf</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1_IntClock</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1_IRQ</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1_TempBuf</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\Clock_ENCD</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\Clock_PWM</v>
 <v>301 Project\Sensor Test\Generated_Source\PSoC5\cy_boot</v>
 <v>301 Project\Sensor Test\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\input_signal_0</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\input_signal_1</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\input_signal_2</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\input_signal_3</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\input_signal_4</v>
 <v>301 Project\Sensor Test\Generated_Source\PSoC5\isr_eoc_1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\isr_eoc_2</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\LED_1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\LED_2</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\LED_3</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\singal_in_1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\singal_in_2</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cycodeshareexport.ld</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cycodeshareimport.ld</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cycodeshareimport.scat</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cydevice.h</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cydevice_trm.h</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cydevicegnu.inc</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cydevicegnu_trm.inc</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cydeviceiar.inc</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cydeviceiar_trm.inc</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cydevicerv.inc</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cydevicerv_trm.inc</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cydisabledsheets.h</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cyfitter.h</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cyfitter_cfg.c</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cyfitter_cfg.h</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cyfittergnu.inc</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cyfitteriar.inc</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cyfitterrv.inc</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\isr_speed_timer</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\L_ENCD</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\L_ENCD2</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\led</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\M1_IN1</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\M1_IN2</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\M2_IN1</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\M2_IN2</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\PWM_1</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\PWM_2</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\QuadDec_1</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\QuadDec_1_Cnt16</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\QuadDec_2</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\QuadDec_2_Cnt16</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\R_ENCD</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\R_ENCD2</v>
+<v>301 Project\Sensor Test\Generated_Source\PSoC5\Timer_1</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -114,18 +116,18 @@
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_Bypass.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_INT.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_IRQ.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_PM.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_theACLK.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_Bypass.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_INT.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_IRQ.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_PM.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_theACLK.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_FinalBuf_dma.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_INT.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_IntClock.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_IRQ.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_SAR.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_SAR_INT.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_SAR_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_TempBuf_dma.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_ENCD.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_PWM.lst</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
@@ -137,14 +139,39 @@
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\input_signal_0.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\input_signal_1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\input_signal_2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\input_signal_3.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\input_signal_4.lst</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_eoc_1.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_eoc_2.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\LED_1.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\LED_2.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\LED_3.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_speed_timer.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\L_ENCD.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\L_ENCD2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\led.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_IN1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_IN2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_IN1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_IN2.lst</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\singal_in_1.lst</v>
-<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\singal_in_2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\motors.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_2_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1_Cnt16.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1_Cnt16_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_2_Cnt16.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_2_Cnt16_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_2_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\R_ENCD.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\R_ENCD2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_1_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\timer_clock.lst</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Sensor Test.elf</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Sensor Test.hex</v>
 <v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Sensor Test.map</v>
@@ -155,8 +182,58 @@
 <VisibleNodeIds>
 <v>301 Project</v>
 <v>301 Project\Sensor Test</v>
-<v>301 Project\Sensor Test\Sensor Test.rpt</v>
-<v>301 Project\Sensor Test\Sensor Test_timing.html</v>
+<v>301 Project\Sensor Test\CortexM3</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_FinalBuf_dma.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_INT.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_IntClock.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_IRQ.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_SAR.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_SAR_INT.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_SAR_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_Seq_1_TempBuf_dma.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_ENCD.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_PWM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\input_signal_0.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\input_signal_1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\input_signal_2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\input_signal_3.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\input_signal_4.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_eoc_1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_speed_timer.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\L_ENCD.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\L_ENCD2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\led.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_IN1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_IN2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_IN1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_IN2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\motors.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_2.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_2_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1_Cnt16.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1_Cnt16_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1_PM.lst</v>
+<v>301 Project\Sensor Test\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_2.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -172,12 +249,24 @@
 <v>301 Project\Sensor Test\CY8C58LP Family Datasheet</v>
 <v>301 Project\Sensor Test\System Reference Guides</v>
 <v>301 Project\Sensor Test\System Reference Guides\cy_boot_v5_70</v>
-<v>301 Project\Sensor Test\ADC_SAR_v3_10</v>
-<v>301 Project\Sensor Test\ADC_SAR_v3_10\ADC_SAR_v3_10.pdf</v>
+<v>301 Project\Sensor Test\ADC_SAR_SEQ_v2_10.pdf</v>
+<v>301 Project\Sensor Test\cy_clock_v2_20</v>
+<v>301 Project\Sensor Test\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>301 Project\Sensor Test\cy_constant_v1_0.pdf</v>
 <v>301 Project\Sensor Test\cy_isr_v1_70</v>
 <v>301 Project\Sensor Test\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
 <v>301 Project\Sensor Test\cy_pins_v2_20</v>
 <v>301 Project\Sensor Test\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>301 Project\Sensor Test\not_v1_0</v>
+<v>301 Project\Sensor Test\not_v1_0\not_v1_0.pdf</v>
+<v>301 Project\Sensor Test\PWM_v3_30</v>
+<v>301 Project\Sensor Test\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>301 Project\Sensor Test\QuadDec_v3_0</v>
+<v>301 Project\Sensor Test\QuadDec_v3_0\QuadDec_v3_0.pdf</v>
+<v>301 Project\Sensor Test\Timer_v2_80.pdf</v>
+<v>301 Project\Sensor Test\UART_v2_50.pdf</v>
+<v>301 Project\Sensor Test\USBFS_v3_20.pdf</v>
+<v>301 Project\Sensor Test\ZeroTerminal.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>301 Project</v>
@@ -186,12 +275,24 @@
 <v>301 Project\Sensor Test\CY8C58LP Family Datasheet</v>
 <v>301 Project\Sensor Test\System Reference Guides</v>
 <v>301 Project\Sensor Test\System Reference Guides\cy_boot_v5_70</v>
-<v>301 Project\Sensor Test\ADC_SAR_v3_10</v>
-<v>301 Project\Sensor Test\ADC_SAR_v3_10\ADC_SAR_v3_10.pdf</v>
+<v>301 Project\Sensor Test\ADC_SAR_SEQ_v2_10.pdf</v>
+<v>301 Project\Sensor Test\cy_clock_v2_20</v>
+<v>301 Project\Sensor Test\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>301 Project\Sensor Test\cy_constant_v1_0.pdf</v>
 <v>301 Project\Sensor Test\cy_isr_v1_70</v>
 <v>301 Project\Sensor Test\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
 <v>301 Project\Sensor Test\cy_pins_v2_20</v>
 <v>301 Project\Sensor Test\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>301 Project\Sensor Test\not_v1_0</v>
+<v>301 Project\Sensor Test\not_v1_0\not_v1_0.pdf</v>
+<v>301 Project\Sensor Test\PWM_v3_30</v>
+<v>301 Project\Sensor Test\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>301 Project\Sensor Test\QuadDec_v3_0</v>
+<v>301 Project\Sensor Test\QuadDec_v3_0\QuadDec_v3_0.pdf</v>
+<v>301 Project\Sensor Test\Timer_v2_80.pdf</v>
+<v>301 Project\Sensor Test\UART_v2_50.pdf</v>
+<v>301 Project\Sensor Test\USBFS_v3_20.pdf</v>
+<v>301 Project\Sensor Test\ZeroTerminal.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -203,6 +304,9 @@
 <OpenDocs>
 <name v=".\Sensor Test.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\Sensor Test.cydsn\Sensor Test.cydwr" />
+<name v=".\Sensor Test.cydsn\main.c" />
+<name v=".\Sensor Test.cydsn\motors.c" />
+<name v=".\Sensor Test.cydsn\motors.h" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -210,7 +314,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 831" SelectedTabbedMdiWindow="4b165d10-2451-48cc-bb58-db189add9858"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="fc223762-6941-4955-8528-6aab89336f3c" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\301 Project\301 Project\Sensor Test.cydsn\TopDesign\TopDesign.cysch" Guid="4b165d10-2451-48cc-bb58-db189add9858" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\301 Project\301 Project\Sensor Test.cydsn\Sensor Test.cydwr" Guid="3d4d0f4c-952b-4bd4-b518-d37cb8568475" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 831" SelectedTabbedMdiWindow="a24eaf9d-b516-4180-8b3b-7bef32d9cde0"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="fc223762-6941-4955-8528-6aab89336f3c" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\TopDesign\TopDesign.cysch" Guid="a24eaf9d-b516-4180-8b3b-7bef32d9cde0" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Sensor Test.cydwr" Guid="88305145-f171-4baa-b5c1-2a696ba95c23" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\main.c" Guid="9a417329-86ff-4109-89e4-e37871d0491f" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\motors.c" Guid="44df473b-35aa-4168-89bd-7f90d2bad2de" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\motors.h" Guid="3e77660e-7a59-47fa-86c6-3caddc26b498" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
