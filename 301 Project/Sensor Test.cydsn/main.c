@@ -81,13 +81,9 @@ int main(void){
         sensor_state[i] = ON;
     }
     
-    //PWM_1_WritePeriod(250);
-    //PWM_1_Start();
-    //PWM_1_WriteCompare(83);
-                 
-    //PWM_2_WritePeriod(250);
-    //PWM_2_Start();
-    //PWM_2_WriteCompare(90);
+    PWM_1_Start();
+    PWM_2_Start();
+    stop();
     Timer_1_Start();
     //turn_left();
     //stop();
@@ -123,7 +119,7 @@ int main(void){
                 }
                 turn_left_sharp();
             } else if (state == EXIT_LEFT) {
-                if (turn_count < 5) {
+                if (turn_count < 3) {
                     turn_left();
                     turn_count++;
                 } else {
@@ -136,7 +132,7 @@ int main(void){
                 }
                 turn_right_sharp();
             } else if (state == EXIT_RIGHT) {
-                if (turn_count < 5) {
+                if (turn_count < 3) {
                     turn_right();
                     turn_count++;
                 } else {
@@ -144,7 +140,9 @@ int main(void){
                     state = FORWARD;
                 }
             } else if (state == FORWARD) {
-                if (sensor_state[FL] == OFF) {
+                if (sensor_state[FL] == OFF && sensor_state[FR] == OFF && sensor_state[CL] == OFF && sensor_state[CR] == OFF && sensor_state[BC] == OFF) {
+                    state = STOPPED;
+                } else if (sensor_state[FL] == OFF) {
                     turn_left();
                     disable_toggle = DISABLE_RIGHT_TURN;
                 } else if (sensor_state[FR] == OFF) {
@@ -152,24 +150,27 @@ int main(void){
                     disable_toggle = DISABLE_LEFT_TURN;
                     // WHEN THE RIGHT SENSOR IS FIXED, CHANGE sensor_state[CR] == OFF to sensor_state[CR] == ON
                 } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == OFF && sensor_state[CR] == ON && disable_toggle != DISABLE_LEFT_TURN) {
-                    stop();
                     state = TURNING_LEFT;
                     turn_left();
                     // WHEN THE RIGHT SENSOR IS FIXED UNCOMMENT THE BELOW
                 } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF && disable_toggle != DISABLE_RIGHT_TURN) {
-                    stop();
                     state = TURNING_RIGHT;
                     turn_right();
                 } else {
                     move_forward();
                 }
-            }                     
+            } else if (state == STOPPED) {
+                stop();
+                if (sensor_state[FL] == ON || sensor_state[FR] == ON || sensor_state[CL] == ON || sensor_state[CR] == ON || sensor_state[BC] == ON) {
+                    state = FORWARD;
+                }
+            }
             reset = 0;
             
         }     
         
         // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
-        if (pastValues[channel] >= 800) {
+        if (pastValues[channel] >= 500) {
             // Change the position in the sensor_state array depending on the channel being read.
             if (channel == 0) {
                 sensor_state[FL] = ON;
