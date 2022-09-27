@@ -1,95 +1,14 @@
---------------- Build Started: 09/26/2022 13:05:20 Project: Sensor Test, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
-cydsfit.exe -.appdatapath "C:\Users\User\AppData\Local\Cypress Semiconductor\PSoC Creator\4.2" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p "C:\Users\User\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Sensor Test.cyprj" -d CY8C5888LTI-LP097 -s "C:\Users\User\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Generated_Source\PSoC5" -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
-Elaborating Design...
-ADD: sdb.M0065: information: Analog terminal "vdac_ref" on ADC_SAR_SEQ_v2_10 is unconnected.
- * C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\ADC_SAR_SEQ_v2_10\PSoC5\ADC_SAR_SEQ_v2_10.cysch (Signal: vdac_ref)
- * C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\ADC_SAR_SEQ_v2_10\PSoC5\ADC_SAR_SEQ_v2_10.cysch (Shape_798)
- * C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\ADC_SAR_SEQ_v2_10\PSoC5\ADC_SAR_SEQ_v2_10.cysch (Shape_885)
-HDL Generation...
-Synthesis...
-Tech Mapping...
-ADD: pft.M0040: information: The following 2 pin(s) will be assigned a location by the fitter: \USBUART_1:Dm(0)\, \USBUART_1:Dp(0)\
-Analog Placement...
-Info: apr.M0002: Analog signal "Net_2726" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2727" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2729" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2731" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2732" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2734" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2736" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2737" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2739" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2741" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2742" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2744" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2746" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2747" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2749" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2751" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2752" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2754" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2756" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2757" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2759" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2761" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2762" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2764" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2766" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2767" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2769" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2771" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2772" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2774" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2776" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2777" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2779" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2781" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2782" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2784" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2786" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2787" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2789" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2791" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2792" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2794" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2796" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2797" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2798" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2799" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2800" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2801" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2802" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2803" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2804" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2805" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2806" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2807" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2808" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2809" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2810" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2811" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_2812" is connected to one terminal only. (App=cydsfit)
-Log: apr.M0058: The analog placement iterative improvement is 38% done. (App=cydsfit)
-Log: apr.M0058: The analog placement iterative improvement is 83% done. (App=cydsfit)
-Analog Routing...
-Analog Code Generation...
-Digital Placement...
-Digital Routing...
-Bitstream Generation...
-Bitstream Verification...
-Static timing analysis...
-API Generation...
-Dependency Generation...
-Cleanup...
-The compile step is up to date, no work needs to be done.
+--------------- Build Started: 09/27/2022 17:47:56 Project: Sensor Test, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+The code generation step is up to date.
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
 arm-none-eabi-ar.exe -rs ".\CortexM3\ARM_GCC_541\Debug\Sensor Test.a" .\CortexM3\ARM_GCC_541\Debug\CyDmac.o .\CortexM3\ARM_GCC_541\Debug\CyFlash.o .\CortexM3\ARM_GCC_541\Debug\CyLib.o .\CortexM3\ARM_GCC_541\Debug\cyPm.o .\CortexM3\ARM_GCC_541\Debug\CySpc.o .\CortexM3\ARM_GCC_541\Debug\cyutils.o .\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o .\CortexM3\ARM_GCC_541\Debug\isr_eoc_1.o .\CortexM3\ARM_GCC_541\Debug\Timer_1.o .\CortexM3\ARM_GCC_541\Debug\Timer_1_PM.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_PM.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_INT.o .\CortexM3\ARM_GCC_541\Debug\input_signal_0.o .\CortexM3\ARM_GCC_541\Debug\PWM_1.o .\CortexM3\ARM_GCC_541\Debug\PWM_1_PM.o .\CortexM3\ARM_GCC_541\Debug\input_signal_1.o .\CortexM3\ARM_GCC_541\Debug\input_signal_2.o .\CortexM3\ARM_GCC_541\Debug\PWM_2.o .\CortexM3\ARM_GCC_541\Debug\PWM_2_PM.o .\CortexM3\ARM_GCC_541\Debug\input_signal_3.o .\CortexM3\ARM_GCC_541\Debug\input_signal_4.o .\CortexM3\ARM_GCC_541\Debug\Clock_PWM.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR_INT.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR_PM.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_IntClock.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_TempBuf_dma.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_FinalBuf_dma.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_IRQ.o .\CortexM3\ARM_GCC_541\Debug\M2_IN2.o .\CortexM3\ARM_GCC_541\Debug\M1_IN2.o .\CortexM3\ARM_GCC_541\Debug\M2_IN1.o .\CortexM3\ARM_GCC_541\Debug\M1_IN1.o .\CortexM3\ARM_GCC_541\Debug\isr_timer_1.o .\CortexM3\ARM_GCC_541\Debug\timer_clock.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_audio.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_boot.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_cdc.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_cls.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_descr.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_drv.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_episr.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_hid.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_pm.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_std.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_vnd.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_midi.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_msc.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_Dm.o .\CortexM3\ARM_GCC_541\Debug\USBUART_1_Dp.o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o
 arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_541\Debug\Sensor Test.a
-arm-none-eabi-gcc.exe -Wl,--start-group -o "C:\Users\User\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\CortexM3\ARM_GCC_541\Debug\Sensor Test.elf" .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\motors.o .\CortexM3\ARM_GCC_541\Debug\USBUART.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o ".\CortexM3\ARM_GCC_541\Debug\Sensor Test.a" "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 "-Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/Sensor Test.map" -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
-cyelftool.exe -C "C:\Users\User\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\CortexM3\ARM_GCC_541\Debug\Sensor Test.elf" --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
+arm-none-eabi-gcc.exe -Wl,--start-group -o "\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\CortexM3\ARM_GCC_541\Debug\Sensor Test.elf" .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\motors.o .\CortexM3\ARM_GCC_541\Debug\USBUART.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o ".\CortexM3\ARM_GCC_541\Debug\Sensor Test.a" "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 "-Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/Sensor Test.map" -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
+cyelftool.exe -C "\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\CortexM3\ARM_GCC_541\Debug\Sensor Test.elf" --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
 No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
-cyelftool.exe -S "C:\Users\User\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\CortexM3\ARM_GCC_541\Debug\Sensor Test.elf"
-Flash used: 6960 of 262144 bytes (2.7%).
-SRAM used: 2825 of 65536 bytes (4.3%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Build Succeeded: 09/26/2022 13:05:46 ---------------
+cyelftool.exe -S "\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\CortexM3\ARM_GCC_541\Debug\Sensor Test.elf"
+Flash used: 4478 of 262144 bytes (1.7%).
+SRAM used: 2633 of 65536 bytes (4.0%). Stack: 2048 bytes. Heap: 128 bytes.
+--------------- Build Succeeded: 09/27/2022 17:47:59 ---------------

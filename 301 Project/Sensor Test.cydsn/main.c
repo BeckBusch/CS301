@@ -19,8 +19,6 @@
 #define TURNING_RIGHT 2
 #define EXIT_LEFT 3
 #define EXIT_RIGHT 4
-#define CONTINUE_FROM_LEFT 5
-#define CONTINUE_FROM_RIGHT 6
 
 // Prototype declarations.
 CY_ISR_PROTO(isr_eoc_1);
@@ -29,6 +27,7 @@ CY_ISR_PROTO(isr_timer_1);
 volatile uint8 channel = 0;
 
 uint32 i = 0;
+uint16 turn_count = 0;
 
 uint16 ADCResult;
 uint16 milliVoltReading;
@@ -93,11 +92,13 @@ int main(void){
         ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
         ADCResult = ADC_SAR_Seq_1_GetResult16(channel);
         milliVoltReading = ADC_SAR_Seq_1_CountsTo_mVolts(ADCResult);
+        /* disabled uart code
         char send[100];
         sprintf(send,"%d\r\n",milliVoltReading);
         USBUART_1_PutString(send);
         
         CyDelay(100);
+        */
         
         if (milliVoltReading > maxValues[channel]) {
             maxValues[channel] = milliVoltReading;
@@ -113,48 +114,43 @@ int main(void){
                 if (sensor_state[FL] == OFF) {
                     state = EXIT_LEFT;
                 }
-                turn_left();
+                turn_left_sharp();
             } else if (state == EXIT_LEFT) {
-                if (sensor_state[FR] == OFF) {
-                    state = CONTINUE_FROM_LEFT;
-                }
-                move_forward();
-            } else if (state == CONTINUE_FROM_LEFT) {
-                if (sensor_state[BC] == OFF) {
+                if (turn_count < 5) {
+                    turn_left();
+                    turn_count++;
+                } else {
+                    turn_count = 0;
                     state = FORWARD;
                 }
-                turn_right();
-                // WHEN THE RIGHT SENSOR IS FIXED UNCOMMENT THE BELOW
-            //} else if (state == TURNING_RIGHT) {
-            //    if (sensor_state[FR] == OFF) {
-            //        state = EXIT_RIGHT;
-            //    }
-            //    turn_right();
-            //} else if (state == EXIT_RIGHT) {
-            //    if (sensor_state[FL] == OFF) {
-            //        state = CONTINUE_FROM_RIGHT;
-            //    }
-            //    move_forward();
-            //} else if (state == CONTINUE_FROM_RIGHT) {
-            //    if (sensor_state[BC] == OFF) {
-            //        state = FORWARD;
-            //    }
-            //    turn_left();
+            } else if (state == TURNING_RIGHT) {
+                if (sensor_state[FR] == OFF) {
+                    state = EXIT_RIGHT;
+                }
+                turn_right_sharp();
+            } else if (state == EXIT_RIGHT) {
+                if (turn_count < 5) {
+                    turn_right();
+                    turn_count++;
+                } else {
+                    turn_count = 0;
+                    state = FORWARD;
+                }
             } else if (state == FORWARD) {
                 if (sensor_state[FL] == OFF) {
                     turn_left();
                 } else if (sensor_state[FR] == OFF) {
                     turn_right();
                     // WHEN THE RIGHT SENSOR IS FIXED, CHANGE sensor_state[CR] == OFF to sensor_state[CR] == ON
-                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == OFF && sensor_state[CR] == OFF) {
+                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == OFF && sensor_state[CR] == ON) {
                     stop();
                     state = TURNING_LEFT;
                     turn_left();
                     // WHEN THE RIGHT SENSOR IS FIXED UNCOMMENT THE BELOW
-                //} else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF) {
-                //    stop();
-                //    state = TURNING_RIGHT;
-                //    turn_right();
+                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF) {
+                    stop();
+                    state = TURNING_RIGHT;
+                    turn_right();
                 } else {
                     move_forward();
                 }
@@ -217,7 +213,7 @@ int main(void){
          * MOVE forward
          */
         
-        // Implementation of a state machine to control the robot.
+        // Implementation of a state machine    to control the robot.
 
     }
     return 0;

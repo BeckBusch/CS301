@@ -42,35 +42,53 @@ void move_forward() {
     
     // Forward movement.
     PWM_1_Start();
-    PWM_1_WriteCompare(83);  
+    PWM_1_WriteCompare(163);  
     PWM_2_Start();
-    PWM_2_WriteCompare(90);
+    PWM_2_WriteCompare(170);
     
 }
 
 void turn_left() {
     
     // Left turning.
-    PWM_1_WriteCompare(40);
+    PWM_1_WriteCompare(125);
     PWM_2_Start();
-    PWM_2_WriteCompare(90);
+    PWM_2_WriteCompare(170);
 
 }
 
 void turn_right() {
     
     // Right turning.
-    PWM_2_WriteCompare(40);
+    PWM_2_WriteCompare(125);
     PWM_1_Start();
-    PWM_1_WriteCompare(83);
+    PWM_1_WriteCompare(163);
     
 }    
+
+void turn_left_sharp() {
+    
+    // Left turning.
+    PWM_1_WriteCompare(75);
+    PWM_2_Start();
+    PWM_2_WriteCompare(170);
+    
+}
+
+void turn_right_sharp() {
+    
+    // Right turning.
+    PWM_2_WriteCompare(75);
+    PWM_1_Start();
+    PWM_1_WriteCompare(163);
+    
+}
 
 void stop() {
     
     // Stop both motors.
-    PWM_1_WriteCompare(40);
-    PWM_2_WriteCompare(40);
+    PWM_1_WriteCompare(125);
+    PWM_2_WriteCompare(125);
     //CyDelay(100);
     
 }

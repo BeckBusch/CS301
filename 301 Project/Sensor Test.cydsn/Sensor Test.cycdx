@@ -1037,8 +1037,8 @@
     <block name="bSAR_SEQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
   <block name="input_signal_0" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="cy_constant_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="cy_constant_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="not_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="M2_IN1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="isr_eoc_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="PWM_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">

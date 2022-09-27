@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
   28:Generated_Source\PSoC5/ADC_SAR_Seq_1_SAR_PM.c **** 
   29:Generated_Source\PSoC5/ADC_SAR_Seq_1_SAR_PM.c **** 
   30:Generated_Source\PSoC5/ADC_SAR_Seq_1_SAR_PM.c **** /*******************************************************************************
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 2
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 2
 
 
   31:Generated_Source\PSoC5/ADC_SAR_Seq_1_SAR_PM.c **** * Function Name: ADC_SAR_Seq_1_SAR_SaveConfig
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
   47              		@ args = 0, pretend = 0, frame = 0
   48              		@ frame_needed = 0, uses_anonymous_args = 0
   49              		@ link register save eliminated.
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 3
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 3
 
 
   50 0000 7047     		bx	lr
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
   94:Generated_Source\PSoC5/ADC_SAR_Seq_1_SAR_PM.c ****         if((ADC_SAR_Seq_1_SAR_SAR_CSR0_REG & ADC_SAR_Seq_1_SAR_SAR_SOF_START_CONV) != 0u)
   76              		.loc 1 94 0
   77 000c 0A4B     		ldr	r3, .L9+4
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 4
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 4
 
 
   78 000e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  108:Generated_Source\PSoC5/ADC_SAR_Seq_1_SAR_PM.c **** }
  109:Generated_Source\PSoC5/ADC_SAR_Seq_1_SAR_PM.c **** 
  110:Generated_Source\PSoC5/ADC_SAR_Seq_1_SAR_PM.c **** 
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 5
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 5
 
 
  111:Generated_Source\PSoC5/ADC_SAR_Seq_1_SAR_PM.c **** /*******************************************************************************
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  143 001a 08BD     		pop	{r3, pc}
  144              	.L15:
  145              		.align	2
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 6
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 6
 
 
  146              	.L14:
@@ -324,48 +324,48 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  166 0006 00000000 		.4byte	.Ldebug_abbrev0
  167 000a 04       		.byte	0x4
  168 000b 01       		.uleb128 0x1
- 169 000c F3000000 		.4byte	.LASF22
+ 169 000c B2000000 		.4byte	.LASF22
  170 0010 0C       		.byte	0xc
- 171 0011 E0010000 		.4byte	.LASF23
- 172 0015 A4000000 		.4byte	.LASF24
+ 171 0011 F6010000 		.4byte	.LASF23
+ 172 0015 6A010000 		.4byte	.LASF24
  173 0019 00000000 		.4byte	.Ldebug_ranges0+0
  174 001d 00000000 		.4byte	0
  175 0021 00000000 		.4byte	.Ldebug_line0
  176 0025 02       		.uleb128 0x2
  177 0026 01       		.byte	0x1
  178 0027 06       		.byte	0x6
- 179 0028 A2020000 		.4byte	.LASF0
+ 179 0028 B8020000 		.4byte	.LASF0
  180 002c 02       		.uleb128 0x2
  181 002d 01       		.byte	0x1
  182 002e 08       		.byte	0x8
- 183 002f CB010000 		.4byte	.LASF1
+ 183 002f A4000000 		.4byte	.LASF1
  184 0033 02       		.uleb128 0x2
  185 0034 02       		.byte	0x2
  186 0035 05       		.byte	0x5
- 187 0036 45020000 		.4byte	.LASF2
+ 187 0036 5B020000 		.4byte	.LASF2
  188 003a 02       		.uleb128 0x2
  189 003b 02       		.byte	0x2
  190 003c 07       		.byte	0x7
- 191 003d 98010000 		.4byte	.LASF3
+ 191 003d 57010000 		.4byte	.LASF3
  192 0041 02       		.uleb128 0x2
  193 0042 04       		.byte	0x4
  194 0043 05       		.byte	0x5
- 195 0044 74020000 		.4byte	.LASF4
+ 195 0044 8A020000 		.4byte	.LASF4
  196 0048 02       		.uleb128 0x2
  197 0049 04       		.byte	0x4
  198 004a 07       		.byte	0x7
- 199 004b 86010000 		.4byte	.LASF5
+ 199 004b 45010000 		.4byte	.LASF5
  200 004f 02       		.uleb128 0x2
  201 0050 08       		.byte	0x8
  202 0051 05       		.byte	0x5
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 7
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 7
 
 
- 203 0052 32020000 		.4byte	.LASF6
+ 203 0052 48020000 		.4byte	.LASF6
  204 0056 02       		.uleb128 0x2
  205 0057 08       		.byte	0x8
  206 0058 07       		.byte	0x7
- 207 0059 1B020000 		.4byte	.LASF7
+ 207 0059 31020000 		.4byte	.LASF7
  208 005d 03       		.uleb128 0x3
  209 005e 04       		.byte	0x4
  210 005f 05       		.byte	0x5
@@ -373,9 +373,9 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  212 0064 02       		.uleb128 0x2
  213 0065 04       		.byte	0x4
  214 0066 07       		.byte	0x7
- 215 0067 0E020000 		.4byte	.LASF8
+ 215 0067 24020000 		.4byte	.LASF8
  216 006b 04       		.uleb128 0x4
- 217 006c 4F020000 		.4byte	.LASF12
+ 217 006c 65020000 		.4byte	.LASF12
  218 0070 02       		.byte	0x2
  219 0071 E401     		.2byte	0x1e4
  220 0073 2C000000 		.4byte	0x2c
@@ -386,13 +386,13 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  225 007e 02       		.uleb128 0x2
  226 007f 08       		.byte	0x8
  227 0080 04       		.byte	0x4
- 228 0081 D9010000 		.4byte	.LASF10
+ 228 0081 EF010000 		.4byte	.LASF10
  229 0085 02       		.uleb128 0x2
  230 0086 01       		.byte	0x1
  231 0087 08       		.byte	0x8
- 232 0088 40020000 		.4byte	.LASF11
+ 232 0088 56020000 		.4byte	.LASF11
  233 008c 04       		.uleb128 0x4
- 234 008d 81010000 		.4byte	.LASF13
+ 234 008d 40010000 		.4byte	.LASF13
  235 0091 02       		.byte	0x2
  236 0092 8E02     		.2byte	0x28e
  237 0094 98000000 		.4byte	0x98
@@ -404,7 +404,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  243 00a0 2A       		.byte	0x2a
  244 00a1 B2000000 		.4byte	0xb2
  245 00a5 07       		.uleb128 0x7
- 246 00a6 7D020000 		.4byte	.LASF25
+ 246 00a6 93020000 		.4byte	.LASF25
  247 00aa 03       		.byte	0x3
  248 00ab 2C       		.byte	0x2c
  249 00ac 6B000000 		.4byte	0x6b
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  257 00bd 09       		.uleb128 0x9
  258 00be 87000000 		.4byte	.LASF15
  259 00c2 01       		.byte	0x1
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 8
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 8
 
 
  260 00c3 2C       		.byte	0x2c
@@ -427,7 +427,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  263 00cc 01       		.uleb128 0x1
  264 00cd 9C       		.byte	0x9c
  265 00ce 09       		.uleb128 0x9
- 266 00cf AB010000 		.4byte	.LASF16
+ 266 00cf CF010000 		.4byte	.LASF16
  267 00d3 01       		.byte	0x1
  268 00d4 40       		.byte	0x40
  269 00d5 00000000 		.4byte	.LFB1
@@ -477,16 +477,16 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  313 0140 03       		.byte	0x3
  314 0141 35       		.byte	0x35
  315 0142 0D       		.uleb128 0xd
- 316 0143 89020000 		.4byte	.LASF20
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 9
+ 316 0143 9F020000 		.4byte	.LASF20
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 9
 
 
- 317 0147 89020000 		.4byte	.LASF20
+ 317 0147 9F020000 		.4byte	.LASF20
  318 014b 03       		.byte	0x3
  319 014c 44       		.byte	0x44
  320 014d 0D       		.uleb128 0xd
- 321 014e 55020000 		.4byte	.LASF21
- 322 0152 55020000 		.4byte	.LASF21
+ 321 014e 6B020000 		.4byte	.LASF21
+ 322 0152 6B020000 		.4byte	.LASF21
  323 0156 03       		.byte	0x3
  324 0157 D1       		.byte	0xd1
  325 0158 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  371 002b 00       		.byte	0
  372 002c 03       		.uleb128 0x3
  373 002d 0E       		.uleb128 0xe
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 10
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 10
 
 
  374 002e 3A       		.uleb128 0x3a
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  428 0064 00       		.byte	0
  429 0065 00       		.byte	0
  430 0066 09       		.uleb128 0x9
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 11
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 11
 
 
  431 0067 2E       		.uleb128 0x2e
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  485 00a1 00       		.byte	0
  486 00a2 00       		.byte	0
  487 00a3 0C       		.uleb128 0xc
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 12
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 12
 
 
  488 00a4 34       		.uleb128 0x34
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  542 0008 00000000 		.4byte	.LFB1
  543 000c 02000000 		.4byte	.LFE1
  544 0010 00000000 		.4byte	.LFB2
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 13
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 13
 
 
  545 0014 40000000 		.4byte	.LFE2
@@ -772,122 +772,124 @@ ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 1
  566      5365715F 
  566      315F5341 
  566      525F5361 
- 567              	.LASF24:
- 568 00a4 433A5C55 		.ascii	"C:\\Users\\User\\Documents\\3rd year\\sem2\\compsys"
- 568      73657273 
- 568      5C557365 
- 568      725C446F 
- 568      63756D65 
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 14
+ 567              	.LASF1:
+ 568 00a4 756E7369 		.ascii	"unsigned char\000"
+ 568      676E6564 
+ 568      20636861 
+ 568      7200
+ 569              	.LASF22:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 14
 
 
- 569 00d1 3330315C 		.ascii	"301\\301 Project\\Sensor Test.cydsn\000"
- 569      33303120 
- 569      50726F6A 
- 569      6563745C 
- 569      53656E73 
- 570              	.LASF22:
- 571 00f3 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 571      43313120 
- 571      352E342E 
- 571      31203230 
- 571      31363036 
- 572 0126 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 572      20726576 
- 572      6973696F 
- 572      6E203233 
- 572      37373135 
- 573 0159 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 573      66756E63 
- 573      74696F6E 
- 573      2D736563 
- 573      74696F6E 
- 574              	.LASF13:
- 575 0181 72656738 		.ascii	"reg8\000"
- 575      00
- 576              	.LASF5:
- 577 0186 6C6F6E67 		.ascii	"long unsigned int\000"
- 577      20756E73 
- 577      69676E65 
- 577      6420696E 
- 577      7400
- 578              	.LASF3:
- 579 0198 73686F72 		.ascii	"short unsigned int\000"
- 579      7420756E 
- 579      7369676E 
- 579      65642069 
- 579      6E7400
- 580              	.LASF16:
- 581 01ab 4144435F 		.ascii	"ADC_SAR_Seq_1_SAR_RestoreConfig\000"
- 581      5341525F 
- 581      5365715F 
- 581      315F5341 
- 581      525F5265 
- 582              	.LASF1:
- 583 01cb 756E7369 		.ascii	"unsigned char\000"
- 583      676E6564 
- 583      20636861 
- 583      7200
- 584              	.LASF10:
- 585 01d9 646F7562 		.ascii	"double\000"
- 585      6C6500
- 586              	.LASF23:
- 587 01e0 47656E65 		.ascii	"Generated_Source\\PSoC5\\ADC_SAR_Seq_1_SAR_PM.c\000"
- 587      72617465 
- 587      645F536F 
- 587      75726365 
- 587      5C50536F 
- 588              	.LASF8:
-ARM GAS  C:\Users\User\AppData\Local\Temp\ccMakbhi.s 			page 15
+ 570 00b2 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 570      43313120 
+ 570      352E342E 
+ 570      31203230 
+ 570      31363036 
+ 571 00e5 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 571      20726576 
+ 571      6973696F 
+ 571      6E203233 
+ 571      37373135 
+ 572 0118 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 572      66756E63 
+ 572      74696F6E 
+ 572      2D736563 
+ 572      74696F6E 
+ 573              	.LASF13:
+ 574 0140 72656738 		.ascii	"reg8\000"
+ 574      00
+ 575              	.LASF5:
+ 576 0145 6C6F6E67 		.ascii	"long unsigned int\000"
+ 576      20756E73 
+ 576      69676E65 
+ 576      6420696E 
+ 576      7400
+ 577              	.LASF3:
+ 578 0157 73686F72 		.ascii	"short unsigned int\000"
+ 578      7420756E 
+ 578      7369676E 
+ 578      65642069 
+ 578      6E7400
+ 579              	.LASF24:
+ 580 016a 5C5C6669 		.ascii	"\\\\files.auckland.ac.nz\\myhome\\Documents\\GitHub"
+ 580      6C65732E 
+ 580      6175636B 
+ 580      6C616E64 
+ 580      2E61632E 
+ 581 0198 5C70726F 		.ascii	"\\project-project-group-7\\301 Project\\Sensor Test"
+ 581      6A656374 
+ 581      2D70726F 
+ 581      6A656374 
+ 581      2D67726F 
+ 582 01c8 2E637964 		.ascii	".cydsn\000"
+ 582      736E00
+ 583              	.LASF16:
+ 584 01cf 4144435F 		.ascii	"ADC_SAR_Seq_1_SAR_RestoreConfig\000"
+ 584      5341525F 
+ 584      5365715F 
+ 584      315F5341 
+ 584      525F5265 
+ 585              	.LASF10:
+ 586 01ef 646F7562 		.ascii	"double\000"
+ 586      6C6500
+ 587              	.LASF23:
+ 588 01f6 47656E65 		.ascii	"Generated_Source\\PSoC5\\ADC_SAR_Seq_1_SAR_PM.c\000"
+ 588      72617465 
+ 588      645F536F 
+ 588      75726365 
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccryBECv.s 			page 15
 
 
- 589 020e 756E7369 		.ascii	"unsigned int\000"
- 589      676E6564 
- 589      20696E74 
- 589      00
- 590              	.LASF7:
- 591 021b 6C6F6E67 		.ascii	"long long unsigned int\000"
- 591      206C6F6E 
- 591      6720756E 
- 591      7369676E 
- 591      65642069 
- 592              	.LASF6:
- 593 0232 6C6F6E67 		.ascii	"long long int\000"
- 593      206C6F6E 
- 593      6720696E 
- 593      7400
- 594              	.LASF11:
- 595 0240 63686172 		.ascii	"char\000"
- 595      00
- 596              	.LASF2:
- 597 0245 73686F72 		.ascii	"short int\000"
- 597      7420696E 
- 597      7400
- 598              	.LASF12:
- 599 024f 75696E74 		.ascii	"uint8\000"
- 599      3800
- 600              	.LASF21:
- 601 0255 4144435F 		.ascii	"ADC_SAR_Seq_1_SAR_StartConvert\000"
- 601      5341525F 
- 601      5365715F 
- 601      315F5341 
- 601      525F5374 
- 602              	.LASF4:
- 603 0274 6C6F6E67 		.ascii	"long int\000"
- 603      20696E74 
- 603      00
- 604              	.LASF25:
- 605 027d 656E6162 		.ascii	"enableState\000"
- 605      6C655374 
- 605      61746500 
- 606              	.LASF20:
- 607 0289 4144435F 		.ascii	"ADC_SAR_Seq_1_SAR_Enable\000"
- 607      5341525F 
- 607      5365715F 
- 607      315F5341 
- 607      525F456E 
- 608              	.LASF0:
- 609 02a2 7369676E 		.ascii	"signed char\000"
- 609      65642063 
- 609      68617200 
- 610              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 588      5C50536F 
+ 589              	.LASF8:
+ 590 0224 756E7369 		.ascii	"unsigned int\000"
+ 590      676E6564 
+ 590      20696E74 
+ 590      00
+ 591              	.LASF7:
+ 592 0231 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 592      206C6F6E 
+ 592      6720756E 
+ 592      7369676E 
+ 592      65642069 
+ 593              	.LASF6:
+ 594 0248 6C6F6E67 		.ascii	"long long int\000"
+ 594      206C6F6E 
+ 594      6720696E 
+ 594      7400
+ 595              	.LASF11:
+ 596 0256 63686172 		.ascii	"char\000"
+ 596      00
+ 597              	.LASF2:
+ 598 025b 73686F72 		.ascii	"short int\000"
+ 598      7420696E 
+ 598      7400
+ 599              	.LASF12:
+ 600 0265 75696E74 		.ascii	"uint8\000"
+ 600      3800
+ 601              	.LASF21:
+ 602 026b 4144435F 		.ascii	"ADC_SAR_Seq_1_SAR_StartConvert\000"
+ 602      5341525F 
+ 602      5365715F 
+ 602      315F5341 
+ 602      525F5374 
+ 603              	.LASF4:
+ 604 028a 6C6F6E67 		.ascii	"long int\000"
+ 604      20696E74 
+ 604      00
+ 605              	.LASF25:
+ 606 0293 656E6162 		.ascii	"enableState\000"
+ 606      6C655374 
+ 606      61746500 
+ 607              	.LASF20:
+ 608 029f 4144435F 		.ascii	"ADC_SAR_Seq_1_SAR_Enable\000"
+ 608      5341525F 
+ 608      5365715F 
+ 608      315F5341 
+ 608      525F456E 
+ 609              	.LASF0:
+ 610 02b8 7369676E 		.ascii	"signed char\000"
+ 610      65642063 
+ 610      68617200 
+ 611              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

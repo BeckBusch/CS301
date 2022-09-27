@@ -16,6 +16,8 @@
 void move_forward();
 void turn_left();
 void turn_right();
+void turn_left_sharp();
+void turn_right_sharp();
 void stop();
 
 /* [] END OF FILE */

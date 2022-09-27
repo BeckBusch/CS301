@@ -11830,65 +11830,65 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  506              	.set timer_clock__PM_STBY_MSK, 0x01
  507              	
  508              	/* ADC_SAR_Seq_1 */
- 509              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_CONTROL_AUX_CTL_REG, CYREG_B0_UDB07_08_ACTL
- 510              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_CONTROL_CONTROL_REG, CYREG_B0_UDB07_08_CTL
- 511              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_CONTROL_COUNT_REG, CYREG_B0_UDB07_08_CTL
- 512              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_COUNT_CONTROL_REG, CYREG_B0_UDB07_08_CTL
- 513              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_COUNT_COUNT_REG, CYREG_B0_UDB07_08_CTL
- 514              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_MASK_MASK_REG, CYREG_B0_UDB07_08_MSK
- 515              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_MASK_PERIOD_REG, CYREG_B0_UDB07_08_MSK
- 516              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_PERIOD_MASK_REG, CYREG_B0_UDB07_08_MSK
- 517              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_PERIOD_PERIOD_REG, CYREG_B0_UDB07_08_MSK
- 518              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__CONTROL_AUX_CTL_REG, CYREG_B0_UDB07_ACTL
- 519              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__CONTROL_REG, CYREG_B0_UDB07_CTL
- 520              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__CONTROL_ST_REG, CYREG_B0_UDB07_ST_CTL
- 521              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__COUNT_REG, CYREG_B0_UDB07_CTL
- 522              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__COUNT_ST_REG, CYREG_B0_UDB07_ST_CTL
- 523              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__MASK_CTL_AUX_CTL_REG, CYREG_B0_UDB07_MSK_ACTL
- 524              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__PER_CTL_AUX_CTL_REG, CYREG_B0_UDB07_MSK_ACTL
- 525              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__PERIOD_REG, CYREG_B0_UDB07_MSK
- 526              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__16BIT_STATUS_AUX_CTL_REG, CYREG_B0_UDB07_08_ACTL
- 527              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__16BIT_STATUS_REG, CYREG_B0_UDB07_08_ST
- 528              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__MASK_REG, CYREG_B0_UDB07_MSK
- 529              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__MASK_ST_AUX_CTL_REG, CYREG_B0_UDB07_MSK_ACTL
- 530              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__PER_ST_AUX_CTL_REG, CYREG_B0_UDB07_MSK_ACTL
- 531              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__STATUS_AUX_CTL_REG, CYREG_B0_UDB07_ACTL
- 532              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__STATUS_CNT_REG, CYREG_B0_UDB07_ST_CTL
- 533              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__STATUS_CONTROL_REG, CYREG_B0_UDB07_ST_CTL
- 534              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__STATUS_REG, CYREG_B0_UDB07_ST
+ 509              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_CONTROL_AUX_CTL_REG, CYREG_B0_UDB09_10_ACTL
+ 510              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_CONTROL_CONTROL_REG, CYREG_B0_UDB09_10_CTL
+ 511              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_CONTROL_COUNT_REG, CYREG_B0_UDB09_10_CTL
+ 512              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_COUNT_CONTROL_REG, CYREG_B0_UDB09_10_CTL
+ 513              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_COUNT_COUNT_REG, CYREG_B0_UDB09_10_CTL
+ 514              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_MASK_MASK_REG, CYREG_B0_UDB09_10_MSK
+ 515              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_MASK_PERIOD_REG, CYREG_B0_UDB09_10_MSK
+ 516              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_PERIOD_MASK_REG, CYREG_B0_UDB09_10_MSK
+ 517              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__16BIT_PERIOD_PERIOD_REG, CYREG_B0_UDB09_10_MSK
+ 518              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__CONTROL_AUX_CTL_REG, CYREG_B0_UDB09_ACTL
+ 519              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__CONTROL_REG, CYREG_B0_UDB09_CTL
+ 520              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__CONTROL_ST_REG, CYREG_B0_UDB09_ST_CTL
+ 521              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__COUNT_REG, CYREG_B0_UDB09_CTL
+ 522              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__COUNT_ST_REG, CYREG_B0_UDB09_ST_CTL
+ 523              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__MASK_CTL_AUX_CTL_REG, CYREG_B0_UDB09_MSK_ACTL
+ 524              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__PER_CTL_AUX_CTL_REG, CYREG_B0_UDB09_MSK_ACTL
+ 525              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter__PERIOD_REG, CYREG_B0_UDB09_MSK
+ 526              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__16BIT_STATUS_AUX_CTL_REG, CYREG_B0_UDB09_10_ACTL
+ 527              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__16BIT_STATUS_REG, CYREG_B0_UDB09_10_ST
+ 528              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__MASK_REG, CYREG_B0_UDB09_MSK
+ 529              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__MASK_ST_AUX_CTL_REG, CYREG_B0_UDB09_MSK_ACTL
+ 530              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__PER_ST_AUX_CTL_REG, CYREG_B0_UDB09_MSK_ACTL
+ 531              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__STATUS_AUX_CTL_REG, CYREG_B0_UDB09_ACTL
+ 532              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__STATUS_CNT_REG, CYREG_B0_UDB09_ST_CTL
+ 533              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__STATUS_CONTROL_REG, CYREG_B0_UDB09_ST_CTL
+ 534              	.set ADC_SAR_Seq_1_bSAR_SEQ_ChannelCounter_ST__STATUS_REG, CYREG_B0_UDB09_ST
  535              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__0__MASK, 0x01
  536              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__0__POS, 0
  537              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__1__MASK, 0x02
  538              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__1__POS, 1
- 539              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B1_UDB08_09_ACTL
- 540              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_CONTROL_CONTROL_REG, CYREG_B1_UDB08_09_CTL
- 541              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_CONTROL_COUNT_REG, CYREG_B1_UDB08_09_CTL
- 542              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_COUNT_CONTROL_REG, CYREG_B1_UDB08_09_CTL
- 543              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_COUNT_COUNT_REG, CYREG_B1_UDB08_09_CTL
- 544              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_MASK_MASK_REG, CYREG_B1_UDB08_09_MSK
- 545              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_MASK_PERIOD_REG, CYREG_B1_UDB08_09_MSK
- 546              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_PERIOD_MASK_REG, CYREG_B1_UDB08_09_MSK
- 547              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_PERIOD_PERIOD_REG, CYREG_B1_UDB08_09_MSK
- 548              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__CONTROL_AUX_CTL_REG, CYREG_B1_UDB08_ACTL
- 549              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__CONTROL_REG, CYREG_B1_UDB08_CTL
- 550              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__CONTROL_ST_REG, CYREG_B1_UDB08_ST_CTL
- 551              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__COUNT_REG, CYREG_B1_UDB08_CTL
- 552              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__COUNT_ST_REG, CYREG_B1_UDB08_ST_CTL
+ 539              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_CONTROL_AUX_CTL_REG, CYREG_B0_UDB10_11_ACTL
+ 540              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_CONTROL_CONTROL_REG, CYREG_B0_UDB10_11_CTL
+ 541              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_CONTROL_COUNT_REG, CYREG_B0_UDB10_11_CTL
+ 542              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_COUNT_CONTROL_REG, CYREG_B0_UDB10_11_CTL
+ 543              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_COUNT_COUNT_REG, CYREG_B0_UDB10_11_CTL
+ 544              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_MASK_MASK_REG, CYREG_B0_UDB10_11_MSK
+ 545              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_MASK_PERIOD_REG, CYREG_B0_UDB10_11_MSK
+ 546              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_PERIOD_MASK_REG, CYREG_B0_UDB10_11_MSK
+ 547              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__16BIT_PERIOD_PERIOD_REG, CYREG_B0_UDB10_11_MSK
+ 548              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__CONTROL_AUX_CTL_REG, CYREG_B0_UDB10_ACTL
+ 549              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__CONTROL_REG, CYREG_B0_UDB10_CTL
+ 550              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__CONTROL_ST_REG, CYREG_B0_UDB10_ST_CTL
+ 551              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__COUNT_REG, CYREG_B0_UDB10_CTL
+ 552              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__COUNT_ST_REG, CYREG_B0_UDB10_ST_CTL
  553              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__MASK, 0x03
- 554              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__MASK_CTL_AUX_CTL_REG, CYREG_B1_UDB08_MSK_ACTL
- 555              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__PER_CTL_AUX_CTL_REG, CYREG_B1_UDB08_MSK_ACTL
- 556              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__PERIOD_REG, CYREG_B1_UDB08_MSK
+ 554              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__MASK_CTL_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
+ 555              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__PER_CTL_AUX_CTL_REG, CYREG_B0_UDB10_MSK_ACTL
+ 556              	.set ADC_SAR_Seq_1_bSAR_SEQ_CtrlReg__PERIOD_REG, CYREG_B0_UDB10_MSK
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 199
 
 
  557              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__0__MASK, 0x01
  558              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__0__POS, 0
- 559              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__16BIT_STATUS_AUX_CTL_REG, CYREG_B1_UDB07_08_ACTL
- 560              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__16BIT_STATUS_REG, CYREG_B1_UDB07_08_ST
+ 559              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__16BIT_STATUS_AUX_CTL_REG, CYREG_B0_UDB11_12_ACTL
+ 560              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__16BIT_STATUS_REG, CYREG_B0_UDB11_12_ST
  561              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__MASK, 0x01
- 562              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__MASK_REG, CYREG_B1_UDB07_MSK
- 563              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__STATUS_AUX_CTL_REG, CYREG_B1_UDB07_ACTL
- 564              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__STATUS_REG, CYREG_B1_UDB07_ST
+ 562              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__MASK_REG, CYREG_B0_UDB11_MSK
+ 563              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__STATUS_AUX_CTL_REG, CYREG_B0_UDB11_ACTL
+ 564              	.set ADC_SAR_Seq_1_bSAR_SEQ_EOCSts__STATUS_REG, CYREG_B0_UDB11_ST
  565              	.set ADC_SAR_Seq_1_FinalBuf__DRQ_CTL, CYREG_IDMUX_DRQ_CTL0
  566              	.set ADC_SAR_Seq_1_FinalBuf__DRQ_NUMBER, 0
  567              	.set ADC_SAR_Seq_1_FinalBuf__NUMBEROF_TDS, 0
@@ -12056,14 +12056,14 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  723              	.set input_signal_2__SLW, CYREG_PRT2_SLW
  724              	
  725              	/* input_signal_3 */
- 726              	.set input_signal_3__0__INTTYPE, CYREG_PICU0_INTTYPE3
- 727              	.set input_signal_3__0__MASK, 0x08
+ 726              	.set input_signal_3__0__INTTYPE, CYREG_PICU0_INTTYPE0
+ 727              	.set input_signal_3__0__MASK, 0x01
 ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 202
 
 
- 728              	.set input_signal_3__0__PC, CYREG_PRT0_PC3
+ 728              	.set input_signal_3__0__PC, CYREG_PRT0_PC0
  729              	.set input_signal_3__0__PORT, 0
- 730              	.set input_signal_3__0__SHIFT, 3
+ 730              	.set input_signal_3__0__SHIFT, 0
  731              	.set input_signal_3__AG, CYREG_PRT0_AG
  732              	.set input_signal_3__AMUX, CYREG_PRT0_AMUX
  733              	.set input_signal_3__BIE, CYREG_PRT0_BIE
@@ -12078,7 +12078,7 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  742              	.set input_signal_3__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU0_BASE
  743              	.set input_signal_3__LCD_COM_SEG, CYREG_PRT0_LCD_COM_SEG
  744              	.set input_signal_3__LCD_EN, CYREG_PRT0_LCD_EN
- 745              	.set input_signal_3__MASK, 0x08
+ 745              	.set input_signal_3__MASK, 0x01
  746              	.set input_signal_3__PORT, 0
  747              	.set input_signal_3__PRT, CYREG_PRT0_PRT
  748              	.set input_signal_3__PRTDSI__CAPS_SEL, CYREG_PRT0_CAPS_SEL
@@ -12089,7 +12089,7 @@ ARM GAS  Generated_Source\PSoC5\CyBootAsmGnu.s 			page 1
  753              	.set input_signal_3__PRTDSI__OUT_SEL1, CYREG_PRT0_OUT_SEL1
  754              	.set input_signal_3__PRTDSI__SYNC_OUT, CYREG_PRT0_SYNC_OUT
  755              	.set input_signal_3__PS, CYREG_PRT0_PS
- 756              	.set input_signal_3__SHIFT, 3
+ 756              	.set input_signal_3__SHIFT, 0
  757              	.set input_signal_3__SLW, CYREG_PRT0_SLW
  758              	
  759              	/* input_signal_4 */

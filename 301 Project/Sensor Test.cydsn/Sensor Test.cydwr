@@ -361,6 +361,8 @@
       <Data key="33ffa339-5dc8-4938-8d7f-629e577b4d9f" value="M2_IN1" />
       <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="input_signal_1" />
       <Data key="a76eef87-3f3a-4245-b69e-9b2f7960d2ef" value="LED_3" />
+      <Data key="beca5e2d-f70f-4900-a4db-7eca1ed3126e/8b77a6c4-10a0-4390-971c-672353e2a49c" value="USBUART_1_Dm" />
+      <Data key="beca5e2d-f70f-4900-a4db-7eca1ed3126e/618a72fc-5ddd-4df5-958f-a3d55102db42" value="USBUART_1_Dp" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="Pin_1" />
       <Data key="f2e86151-f646-40e6-a633-d5cc510bc9b7" value="singal_in_2" />
       <Data key="f8cecd40-39d8-41ef-b797-debb0ee151e8/16a808f6-2e13-45b9-bce0-b001c8655113" value="ADC_SAR_2_Bypass" />
@@ -3509,9 +3511,10 @@
     </Group>
     <Group key="fe1e9477-24dc-472f-a6c8-4651373d1da7">
       <Group key="0">
-        <Data key="Port Format" value="0,3" />
+        <Data key="Port Format" value="0,0" />
       </Group>
     </Group>
+    <Group key="UnAssigned Pins" />
   </Group>
   <Group key="PlaceDir">
     <Data key="count" value="0" />
