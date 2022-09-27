@@ -19,6 +19,11 @@
 #define TURNING_RIGHT 2
 #define EXIT_LEFT 3
 #define EXIT_RIGHT 4
+#define STOPPED 5
+
+// Disable left and right turns at appropriate times.
+#define DISABLE_LEFT_TURN 0
+#define DISABLE_RIGHT_TURN 1
 
 // Prototype declarations.
 CY_ISR_PROTO(isr_eoc_1);
@@ -28,6 +33,8 @@ volatile uint8 channel = 0;
 
 uint32 i = 0;
 uint16 turn_count = 0;
+
+uint8 disable_toggle = 0;
 
 uint16 ADCResult;
 uint16 milliVoltReading;
@@ -139,23 +146,24 @@ int main(void){
             } else if (state == FORWARD) {
                 if (sensor_state[FL] == OFF) {
                     turn_left();
+                    disable_toggle = DISABLE_RIGHT_TURN;
                 } else if (sensor_state[FR] == OFF) {
                     turn_right();
+                    disable_toggle = DISABLE_LEFT_TURN;
                     // WHEN THE RIGHT SENSOR IS FIXED, CHANGE sensor_state[CR] == OFF to sensor_state[CR] == ON
-                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == OFF && sensor_state[CR] == ON) {
+                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == OFF && sensor_state[CR] == ON && disable_toggle != DISABLE_LEFT_TURN) {
                     stop();
                     state = TURNING_LEFT;
                     turn_left();
                     // WHEN THE RIGHT SENSOR IS FIXED UNCOMMENT THE BELOW
-                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF) {
+                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF && disable_toggle != DISABLE_RIGHT_TURN) {
                     stop();
                     state = TURNING_RIGHT;
                     turn_right();
                 } else {
                     move_forward();
                 }
-            }
-                     
+            }                     
             reset = 0;
             
         }     
