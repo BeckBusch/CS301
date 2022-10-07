@@ -2,7 +2,7 @@
 --	Conversion of Sensor Test.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Tue Sep 27 19:34:11 2022
+--	Fri Oct 07 16:34:02 2022
 --
 
 USE cypress.cypress.all;
@@ -13,7 +13,7 @@ END top_RTL;
 --------------------------------------------------------
 ARCHITECTURE R_T_L OF top_RTL IS
 SIGNAL tmpOE__M2_IN2_net_0 : bit;
-SIGNAL Net_2716 : bit;
+SIGNAL Net_2942 : bit;
 SIGNAL tmpFB_0__M2_IN2_net_0 : bit;
 SIGNAL tmpIO_0__M2_IN2_net_0 : bit;
 TERMINAL tmpSIOVREF__M2_IN2_net_0 : bit;
@@ -379,7 +379,7 @@ SIGNAL \PWM_2:Net_113\ : bit;
 SIGNAL \PWM_2:Net_63\ : bit;
 SIGNAL \PWM_2:Net_57\ : bit;
 SIGNAL \PWM_2:Net_54\ : bit;
-SIGNAL Net_2942 : bit;
+SIGNAL Net_2950 : bit;
 SIGNAL Net_2696 : bit;
 SIGNAL Net_2693 : bit;
 SIGNAL \PWM_2:Net_114\ : bit;
@@ -416,7 +416,7 @@ SIGNAL \Timer_1:Net_266\ : bit;
 SIGNAL \Timer_1:Net_51\ : bit;
 SIGNAL \Timer_1:Net_261\ : bit;
 SIGNAL \Timer_1:Net_57\ : bit;
-SIGNAL Net_2867 : bit;
+SIGNAL Net_2993 : bit;
 SIGNAL Net_2875 : bit;
 SIGNAL \Timer_1:Net_102\ : bit;
 SIGNAL \USBUART_1:Net_1010\ : bit;
@@ -781,7 +781,7 @@ tmpOE__M2_IN2_net_0 <=  ('1') ;
 	OR (not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_2\ and not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_1\ and \ADC_SAR_Seq_1:ch_addr_1\)
 	OR (not \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_2\ and \ADC_SAR_Seq_1:ch_addr_2\));
 
-Net_2716 <= (not Net_2942);
+Net_2942 <= (not Net_2950);
 
 Net_2941 <= (not Net_2718);
 
@@ -842,7 +842,7 @@ M2_IN2:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>Net_2716,
+		y=>Net_2942,
 		fb=>(tmpFB_0__M2_IN2_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__M2_IN2_net_0),
@@ -1276,7 +1276,7 @@ isr_eoc_1:cy_isr_v1_0
 		capture=>zero,
 		timer_reset=>zero,
 		tc=>\PWM_2:Net_63\,
-		compare=>Net_2942,
+		compare=>Net_2950,
 		interrupt=>\PWM_2:Net_54\);
 M1_IN2:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"0dc3ed87-3ccc-4ec6-aac0-2537f5320ef0",
@@ -1405,7 +1405,7 @@ M2_IN1:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
-		y=>Net_2942,
+		y=>Net_2950,
 		fb=>(tmpFB_0__M2_IN1_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__M2_IN1_net_0),

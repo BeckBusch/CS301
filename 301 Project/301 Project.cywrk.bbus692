@@ -13,10 +13,9 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="301 Project\Sensor Test">
 <ExpandedNodeIds>
 <v>301 Project</v>
-<v>301 Project\Sensor Test</v>
 <v>301 Project\Sensor Test\TopDesign</v>
 <v>301 Project\Sensor Test\Sensor Test.cydwr</v>
 <v>301 Project\Sensor Test\Sensor Test.cydwr\Pins</v>
@@ -38,58 +37,6 @@
 <VisibleNodeIds>
 <v>301 Project</v>
 <v>301 Project\Sensor Test</v>
-<v>301 Project\Sensor Test\TopDesign</v>
-<v>301 Project\Sensor Test\Sensor Test.cydwr</v>
-<v>301 Project\Sensor Test\Sensor Test.cydwr\Pins</v>
-<v>301 Project\Sensor Test\Sensor Test.cydwr\Analog</v>
-<v>301 Project\Sensor Test\Sensor Test.cydwr\Clocks</v>
-<v>301 Project\Sensor Test\Sensor Test.cydwr\Interrupts</v>
-<v>301 Project\Sensor Test\Sensor Test.cydwr\DMA</v>
-<v>301 Project\Sensor Test\Sensor Test.cydwr\System</v>
-<v>301 Project\Sensor Test\Sensor Test.cydwr\Directives</v>
-<v>301 Project\Sensor Test\Sensor Test.cydwr\Flash Security</v>
-<v>301 Project\Sensor Test\Sensor Test.cydwr\EEPROM</v>
-<v>301 Project\Sensor Test\Header Files</v>
-<v>301 Project\Sensor Test\Header Files\cyapicallbacks.h</v>
-<v>301 Project\Sensor Test\Source Files</v>
-<v>301 Project\Sensor Test\Source Files\main.c</v>
-<v>301 Project\Sensor Test\Source Files\motors.c</v>
-<v>301 Project\Sensor Test\Source Files\motors.h</v>
-<v>301 Project\Sensor Test\Source Files\USBUART.c</v>
-<v>301 Project\Sensor Test\Source Files\USBUART.h</v>
-<v>301 Project\Sensor Test\Generated_Source</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1_FinalBuf</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1_IntClock</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1_IRQ</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\ADC_SAR_Seq_1_TempBuf</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\Clock_PWM</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cy_boot</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\input_signal_0</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\input_signal_1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\input_signal_2</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\input_signal_3</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\input_signal_4</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\isr_eoc_1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\isr_timer_1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\M1_IN1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\M1_IN2</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\M2_IN1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\M2_IN2</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\PWM_1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\PWM_2</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\Timer_1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\timer_clock</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\USBUART_1</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\USBUART_1_Dm</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\USBUART_1_Dp</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cycodeshareexport.ld</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cycodeshareimport.ld</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cycodeshareimport.scat</v>
-<v>301 Project\Sensor Test\Generated_Source\PSoC5\cydevice.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">

@@ -1,6 +1,6 @@
-\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Sensor Test.cyprj|4003b990-0319-438f-a1bb-546aa4180a6b
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|3aebaeb2-3a17-4c88-bfa3-3b4d93109293
-\\files.auckland.ac.nz\myhome\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|69d5e41d-e7de-4e69-882a-7eba6a10fb29
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|924570ff-96e6-4929-a885-38c0e3a32118
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|ef150972-471c-431b-a461-6869ccbc1bbc
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|f85d69d3-68a5-43d5-92ea-e18e62d455da
+\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Sensor Test.cyprj|a629e44a-2b3d-4a67-9968-b4efcfc0616c
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|e7d13db1-628c-4cbe-a10d-13a507a11203
+\\files.auckland.ac.nz\myhome\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|20b8e8e9-8d55-49af-a215-3d4392cc3761
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|fb40988e-317e-4c75-8d73-8b3ad949602f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|81376ca9-ac15-4b61-a3ad-ca6163732eef
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|e9cdd618-7ac0-49b0-b619-8a06d1647f3c

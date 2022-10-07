@@ -159,22 +159,22 @@ CYPACKED typedef struct
 #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x48000098u)
 
 /* IOPINS0_0 Address: CYREG_PRT0_DM0 Size (bytes): 8 */
-#define BS_IOPINS0_0_VAL ((const uint8 CYFAR *)0x48000588u)
+#define BS_IOPINS0_0_VAL ((const uint8 CYFAR *)0x4800057Cu)
 
 /* IOPINS0_7 Address: CYREG_PRT12_DM0 Size (bytes): 8 */
-#define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x48000590u)
+#define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x48000584u)
 
 /* IOPINS0_8 Address: CYREG_PRT15_DR Size (bytes): 10 */
-#define BS_IOPINS0_8_VAL ((const uint8 CYFAR *)0x48000598u)
+#define BS_IOPINS0_8_VAL ((const uint8 CYFAR *)0x4800058Cu)
 
 /* IOPINS0_1 Address: CYREG_PRT1_DM0 Size (bytes): 8 */
-#define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x480005A4u)
+#define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x48000598u)
 
 /* IOPINS0_2 Address: CYREG_PRT2_DM0 Size (bytes): 8 */
-#define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x480005ACu)
+#define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x480005A0u)
 
 /* PHUB_CFGMEM1 Address: CYREG_PHUB_CFGMEM1_CFG0 Size (bytes): 4 */
-#define BS_PHUB_CFGMEM1_VAL ((const uint8 CYFAR *)0x480005B4u)
+#define BS_PHUB_CFGMEM1_VAL ((const uint8 CYFAR *)0x480005A8u)
 
 
 /*******************************************************************************

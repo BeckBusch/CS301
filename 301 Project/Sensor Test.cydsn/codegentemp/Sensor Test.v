@@ -1,6 +1,6 @@
 // ======================================================================
 // Sensor Test.v generated from TopDesign.cysch
-// 09/27/2022 at 19:34
+// 10/07/2022 at 16:34
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1488,12 +1488,12 @@ module top ;
 
           wire  Net_2940;
           wire  Net_2939;
-          wire  Net_2871;
-          wire  Net_2870;
-          wire  Net_2869;
-          wire  Net_2868;
-          wire  Net_2867;
-          wire  Net_2938;
+          wire  Net_2997;
+          wire  Net_2996;
+          wire  Net_2995;
+          wire  Net_2994;
+          wire  Net_2993;
+          wire  Net_3012;
           wire  Net_2708;
           wire  Net_2941;
           wire  Net_2704;
@@ -1612,20 +1612,20 @@ module top ;
           wire  Net_2722;
           wire  Net_2721;
           wire  Net_2720;
-          wire  Net_2716;
-          wire  Net_10;
-          wire  Net_2875;
-          wire  Net_12;
           wire  Net_2942;
+          wire  Net_9;
+    electrical  Net_520;
+    electrical  Net_1003;
+    electrical  Net_514;
     electrical  Net_959;
     electrical  Net_1565;
-    electrical  Net_1003;
-    electrical  Net_520;
-          wire  Net_9;
-    electrical  Net_514;
+          wire  Net_2875;
+          wire  Net_12;
+          wire  Net_10;
+          wire  Net_2950;
+          wire  Net_2664;
           wire  Net_2718;
           wire  Net_2698;
-          wire  Net_2664;
 
 	wire [0:0] tmpOE__M2_IN2_net;
 	wire [0:0] tmpFB_0__M2_IN2_net;
@@ -1688,7 +1688,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		M2_IN2
 		 (.oe(tmpOE__M2_IN2_net),
-		  .y({Net_2716}),
+		  .y({Net_2942}),
 		  .fb({tmpFB_0__M2_IN2_net[0:0]}),
 		  .io({tmpIO_0__M2_IN2_net[0:0]}),
 		  .siovref(tmpSIOVREF__M2_IN2_net),
@@ -2068,7 +2068,7 @@ module top ;
         .enable(1'b1),
         .trigger(1'b0),
         .cmp_sel(1'b0),
-        .pwm(Net_2942),
+        .pwm(Net_2950),
         .ph1(Net_2703),
         .ph2(Net_2704));
     defparam PWM_2.Resolution = 8;
@@ -2149,7 +2149,7 @@ module top ;
 	assign tmpOE__M1_IN2_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
 
-    assign Net_2716 = ~Net_2942;
+    assign Net_2942 = ~Net_2950;
 
 
     assign Net_2941 = ~Net_2718;
@@ -2215,7 +2215,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		M2_IN1
 		 (.oe(tmpOE__M2_IN1_net),
-		  .y({Net_2942}),
+		  .y({Net_2950}),
 		  .fb({tmpFB_0__M2_IN1_net[0:0]}),
 		  .io({tmpIO_0__M2_IN1_net[0:0]}),
 		  .siovref(tmpSIOVREF__M2_IN1_net),
@@ -2487,11 +2487,11 @@ module top ;
 
     Timer_v2_80_4 Timer_1 (
         .reset(Net_12),
-        .interrupt(Net_2867),
+        .interrupt(Net_2993),
         .enable(1'b1),
         .trigger(1'b1),
         .capture(1'b0),
-        .capture_out(Net_2871),
+        .capture_out(Net_2997),
         .tc(Net_2875),
         .clock(Net_10));
     defparam Timer_1.CaptureCount = 2;
