@@ -59,6 +59,8 @@
 #include "Dec_Timer_Clock.h"
 #include "Dec_Timer.h"
 #include "Dec_Timer_ISR.h"
+#include "led_aliases.h"
+#include "led.h"
 #include "ADC_SAR_Seq_1_SAR.h"
 #include "ADC_SAR_Seq_1_IntClock.h"
 #include "ADC_SAR_Seq_1_TempBuf_dma.h"

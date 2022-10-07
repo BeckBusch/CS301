@@ -19,6 +19,40 @@
 .include "cydevicegnu.inc"
 .include "cydevicegnu_trm.inc"
 
+/* led */
+.set led__0__INTTYPE, CYREG_PICU2_INTTYPE1
+.set led__0__MASK, 0x02
+.set led__0__PC, CYREG_PRT2_PC1
+.set led__0__PORT, 2
+.set led__0__SHIFT, 1
+.set led__AG, CYREG_PRT2_AG
+.set led__AMUX, CYREG_PRT2_AMUX
+.set led__BIE, CYREG_PRT2_BIE
+.set led__BIT_MASK, CYREG_PRT2_BIT_MASK
+.set led__BYP, CYREG_PRT2_BYP
+.set led__CTL, CYREG_PRT2_CTL
+.set led__DM0, CYREG_PRT2_DM0
+.set led__DM1, CYREG_PRT2_DM1
+.set led__DM2, CYREG_PRT2_DM2
+.set led__DR, CYREG_PRT2_DR
+.set led__INP_DIS, CYREG_PRT2_INP_DIS
+.set led__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU2_BASE
+.set led__LCD_COM_SEG, CYREG_PRT2_LCD_COM_SEG
+.set led__LCD_EN, CYREG_PRT2_LCD_EN
+.set led__MASK, 0x02
+.set led__PORT, 2
+.set led__PRT, CYREG_PRT2_PRT
+.set led__PRTDSI__CAPS_SEL, CYREG_PRT2_CAPS_SEL
+.set led__PRTDSI__DBL_SYNC_IN, CYREG_PRT2_DBL_SYNC_IN
+.set led__PRTDSI__OE_SEL0, CYREG_PRT2_OE_SEL0
+.set led__PRTDSI__OE_SEL1, CYREG_PRT2_OE_SEL1
+.set led__PRTDSI__OUT_SEL0, CYREG_PRT2_OUT_SEL0
+.set led__PRTDSI__OUT_SEL1, CYREG_PRT2_OUT_SEL1
+.set led__PRTDSI__SYNC_OUT, CYREG_PRT2_SYNC_OUT
+.set led__PS, CYREG_PRT2_PS
+.set led__SHIFT, 1
+.set led__SLW, CYREG_PRT2_SLW
+
 /* PWM_1 */
 .set PWM_1_PWMHW__CAP0, CYREG_TMR1_CAP0
 .set PWM_1_PWMHW__CAP1, CYREG_TMR1_CAP1

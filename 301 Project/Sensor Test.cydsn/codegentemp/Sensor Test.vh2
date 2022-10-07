@@ -2,7 +2,7 @@
 --	Conversion of Sensor Test.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Fri Oct 07 17:29:31 2022
+--	Fri Oct 07 18:57:49 2022
 --
 
 USE cypress.cypress.all;
@@ -409,14 +409,14 @@ SIGNAL tmpFB_0__input_signal_4_net_0 : bit;
 SIGNAL tmpIO_0__input_signal_4_net_0 : bit;
 TERMINAL tmpSIOVREF__input_signal_4_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__input_signal_4_net_0 : bit;
-SIGNAL Net_10 : bit;
-SIGNAL Net_12 : bit;
+SIGNAL Net_3403 : bit;
+SIGNAL Net_3413 : bit;
 SIGNAL \Timer_1:Net_260\ : bit;
 SIGNAL \Timer_1:Net_266\ : bit;
 SIGNAL \Timer_1:Net_51\ : bit;
 SIGNAL \Timer_1:Net_261\ : bit;
 SIGNAL \Timer_1:Net_57\ : bit;
-SIGNAL Net_2993 : bit;
+SIGNAL Net_3231 : bit;
 SIGNAL Net_2875 : bit;
 SIGNAL \Timer_1:Net_102\ : bit;
 SIGNAL \QuadDec_L:Net_1129\ : bit;
@@ -429,7 +429,7 @@ SIGNAL \QuadDec_L:Net_1251\ : bit;
 SIGNAL \QuadDec_L:Cnt16:Net_95\ : bit;
 SIGNAL \QuadDec_L:Cnt16:Net_91\ : bit;
 SIGNAL \QuadDec_L:Cnt16:Net_102\ : bit;
-SIGNAL Net_3020 : bit;
+SIGNAL Net_3206 : bit;
 SIGNAL \QuadDec_L:Cnt16:CounterUDB:ClockOutFromEnBlock\ : bit;
 SIGNAL \QuadDec_L:Cnt16:CounterUDB:ctrl_cmod_2\ : bit;
 SIGNAL \QuadDec_L:Cnt16:CounterUDB:ctrl_cmod_1\ : bit;
@@ -870,7 +870,7 @@ SIGNAL \QuadDec_R:bQuadDec:status_3\ : bit;
 SIGNAL \QuadDec_R:bQuadDec:status_4\ : bit;
 SIGNAL \QuadDec_R:bQuadDec:status_5\ : bit;
 SIGNAL \QuadDec_R:bQuadDec:status_6\ : bit;
-SIGNAL Net_3027 : bit;
+SIGNAL Net_3203 : bit;
 SIGNAL \QuadDec_R:Net_1151\ : bit;
 SIGNAL \QuadDec_R:Net_1248\ : bit;
 SIGNAL \QuadDec_R:Net_1229\ : bit;
@@ -893,15 +893,20 @@ SIGNAL tmpIO_0__ENCD_R_2_net_0 : bit;
 TERMINAL tmpSIOVREF__ENCD_R_2_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__ENCD_R_2_net_0 : bit;
 SIGNAL Net_3072 : bit;
-SIGNAL Net_3074 : bit;
+SIGNAL Net_3198 : bit;
 SIGNAL \Dec_Timer:Net_260\ : bit;
 SIGNAL \Dec_Timer:Net_266\ : bit;
 SIGNAL \Dec_Timer:Net_51\ : bit;
 SIGNAL \Dec_Timer:Net_261\ : bit;
 SIGNAL \Dec_Timer:Net_57\ : bit;
-SIGNAL Net_3096 : bit;
-SIGNAL Net_3101 : bit;
+SIGNAL Net_3201 : bit;
+SIGNAL Net_3218 : bit;
 SIGNAL \Dec_Timer:Net_102\ : bit;
+SIGNAL tmpOE__led_net_0 : bit;
+SIGNAL tmpFB_0__led_net_0 : bit;
+SIGNAL tmpIO_0__led_net_0 : bit;
+TERMINAL tmpSIOVREF__led_net_0 : bit;
+SIGNAL tmpINTERRUPT_0__led_net_0 : bit;
 SIGNAL \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\\D\ : bit;
 SIGNAL \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_4\\D\ : bit;
 SIGNAL \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_3\\D\ : bit;
@@ -2253,11 +2258,11 @@ timer_clock:cy_clock_v1_0
 		period=>"0",
 		is_direct=>'0',
 		is_digital=>'1')
-	PORT MAP(clock_out=>Net_10,
+	PORT MAP(clock_out=>Net_3403,
 		dig_domain_out=>open);
 \Timer_1:TimerHW\:cy_psoc3_timer_v1_0
 	GENERIC MAP(cy_registers=>"")
-	PORT MAP(clock=>Net_10,
+	PORT MAP(clock=>Net_3403,
 		kill=>zero,
 		enable=>tmpOE__M2_IN2_net_0,
 		capture=>zero,
@@ -2271,12 +2276,12 @@ isr_timer_1:cy_isr_v1_0
 	PORT MAP(int_signal=>Net_2875);
 \QuadDec_L:Cnt16:CounterUDB:clock_enable_block\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_3020,
+	PORT MAP(clock_in=>Net_3206,
 		enable=>tmpOE__M2_IN2_net_0,
 		clock_out=>\QuadDec_L:Cnt16:CounterUDB:ClockOutFromEnBlock\);
 \QuadDec_L:Cnt16:CounterUDB:sCTRLReg:cy_psoc3_udb_Ctl_Clk_Sync\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_3020,
+	PORT MAP(clock_in=>Net_3206,
 		enable=>tmpOE__M2_IN2_net_0,
 		clock_out=>\QuadDec_L:Cnt16:CounterUDB:Clk_Ctl_i\);
 \QuadDec_L:Cnt16:CounterUDB:sCTRLReg:ctrlreg\:cy_psoc3_control
@@ -2472,7 +2477,7 @@ isr_timer_1:cy_isr_v1_0
 		po=>open);
 \QuadDec_L:bQuadDec:CtrlClkEn\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_3020,
+	PORT MAP(clock_in=>Net_3206,
 		enable=>tmpOE__M2_IN2_net_0,
 		clock_out=>\QuadDec_L:bQuadDec:sync_clock\);
 \QuadDec_L:bQuadDec:genblk1:DelayA1\:cy_dff
@@ -2510,12 +2515,12 @@ isr_timer_1:cy_isr_v1_0
 		interrupt=>Net_3021);
 \QuadDec_R:Cnt16:CounterUDB:clock_enable_block\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_3020,
+	PORT MAP(clock_in=>Net_3206,
 		enable=>tmpOE__M2_IN2_net_0,
 		clock_out=>\QuadDec_R:Cnt16:CounterUDB:ClockOutFromEnBlock\);
 \QuadDec_R:Cnt16:CounterUDB:sCTRLReg:cy_psoc3_udb_Ctl_Clk_Sync\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_3020,
+	PORT MAP(clock_in=>Net_3206,
 		enable=>tmpOE__M2_IN2_net_0,
 		clock_out=>\QuadDec_R:Cnt16:CounterUDB:Clk_Ctl_i\);
 \QuadDec_R:Cnt16:CounterUDB:sCTRLReg:ctrlreg\:cy_psoc3_control
@@ -2711,7 +2716,7 @@ isr_timer_1:cy_isr_v1_0
 		po=>open);
 \QuadDec_R:bQuadDec:CtrlClkEn\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_3020,
+	PORT MAP(clock_in=>Net_3206,
 		enable=>tmpOE__M2_IN2_net_0,
 		clock_out=>\QuadDec_R:bQuadDec:sync_clock\);
 \QuadDec_R:bQuadDec:genblk1:DelayA1\:cy_dff
@@ -2746,7 +2751,7 @@ isr_timer_1:cy_isr_v1_0
 		clock=>\QuadDec_R:bQuadDec:sync_clock\,
 		status=>(zero, zero, zero, \QuadDec_R:bQuadDec:error\,
 			\QuadDec_R:Net_1260\, \QuadDec_R:Net_611\, \QuadDec_R:Net_530\),
-		interrupt=>Net_3027);
+		interrupt=>Net_3203);
 ENCD_L_1:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"b46c3a02-57c0-4ca4-abf9-951135bb332d",
 		drive_mode=>"001",
@@ -3035,7 +3040,7 @@ Clock_Dec:cy_clock_v1_0
 		period=>"83333333.3333333",
 		is_direct=>'0',
 		is_digital=>'1')
-	PORT MAP(clock_out=>Net_3020,
+	PORT MAP(clock_out=>Net_3206,
 		dig_domain_out=>open);
 Dec_Timer_Clock:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
@@ -3056,11 +3061,81 @@ Dec_Timer_Clock:cy_clock_v1_0
 		timer_reset=>zero,
 		tc=>\Dec_Timer:Net_51\,
 		compare=>\Dec_Timer:Net_261\,
-		interrupt=>Net_3096);
+		interrupt=>Net_3201);
 Dec_Timer_ISR:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
 		is_nmi=>'0')
-	PORT MAP(int_signal=>Net_3096);
+	PORT MAP(int_signal=>Net_3201);
+led:cy_psoc3_pins_v1_10
+	GENERIC MAP(id=>"e851a3b9-efb8-48be-bbb8-b303b216c393",
+		drive_mode=>"110",
+		ibuf_enabled=>"1",
+		init_dr_st=>"0",
+		input_sync=>"1",
+		input_clk_en=>'0',
+		input_sync_mode=>"0",
+		intr_mode=>"00",
+		invert_in_clock=>'0',
+		invert_in_clock_en=>'0',
+		invert_in_reset=>'0',
+		invert_out_clock=>'0',
+		invert_out_clock_en=>'0',
+		invert_out_reset=>'0',
+		io_voltage=>"",
+		layout_mode=>"CONTIGUOUS",
+		output_conn=>"0",
+		output_sync=>"0",
+		output_clk_en=>'0',
+		output_mode=>"0",
+		output_reset=>'0',
+		output_clock_mode=>"0",
+		oe_sync=>"0",
+		oe_conn=>"0",
+		oe_reset=>'0',
+		pin_aliases=>"",
+		pin_mode=>"O",
+		por_state=>4,
+		sio_group_cnt=>0,
+		sio_hifreq=>"00000000",
+		sio_hyst=>"1",
+		sio_ibuf=>"00000000",
+		sio_info=>"00",
+		sio_obuf=>"00000000",
+		sio_refsel=>"00000000",
+		sio_vtrip=>"00000000",
+		sio_vohsel=>"00000000",
+		slew_rate=>"0",
+		spanning=>'0',
+		sw_only=>'0',
+		vtrip=>"10",
+		width=>1,
+		port_alias_required=>'0',
+		port_alias_group=>"",
+		use_annotation=>"0",
+		pa_in_clock=>-1,
+		pa_in_clock_en=>-1,
+		pa_in_reset=>-1,
+		pa_out_clock=>-1,
+		pa_out_clock_en=>-1,
+		pa_out_reset=>-1,
+		ovt_needed=>"0",
+		ovt_slew_control=>"00",
+		ovt_hyst_trim=>"0",
+		input_buffer_sel=>"00")
+	PORT MAP(oe=>(tmpOE__M2_IN2_net_0),
+		y=>(zero),
+		fb=>(tmpFB_0__led_net_0),
+		analog=>(open),
+		io=>(tmpIO_0__led_net_0),
+		siovref=>(tmpSIOVREF__led_net_0),
+		annotation=>(open),
+		in_clock=>zero,
+		in_clock_en=>tmpOE__M2_IN2_net_0,
+		in_reset=>zero,
+		out_clock=>zero,
+		out_clock_en=>tmpOE__M2_IN2_net_0,
+		out_reset=>zero,
+		interrupt=>tmpINTERRUPT_0__led_net_0);
 \ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\:cy_dff
 	PORT MAP(d=>\ADC_SAR_Seq_1:ch_addr_5\,
 		clk=>\ADC_SAR_Seq_1:clock\,

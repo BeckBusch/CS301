@@ -6,6 +6,7 @@
 #include "project.h"
 #include "motors.h"
 #include "USBUART.h"
+#include "decoders.h"
 #include <stdio.h>
 
 #define ON 1
@@ -71,11 +72,9 @@ int main(void){
     isr_eoc_1_StartEx(isr_eoc_1);
     isr_timer_1_StartEx(isr_timer_1);
     ADC_SAR_Seq_1_IRQ_Enable();
-    //isr_eoc_1_Enable();
-    //isr_eoc_2_StartEx(isr_eoc_2);
-    //isr_eoc_2_Enable();
-    //isr_timer_StartEx(isr_timer);
-    //isr_timer_Enable();
+    
+    // Init the decoders and related tools
+    decoderInit();
     
     // Start the ADC and begin conversions (in free running mode so will continue to convert).
     ADC_SAR_Seq_1_Start();

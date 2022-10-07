@@ -19,6 +19,40 @@
 #include "cydevice.h"
 #include "cydevice_trm.h"
 
+/* led */
+#define led__0__INTTYPE CYREG_PICU2_INTTYPE1
+#define led__0__MASK 0x02u
+#define led__0__PC CYREG_PRT2_PC1
+#define led__0__PORT 2u
+#define led__0__SHIFT 1u
+#define led__AG CYREG_PRT2_AG
+#define led__AMUX CYREG_PRT2_AMUX
+#define led__BIE CYREG_PRT2_BIE
+#define led__BIT_MASK CYREG_PRT2_BIT_MASK
+#define led__BYP CYREG_PRT2_BYP
+#define led__CTL CYREG_PRT2_CTL
+#define led__DM0 CYREG_PRT2_DM0
+#define led__DM1 CYREG_PRT2_DM1
+#define led__DM2 CYREG_PRT2_DM2
+#define led__DR CYREG_PRT2_DR
+#define led__INP_DIS CYREG_PRT2_INP_DIS
+#define led__INTTYPE_BASE CYDEV_PICU_INTTYPE_PICU2_BASE
+#define led__LCD_COM_SEG CYREG_PRT2_LCD_COM_SEG
+#define led__LCD_EN CYREG_PRT2_LCD_EN
+#define led__MASK 0x02u
+#define led__PORT 2u
+#define led__PRT CYREG_PRT2_PRT
+#define led__PRTDSI__CAPS_SEL CYREG_PRT2_CAPS_SEL
+#define led__PRTDSI__DBL_SYNC_IN CYREG_PRT2_DBL_SYNC_IN
+#define led__PRTDSI__OE_SEL0 CYREG_PRT2_OE_SEL0
+#define led__PRTDSI__OE_SEL1 CYREG_PRT2_OE_SEL1
+#define led__PRTDSI__OUT_SEL0 CYREG_PRT2_OUT_SEL0
+#define led__PRTDSI__OUT_SEL1 CYREG_PRT2_OUT_SEL1
+#define led__PRTDSI__SYNC_OUT CYREG_PRT2_SYNC_OUT
+#define led__PS CYREG_PRT2_PS
+#define led__SHIFT 1u
+#define led__SLW CYREG_PRT2_SLW
+
 /* PWM_1 */
 #define PWM_1_PWMHW__CAP0 CYREG_TMR1_CAP0
 #define PWM_1_PWMHW__CAP1 CYREG_TMR1_CAP1

@@ -1,6 +1,6 @@
 // ======================================================================
 // Sensor Test.v generated from TopDesign.cysch
-// 10/07/2022 at 17:29
+// 10/07/2022 at 18:57
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1681,40 +1681,44 @@ endmodule
 // top
 module top ;
 
-          wire  Net_3152;
-          wire  Net_3151;
-          wire  Net_3150;
-          wire  Net_3149;
-          wire  Net_3148;
-          wire  Net_3147;
-          wire  Net_3141;
-          wire  Net_3146;
-          wire  Net_3145;
-          wire  Net_3144;
-          wire  Net_3143;
+          wire  Net_3230;
+          wire  Net_3229;
+          wire  Net_3228;
+          wire  Net_3227;
+          wire  Net_3226;
+          wire  Net_3225;
+          wire  Net_3219;
+          wire  Net_3224;
+          wire  Net_3223;
+          wire  Net_3222;
+          wire  Net_3221;
           wire  Net_3140;
-          wire  Net_3142;
-          wire  Net_3101;
-          wire  Net_3100;
-          wire  Net_3099;
-          wire  Net_3098;
-          wire  Net_3097;
-          wire  Net_3096;
-          wire  Net_3102;
+          wire  Net_3220;
+          wire  Net_3218;
+          wire  Net_3217;
+          wire  Net_3216;
+          wire  Net_3215;
+          wire  Net_3214;
+          wire  Net_3331;
           wire  Net_3045;
-          wire  Net_3027;
-          wire  Net_3025;
+          wire  Net_3203;
+          wire  Net_3202;
+          wire  Net_3050;
+          wire  Net_3051;
           wire  Net_3021;
           wire  Net_3019;
+          wire  Net_3018;
+          wire  Net_3017;
           wire  Net_2940;
           wire  Net_2939;
-          wire  Net_2997;
-          wire  Net_2996;
-          wire  Net_2995;
-          wire  Net_2994;
-          wire  Net_2993;
-          wire  Net_3169;
-          wire  Net_2708;
+          wire  Net_3235;
+          wire  Net_3234;
+          wire  Net_3233;
+          wire  Net_3232;
+          wire  Net_3231;
+          wire  Net_3413;
+          wire  Net_3423;
+          wire  Net_3315;
           wire  Net_2941;
           wire  Net_2704;
           wire  Net_2703;
@@ -1827,32 +1831,28 @@ module top ;
     electrical  Net_2727;
     electrical  Net_2726;
     electrical  Net_2725;
+    electrical  Net_520;
     electrical  Net_2724;
+    electrical  Net_1003;
+    electrical  Net_514;
     electrical  Net_2723;
+    electrical  Net_959;
+    electrical  Net_1565;
+          wire  Net_9;
           wire  Net_2722;
           wire  Net_2721;
           wire  Net_2720;
           wire  Net_2942;
+          wire  Net_3403;
+          wire  Net_3201;
           wire  Net_3072;
-          wire  Net_3074;
-          wire  Net_10;
-          wire  Net_3020;
-          wire  Net_3018;
-          wire  Net_3017;
-          wire  Net_3050;
-          wire  Net_3051;
-          wire  Net_9;
-    electrical  Net_520;
-    electrical  Net_1003;
-    electrical  Net_514;
-    electrical  Net_959;
-    electrical  Net_1565;
-          wire  Net_2875;
-          wire  Net_12;
-          wire  Net_2950;
+          wire  Net_3198;
           wire  Net_2664;
-          wire  Net_2718;
           wire  Net_2698;
+          wire  Net_2875;
+          wire  Net_3206;
+          wire  Net_2950;
+          wire  Net_2718;
 
 	wire [0:0] tmpOE__M2_IN2_net;
 	wire [0:0] tmpFB_0__M2_IN2_net;
@@ -2706,21 +2706,21 @@ module top ;
 		  .is_direct(0),
 		  .is_digital(1))
 		timer_clock
-		 (.clock_out(Net_10));
+		 (.clock_out(Net_3403));
 
 
     ZeroTerminal ZeroTerminal_1 (
-        .z(Net_12));
+        .z(Net_3413));
 
     Timer_v2_80_4 Timer_1 (
-        .reset(Net_12),
-        .interrupt(Net_2993),
+        .reset(Net_3413),
+        .interrupt(Net_3231),
         .enable(1'b1),
         .trigger(1'b1),
         .capture(1'b0),
-        .capture_out(Net_2997),
+        .capture_out(Net_3235),
         .tc(Net_2875),
-        .clock(Net_10));
+        .clock(Net_3403));
     defparam Timer_1.CaptureCount = 2;
     defparam Timer_1.CaptureCounterEnabled = 0;
     defparam Timer_1.DeviceFamily = "PSoC5";
@@ -2740,7 +2740,7 @@ module top ;
         .quad_A(Net_3017),
         .quad_B(Net_3018),
         .index(1'b0),
-        .clock(Net_3020),
+        .clock(Net_3206),
         .interrupt(Net_3021));
     defparam QuadDec_L.CounterResolution = 4;
     defparam QuadDec_L.UsingGlitchFiltering = 1;
@@ -2750,8 +2750,8 @@ module top ;
         .quad_A(Net_3051),
         .quad_B(Net_3050),
         .index(1'b0),
-        .clock(Net_3020),
-        .interrupt(Net_3027));
+        .clock(Net_3206),
+        .interrupt(Net_3203));
     defparam QuadDec_R.CounterResolution = 4;
     defparam QuadDec_R.UsingGlitchFiltering = 1;
     defparam QuadDec_R.UsingIndexInput = 0;
@@ -3061,7 +3061,7 @@ module top ;
 		  .is_direct(0),
 		  .is_digital(1))
 		Clock_Dec
-		 (.clock_out(Net_3020));
+		 (.clock_out(Net_3206));
 
 
 
@@ -3077,16 +3077,16 @@ module top ;
 
 
     ZeroTerminal ZeroTerminal_2 (
-        .z(Net_3074));
+        .z(Net_3198));
 
     Timer_v2_80_9 Dec_Timer (
-        .reset(Net_3074),
-        .interrupt(Net_3096),
+        .reset(Net_3198),
+        .interrupt(Net_3201),
         .enable(1'b1),
         .trigger(1'b1),
         .capture(1'b0),
-        .capture_out(Net_3100),
-        .tc(Net_3101),
+        .capture_out(Net_3217),
+        .tc(Net_3218),
         .clock(Net_3072));
     defparam Dec_Timer.CaptureCount = 2;
     defparam Dec_Timer.CaptureCounterEnabled = 0;
@@ -3100,8 +3100,83 @@ module top ;
 	cy_isr_v1_0
 		#(.int_type(2'b10))
 		Dec_Timer_ISR
-		 (.int_signal(Net_3096));
+		 (.int_signal(Net_3201));
 
+
+	wire [0:0] tmpOE__led_net;
+	wire [0:0] tmpFB_0__led_net;
+	wire [0:0] tmpIO_0__led_net;
+	wire [0:0] tmpINTERRUPT_0__led_net;
+	electrical [0:0] tmpSIOVREF__led_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("e851a3b9-efb8-48be-bbb8-b303b216c393"),
+		  .drive_mode(3'b110),
+		  .ibuf_enabled(1'b1),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b0),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("O"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .sio_hifreq(""),
+		  .sio_vohsel(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		led
+		 (.oe(tmpOE__led_net),
+		  .y({1'b0}),
+		  .fb({tmpFB_0__led_net[0:0]}),
+		  .io({tmpIO_0__led_net[0:0]}),
+		  .siovref(tmpSIOVREF__led_net),
+		  .interrupt({tmpINTERRUPT_0__led_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__led_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
 
 
