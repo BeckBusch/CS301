@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 1
 
 
    1              		.syntax unified
@@ -28,81 +28,86 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
   25              	isr_eoc_1:
   26              	.LFB64:
   27              		.file 1 "main.c"
-   1:main.c        **** #include "project.h"
-   2:main.c        **** #include "motors.h"
-   3:main.c        **** #include "USBUART.h"
-   4:main.c        **** #include <stdio.h>
+   1:main.c        **** /* ========================================
+   2:main.c        ****  * main.c
+   3:main.c        ****  * ========================================
+   4:main.c        **** */
    5:main.c        **** 
-   6:main.c        **** #define ON 1
-   7:main.c        **** #define OFF 0
-   8:main.c        **** 
-   9:main.c        **** // FL, FR, CL, CR, BC = front left, front right, center left, center right, back center respectivel
-  10:main.c        **** #define FL 0
-  11:main.c        **** #define FR 1
-  12:main.c        **** #define CL 2
-  13:main.c        **** #define CR 3
-  14:main.c        **** #define BC 4
-  15:main.c        **** 
-  16:main.c        **** // State values.
-  17:main.c        **** #define FORWARD 0
-  18:main.c        **** #define TURNING_LEFT 1
-  19:main.c        **** #define TURNING_RIGHT 2
-  20:main.c        **** #define EXIT_LEFT 3
-  21:main.c        **** #define EXIT_RIGHT 4
-  22:main.c        **** #define STOPPED 5
-  23:main.c        **** 
-  24:main.c        **** // Disable left and right turns at appropriate times.
-  25:main.c        **** #define DISABLE_LEFT_TURN 0
-  26:main.c        **** #define DISABLE_RIGHT_TURN 1
-  27:main.c        **** 
-  28:main.c        **** // Prototype declarations.
-  29:main.c        **** CY_ISR_PROTO(isr_eoc_1);
-  30:main.c        **** CY_ISR_PROTO(isr_timer_1);
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 2
+   6:main.c        **** #include "project.h"
+   7:main.c        **** #include "motors.h"
+   8:main.c        **** #include "USBUART.h"
+   9:main.c        **** #include <stdio.h>
+  10:main.c        **** 
+  11:main.c        **** #define ON 1
+  12:main.c        **** #define OFF 0
+  13:main.c        **** 
+  14:main.c        **** // FL, FR, CL, CR, BC = front left, front right, center left, center right, back center respectivel
+  15:main.c        **** #define FL 0
+  16:main.c        **** #define FR 1
+  17:main.c        **** #define CL 2
+  18:main.c        **** #define CR 3
+  19:main.c        **** #define BC 4
+  20:main.c        **** 
+  21:main.c        **** // State values.
+  22:main.c        **** #define FORWARD 0
+  23:main.c        **** #define TURNING_LEFT 1
+  24:main.c        **** #define TURNING_RIGHT 2
+  25:main.c        **** #define EXIT_LEFT 3
+  26:main.c        **** #define EXIT_RIGHT 4
+  27:main.c        **** #define STOPPED 5
+  28:main.c        **** 
+  29:main.c        **** // Disable left and right turns at appropriate times.
+  30:main.c        **** #define DISABLE_LEFT_TURN 0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 2
 
 
-  31:main.c        **** 
-  32:main.c        **** volatile uint8 channel = 0;
-  33:main.c        **** 
-  34:main.c        **** uint32 i = 0;
-  35:main.c        **** uint16 turn_count = 0;
+  31:main.c        **** #define DISABLE_RIGHT_TURN 1
+  32:main.c        **** 
+  33:main.c        **** // Prototype declarations.
+  34:main.c        **** CY_ISR_PROTO(isr_eoc_1);
+  35:main.c        **** CY_ISR_PROTO(isr_timer_1);
   36:main.c        **** 
-  37:main.c        **** uint8 disable_toggle = 0;
+  37:main.c        **** volatile uint8 channel = 0;
   38:main.c        **** 
-  39:main.c        **** uint16 ADCResult;
-  40:main.c        **** uint16 milliVoltReading;
-  41:main.c        **** uint8 state = FORWARD;
-  42:main.c        **** volatile uint8 reset = 0;
+  39:main.c        **** uint32 i = 0;
+  40:main.c        **** uint16 turn_count = 0;
+  41:main.c        **** 
+  42:main.c        **** uint8 disable_toggle = 0;
   43:main.c        **** 
-  44:main.c        **** uint16 maxValues[5] = {0};
-  45:main.c        **** uint16 pastValues[5] = {0};
-  46:main.c        **** volatile uint16 count = 0;
-  47:main.c        **** uint8 sensor_state[5];
+  44:main.c        **** uint16 ADCResult;
+  45:main.c        **** uint16 milliVoltReading;
+  46:main.c        **** uint8 state = FORWARD;
+  47:main.c        **** volatile uint8 reset = 0;
   48:main.c        **** 
-  49:main.c        **** CY_ISR(isr_eoc_1) {
-  28              		.loc 1 49 0
+  49:main.c        **** uint16 maxValues[5] = {0};
+  50:main.c        **** uint16 pastValues[5] = {0};
+  51:main.c        **** volatile uint16 count = 0;
+  52:main.c        **** uint8 sensor_state[5];
+  53:main.c        **** 
+  54:main.c        **** CY_ISR(isr_eoc_1) {
+  28              		.loc 1 54 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
   32              		@ link register save eliminated.
-  50:main.c        ****     // Change the ADC channel each time an eoc interrupt is generated.
-  51:main.c        ****     if (channel == 4) {
-  33              		.loc 1 51 0
+  55:main.c        ****     // Change the ADC channel each time an eoc interrupt is generated.
+  56:main.c        ****     if (channel == 4) {
+  33              		.loc 1 56 0
   34 0000 074B     		ldr	r3, .L4
   35 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
   36 0004 DBB2     		uxtb	r3, r3
   37 0006 042B     		cmp	r3, #4
   38 0008 03D1     		bne	.L2
-  52:main.c        ****         channel = 0;
-  39              		.loc 1 52 0
+  57:main.c        ****         channel = 0;
+  39              		.loc 1 57 0
   40 000a 0022     		movs	r2, #0
   41 000c 044B     		ldr	r3, .L4
   42 000e 1A70     		strb	r2, [r3]
   43 0010 7047     		bx	lr
   44              	.L2:
-  53:main.c        ****     } else {
-  54:main.c        ****         channel++;
-  45              		.loc 1 54 0
+  58:main.c        ****     } else {
+  59:main.c        ****         channel++;
+  45              		.loc 1 59 0
   46 0012 034A     		ldr	r2, .L4
   47 0014 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
   48 0016 0133     		adds	r3, r3, #1
@@ -113,31 +118,31 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
   53 001e 00BF     		.align	2
   54              	.L4:
   55 0020 00000000 		.word	.LANCHOR0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 3
+
+
   56              		.cfi_endproc
   57              	.LFE64:
   58              		.size	isr_eoc_1, .-isr_eoc_1
   59              		.section	.text.isr_timer_1,"ax",%progbits
   60              		.align	2
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 3
-
-
   61              		.global	isr_timer_1
   62              		.thumb
   63              		.thumb_func
   64              		.type	isr_timer_1, %function
   65              	isr_timer_1:
   66              	.LFB65:
-  55:main.c        ****     }   
-  56:main.c        **** }
-  57:main.c        **** 
-  58:main.c        **** CY_ISR(isr_timer_1) {
-  67              		.loc 1 58 0
+  60:main.c        ****     }   
+  61:main.c        **** }
+  62:main.c        **** 
+  63:main.c        **** CY_ISR(isr_timer_1) {
+  67              		.loc 1 63 0
   68              		.cfi_startproc
   69              		@ args = 0, pretend = 0, frame = 0
   70              		@ frame_needed = 0, uses_anonymous_args = 0
   71              		@ link register save eliminated.
-  59:main.c        ****     reset = 1;
-  72              		.loc 1 59 0
+  64:main.c        ****     reset = 1;
+  72              		.loc 1 64 0
   73 0000 0122     		movs	r2, #1
   74 0002 014B     		ldr	r3, .L7
   75 0004 5A70     		strb	r2, [r3, #1]
@@ -157,10 +162,10 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
   89              		.type	main, %function
   90              	main:
   91              	.LFB66:
-  60:main.c        **** }
-  61:main.c        **** 
-  62:main.c        **** int main(void){
-  92              		.loc 1 62 0
+  65:main.c        **** }
+  66:main.c        **** 
+  67:main.c        **** int main(void){
+  92              		.loc 1 67 0
   93              		.cfi_startproc
   94              		@ args = 0, pretend = 0, frame = 0
   95              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -168,150 +173,150 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
   97              		.cfi_def_cfa_offset 8
   98              		.cfi_offset 4, -8
   99              		.cfi_offset 14, -4
-  63:main.c        ****     
-  64:main.c        ****     // Enable global interrupts as well as start and enable the isr.
-  65:main.c        ****     CyGlobalIntEnable;
- 100              		.loc 1 65 0
+  68:main.c        ****     
+  69:main.c        ****     // Enable global interrupts as well as start and enable the isr.
+  70:main.c        ****     CyGlobalIntEnable;
+ 100              		.loc 1 70 0
  101              		.syntax unified
- 102              	@ 65 "main.c" 1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 4
+
+
+ 102              	@ 70 "main.c" 1
  103 0002 62B6     		CPSIE   i
  104              	@ 0 "" 2
-  66:main.c        ****     isr_eoc_1_StartEx(isr_eoc_1);
- 105              		.loc 1 66 0
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 4
-
-
+  71:main.c        ****     isr_eoc_1_StartEx(isr_eoc_1);
+ 105              		.loc 1 71 0
  106              		.thumb
  107              		.syntax unified
  108 0004 9848     		ldr	r0, .L45
  109 0006 FFF7FEFF 		bl	isr_eoc_1_StartEx
  110              	.LVL0:
-  67:main.c        ****     isr_timer_1_StartEx(isr_timer_1);
- 111              		.loc 1 67 0
+  72:main.c        ****     isr_timer_1_StartEx(isr_timer_1);
+ 111              		.loc 1 72 0
  112 000a 9848     		ldr	r0, .L45+4
  113 000c FFF7FEFF 		bl	isr_timer_1_StartEx
  114              	.LVL1:
-  68:main.c        ****     ADC_SAR_Seq_1_IRQ_Enable();
- 115              		.loc 1 68 0
+  73:main.c        ****     ADC_SAR_Seq_1_IRQ_Enable();
+ 115              		.loc 1 73 0
  116 0010 FFF7FEFF 		bl	ADC_SAR_Seq_1_IRQ_Enable
  117              	.LVL2:
-  69:main.c        ****     //isr_eoc_1_Enable();
-  70:main.c        ****     //isr_eoc_2_StartEx(isr_eoc_2);
-  71:main.c        ****     //isr_eoc_2_Enable();
-  72:main.c        ****     //isr_timer_StartEx(isr_timer);
-  73:main.c        ****     //isr_timer_Enable();
-  74:main.c        ****     
-  75:main.c        ****     // Start the ADC and begin conversions (in free running mode so will continue to convert).
-  76:main.c        ****     ADC_SAR_Seq_1_Start();
- 118              		.loc 1 76 0
+  74:main.c        ****     //isr_eoc_1_Enable();
+  75:main.c        ****     //isr_eoc_2_StartEx(isr_eoc_2);
+  76:main.c        ****     //isr_eoc_2_Enable();
+  77:main.c        ****     //isr_timer_StartEx(isr_timer);
+  78:main.c        ****     //isr_timer_Enable();
+  79:main.c        ****     
+  80:main.c        ****     // Start the ADC and begin conversions (in free running mode so will continue to convert).
+  81:main.c        ****     ADC_SAR_Seq_1_Start();
+ 118              		.loc 1 81 0
  119 0014 FFF7FEFF 		bl	ADC_SAR_Seq_1_Start
  120              	.LVL3:
-  77:main.c        ****     ADC_SAR_Seq_1_StartConvert();
- 121              		.loc 1 77 0
+  82:main.c        ****     ADC_SAR_Seq_1_StartConvert();
+ 121              		.loc 1 82 0
  122 0018 FFF7FEFF 		bl	ADC_SAR_Seq_1_StartConvert
  123              	.LVL4:
  124              	.LBB2:
-  78:main.c        ****     
-  79:main.c        ****     // Initialise sensor states.
-  80:main.c        ****     for (int i = 0; i < 5; i++) {
- 125              		.loc 1 80 0
+  83:main.c        ****     
+  84:main.c        ****     // Initialise sensor states.
+  85:main.c        ****     for (int i = 0; i < 5; i++) {
+ 125              		.loc 1 85 0
  126 001c 0023     		movs	r3, #0
  127 001e 03E0     		b	.L10
  128              	.LVL5:
  129              	.L11:
-  81:main.c        ****         sensor_state[i] = ON;
- 130              		.loc 1 81 0 discriminator 3
+  86:main.c        ****         sensor_state[i] = ON;
+ 130              		.loc 1 86 0 discriminator 3
  131 0020 0121     		movs	r1, #1
  132 0022 934A     		ldr	r2, .L45+8
  133 0024 D154     		strb	r1, [r2, r3]
-  80:main.c        ****         sensor_state[i] = ON;
- 134              		.loc 1 80 0 discriminator 3
+  85:main.c        ****         sensor_state[i] = ON;
+ 134              		.loc 1 85 0 discriminator 3
  135 0026 0B44     		add	r3, r3, r1
  136              	.LVL6:
  137              	.L10:
-  80:main.c        ****         sensor_state[i] = ON;
- 138              		.loc 1 80 0 is_stmt 0 discriminator 1
+  85:main.c        ****         sensor_state[i] = ON;
+ 138              		.loc 1 85 0 is_stmt 0 discriminator 1
  139 0028 042B     		cmp	r3, #4
  140 002a F9DD     		ble	.L11
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 5
+
+
  141              	.LBE2:
-  82:main.c        ****     }
-  83:main.c        ****     
-  84:main.c        ****     PWM_1_Start();
- 142              		.loc 1 84 0 is_stmt 1
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 5
-
-
+  87:main.c        ****     }
+  88:main.c        ****     
+  89:main.c        ****     PWM_1_Start();
+ 142              		.loc 1 89 0 is_stmt 1
  143 002c FFF7FEFF 		bl	PWM_1_Start
  144              	.LVL7:
-  85:main.c        ****     PWM_2_Start();
- 145              		.loc 1 85 0
+  90:main.c        ****     PWM_2_Start();
+ 145              		.loc 1 90 0
  146 0030 FFF7FEFF 		bl	PWM_2_Start
  147              	.LVL8:
-  86:main.c        ****     stop();
- 148              		.loc 1 86 0
+  91:main.c        ****     stop();
+ 148              		.loc 1 91 0
  149 0034 FFF7FEFF 		bl	stop
  150              	.LVL9:
-  87:main.c        ****     Timer_1_Start();
- 151              		.loc 1 87 0
+  92:main.c        ****     Timer_1_Start();
+ 151              		.loc 1 92 0
  152 0038 FFF7FEFF 		bl	Timer_1_Start
  153              	.LVL10:
  154              	.L12:
-  88:main.c        ****     //turn_left();
-  89:main.c        ****     //stop();
-  90:main.c        ****     //turn_right();
-  91:main.c        ****         
-  92:main.c        ****     while(1) {
-  93:main.c        ****         
-  94:main.c        **** // If the conversion result is ready, put it into a variable and convert it into millivolts.
-  95:main.c        ****         ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
- 155              		.loc 1 95 0
+  93:main.c        ****     //turn_left();
+  94:main.c        ****     //stop();
+  95:main.c        ****     //turn_right();
+  96:main.c        ****         
+  97:main.c        ****     while(1) {
+  98:main.c        ****         
+  99:main.c        **** // If the conversion result is ready, put it into a variable and convert it into millivolts.
+ 100:main.c        ****         ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
+ 155              		.loc 1 100 0
  156 003c 0020     		movs	r0, #0
  157 003e FFF7FEFF 		bl	ADC_SAR_Seq_1_IsEndConversion
  158              	.LVL11:
-  96:main.c        ****         ADCResult = ADC_SAR_Seq_1_GetResult16(channel);
- 159              		.loc 1 96 0
+ 101:main.c        ****         ADCResult = ADC_SAR_Seq_1_GetResult16(channel);
+ 159              		.loc 1 101 0
  160 0042 8C4C     		ldr	r4, .L45+12
  161 0044 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
  162 0046 FFF7FEFF 		bl	ADC_SAR_Seq_1_GetResult16
  163              	.LVL12:
  164 004a 8B4B     		ldr	r3, .L45+16
  165 004c 1880     		strh	r0, [r3]	@ movhi
-  97:main.c        ****         milliVoltReading = ADC_SAR_Seq_1_CountsTo_mVolts(ADCResult);
- 166              		.loc 1 97 0
+ 102:main.c        ****         milliVoltReading = ADC_SAR_Seq_1_CountsTo_mVolts(ADCResult);
+ 166              		.loc 1 102 0
  167 004e FFF7FEFF 		bl	ADC_SAR_Seq_1_CountsTo_mVolts
  168              	.LVL13:
  169 0052 80B2     		uxth	r0, r0
  170 0054 894B     		ldr	r3, .L45+20
  171 0056 1880     		strh	r0, [r3]	@ movhi
-  98:main.c        ****         /* disabled uart code
-  99:main.c        ****         char send[100];
- 100:main.c        ****         sprintf(send,"%d\r\n",milliVoltReading);
- 101:main.c        ****         USBUART_1_PutString(send);
- 102:main.c        ****         
- 103:main.c        ****         CyDelay(100);
- 104:main.c        ****         */
- 105:main.c        ****         
- 106:main.c        ****         if (milliVoltReading > maxValues[channel]) {
- 172              		.loc 1 106 0
+ 103:main.c        ****         /* disabled uart code
+ 104:main.c        ****         char send[100];
+ 105:main.c        ****         sprintf(send,"%d\r\n",milliVoltReading);
+ 106:main.c        ****         USBUART_1_PutString(send);
+ 107:main.c        ****         
+ 108:main.c        ****         CyDelay(100);
+ 109:main.c        ****         */
+ 110:main.c        ****         
+ 111:main.c        ****         if (milliVoltReading > maxValues[channel]) {
+ 172              		.loc 1 111 0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 6
+
+
  173 0058 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
  174 005a 04EB4304 		add	r4, r4, r3, lsl #1
  175 005e A388     		ldrh	r3, [r4, #4]
  176 0060 9842     		cmp	r0, r3
  177 0062 04D9     		bls	.L13
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 6
-
-
- 107:main.c        ****             maxValues[channel] = milliVoltReading;
- 178              		.loc 1 107 0
+ 112:main.c        ****             maxValues[channel] = milliVoltReading;
+ 178              		.loc 1 112 0
  179 0064 834B     		ldr	r3, .L45+12
  180 0066 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
  181 0068 03EB4203 		add	r3, r3, r2, lsl #1
  182 006c 9880     		strh	r0, [r3, #4]	@ movhi
  183              	.L13:
- 108:main.c        ****         }
- 109:main.c        ****         
- 110:main.c        ****         if (reset == 1) {
- 184              		.loc 1 110 0
+ 113:main.c        ****         }
+ 114:main.c        ****         
+ 115:main.c        ****         if (reset == 1) {
+ 184              		.loc 1 115 0
  185 006e 814B     		ldr	r3, .L45+12
  186 0070 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
  187 0072 DBB2     		uxtb	r3, r3
@@ -321,19 +326,19 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  191              	.LVL14:
  192              	.L16:
  193              	.LBB3:
- 111:main.c        ****             for (int i = 0; i < 5; i++) {
- 112:main.c        ****                 pastValues[i] = maxValues[i];
- 194              		.loc 1 112 0 discriminator 3
+ 116:main.c        ****             for (int i = 0; i < 5; i++) {
+ 117:main.c        ****                 pastValues[i] = maxValues[i];
+ 194              		.loc 1 117 0 discriminator 3
  195 007c 7D4B     		ldr	r3, .L45+12
  196 007e 03EB4203 		add	r3, r3, r2, lsl #1
  197 0082 9988     		ldrh	r1, [r3, #4]
  198 0084 1982     		strh	r1, [r3, #16]	@ movhi
- 113:main.c        ****                 maxValues[i] = 0;
- 199              		.loc 1 113 0 discriminator 3
+ 118:main.c        ****                 maxValues[i] = 0;
+ 199              		.loc 1 118 0 discriminator 3
  200 0086 0021     		movs	r1, #0
  201 0088 9980     		strh	r1, [r3, #4]	@ movhi
- 111:main.c        ****             for (int i = 0; i < 5; i++) {
- 202              		.loc 1 111 0 discriminator 3
+ 116:main.c        ****             for (int i = 0; i < 5; i++) {
+ 202              		.loc 1 116 0 discriminator 3
  203 008a 0132     		adds	r2, r2, #1
  204              	.LVL15:
  205 008c 00E0     		b	.L14
@@ -344,58 +349,58 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  210              	.L14:
  211              	.LVL17:
  212              	.LBB4:
- 111:main.c        ****             for (int i = 0; i < 5; i++) {
- 213              		.loc 1 111 0 is_stmt 0 discriminator 1
+ 116:main.c        ****             for (int i = 0; i < 5; i++) {
+ 213              		.loc 1 116 0 is_stmt 0 discriminator 1
  214 0090 042A     		cmp	r2, #4
  215 0092 F3DD     		ble	.L16
  216              	.LBE4:
- 114:main.c        ****             }
- 115:main.c        ****             
- 116:main.c        ****             if (state == TURNING_LEFT) {
- 217              		.loc 1 116 0 is_stmt 1
+ 119:main.c        ****             }
+ 120:main.c        ****             
+ 121:main.c        ****             if (state == TURNING_LEFT) {
+ 217              		.loc 1 121 0 is_stmt 1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 7
+
+
  218 0094 774B     		ldr	r3, .L45+12
  219 0096 9B7E     		ldrb	r3, [r3, #26]	@ zero_extendqisi2
  220 0098 012B     		cmp	r3, #1
  221 009a 08D1     		bne	.L17
- 117:main.c        ****                 if (sensor_state[FL] == OFF) {
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 7
-
-
- 222              		.loc 1 117 0
+ 122:main.c        ****                 if (sensor_state[FL] == OFF) {
+ 222              		.loc 1 122 0
  223 009c 744B     		ldr	r3, .L45+8
  224 009e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  225 00a0 13B9     		cbnz	r3, .L18
- 118:main.c        ****                     state = EXIT_LEFT;
- 226              		.loc 1 118 0
+ 123:main.c        ****                     state = EXIT_LEFT;
+ 226              		.loc 1 123 0
  227 00a2 0322     		movs	r2, #3
  228              	.LVL18:
  229 00a4 734B     		ldr	r3, .L45+12
  230 00a6 9A76     		strb	r2, [r3, #26]
  231              	.L18:
- 119:main.c        ****                 }
- 120:main.c        ****                 turn_left_sharp();
- 232              		.loc 1 120 0
+ 124:main.c        ****                 }
+ 125:main.c        ****                 turn_left_sharp();
+ 232              		.loc 1 125 0
  233 00a8 FFF7FEFF 		bl	turn_left_sharp
  234              	.LVL19:
  235 00ac 99E0     		b	.L19
  236              	.LVL20:
  237              	.L17:
- 121:main.c        ****             } else if (state == EXIT_LEFT) {
- 238              		.loc 1 121 0
+ 126:main.c        ****             } else if (state == EXIT_LEFT) {
+ 238              		.loc 1 126 0
  239 00ae 032B     		cmp	r3, #3
  240 00b0 0FD1     		bne	.L20
- 122:main.c        ****                 if (turn_count < 3) {
- 241              		.loc 1 122 0
+ 127:main.c        ****                 if (turn_count < 3) {
+ 241              		.loc 1 127 0
  242 00b2 704B     		ldr	r3, .L45+12
  243 00b4 9B8B     		ldrh	r3, [r3, #28]
  244 00b6 022B     		cmp	r3, #2
  245 00b8 06D8     		bhi	.L21
- 123:main.c        ****                     turn_left();
- 246              		.loc 1 123 0
+ 128:main.c        ****                     turn_left();
+ 246              		.loc 1 128 0
  247 00ba FFF7FEFF 		bl	turn_left
  248              	.LVL21:
- 124:main.c        ****                     turn_count++;
- 249              		.loc 1 124 0
+ 129:main.c        ****                     turn_count++;
+ 249              		.loc 1 129 0
  250 00be 6D4A     		ldr	r2, .L45+12
  251 00c0 938B     		ldrh	r3, [r2, #28]
  252 00c2 0133     		adds	r3, r3, #1
@@ -403,63 +408,63 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  254 00c6 8CE0     		b	.L19
  255              	.LVL22:
  256              	.L21:
- 125:main.c        ****                 } else {
- 126:main.c        ****                     turn_count = 0;
- 257              		.loc 1 126 0
+ 130:main.c        ****                 } else {
+ 131:main.c        ****                     turn_count = 0;
+ 257              		.loc 1 131 0
  258 00c8 6A4B     		ldr	r3, .L45+12
  259 00ca 0022     		movs	r2, #0
  260              	.LVL23:
  261 00cc 9A83     		strh	r2, [r3, #28]	@ movhi
- 127:main.c        ****                     state = FORWARD;
- 262              		.loc 1 127 0
+ 132:main.c        ****                     state = FORWARD;
+ 262              		.loc 1 132 0
  263 00ce 9A76     		strb	r2, [r3, #26]
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 8
+
+
  264 00d0 87E0     		b	.L19
  265              	.LVL24:
  266              	.L20:
- 128:main.c        ****                 }
- 129:main.c        ****             } else if (state == TURNING_RIGHT) {
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 8
-
-
- 267              		.loc 1 129 0
+ 133:main.c        ****                 }
+ 134:main.c        ****             } else if (state == TURNING_RIGHT) {
+ 267              		.loc 1 134 0
  268 00d2 022B     		cmp	r3, #2
  269 00d4 08D1     		bne	.L22
- 130:main.c        ****                 if (sensor_state[FR] == OFF) {
- 270              		.loc 1 130 0
+ 135:main.c        ****                 if (sensor_state[FR] == OFF) {
+ 270              		.loc 1 135 0
  271 00d6 664B     		ldr	r3, .L45+8
  272 00d8 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
  273 00da 13B9     		cbnz	r3, .L23
- 131:main.c        ****                     state = EXIT_RIGHT;
- 274              		.loc 1 131 0
+ 136:main.c        ****                     state = EXIT_RIGHT;
+ 274              		.loc 1 136 0
  275 00dc 0422     		movs	r2, #4
  276              	.LVL25:
  277 00de 654B     		ldr	r3, .L45+12
  278 00e0 9A76     		strb	r2, [r3, #26]
  279              	.L23:
- 132:main.c        ****                 }
- 133:main.c        ****                 turn_right_sharp();
- 280              		.loc 1 133 0
+ 137:main.c        ****                 }
+ 138:main.c        ****                 turn_right_sharp();
+ 280              		.loc 1 138 0
  281 00e2 FFF7FEFF 		bl	turn_right_sharp
  282              	.LVL26:
  283 00e6 7CE0     		b	.L19
  284              	.LVL27:
  285              	.L22:
- 134:main.c        ****             } else if (state == EXIT_RIGHT) {
- 286              		.loc 1 134 0
+ 139:main.c        ****             } else if (state == EXIT_RIGHT) {
+ 286              		.loc 1 139 0
  287 00e8 042B     		cmp	r3, #4
  288 00ea 0FD1     		bne	.L24
- 135:main.c        ****                 if (turn_count < 3) {
- 289              		.loc 1 135 0
+ 140:main.c        ****                 if (turn_count < 3) {
+ 289              		.loc 1 140 0
  290 00ec 614B     		ldr	r3, .L45+12
  291 00ee 9B8B     		ldrh	r3, [r3, #28]
  292 00f0 022B     		cmp	r3, #2
  293 00f2 06D8     		bhi	.L25
- 136:main.c        ****                     turn_right();
- 294              		.loc 1 136 0
+ 141:main.c        ****                     turn_right();
+ 294              		.loc 1 141 0
  295 00f4 FFF7FEFF 		bl	turn_right
  296              	.LVL28:
- 137:main.c        ****                     turn_count++;
- 297              		.loc 1 137 0
+ 142:main.c        ****                     turn_count++;
+ 297              		.loc 1 142 0
  298 00f8 5E4A     		ldr	r2, .L45+12
  299 00fa 938B     		ldrh	r3, [r2, #28]
  300 00fc 0133     		adds	r3, r3, #1
@@ -467,320 +472,320 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  302 0100 6FE0     		b	.L19
  303              	.LVL29:
  304              	.L25:
- 138:main.c        ****                 } else {
- 139:main.c        ****                     turn_count = 0;
- 305              		.loc 1 139 0
+ 143:main.c        ****                 } else {
+ 144:main.c        ****                     turn_count = 0;
+ 305              		.loc 1 144 0
  306 0102 5C4B     		ldr	r3, .L45+12
  307 0104 0022     		movs	r2, #0
  308              	.LVL30:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 9
+
+
  309 0106 9A83     		strh	r2, [r3, #28]	@ movhi
- 140:main.c        ****                     state = FORWARD;
- 310              		.loc 1 140 0
+ 145:main.c        ****                     state = FORWARD;
+ 310              		.loc 1 145 0
  311 0108 9A76     		strb	r2, [r3, #26]
  312 010a 6AE0     		b	.L19
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 9
-
-
  313              	.LVL31:
  314              	.L24:
- 141:main.c        ****                 }
- 142:main.c        ****             } else if (state == FORWARD) {
- 315              		.loc 1 142 0
+ 146:main.c        ****                 }
+ 147:main.c        ****             } else if (state == FORWARD) {
+ 315              		.loc 1 147 0
  316 010c 002B     		cmp	r3, #0
  317 010e 4DD1     		bne	.L26
- 143:main.c        ****                 if (sensor_state[FL] == OFF && sensor_state[FR] == OFF && sensor_state[CL] == OFF &
- 318              		.loc 1 143 0
+ 148:main.c        ****                 if (sensor_state[FL] == OFF && sensor_state[FR] == OFF && sensor_state[CL] == OFF &
+ 318              		.loc 1 148 0
  319 0110 574B     		ldr	r3, .L45+8
  320 0112 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  321 0114 7BB9     		cbnz	r3, .L27
- 322              		.loc 1 143 0 is_stmt 0 discriminator 1
+ 322              		.loc 1 148 0 is_stmt 0 discriminator 1
  323 0116 564A     		ldr	r2, .L45+8
  324              	.LVL32:
  325 0118 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
  326 011a 62B9     		cbnz	r2, .L27
- 327              		.loc 1 143 0 discriminator 2
+ 327              		.loc 1 148 0 discriminator 2
  328 011c 544A     		ldr	r2, .L45+8
  329 011e 9278     		ldrb	r2, [r2, #2]	@ zero_extendqisi2
  330 0120 4AB9     		cbnz	r2, .L27
- 331              		.loc 1 143 0 discriminator 3
+ 331              		.loc 1 148 0 discriminator 3
  332 0122 534A     		ldr	r2, .L45+8
  333 0124 D278     		ldrb	r2, [r2, #3]	@ zero_extendqisi2
  334 0126 32B9     		cbnz	r2, .L27
- 335              		.loc 1 143 0 discriminator 4
+ 335              		.loc 1 148 0 discriminator 4
  336 0128 514A     		ldr	r2, .L45+8
  337 012a 1279     		ldrb	r2, [r2, #4]	@ zero_extendqisi2
  338 012c 1AB9     		cbnz	r2, .L27
- 144:main.c        ****                     state = STOPPED;
- 339              		.loc 1 144 0 is_stmt 1
+ 149:main.c        ****                     state = STOPPED;
+ 339              		.loc 1 149 0 is_stmt 1
  340 012e 0522     		movs	r2, #5
  341 0130 504B     		ldr	r3, .L45+12
  342 0132 9A76     		strb	r2, [r3, #26]
  343 0134 55E0     		b	.L19
  344              	.L27:
- 145:main.c        ****                 } else if (sensor_state[FL] == OFF) {
- 345              		.loc 1 145 0
+ 150:main.c        ****                 } else if (sensor_state[FL] == OFF) {
+ 345              		.loc 1 150 0
  346 0136 2BB9     		cbnz	r3, .L28
- 146:main.c        ****                     turn_left();
- 347              		.loc 1 146 0
+ 151:main.c        ****                     turn_left();
+ 347              		.loc 1 151 0
  348 0138 FFF7FEFF 		bl	turn_left
  349              	.LVL33:
- 147:main.c        ****                     disable_toggle = DISABLE_RIGHT_TURN;
- 350              		.loc 1 147 0
+ 152:main.c        ****                     disable_toggle = DISABLE_RIGHT_TURN;
+ 350              		.loc 1 152 0
  351 013c 0122     		movs	r2, #1
  352 013e 4D4B     		ldr	r3, .L45+12
  353 0140 9A77     		strb	r2, [r3, #30]
  354 0142 4EE0     		b	.L19
  355              	.L28:
- 148:main.c        ****                 } else if (sensor_state[FR] == OFF) {
- 356              		.loc 1 148 0
+ 153:main.c        ****                 } else if (sensor_state[FR] == OFF) {
+ 356              		.loc 1 153 0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 10
+
+
  357 0144 4A4A     		ldr	r2, .L45+8
  358 0146 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
  359 0148 2AB9     		cbnz	r2, .L29
- 149:main.c        ****                     turn_right();
- 360              		.loc 1 149 0
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 10
-
-
+ 154:main.c        ****                     turn_right();
+ 360              		.loc 1 154 0
  361 014a FFF7FEFF 		bl	turn_right
  362              	.LVL34:
- 150:main.c        ****                     disable_toggle = DISABLE_LEFT_TURN;
- 363              		.loc 1 150 0
+ 155:main.c        ****                     disable_toggle = DISABLE_LEFT_TURN;
+ 363              		.loc 1 155 0
  364 014e 0022     		movs	r2, #0
  365 0150 484B     		ldr	r3, .L45+12
  366 0152 9A77     		strb	r2, [r3, #30]
  367 0154 45E0     		b	.L19
  368              	.L29:
- 151:main.c        ****                     // WHEN THE RIGHT SENSOR IS FIXED, CHANGE sensor_state[CR] == OFF to sensor_sta
- 152:main.c        ****                 } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == 
- 369              		.loc 1 152 0
+ 156:main.c        ****                     // WHEN THE RIGHT SENSOR IS FIXED, CHANGE sensor_state[CR] == OFF to sensor_sta
+ 157:main.c        ****                 } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == 
+ 369              		.loc 1 157 0
  370 0156 012B     		cmp	r3, #1
  371 0158 10D1     		bne	.L30
- 372              		.loc 1 152 0 is_stmt 0 discriminator 1
+ 372              		.loc 1 157 0 is_stmt 0 discriminator 1
  373 015a 012A     		cmp	r2, #1
  374 015c 0ED1     		bne	.L30
- 375              		.loc 1 152 0 discriminator 2
+ 375              		.loc 1 157 0 discriminator 2
  376 015e 4449     		ldr	r1, .L45+8
  377 0160 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
  378 0162 59B9     		cbnz	r1, .L30
- 379              		.loc 1 152 0 discriminator 3
+ 379              		.loc 1 157 0 discriminator 3
  380 0164 4249     		ldr	r1, .L45+8
  381 0166 C978     		ldrb	r1, [r1, #3]	@ zero_extendqisi2
  382 0168 0129     		cmp	r1, #1
  383 016a 07D1     		bne	.L30
- 384              		.loc 1 152 0 discriminator 4
+ 384              		.loc 1 157 0 discriminator 4
  385 016c 4149     		ldr	r1, .L45+12
  386 016e 897F     		ldrb	r1, [r1, #30]	@ zero_extendqisi2
  387 0170 21B1     		cbz	r1, .L30
- 153:main.c        ****                     state = TURNING_LEFT;
- 388              		.loc 1 153 0 is_stmt 1
+ 158:main.c        ****                     state = TURNING_LEFT;
+ 388              		.loc 1 158 0 is_stmt 1
  389 0172 404B     		ldr	r3, .L45+12
  390 0174 9A76     		strb	r2, [r3, #26]
- 154:main.c        ****                     turn_left();
- 391              		.loc 1 154 0
+ 159:main.c        ****                     turn_left();
+ 391              		.loc 1 159 0
  392 0176 FFF7FEFF 		bl	turn_left
  393              	.LVL35:
  394 017a 32E0     		b	.L19
  395              	.L30:
- 155:main.c        ****                     // WHEN THE RIGHT SENSOR IS FIXED UNCOMMENT THE BELOW
- 156:main.c        ****                 } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == 
- 396              		.loc 1 156 0
+ 160:main.c        ****                     // WHEN THE RIGHT SENSOR IS FIXED UNCOMMENT THE BELOW
+ 161:main.c        ****                 } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == 
+ 396              		.loc 1 161 0
  397 017c 012B     		cmp	r3, #1
  398 017e 12D1     		bne	.L31
- 399              		.loc 1 156 0 is_stmt 0 discriminator 1
+ 399              		.loc 1 161 0 is_stmt 0 discriminator 1
  400 0180 012A     		cmp	r2, #1
  401 0182 10D1     		bne	.L31
- 402              		.loc 1 156 0 discriminator 2
+ 402              		.loc 1 161 0 discriminator 2
  403 0184 3A4B     		ldr	r3, .L45+8
  404 0186 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
  405 0188 012B     		cmp	r3, #1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 11
+
+
  406 018a 0CD1     		bne	.L31
- 407              		.loc 1 156 0 discriminator 3
+ 407              		.loc 1 161 0 discriminator 3
  408 018c 384B     		ldr	r3, .L45+8
  409 018e DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
  410 0190 4BB9     		cbnz	r3, .L31
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 11
-
-
- 411              		.loc 1 156 0 discriminator 4
+ 411              		.loc 1 161 0 discriminator 4
  412 0192 384B     		ldr	r3, .L45+12
  413 0194 9B7F     		ldrb	r3, [r3, #30]	@ zero_extendqisi2
  414 0196 012B     		cmp	r3, #1
  415 0198 05D0     		beq	.L31
- 157:main.c        ****                     state = TURNING_RIGHT;
- 416              		.loc 1 157 0 is_stmt 1
+ 162:main.c        ****                     state = TURNING_RIGHT;
+ 416              		.loc 1 162 0 is_stmt 1
  417 019a 0222     		movs	r2, #2
  418 019c 354B     		ldr	r3, .L45+12
  419 019e 9A76     		strb	r2, [r3, #26]
- 158:main.c        ****                     turn_right();
- 420              		.loc 1 158 0
+ 163:main.c        ****                     turn_right();
+ 420              		.loc 1 163 0
  421 01a0 FFF7FEFF 		bl	turn_right
  422              	.LVL36:
  423 01a4 1DE0     		b	.L19
  424              	.L31:
- 159:main.c        ****                 } else {
- 160:main.c        ****                     move_forward();
- 425              		.loc 1 160 0
+ 164:main.c        ****                 } else {
+ 165:main.c        ****                     move_forward();
+ 425              		.loc 1 165 0
  426 01a6 FFF7FEFF 		bl	move_forward
  427              	.LVL37:
  428 01aa 1AE0     		b	.L19
  429              	.LVL38:
  430              	.L26:
- 161:main.c        ****                 }
- 162:main.c        ****             } else if (state == STOPPED) {
- 431              		.loc 1 162 0
+ 166:main.c        ****                 }
+ 167:main.c        ****             } else if (state == STOPPED) {
+ 431              		.loc 1 167 0
  432 01ac 052B     		cmp	r3, #5
  433 01ae 18D1     		bne	.L19
- 163:main.c        ****                 stop();
- 434              		.loc 1 163 0
+ 168:main.c        ****                 stop();
+ 434              		.loc 1 168 0
  435 01b0 FFF7FEFF 		bl	stop
  436              	.LVL39:
- 164:main.c        ****                 if (sensor_state[FL] == ON || sensor_state[FR] == ON || sensor_state[CL] == ON || s
- 437              		.loc 1 164 0
+ 169:main.c        ****                 if (sensor_state[FL] == ON || sensor_state[FR] == ON || sensor_state[CL] == ON || s
+ 437              		.loc 1 169 0
  438 01b4 2E4B     		ldr	r3, .L45+8
  439 01b6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  440 01b8 012B     		cmp	r3, #1
  441 01ba 0FD0     		beq	.L32
- 442              		.loc 1 164 0 is_stmt 0 discriminator 1
+ 442              		.loc 1 169 0 is_stmt 0 discriminator 1
  443 01bc 2C4B     		ldr	r3, .L45+8
  444 01be 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
  445 01c0 012B     		cmp	r3, #1
  446 01c2 0BD0     		beq	.L32
- 447              		.loc 1 164 0 discriminator 2
+ 447              		.loc 1 169 0 discriminator 2
  448 01c4 2A4B     		ldr	r3, .L45+8
  449 01c6 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
  450 01c8 012B     		cmp	r3, #1
  451 01ca 07D0     		beq	.L32
- 452              		.loc 1 164 0 discriminator 3
+ 452              		.loc 1 169 0 discriminator 3
  453 01cc 284B     		ldr	r3, .L45+8
  454 01ce DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 12
+
+
  455 01d0 012B     		cmp	r3, #1
  456 01d2 03D0     		beq	.L32
- 457              		.loc 1 164 0 discriminator 4
+ 457              		.loc 1 169 0 discriminator 4
  458 01d4 264B     		ldr	r3, .L45+8
  459 01d6 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 12
-
-
  460 01d8 012B     		cmp	r3, #1
  461 01da 02D1     		bne	.L19
  462              	.L32:
- 165:main.c        ****                     state = FORWARD;
- 463              		.loc 1 165 0 is_stmt 1
+ 170:main.c        ****                     state = FORWARD;
+ 463              		.loc 1 170 0 is_stmt 1
  464 01dc 0022     		movs	r2, #0
  465 01de 254B     		ldr	r3, .L45+12
  466 01e0 9A76     		strb	r2, [r3, #26]
  467              	.L19:
- 166:main.c        ****                 }
- 167:main.c        ****             }
- 168:main.c        ****             reset = 0;
- 468              		.loc 1 168 0
+ 171:main.c        ****                 }
+ 172:main.c        ****             }
+ 173:main.c        ****             reset = 0;
+ 468              		.loc 1 173 0
  469 01e2 0022     		movs	r2, #0
  470 01e4 234B     		ldr	r3, .L45+12
  471 01e6 5A70     		strb	r2, [r3, #1]
  472              	.L15:
- 169:main.c        ****             
- 170:main.c        ****         }     
- 171:main.c        ****         
- 172:main.c        ****         // If the milliVolt reading is above the required threshold, perform the requested operatio
- 173:main.c        ****         if (pastValues[channel] >= 500) {
- 473              		.loc 1 173 0
+ 174:main.c        ****             
+ 175:main.c        ****         }     
+ 176:main.c        ****         
+ 177:main.c        ****         // If the milliVolt reading is above the required threshold, perform the requested operatio
+ 178:main.c        ****         if (pastValues[channel] >= 500) {
+ 473              		.loc 1 178 0
  474 01e8 224B     		ldr	r3, .L45+12
  475 01ea 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
  476 01ec 03EB4203 		add	r3, r3, r2, lsl #1
  477 01f0 1B8A     		ldrh	r3, [r3, #16]
  478 01f2 B3F5FA7F 		cmp	r3, #500
  479 01f6 2DD3     		bcc	.L33
- 174:main.c        ****             // Change the position in the sensor_state array depending on the channel being read.
- 175:main.c        ****             if (channel == 0) {
- 480              		.loc 1 175 0
+ 179:main.c        ****             // Change the position in the sensor_state array depending on the channel being read.
+ 180:main.c        ****             if (channel == 0) {
+ 480              		.loc 1 180 0
  481 01f8 1E4B     		ldr	r3, .L45+12
  482 01fa 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  483 01fc 13F0FF0F 		tst	r3, #255
  484 0200 03D1     		bne	.L34
- 176:main.c        ****                 sensor_state[FL] = ON;
- 485              		.loc 1 176 0
+ 181:main.c        ****                 sensor_state[FL] = ON;
+ 485              		.loc 1 181 0
  486 0202 0122     		movs	r2, #1
  487 0204 1A4B     		ldr	r3, .L45+8
  488 0206 1A70     		strb	r2, [r3]
  489 0208 18E7     		b	.L12
  490              	.L34:
- 177:main.c        ****             } else if (channel == 1) {
- 491              		.loc 1 177 0
+ 182:main.c        ****             } else if (channel == 1) {
+ 491              		.loc 1 182 0
  492 020a 1A4B     		ldr	r3, .L45+12
  493 020c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  494 020e DBB2     		uxtb	r3, r3
  495 0210 012B     		cmp	r3, #1
  496 0212 03D1     		bne	.L36
- 178:main.c        ****                 sensor_state[FR] = ON;
- 497              		.loc 1 178 0
+ 183:main.c        ****                 sensor_state[FR] = ON;
+ 497              		.loc 1 183 0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 13
+
+
  498 0214 0122     		movs	r2, #1
  499 0216 164B     		ldr	r3, .L45+8
  500 0218 5A70     		strb	r2, [r3, #1]
  501 021a 0FE7     		b	.L12
  502              	.L36:
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 13
-
-
- 179:main.c        ****             } else if (channel == 2) {
- 503              		.loc 1 179 0
+ 184:main.c        ****             } else if (channel == 2) {
+ 503              		.loc 1 184 0
  504 021c 154B     		ldr	r3, .L45+12
  505 021e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  506 0220 DBB2     		uxtb	r3, r3
  507 0222 022B     		cmp	r3, #2
  508 0224 03D1     		bne	.L37
- 180:main.c        ****                 sensor_state[CL] = ON;
- 509              		.loc 1 180 0
+ 185:main.c        ****                 sensor_state[CL] = ON;
+ 509              		.loc 1 185 0
  510 0226 0122     		movs	r2, #1
  511 0228 114B     		ldr	r3, .L45+8
  512 022a 9A70     		strb	r2, [r3, #2]
  513 022c 06E7     		b	.L12
  514              	.L37:
- 181:main.c        ****             } else if (channel == 3) {
- 515              		.loc 1 181 0
+ 186:main.c        ****             } else if (channel == 3) {
+ 515              		.loc 1 186 0
  516 022e 114B     		ldr	r3, .L45+12
  517 0230 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  518 0232 DBB2     		uxtb	r3, r3
  519 0234 032B     		cmp	r3, #3
  520 0236 03D1     		bne	.L38
- 182:main.c        ****                 sensor_state[CR] = ON;
- 521              		.loc 1 182 0
+ 187:main.c        ****                 sensor_state[CR] = ON;
+ 521              		.loc 1 187 0
  522 0238 0122     		movs	r2, #1
  523 023a 0D4B     		ldr	r3, .L45+8
  524 023c DA70     		strb	r2, [r3, #3]
  525 023e FDE6     		b	.L12
  526              	.L38:
- 183:main.c        ****             } else if (channel == 4) {
- 527              		.loc 1 183 0
+ 188:main.c        ****             } else if (channel == 4) {
+ 527              		.loc 1 188 0
  528 0240 0C4B     		ldr	r3, .L45+12
  529 0242 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  530 0244 DBB2     		uxtb	r3, r3
  531 0246 042B     		cmp	r3, #4
  532 0248 7FF4F8AE 		bne	.L12
- 184:main.c        ****                 sensor_state[BC] = ON;
- 533              		.loc 1 184 0
+ 189:main.c        ****                 sensor_state[BC] = ON;
+ 533              		.loc 1 189 0
  534 024c 0122     		movs	r2, #1
  535 024e 084B     		ldr	r3, .L45+8
  536 0250 1A71     		strb	r2, [r3, #4]
  537 0252 F3E6     		b	.L12
  538              	.L33:
- 185:main.c        ****             }
- 186:main.c        ****         } else {
- 187:main.c        ****             if (channel == 0) {
- 539              		.loc 1 187 0
+ 190:main.c        ****             }
+ 191:main.c        ****         } else {
+ 192:main.c        ****             if (channel == 0) {
+ 539              		.loc 1 192 0
  540 0254 074B     		ldr	r3, .L45+12
  541 0256 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  542 0258 13F0FF0F 		tst	r3, #255
  543 025c 10D1     		bne	.L39
- 188:main.c        ****                 sensor_state[FL] = OFF;
- 544              		.loc 1 188 0
+ 193:main.c        ****                 sensor_state[FL] = OFF;
+ 544              		.loc 1 193 0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 14
+
+
  545 025e 0022     		movs	r2, #0
  546 0260 034B     		ldr	r3, .L45+8
  547 0262 1A70     		strb	r2, [r3]
  548 0264 EAE6     		b	.L12
  549              	.L46:
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 14
-
-
  550 0266 00BF     		.align	2
  551              	.L45:
  552 0268 00000000 		.word	isr_eoc_1
@@ -790,60 +795,60 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  556 0278 00000000 		.word	ADCResult
  557 027c 00000000 		.word	milliVoltReading
  558              	.L39:
- 189:main.c        ****             } else if (channel == 1) {
- 559              		.loc 1 189 0
+ 194:main.c        ****             } else if (channel == 1) {
+ 559              		.loc 1 194 0
  560 0280 124B     		ldr	r3, .L47
  561 0282 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  562 0284 DBB2     		uxtb	r3, r3
  563 0286 012B     		cmp	r3, #1
  564 0288 03D1     		bne	.L40
- 190:main.c        ****                 sensor_state[FR] = OFF;
- 565              		.loc 1 190 0
+ 195:main.c        ****                 sensor_state[FR] = OFF;
+ 565              		.loc 1 195 0
  566 028a 0022     		movs	r2, #0
  567 028c 104B     		ldr	r3, .L47+4
  568 028e 5A70     		strb	r2, [r3, #1]
  569 0290 D4E6     		b	.L12
  570              	.L40:
- 191:main.c        ****             } else if (channel == 2) {
- 571              		.loc 1 191 0
+ 196:main.c        ****             } else if (channel == 2) {
+ 571              		.loc 1 196 0
  572 0292 0E4B     		ldr	r3, .L47
  573 0294 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  574 0296 DBB2     		uxtb	r3, r3
  575 0298 022B     		cmp	r3, #2
  576 029a 03D1     		bne	.L41
- 192:main.c        ****                 sensor_state[CL] = OFF;
- 577              		.loc 1 192 0
+ 197:main.c        ****                 sensor_state[CL] = OFF;
+ 577              		.loc 1 197 0
  578 029c 0022     		movs	r2, #0
  579 029e 0C4B     		ldr	r3, .L47+4
  580 02a0 9A70     		strb	r2, [r3, #2]
  581 02a2 CBE6     		b	.L12
  582              	.L41:
- 193:main.c        ****             } else if (channel == 3) {
- 583              		.loc 1 193 0
+ 198:main.c        ****             } else if (channel == 3) {
+ 583              		.loc 1 198 0
  584 02a4 094B     		ldr	r3, .L47
  585 02a6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  586 02a8 DBB2     		uxtb	r3, r3
  587 02aa 032B     		cmp	r3, #3
  588 02ac 03D1     		bne	.L42
- 194:main.c        ****                 sensor_state[CR] = OFF;
- 589              		.loc 1 194 0
+ 199:main.c        ****                 sensor_state[CR] = OFF;
+ 589              		.loc 1 199 0
  590 02ae 0022     		movs	r2, #0
  591 02b0 074B     		ldr	r3, .L47+4
  592 02b2 DA70     		strb	r2, [r3, #3]
  593 02b4 C2E6     		b	.L12
  594              	.L42:
- 195:main.c        ****             } else if (channel == 4) {
- 595              		.loc 1 195 0
+ 200:main.c        ****             } else if (channel == 4) {
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 15
+
+
+ 595              		.loc 1 200 0
  596 02b6 054B     		ldr	r3, .L47
  597 02b8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  598 02ba DBB2     		uxtb	r3, r3
  599 02bc 042B     		cmp	r3, #4
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 15
-
-
  600 02be 7FF4BDAE 		bne	.L12
- 196:main.c        ****                 sensor_state[BC] = OFF;
- 601              		.loc 1 196 0
+ 201:main.c        ****                 sensor_state[BC] = OFF;
+ 601              		.loc 1 201 0
  602 02c2 0022     		movs	r2, #0
  603 02c4 024B     		ldr	r3, .L47+4
  604 02c6 1A71     		strb	r2, [r3, #4]
@@ -893,14 +898,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  646 0010 00000000 		.space	10
  646      00000000 
  646      0000
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 16
+
+
  647              		.type	state, %object
  648              		.size	state, 1
  649              	state:
  650 001a 00       		.space	1
  651 001b 00       		.space	1
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 16
-
-
  652              		.type	turn_count, %object
  653              		.size	turn_count, 2
  654              	turn_count:
@@ -953,14 +958,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  701 0028 5F030000 		.4byte	.LASF0
  702 002c 02       		.uleb128 0x2
  703 002d 01       		.byte	0x1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 17
+
+
  704 002e 08       		.byte	0x8
  705 002f 92000000 		.4byte	.LASF1
  706 0033 02       		.uleb128 0x2
  707 0034 02       		.byte	0x2
  708 0035 05       		.byte	0x5
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 17
-
-
  709 0036 FB020000 		.4byte	.LASF2
  710 003a 02       		.uleb128 0x2
  711 003b 02       		.byte	0x2
@@ -1013,14 +1018,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  758 0099 05       		.uleb128 0x5
  759 009a 0E020000 		.4byte	.LASF13
  760 009e 04       		.byte	0x4
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 18
+
+
  761 009f E601     		.2byte	0x1e6
  762 00a1 53000000 		.4byte	0x53
  763 00a5 02       		.uleb128 0x2
  764 00a6 04       		.byte	0x4
  765 00a7 04       		.byte	0x4
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 18
-
-
  766 00a8 73000000 		.4byte	.LASF14
  767 00ac 02       		.uleb128 0x2
  768 00ad 08       		.byte	0x8
@@ -1045,7 +1050,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  787 00d2 07       		.uleb128 0x7
  788 00d3 15030000 		.4byte	.LASF19
  789 00d7 01       		.byte	0x1
- 790 00d8 31       		.byte	0x31
+ 790 00d8 36       		.byte	0x36
  791 00d9 00000000 		.4byte	.LFB64
  792 00dd 24000000 		.4byte	.LFE64-.LFB64
  793 00e1 01       		.uleb128 0x1
@@ -1053,7 +1058,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  795 00e3 07       		.uleb128 0x7
  796 00e4 5F020000 		.4byte	.LASF20
  797 00e8 01       		.byte	0x1
- 798 00e9 3A       		.byte	0x3a
+ 798 00e9 3F       		.byte	0x3f
  799 00ea 00000000 		.4byte	.LFB65
  800 00ee 0C000000 		.4byte	.LFE65-.LFB65
  801 00f2 01       		.uleb128 0x1
@@ -1061,7 +1066,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  803 00f4 08       		.uleb128 0x8
  804 00f5 F0010000 		.4byte	.LASF53
  805 00f9 01       		.byte	0x1
- 806 00fa 3E       		.byte	0x3e
+ 806 00fa 43       		.byte	0x43
  807 00fb 68000000 		.4byte	0x68
  808 00ff 00000000 		.4byte	.LFB66
  809 0103 D4020000 		.4byte	.LFE66-.LFB66
@@ -1073,14 +1078,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  815 0112 10000000 		.4byte	.LBE2-.LBB2
  816 0116 28010000 		.4byte	0x128
  817 011a 0A       		.uleb128 0xa
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 19
+
+
  818 011b 6900     		.ascii	"i\000"
  819 011d 01       		.byte	0x1
- 820 011e 50       		.byte	0x50
+ 820 011e 55       		.byte	0x55
  821 011f 68000000 		.4byte	0x68
  822 0123 00000000 		.4byte	.LLST0
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 19
-
-
  823 0127 00       		.byte	0
  824 0128 0B       		.uleb128 0xb
  825 0129 00000000 		.4byte	.Ldebug_ranges0+0
@@ -1088,7 +1093,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  827 0131 0A       		.uleb128 0xa
  828 0132 6900     		.ascii	"i\000"
  829 0134 01       		.byte	0x1
- 830 0135 6F       		.byte	0x6f
+ 830 0135 74       		.byte	0x74
  831 0136 68000000 		.4byte	0x68
  832 013a 1F000000 		.4byte	.LLST1
  833 013e 00       		.byte	0
@@ -1133,14 +1138,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  872 019b 38000000 		.4byte	.LVL9
  873 019f 74030000 		.4byte	0x374
  874 01a3 0E       		.uleb128 0xe
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 20
+
+
  875 01a4 3C000000 		.4byte	.LVL10
  876 01a8 7F030000 		.4byte	0x37f
  877 01ac 0C       		.uleb128 0xc
  878 01ad 42000000 		.4byte	.LVL11
  879 01b1 8A030000 		.4byte	0x38a
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 20
-
-
  880 01b5 BF010000 		.4byte	0x1bf
  881 01b9 0D       		.uleb128 0xd
  882 01ba 01       		.uleb128 0x1
@@ -1193,20 +1198,20 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  929 0238 06       		.uleb128 0x6
  930 0239 76000000 		.4byte	0x76
  931 023d 10       		.uleb128 0x10
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 21
+
+
  932 023e 00000000 		.4byte	.LASF22
  933 0242 01       		.byte	0x1
- 934 0243 20       		.byte	0x20
+ 934 0243 25       		.byte	0x25
  935 0244 BA000000 		.4byte	0xba
  936 0248 05       		.uleb128 0x5
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 21
-
-
  937 0249 03       		.byte	0x3
  938 024a 00000000 		.4byte	channel
  939 024e 11       		.uleb128 0x11
  940 024f 6900     		.ascii	"i\000"
  941 0251 01       		.byte	0x1
- 942 0252 22       		.byte	0x22
+ 942 0252 27       		.byte	0x27
  943 0253 99000000 		.4byte	0x99
  944 0257 05       		.uleb128 0x5
  945 0258 03       		.byte	0x3
@@ -1214,7 +1219,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  947 025d 10       		.uleb128 0x10
  948 025e 1E000000 		.4byte	.LASF23
  949 0262 01       		.byte	0x1
- 950 0263 23       		.byte	0x23
+ 950 0263 28       		.byte	0x28
  951 0264 8D000000 		.4byte	0x8d
  952 0268 05       		.uleb128 0x5
  953 0269 03       		.byte	0x3
@@ -1222,7 +1227,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  955 026e 10       		.uleb128 0x10
  956 026f A1020000 		.4byte	.LASF24
  957 0273 01       		.byte	0x1
- 958 0274 25       		.byte	0x25
+ 958 0274 2A       		.byte	0x2a
  959 0275 81000000 		.4byte	0x81
  960 0279 05       		.uleb128 0x5
  961 027a 03       		.byte	0x3
@@ -1230,7 +1235,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  963 027f 10       		.uleb128 0x10
  964 0280 E6010000 		.4byte	.LASF25
  965 0284 01       		.byte	0x1
- 966 0285 27       		.byte	0x27
+ 966 0285 2C       		.byte	0x2c
  967 0286 8D000000 		.4byte	0x8d
  968 028a 05       		.uleb128 0x5
  969 028b 03       		.byte	0x3
@@ -1238,7 +1243,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  971 0290 10       		.uleb128 0x10
  972 0291 6B030000 		.4byte	.LASF26
  973 0295 01       		.byte	0x1
- 974 0296 28       		.byte	0x28
+ 974 0296 2D       		.byte	0x2d
  975 0297 8D000000 		.4byte	0x8d
  976 029b 05       		.uleb128 0x5
  977 029c 03       		.byte	0x3
@@ -1246,21 +1251,21 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  979 02a1 10       		.uleb128 0x10
  980 02a2 08000000 		.4byte	.LASF27
  981 02a6 01       		.byte	0x1
- 982 02a7 29       		.byte	0x29
+ 982 02a7 2E       		.byte	0x2e
  983 02a8 81000000 		.4byte	0x81
  984 02ac 05       		.uleb128 0x5
  985 02ad 03       		.byte	0x3
  986 02ae 00000000 		.4byte	state
  987 02b2 10       		.uleb128 0x10
  988 02b3 0E000000 		.4byte	.LASF28
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 22
+
+
  989 02b7 01       		.byte	0x1
- 990 02b8 2A       		.byte	0x2a
+ 990 02b8 2F       		.byte	0x2f
  991 02b9 BA000000 		.4byte	0xba
  992 02bd 05       		.uleb128 0x5
  993 02be 03       		.byte	0x3
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 22
-
-
  994 02bf 00000000 		.4byte	reset
  995 02c3 12       		.uleb128 0x12
  996 02c4 8D000000 		.4byte	0x8d
@@ -1272,7 +1277,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1002 02d3 10       		.uleb128 0x10
  1003 02d4 05030000 		.4byte	.LASF29
  1004 02d8 01       		.byte	0x1
- 1005 02d9 2C       		.byte	0x2c
+ 1005 02d9 31       		.byte	0x31
  1006 02da C3020000 		.4byte	0x2c3
  1007 02de 05       		.uleb128 0x5
  1008 02df 03       		.byte	0x3
@@ -1280,7 +1285,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1010 02e4 10       		.uleb128 0x10
  1011 02e5 3D020000 		.4byte	.LASF30
  1012 02e9 01       		.byte	0x1
- 1013 02ea 2D       		.byte	0x2d
+ 1013 02ea 32       		.byte	0x32
  1014 02eb C3020000 		.4byte	0x2c3
  1015 02ef 05       		.uleb128 0x5
  1016 02f0 03       		.byte	0x3
@@ -1288,7 +1293,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1018 02f5 10       		.uleb128 0x10
  1019 02f6 F5020000 		.4byte	.LASF31
  1020 02fa 01       		.byte	0x1
- 1021 02fb 2E       		.byte	0x2e
+ 1021 02fb 33       		.byte	0x33
  1022 02fc BF000000 		.4byte	0xbf
  1023 0300 05       		.uleb128 0x5
  1024 0301 03       		.byte	0x3
@@ -1303,7 +1308,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1033 0316 10       		.uleb128 0x10
  1034 0317 7F020000 		.4byte	.LASF32
  1035 031b 01       		.byte	0x1
- 1036 031c 2F       		.byte	0x2f
+ 1036 031c 34       		.byte	0x34
  1037 031d 06030000 		.4byte	0x306
  1038 0321 05       		.uleb128 0x5
  1039 0322 03       		.byte	0x3
@@ -1313,14 +1318,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1043 032c FC010000 		.4byte	.LASF33
  1044 0330 06       		.byte	0x6
  1045 0331 18       		.byte	0x18
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 23
+
+
  1046 0332 14       		.uleb128 0x14
  1047 0333 6B020000 		.4byte	.LASF34
  1048 0337 6B020000 		.4byte	.LASF34
  1049 033b 07       		.byte	0x7
  1050 033c 18       		.byte	0x18
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 23
-
-
  1051 033d 14       		.uleb128 0x14
  1052 033e 46030000 		.4byte	.LASF35
  1053 0342 46030000 		.4byte	.LASF35
@@ -1350,7 +1355,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1077 0375 B1010000 		.4byte	.LASF40
  1078 0379 B1010000 		.4byte	.LASF40
  1079 037d 0C       		.byte	0xc
- 1080 037e 15       		.byte	0x15
+ 1080 037e 0F       		.byte	0xf
  1081 037f 14       		.uleb128 0x14
  1082 0380 79000000 		.4byte	.LASF41
  1083 0384 79000000 		.4byte	.LASF41
@@ -1373,32 +1378,32 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1100 03aa 3A       		.byte	0x3a
  1101 03ab 14       		.uleb128 0x14
  1102 03ac C3010000 		.4byte	.LASF45
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 24
+
+
  1103 03b0 C3010000 		.4byte	.LASF45
  1104 03b4 0C       		.byte	0xc
- 1105 03b5 13       		.byte	0x13
+ 1105 03b5 0D       		.byte	0xd
  1106 03b6 14       		.uleb128 0x14
  1107 03b7 4D000000 		.4byte	.LASF46
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 24
-
-
  1108 03bb 4D000000 		.4byte	.LASF46
  1109 03bf 0C       		.byte	0xc
- 1110 03c0 11       		.byte	0x11
+ 1110 03c0 0B       		.byte	0xb
  1111 03c1 14       		.uleb128 0x14
  1112 03c2 29000000 		.4byte	.LASF47
  1113 03c6 29000000 		.4byte	.LASF47
  1114 03ca 0C       		.byte	0xc
- 1115 03cb 14       		.byte	0x14
+ 1115 03cb 0E       		.byte	0xe
  1116 03cc 14       		.uleb128 0x14
  1117 03cd 87000000 		.4byte	.LASF48
  1118 03d1 87000000 		.4byte	.LASF48
  1119 03d5 0C       		.byte	0xc
- 1120 03d6 12       		.byte	0x12
+ 1120 03d6 0C       		.byte	0xc
  1121 03d7 14       		.uleb128 0x14
  1122 03d8 CA020000 		.4byte	.LASF49
  1123 03dc CA020000 		.4byte	.LASF49
  1124 03e0 0C       		.byte	0xc
- 1125 03e1 10       		.byte	0x10
+ 1125 03e1 0A       		.byte	0xa
  1126 03e2 00       		.byte	0
  1127              		.section	.debug_abbrev,"",%progbits
  1128              	.Ldebug_abbrev0:
@@ -1433,14 +1438,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1157 001c 00       		.byte	0
  1158 001d 00       		.byte	0
  1159 001e 03       		.uleb128 0x3
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 25
+
+
  1160 001f 16       		.uleb128 0x16
  1161 0020 00       		.byte	0
  1162 0021 03       		.uleb128 0x3
  1163 0022 0E       		.uleb128 0xe
  1164 0023 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 25
-
-
  1165 0024 0B       		.uleb128 0xb
  1166 0025 3B       		.uleb128 0x3b
  1167 0026 0B       		.uleb128 0xb
@@ -1493,14 +1498,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1214 0055 27       		.uleb128 0x27
  1215 0056 19       		.uleb128 0x19
  1216 0057 11       		.uleb128 0x11
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 26
+
+
  1217 0058 01       		.uleb128 0x1
  1218 0059 12       		.uleb128 0x12
  1219 005a 06       		.uleb128 0x6
  1220 005b 40       		.uleb128 0x40
  1221 005c 18       		.uleb128 0x18
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 26
-
-
  1222 005d 9742     		.uleb128 0x2117
  1223 005f 19       		.uleb128 0x19
  1224 0060 00       		.byte	0
@@ -1553,14 +1558,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1271 0091 3A       		.uleb128 0x3a
  1272 0092 0B       		.uleb128 0xb
  1273 0093 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 27
+
+
  1274 0094 0B       		.uleb128 0xb
  1275 0095 49       		.uleb128 0x49
  1276 0096 13       		.uleb128 0x13
  1277 0097 02       		.uleb128 0x2
  1278 0098 17       		.uleb128 0x17
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 27
-
-
  1279 0099 00       		.byte	0
  1280 009a 00       		.byte	0
  1281 009b 0B       		.uleb128 0xb
@@ -1613,14 +1618,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1328 00d1 49       		.uleb128 0x49
  1329 00d2 13       		.uleb128 0x13
  1330 00d3 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 28
+
+
  1331 00d4 19       		.uleb128 0x19
  1332 00d5 3C       		.uleb128 0x3c
  1333 00d6 19       		.uleb128 0x19
  1334 00d7 00       		.byte	0
  1335 00d8 00       		.byte	0
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 28
-
-
  1336 00d9 10       		.uleb128 0x10
  1337 00da 34       		.uleb128 0x34
  1338 00db 00       		.byte	0
@@ -1673,14 +1678,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1385 010a 0B       		.uleb128 0xb
  1386 010b 00       		.byte	0
  1387 010c 00       		.byte	0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 29
+
+
  1388 010d 14       		.uleb128 0x14
  1389 010e 2E       		.uleb128 0x2e
  1390 010f 00       		.byte	0
  1391 0110 3F       		.uleb128 0x3f
  1392 0111 19       		.uleb128 0x19
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 29
-
-
  1393 0112 3C       		.uleb128 0x3c
  1394 0113 19       		.uleb128 0x19
  1395 0114 6E       		.uleb128 0x6e
@@ -1733,14 +1738,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1442 005a F7000000 		.4byte	.LVL28-1
  1443 005e 0100     		.2byte	0x1
  1444 0060 52       		.byte	0x52
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 30
+
+
  1445 0061 02010000 		.4byte	.LVL29
  1446 0065 06010000 		.4byte	.LVL30
  1447 0069 0100     		.2byte	0x1
  1448 006b 52       		.byte	0x52
  1449 006c 0C010000 		.4byte	.LVL31
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 30
-
-
  1450 0070 18010000 		.4byte	.LVL32
  1451 0074 0100     		.2byte	0x1
  1452 0076 52       		.byte	0x52
@@ -1784,7 +1789,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1490 0034 00000000 		.4byte	0
  1491              		.section	.debug_line,"",%progbits
  1492              	.Ldebug_line0:
- 1493 0000 CD020000 		.section	.debug_str,"MS",%progbits,1
+ 1493 0000 CE020000 		.section	.debug_str,"MS",%progbits,1
  1493      0200C501 
  1493      00000201 
  1493      FB0E0D00 
@@ -1793,14 +1798,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1495 0000 6368616E 		.ascii	"channel\000"
  1495      6E656C00 
  1496              	.LASF27:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 31
+
+
  1497 0008 73746174 		.ascii	"state\000"
  1497      6500
  1498              	.LASF28:
  1499 000e 72657365 		.ascii	"reset\000"
  1499      7400
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 31
-
-
  1500              	.LASF9:
  1501 0014 5F5F696E 		.ascii	"__int32_t\000"
  1501      7433325F 
@@ -1853,14 +1858,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1521      7200
  1522              	.LASF50:
  1523 00a0 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 32
+
+
  1523      43313120 
  1523      352E342E 
  1523      31203230 
  1523      31363036 
  1524 00d3 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 32
-
-
  1524      20726576 
  1524      6973696F 
  1524      6E203233 
@@ -1913,14 +1918,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1543 01da 50574D5F 		.ascii	"PWM_2_Start\000"
  1543      325F5374 
  1543      61727400 
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 33
+
+
  1544              	.LASF25:
  1545 01e6 41444352 		.ascii	"ADCResult\000"
  1545      6573756C 
  1545      7400
  1546              	.LASF53:
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 33
-
-
  1547 01f0 6D61696E 		.ascii	"main\000"
  1547      00
  1548              	.LASF12:
@@ -1973,14 +1978,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1567      00
  1568              	.LASF17:
  1569 028c 6C6F6E67 		.ascii	"long double\000"
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 34
+
+
  1569      20646F75 
  1569      626C6500 
  1570              	.LASF18:
  1571 0298 73697A65 		.ascii	"sizetype\000"
  1571      74797065 
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 34
-
-
  1571      00
  1572              	.LASF24:
  1573 02a1 64697361 		.ascii	"disable_toggle\000"
@@ -2033,14 +2038,14 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 1
  1595      00
  1596              	.LASF42:
  1597 0328 4144435F 		.ascii	"ADC_SAR_Seq_1_IsEndConversion\000"
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cc0nlOTF.s 			page 35
+
+
  1597      5341525F 
  1597      5365715F 
  1597      315F4973 
  1597      456E6443 
  1598              	.LASF35:
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccXhbqJY.s 			page 35
-
-
  1599 0346 4144435F 		.ascii	"ADC_SAR_Seq_1_IRQ_Enable\000"
  1599      5341525F 
  1599      5365715F 

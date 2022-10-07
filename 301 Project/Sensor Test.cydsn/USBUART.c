@@ -1,19 +1,12 @@
 /* ========================================
- *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
+ * USBUART.c
  * ========================================
 */
 
 #include "project.h"
 #include "USBUART.h"
 
-
+/*
 void uart_code(){
     USBUART_1_Start(0,USBUART_1_5V_OPERATION);
     
@@ -22,5 +15,6 @@ void uart_code(){
     
     //check if the device is connnected
 }
+*/
 
 /* [] END OF FILE */
