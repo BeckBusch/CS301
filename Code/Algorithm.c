@@ -330,7 +330,10 @@ int main() {
             ydim++;
         }
     }
+
+    // Getting the correct x and y dim REQUIRES that there is a terminating newline in the map file.
     xdim = xydim / ydim;
+    printf("%i", xdim);
 
     // Start reading the file from the top again.
     rewind(fp);
