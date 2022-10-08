@@ -8,9 +8,15 @@
 #include "USBUART.h"
 #include "decoders.h"
 #include <stdio.h>
+#include "algorithm.h"
+// ADD THIS
 
 #define ON 1
 #define OFF 0
+
+#define L 0
+#define R 1
+#define NULLDIR -1
 
 // FL, FR, CL, CR, BC = front left, front right, center left, center right, back center respectively.
 #define FL 0
@@ -30,12 +36,14 @@
 // Disable left and right turns at appropriate times.
 #define DISABLE_LEFT_TURN 0
 #define DISABLE_RIGHT_TURN 1
+#define NO_DISABLES 2
 
 // Prototype declarations.
 CY_ISR_PROTO(isr_eoc_1);
 CY_ISR_PROTO(isr_timer_1);
 
 volatile uint8 channel = 0;
+volatile uint16 instructionCursor = 0;
 
 uint32 i = 0;
 uint16 turn_count = 0;
@@ -66,6 +74,104 @@ CY_ISR(isr_timer_1) {
 }
 
 int main(void){
+
+    // Store the dimensions of the map so we can't go outside of it later on. Hard coding this.
+    uint16_t xdim = 19, ydim = 15;
+    uint16_t xydim = xdim * ydim;
+
+    // Copy paste the map here - make sure to append backslashes after each line.
+    uint16_t array[ydim][xdim];
+    char arrayString[] =   "1111111111111111101\
+                            1000001000000010001\
+                            1110101010111010101\
+                            1010000010100000101\
+                            1010101110101110101\
+                            1000100000100000101\
+                            1011111110001110101\
+                            1000100000100010101\
+                            1110001111101010101\
+                            1000100000101000001\
+                            1011111110001111101\
+                            1000001000101000101\
+                            1111101011101010101\
+                            0000000010000010001\
+                            1111111111111111111";
+
+    uint16_t i = 0;
+    uint8_t j, k = 0;
+
+    // Convert the string to an array so we can use it.
+    while (arrayString[i] != '\0') {
+        if (arrayString[i] == 48) {
+            array[j][k] = 0;
+            if (k == xdim - 1) {
+                k = 0;
+                j++;
+            } else {
+                k++;
+            }
+        } else if (arrayString[i] == 49) {
+            array[j][k] = 1;
+            if (k == xdim - 1) {
+                k = 0;
+                j++;
+            } else {
+                k++;
+            }
+        }
+        i++;
+    }
+
+    // Each zero can only be adjacent to 4 zeroes maximum.
+    int16_t adjlist[xydim][4];
+    for (uint16_t i = 0; i < xydim; i++) {
+        for (uint8_t j = 0; j < 4; j++) {
+            adjlist[i][j] = -1;
+        }
+    }
+    uint16_t cnode;
+
+    /* Construct the adjacency list.
+       Numbered reading from left to right, top down. */
+    for (uint16_t i = 0; i < ydim; i++) {
+        for (uint16_t j = 0; j < xdim; j++) {
+            // For loops go through rows, cols.
+            if (array[i][j] == 0) {
+                cnode = i * xdim + j; 
+                if (array[i - 1][j] == 0) {
+                    // Row above.
+                    adjlist[cnode][0] = (i - 1) * xdim + j;
+                } if (array[i + 1][j] == 0) {
+                    // Row below.
+                    adjlist[cnode][1] = (i + 1) * xdim + j;
+                } if (array[i][j - 1] == 0) {
+                    // Column left.
+                    adjlist[cnode][2] = i * xdim + j - 1;
+                } if (array[i][j + 1] == 0) {
+                    // Column right.
+                    adjlist[cnode][3] = i * xdim + j + 1;
+                }
+            }
+        }
+    }
+
+    // Source x and y co-ordinates.
+    uint16_t sxcord = 1;
+    uint16_t sycord = 1;
+
+    // Target x and y co-ordinates.
+    uint16_t txcord = 5;
+    uint16_t tycord = 13;
+
+    // The offset value - if we are indexing starting at 0, this should be 0, if we are indexing starting at 1, this should be 1 etc.
+    uint8_t offset = 0;
+
+    // Calculation for the source and target co-ordinates.
+    uint16_t source = ((sycord - offset) * xdim + sxcord - offset);
+    uint16_t target = ((tycord - offset) * xdim + txcord - offset);
+
+    uint16_t *finalPath = ASTAR(source, target, adjlist, xdim, ydim, array);
+    int8_t *instructionSet = decode(finalPath, xdim, target);
     
     // Enable global interrupts as well as start and enable the isr.
     CyGlobalIntEnable;
@@ -92,6 +198,8 @@ int main(void){
     //turn_left();
     //stop();
     //turn_right();
+
+    int8_t nextInstruction = instructionSet[instructionCursor];
         
     while(1) {
         
@@ -116,6 +224,14 @@ int main(void){
                 pastValues[i] = maxValues[i];
                 maxValues[i] = 0;
             }
+
+            if (nextInstruction == L) {
+                disable_toggle = DISABLE_RIGHT_TURN;
+            } else if (nextInstruction == R) {
+                disable_toggle = DISABLE_LEFT_TURN;
+            } else if (nextInstruction == NULLDIR) {
+                disable_toggle = NO_DISABLES;
+            }
             
             if (state == TURNING_LEFT) {
                 if (sensor_state[FL] == OFF) {
@@ -128,6 +244,8 @@ int main(void){
                     turn_count++;
                 } else {
                     turn_count = 0;
+                    instructionCursor++;
+                    nextInstruction = instructionSet[instructionCursor];
                     state = FORWARD;
                 }
             } else if (state == TURNING_RIGHT) {
@@ -141,6 +259,8 @@ int main(void){
                     turn_count++;
                 } else {
                     turn_count = 0;
+                    instructionCursor++;
+                    nextInstruction = instructionSet[instructionCursor];
                     state = FORWARD;
                 }
             } else if (state == FORWARD) {
@@ -148,15 +268,13 @@ int main(void){
                     state = STOPPED;
                 } else if (sensor_state[FL] == OFF) {
                     turn_left();
-                    disable_toggle = DISABLE_RIGHT_TURN;
+                    // disable_toggle = DISABLE_RIGHT_TURN;
                 } else if (sensor_state[FR] == OFF) {
                     turn_right();
-                    disable_toggle = DISABLE_LEFT_TURN;
-                    // WHEN THE RIGHT SENSOR IS FIXED, CHANGE sensor_state[CR] == OFF to sensor_state[CR] == ON
+                    // disable_toggle = DISABLE_LEFT_TURN;
                 } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == OFF && sensor_state[CR] == ON && disable_toggle != DISABLE_LEFT_TURN) {
                     state = TURNING_LEFT;
                     turn_left();
-                    // WHEN THE RIGHT SENSOR IS FIXED UNCOMMENT THE BELOW
                 } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF && disable_toggle != DISABLE_RIGHT_TURN) {
                     state = TURNING_RIGHT;
                     turn_right();

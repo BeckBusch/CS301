@@ -247,13 +247,13 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
 }
 
 // Decode an array of vertices representing the shortest path into a list of directions.
-uint8_t *decode(uint16_t *finalPath, uint16_t xdim, uint16_t target) {
+int8_t *decode(uint16_t *finalPath, uint16_t xdim, uint16_t target) {
 
     // Get the length of the final path and store it in size.
     uint16_t size = finalPath[0];
     
     // Allocate space for our return array.
-    uint8_t *instructionSet = malloc(size * sizeof(uint8_t));
+    int8_t *instructionSet = malloc(size * sizeof(int8_t));
     for (uint16_t i = 0; i < size; i++) {
         instructionSet[i] = NULLDIR;
     }
@@ -418,7 +418,7 @@ int main() {
     uint16_t sycord = 1;
 
     // Target x and y co-ordinates.
-    uint16_t txcord = 5;
+    uint16_t txcord = 16;
     uint16_t tycord = 13;
 
     // The offset value - if we are indexing starting at 0, this should be 0, if we are indexing starting at 1, this should be 1 etc.
@@ -429,7 +429,7 @@ int main() {
     uint16_t target = ((tycord - offset) * xdim + txcord - offset);
 
     uint16_t *finalPath = ASTAR(source, target, adjlist, xdim, ydim, array);
-    uint8_t *instructionSet = decode(finalPath, xdim, target);
+    int8_t *instructionSet = decode(finalPath, xdim, target);
 
     // Print statements for debugging - this is the output we use for turning.
     for (uint16_t i = 0; i < finalPath[0] + 1; i++) {
