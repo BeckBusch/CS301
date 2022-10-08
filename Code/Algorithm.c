@@ -8,6 +8,15 @@
 // Unicode things
 #include <Windows.h>
 
+#define NORTH 0
+#define EAST 1
+#define SOUTH 2
+#define WEST 3
+#define UNINITIALISED 4
+
+#define L 0
+#define R 1
+
 struct PriorityVertex {
     int value;
     int priority;
@@ -156,7 +165,7 @@ void draw(int xdim, int ydim, int array[15][19], struct Vertex vertices[15*19], 
 }
 
 // Implementation of the A* algorithm.
-void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int array[15][19]) {
+int *ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int array[15][19]) {
 
     // Dimension.
     int size = xdim * ydim;
@@ -177,7 +186,8 @@ void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
 
     }
 
-    vertices[source].distance = 0;
+    // In our implementation we should count the source block as having a distance of 1.
+    vertices[source].distance = 1;
 
     // While we have yet to reach the destination, keep looping.
     while (queue->size != 0) {
@@ -194,7 +204,7 @@ void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
         // If we have reached our target, then we can stop searching.
         if (key.value == target) {
 
-            printf("The target is %d blocks from the source.\n", vertices[key.value].distance );
+            printf("The target is %d blocks from the source.\n", vertices[target].distance );
 
             int shortestPath[size];
             for (int i = 0; i < size; i++) {
@@ -221,15 +231,29 @@ void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
 
             abc[index].visited = true;
             abc[source].visited = true;
-            //abc[source].visited = true;
-            //shortestPath[source] = 0;
+            
+            shortestPath[source] = 0;
+            shortestPath[index] = 0;
 
             printf("TESTING\n");
+
+
+            // Return array. Need ONE MORE space for size of array.
+            int *finalPath = malloc((vertices[target].distance + 1) * sizeof(int));
+            int iterator = 1;
+            for (int i = 0; i < size + 1; i++) {
+                if (shortestPath[i] == 0) {
+                    finalPath[iterator] = i;
+                    iterator++;
+                }
+            }
+
+            finalPath[0] = vertices[target].distance;
 
             draw(xdim, ydim, array, abc, false);
 
 
-            return;
+            return finalPath;
 
         }
 
@@ -263,6 +287,74 @@ void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
         }
 
     }
+
+}
+
+// Decode an array of vertices representing the shortest path into a list of directions.
+int *decode(int *finalPath, int xdim) {
+
+    int size = finalPath[0];
+    int *instructionSet = malloc(size);
+
+    int i = 1;
+    int traversalDirection = UNINITIALISED;
+    int prevDirection = UNINITIALISED;
+
+    while (finalPath[i + 1] != target) {
+        if (finalPath[i + 1] - finalPath[i] == xdim) {
+            traversalDirection = NORTH;
+        } else if (finalPath[i] - finalPath[i + 1] == xdim) {
+            traversalDirection = SOUTH;
+        } else if (finalPath[i + 1] - finalPath[i] == 1) {
+            traversalDirection = EAST;
+        } else if (finalPath[i] - finalPath[i + 1] == 1) {
+            traversalDirection = WEST;
+        }
+
+        if ((traversalDirection != prevDirection) && (prevDirection != UNINITIALISED)) {
+            switch (traversalDirection) 
+            {
+                case NORTH:
+                    if (prevDirection == EAST) {
+
+                    } else if (prevDirection == WEST) {
+
+                    }
+                    break;
+
+                case EAST:
+                    if (prevDirection == NORTH) {
+
+                    } else if (prevDirection == SOUTH) {
+                        
+                    }
+                    break;
+
+                case SOUTH:
+                    if (prevDirection == EAST) {
+
+                    } else if (prevDirection == WEST) {
+
+                    }
+                    break;
+
+                case WEST:
+                    if (prevDirection == NORTH) {
+
+                    } else if (prevDirection == SOUTH) {
+                        
+                    }
+                    break;
+
+                default:
+                    break;
+
+            }
+        }
+
+    }
+
+    return instructionSet;
 
 }
 
@@ -378,7 +470,16 @@ int main() {
     int source = 20;
     int target = 252;
 
-    ASTAR(source, target, adjlist, xdim, ydim, array);
+    int *finalPath = ASTAR(source, target, adjlist, xdim, ydim, array);
+
+    printf("HELLO\n");
+    for (int i = 0; i < finalPath[0] + 1; i++) {
+        printf("%i, ", finalPath[i]);
+    }
+    printf("\n");
+
+    int *instructionSet = decode(finalPath, xdim);
+
     printf("Pathfinding complete. \n");
 
     // Keep the window open indefinitely.
