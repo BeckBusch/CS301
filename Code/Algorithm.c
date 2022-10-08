@@ -20,8 +20,7 @@ struct Queue {
 } Queue;
 
 struct Vertex {
-    // Colour enum for seeing if vertices have been visited.
-    enum { WHITE, GREY, BLACK } colour;
+    int pred;
     int distance;
     bool visited;
 } Vertex;
@@ -140,13 +139,7 @@ void draw(int xdim, int ydim, int array[15][19], struct Vertex vertices[15*19], 
                     } else {
                         printf("▒▒");
                     }
-                } else {
-                    if (vertices[county * xdim + countx].colour == GREY || vertices[county * xdim + countx].colour == BLACK) {
-                        printf("%s", "  ");
-                    } else {
-                        printf("▒▒");
-                    }
-                } 
+                }
             } else {
                 printf("%s", "██");
             }
@@ -156,62 +149,9 @@ void draw(int xdim, int ydim, int array[15][19], struct Vertex vertices[15*19], 
     printf("\n\n\n\n\n\n\n\n\n\n\n\n");
 
     // NO-OP to delay print statements.
-    for (int i = 0; i < 50000000; i++) {
+    for (int i = 0; i < 5000000; i++) {
         (void)0;
     }
-
-}
-
-// Implementation of the BFS algorithm.
-void BFS(int source, int target, int adjlist[][4], int xdim, int ydim, int array[15][19]) {
-
-    // Dimension.
-    int size = xdim * ydim;
-
-    // Set up an array of vertices to track progress.
-    struct Vertex vertices[size];
-    for (int i = 0; i < size; i++) {
-        vertices[i].colour = WHITE;
-        vertices[i].distance = INT_MAX;
-    }
-
-    vertices[source].colour = GREY;
-    vertices[source].distance = 0;
-
-    // Set up the queue.
-    struct Queue* queue = makeQueue(size);
-    init(queue, size);
-    push(queue, source, 0);
-
-    // While the queue still has vertices to visit, visit them.
-    while (queue->size != 0) {
-        // Pop the front of the queue, this is the key in adjlist.
-        int key = pop(queue);
-
-        // Draw to the console.
-        draw(xdim, ydim, array, vertices, true);
-
-        // If we have reached our target, we can stop the search.
-        if (key == target) { break; }
-
-        /* For each connected entry in adjlist, check if it has been visited.
-           Then, mark it as grey if it has yet to be visited, and add it to the queue. 
-           Make sure to update distance as well. */
-        for (int i = 0; i < 4; i++) {
-            int entry = adjlist[key][i];
-            // If entry is -1 it means there is no valid entry here (vacancy).
-            if (entry != -1) {
-                if (vertices[entry].colour == WHITE) {
-                    vertices[entry].colour = GREY;
-                    vertices[entry].distance = vertices[key].distance + 1;
-                    push(queue, entry, 0);
-                }
-            }
-        }
-        // Mark the key vertex as visited.
-        vertices[key].colour = BLACK;
-    }
-    printf("The target is %d blocks from the source.\n", vertices[target].distance);
 
 }
 
@@ -231,6 +171,7 @@ void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
     for (int i = 0; i < size; i++) {
 
         // We don't care about vertex colour for this implementation.
+        vertices[i].pred = -1;
         vertices[i].distance = INT_MAX;
         vertices[i].visited = false;
 
@@ -253,7 +194,41 @@ void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
         // If we have reached our target, then we can stop searching.
         if (key.value == target) {
 
-            printf("The target is %d blocks from the source.\n", vertices[key.value].distance );//
+            printf("The target is %d blocks from the source.\n", vertices[key.value].distance );
+
+            int shortestPath[size];
+            for (int i = 0; i < size; i++) {
+                shortestPath[i] = 1;
+            }
+
+            struct Vertex abc[size];
+                for (int i = 0; i < size; i++) {
+
+                // We don't care about vertex colour for this implementation.
+                abc[i].pred = -1;
+                abc[i].distance = INT_MAX;
+                abc[i].visited = false;
+
+            }
+
+            int index = target;
+            while (vertices[index].pred != source) {
+                
+                abc[index].visited = true;
+                shortestPath[index] = 0;
+                index = vertices[index].pred;
+            }
+
+            abc[index].visited = true;
+            abc[source].visited = true;
+            //abc[source].visited = true;
+            //shortestPath[source] = 0;
+
+            printf("TESTING\n");
+
+            draw(xdim, ydim, array, abc, false);
+
+
             return;
 
         }
@@ -274,6 +249,9 @@ void ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
                     // Priority is the sum of the new distance plus the heuristic function result.
                     int priority = newDistance + heuristic(entry, target, xdim);
                     vertices[entry].distance = newDistance;
+
+                    // Set the predecessor (we want to take the newly discovered shortest path to entry vertex).
+                    vertices[entry].pred = key.value;
 
                     if (!queueContains(queue, entry)) {
                         // If the neighbour is not in the priority queue already, add it.
@@ -307,33 +285,9 @@ int main() {
     char seq;
     SetConsoleOutputCP(CP_UTF8);
 
-    // Store the dimensions of the map so we can't go outside of it later on.
-    int xydim, xdim, ydim = 0;
-
-    // Read characters from the file and print them until we reach EOF.
-    // This part is only for demonstration purposes, we don't need this in the final code.
-    // We may need to get xdim and ydim from here however.
-    while (1) {
-        if (feof(fp) != 0) {
-            break;
-        }
-        seq = fgetc((FILE*)fp);
-        // Use ASCII code for 1, not 1 itself.
-        if (seq == 49) {
-            printf("%s", "██");
-            xydim++;
-        } else if (seq == 48) {
-            printf("▒▒");
-            xydim++;
-        } else if (seq == 10) {
-            printf("\n");
-            ydim++;
-        }
-    }
-
-    // Getting the correct x and y dim REQUIRES that there is a terminating newline in the map file.
-    xdim = xydim / ydim;
-    printf("%i", xdim);
+    // Store the dimensions of the map so we can't go outside of it later on. Hard coding this.
+    int xdim = 19, ydim = 15;
+    int xydim = xdim * ydim;
 
     // Start reading the file from the top again.
     rewind(fp);
@@ -424,7 +378,6 @@ int main() {
     int source = 20;
     int target = 252;
 
-    //BFS(source, target, adjlist, xdim, ydim, array);
     ASTAR(source, target, adjlist, xdim, ydim, array);
     printf("Pathfinding complete. \n");
 
