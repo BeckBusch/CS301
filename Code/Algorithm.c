@@ -1,12 +1,10 @@
-// Includes
+// Includes.
 #include <stdio.h>
+#include <string.h>
 #include <limits.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
-// Unicode things
-#include <Windows.h>
+#include <time.h>
 
 #define NORTH 0
 #define EAST 1
@@ -137,34 +135,6 @@ struct PriorityVertex removeVertex(struct Queue* queue) {
 
 }
 
-void draw(int xdim, int ydim, int array[15][19], struct Vertex vertices[15*19], bool BFS) {
-
-    // Function to draw the map to the console - not important later on.
-    for (int county = 0; county < ydim; county++) {
-        for (int countx = 0; countx < xdim; countx++) {
-            if (array[county][countx] == 0) {
-                if (BFS == false) {
-                    if (vertices[county * xdim + countx].visited == true) {
-                        printf("%s", "  ");
-                    } else {
-                        printf("▒▒");
-                    }
-                }
-            } else {
-                printf("%s", "██");
-            }
-        }
-        printf("\n");
-    }
-    printf("\n\n\n\n\n\n\n\n\n\n\n\n");
-
-    // NO-OP to delay print statements.
-    for (int i = 0; i < 5000000; i++) {
-        (void)0;
-    }
-
-}
-
 // Implementation of the A* algorithm.
 int *ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int array[15][19]) {
 
@@ -199,57 +169,34 @@ int *ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
         // Set the visited status to true.
         vertices[key.value].visited = true;
 
-        // Draw to the console.
-        draw(xdim, ydim, array, vertices, false);
-
         // If we have reached our target, then we can stop searching.
         if (key.value == target) {
 
-            printf("The target is %d blocks from the source.\n", vertices[target].distance );
+            // printf("The target is %d blocks from the source.\n", vertices[target].distance );
 
+            // Initialise an array to store the shortest path (with blanks).
             int shortestPath[size];
             for (int i = 0; i < size; i++) {
                 shortestPath[i] = -1;
             }
 
-            struct Vertex abc[size];
-                for (int i = 0; i < size; i++) {
-
-                // We don't care about vertex colour for this implementation.
-                abc[i].pred = -1;
-                abc[i].distance = INT_MAX;
-                abc[i].visited = false;
-
-            }
-
+            // Index and order are both required for successful formatting.
             int index = target;
             int order = vertices[target].distance;
-            while (vertices[index].pred != source) {
-                
-                abc[index].visited = true;
-                shortestPath[index] = order; // PRESERVE ORDER!
+
+            while (vertices[index].pred != source) { 
+                // Order is very important here, we need it to make sure that the order we visit vertices in is preserved.
+                shortestPath[index] = order;
                 index = vertices[index].pred;
                 order--;
             }
-
-            abc[index].visited = true;
-            abc[source].visited = true;
             
+            // Add the last 2 vertices.
             shortestPath[index] = order;
             order--;
             shortestPath[source] = order;
 
-            for (int i = 0; i < size; i++) {
-                if (shortestPath[i] != -1) {
-                    printf("%i, ", shortestPath[i]);
-                }
-            }
-            printf("\n");
-
-            printf("TESTING\n");
-
-
-            // Return array. Need ONE MORE space for size of array.
+            // Array to return. Need to allocate space for an additional int so we can store the size as well.
             int *finalPath = malloc((vertices[target].distance + 1) * sizeof(int));
             for (int i = 0; i < size; i++) {
                 if (shortestPath[i] != -1) {
@@ -258,11 +205,10 @@ int *ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
                 }
             }
 
+            // Set the size at position 0.
             finalPath[0] = vertices[target].distance;
 
-            draw(xdim, ydim, array, abc, false);
-
-
+            // Return the formatted shortest path.
             return finalPath;
 
         }
@@ -371,18 +317,15 @@ int *decode(int *finalPath, int xdim, int target) {
                 default:
                     break;
             }
-
             // Increment the index so that we can store the next instruction (if applicable).
             j++;
 
         }
-
         // Set the previous direction to our current one, and increment our position in the shortest path.
         prevDirection = traversalDirection;
         i++;
 
     }
-
     // Return the set of instructions produced.
     return instructionSet;
 
@@ -390,54 +333,52 @@ int *decode(int *finalPath, int xdim, int target) {
 
 int main() {
 
-    // Get current working directory.
-    char cwd[PATH_MAX];
-    getcwd(cwd, PATH_MAX);
-
-    // Set the specific file to be read from.
-    char filename[] = "map.txt";
-
-    char buf[PATH_MAX];
-    sprintf(buf, "%s\\%s", cwd, filename);
-
-    // Open the file to be read and copy the values into an array.
-    FILE *fp;
-    fp = fopen(buf, "r");
-
-    char seq;
-    SetConsoleOutputCP(CP_UTF8);
-
     // Store the dimensions of the map so we can't go outside of it later on. Hard coding this.
     int xdim = 19, ydim = 15;
     int xydim = xdim * ydim;
 
-    // Start reading the file from the top again.
-    rewind(fp);
-
-    // Re-read the characters from the file, but this time, store them inside an array we just initialised.
+    // Copy paste the map here - make sure to append backslashes after each line.
     int array[ydim][xdim];
-    for (int county = 0; county < ydim; county++) {
-        for (int countx = 0; countx < xdim; countx++) {
-            seq = fgetc((FILE*)fp);
-            if (seq == 49) {
-                array[county][countx] = 1;
-            } else if (seq == 48) {
-                array[county][countx] = 0;
-            } else if (seq == 10) {
-                countx--;
+    char arrayString[] =   "1111111111111111101\
+                            1000001000000010001\
+                            1110101010111010101\
+                            1010000010100000101\
+                            1010101110101110101\
+                            1000100000100000101\
+                            1011111110001110101\
+                            1000100000100010101\
+                            1110001111101010101\
+                            1000100000101000001\
+                            1011111110001111101\
+                            1000001000101000101\
+                            1111101011101010101\
+                            0000000010000010001\
+                            1111111111111111111";
+
+    int i = 0;
+    int j, k = 0;
+
+    // Convert the string to an array so we can use it.
+    while (arrayString[i] != '\0') {
+        if (arrayString[i] == 48) {
+            array[j][k] = 0;
+            if (k == xdim - 1) {
+                k = 0;
+                j++;
+            } else {
+                k++;
+            }
+        } else if (arrayString[i] == 49) {
+            array[j][k] = 1;
+            if (k == xdim - 1) {
+                k = 0;
+                j++;
+            } else {
+                k++;
             }
         }
+        i++;
     }
-
-    // Verify the values have been copied over correctly.
-    printf("\n");
-    for (int county = 0; county < ydim; county++) {
-        for (int countx = 0; countx < xdim; countx++) {
-            printf("%d", array[county][countx]);
-        }
-        printf("\n");
-    }
-    // Now the array is stored in memory.
 
     // Each zero can only be adjacent to 4 zeroes maximum.
     int adjlist[xydim][4];
@@ -472,59 +413,39 @@ int main() {
         }
     }
 
-    // Print dimension for debugging purpose.
-    printf("(Size of the array is %d)\n", xydim);
+    // Source x and y co-ordinates.
+    int sxcord = 1;
+    int sycord = 1;
 
-    // Close the stream.
-    fclose(fp);
+    // Target x and y co-ordinates.
+    int txcord = 16;
+    int tycord = 13;
 
-    int x1; int y1; int x2; int y2;
+    // The offset value - if we are indexing starting at 0, this should be 0, if we are indexing starting at 1, this should be 1 etc.
+    int offset = 0;
 
-    // Print statements to prompt the user for the start and end co-ordinates.
-    printf("\nFrom what point should the traversal start?\n");
-    // printf("Please enter the x co-ordinate:\n");
-    // scanf("%d", &x1);
-    // printf("Please enter the y co-ordinate:\n");
-    // scanf("%d", &y1);
-
-    // printf("\nFrom what point should the traversal end?\n");
-    // printf("Please enter the x co-ordinate:\n");
-    // scanf("%d", &x2);
-    // printf("Please enter the y co-ordinate:\n");
-    // scanf("%d", &y2);
-
-    //int source = y1 * xdim + x1;
-    //int target = y2 * xdim + x2;
-    // int source = 39;
-    // int target = 68;
-    int source = 20;
-    int target = 263;
+    // Calculation for the source and target co-ordinates.
+    int source = ((sycord - offset) * xdim + sxcord - offset);
+    int target = ((tycord - offset) * xdim + txcord - offset);
 
     int *finalPath = ASTAR(source, target, adjlist, xdim, ydim, array);
-
-    printf("HELLO\n");
-    for (int i = 0; i < finalPath[0] + 1; i++) {
-        printf("%i, ", finalPath[i]);
-    }
-    printf("\n");
-
     int *instructionSet = decode(finalPath, xdim, target);
-    for (int i = 0; i < finalPath[0] + 1; i++) {
-        if (instructionSet[i] == L) {
-            printf("L");
-        }
-        if (instructionSet[i] == R) {
-            printf("R");
-        }
-    }
-    printf("\n");
 
-    printf("Pathfinding complete. \n");
+    // Print statements for debugging - this is the output we use for turning.
+    // for (int i = 0; i < finalPath[0] + 1; i++) {
+    //     if (instructionSet[i] == L) {
+    //         printf("L");
+    //     }
+    //     if (instructionSet[i] == R) {
+    //         printf("R");
+    //     }
+    // }
+    // printf("\n");
 
     // Keep the window open indefinitely.
-    while (1) {
+    // while (1) {
 
-    }
+    // }
 
     return 0;
 
