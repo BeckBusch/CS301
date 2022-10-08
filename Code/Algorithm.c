@@ -16,6 +16,7 @@
 
 #define L 0
 #define R 1
+#define NULLDIR -1
 
 struct PriorityVertex {
     int value;
@@ -208,7 +209,7 @@ int *ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
 
             int shortestPath[size];
             for (int i = 0; i < size; i++) {
-                shortestPath[i] = 1;
+                shortestPath[i] = -1;
             }
 
             struct Vertex abc[size];
@@ -222,29 +223,38 @@ int *ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
             }
 
             int index = target;
+            int order = vertices[target].distance;
             while (vertices[index].pred != source) {
                 
                 abc[index].visited = true;
-                shortestPath[index] = 0;
+                shortestPath[index] = order; // PRESERVE ORDER!
                 index = vertices[index].pred;
+                order--;
             }
 
             abc[index].visited = true;
             abc[source].visited = true;
             
-            shortestPath[source] = 0;
-            shortestPath[index] = 0;
+            shortestPath[index] = order;
+            order--;
+            shortestPath[source] = order;
+
+            for (int i = 0; i < size; i++) {
+                if (shortestPath[i] != -1) {
+                    printf("%i, ", shortestPath[i]);
+                }
+            }
+            printf("\n");
 
             printf("TESTING\n");
 
 
             // Return array. Need ONE MORE space for size of array.
             int *finalPath = malloc((vertices[target].distance + 1) * sizeof(int));
-            int iterator = 1;
-            for (int i = 0; i < size + 1; i++) {
-                if (shortestPath[i] == 0) {
-                    finalPath[iterator] = i;
-                    iterator++;
+            for (int i = 0; i < size; i++) {
+                if (shortestPath[i] != -1) {
+                    order = shortestPath[i];
+                    finalPath[order] = i;
                 }
             }
 
@@ -291,19 +301,27 @@ int *ASTAR(int source, int target, int adjlist[][4], int xdim, int ydim, int arr
 }
 
 // Decode an array of vertices representing the shortest path into a list of directions.
-int *decode(int *finalPath, int xdim) {
+int *decode(int *finalPath, int xdim, int target) {
 
+    // Get the length of the final path and store it in size.
     int size = finalPath[0];
-    int *instructionSet = malloc(size);
+    
+    // Allocate space for our return array.
+    int *instructionSet = malloc(size * sizeof(int));
+    for (int i = 0; i < size; i++) {
+        instructionSet[i] = NULLDIR;
+    }
 
-    int i = 1;
+    // Track the current and previous directions, and array indices.
+    int i = 1, j = 0;
     int traversalDirection = UNINITIALISED;
     int prevDirection = UNINITIALISED;
 
-    while (finalPath[i + 1] != target) {
-        if (finalPath[i + 1] - finalPath[i] == xdim) {
+    // While we have yet to reach the target vertex, walk through the shortest path, keeping track of the direction we are moving in.
+    while (finalPath[i] != target) {
+        if (finalPath[i] - finalPath[i + 1] == xdim) {
             traversalDirection = NORTH;
-        } else if (finalPath[i] - finalPath[i + 1] == xdim) {
+        } else if (finalPath[i + 1] - finalPath[i] == xdim) {
             traversalDirection = SOUTH;
         } else if (finalPath[i + 1] - finalPath[i] == 1) {
             traversalDirection = EAST;
@@ -311,49 +329,61 @@ int *decode(int *finalPath, int xdim) {
             traversalDirection = WEST;
         }
 
+        // If we have just started traversing, then we cannot have made a turn yet, so prevDirection needs to be initialised.
+        // If the previous direction is different from our current one, then we have to had made a turn.
         if ((traversalDirection != prevDirection) && (prevDirection != UNINITIALISED)) {
+
+            // We can determine whether we turned left or right based on our previous and current directions.
             switch (traversalDirection) 
             {
                 case NORTH:
                     if (prevDirection == EAST) {
-
+                        instructionSet[j] = L;
                     } else if (prevDirection == WEST) {
-
+                        instructionSet[j] = R;
                     }
                     break;
 
                 case EAST:
                     if (prevDirection == NORTH) {
-
+                        instructionSet[j] = R;
                     } else if (prevDirection == SOUTH) {
-                        
+                        instructionSet[j] = L;
                     }
                     break;
 
                 case SOUTH:
                     if (prevDirection == EAST) {
-
+                        instructionSet[j] = R;
                     } else if (prevDirection == WEST) {
-
+                        instructionSet[j] = L;
                     }
                     break;
 
                 case WEST:
                     if (prevDirection == NORTH) {
-
+                        instructionSet[j] = L;
                     } else if (prevDirection == SOUTH) {
-                        
+                        instructionSet[j] = R;
                     }
                     break;
 
                 default:
                     break;
-
             }
+
+            // Increment the index so that we can store the next instruction (if applicable).
+            j++;
+
         }
+
+        // Set the previous direction to our current one, and increment our position in the shortest path.
+        prevDirection = traversalDirection;
+        i++;
 
     }
 
+    // Return the set of instructions produced.
     return instructionSet;
 
 }
@@ -468,7 +498,7 @@ int main() {
     // int source = 39;
     // int target = 68;
     int source = 20;
-    int target = 252;
+    int target = 263;
 
     int *finalPath = ASTAR(source, target, adjlist, xdim, ydim, array);
 
@@ -478,7 +508,16 @@ int main() {
     }
     printf("\n");
 
-    int *instructionSet = decode(finalPath, xdim);
+    int *instructionSet = decode(finalPath, xdim, target);
+    for (int i = 0; i < finalPath[0] + 1; i++) {
+        if (instructionSet[i] == L) {
+            printf("L");
+        }
+        if (instructionSet[i] == R) {
+            printf("R");
+        }
+    }
+    printf("\n");
 
     printf("Pathfinding complete. \n");
 
