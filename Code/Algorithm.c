@@ -14,6 +14,7 @@
 
 #define L 0
 #define R 1
+#define J 2
 #define NULLDIR -1
 
 struct PriorityVertex {
@@ -247,7 +248,7 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
 }
 
 // Decode an array of vertices representing the shortest path into a list of directions.
-int8_t *decode(uint16_t *finalPath, uint16_t xdim, uint16_t target) {
+int8_t *decode(uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target) {
 
     // Get the length of the final path and store it in size.
     uint16_t size = finalPath[0];
@@ -319,6 +320,21 @@ int8_t *decode(uint16_t *finalPath, uint16_t xdim, uint16_t target) {
             }
             // Increment the index so that we can store the next instruction (if applicable).
             j++;
+
+        } else if ((traversalDirection == prevDirection) && (prevDirection != UNINITIALISED)) {
+
+            // If we are travelling the same direction as before along the shortest path, but there is a POSSIBLE turn that we need to ignore, insert a junction into the instruction set.
+            if (prevDirection == NORTH || prevDirection == SOUTH) {
+                if (adjlist[finalPath[i]][2] != -1 || adjlist[finalPath[i]][3] != -1) {
+                    instructionSet[j] = J;
+                    j++;
+                }
+            } else if (prevDirection == EAST || prevDirection == WEST) {
+                if (adjlist[finalPath[i]][0] != -1 || adjlist[finalPath[i]][1] != -1) {
+                    instructionSet[j] = J;
+                    j++;
+                }
+            }
 
         }
         // Set the previous direction to our current one, and increment our position in the shortest path.
@@ -429,7 +445,7 @@ int main() {
     uint16_t target = ((tycord - offset) * xdim + txcord - offset);
 
     uint16_t *finalPath = ASTAR(source, target, adjlist, xdim, ydim, array);
-    int8_t *instructionSet = decode(finalPath, xdim, target);
+    int8_t *instructionSet = decode(finalPath, adjlist, xdim, target);
 
     // Print statements for debugging - this is the output we use for turning.
     for (uint16_t i = 0; i < finalPath[0] + 1; i++) {
@@ -439,8 +455,11 @@ int main() {
         if (instructionSet[i] == R) {
             printf("R");
         }
+        if (instructionSet[i] == J) {
+            printf("J");
+        }
     }
-    printf("\n");
+    printf("\nPathfinding complete.");
 
     // Keep the window open indefinitely.
     while (1) {
