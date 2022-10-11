@@ -46,6 +46,7 @@
           <File BuildType="BUILD" Toolchain="">decoders.h</File>
           <File BuildType="BUILD" Toolchain="">motors.h</File>
           <File BuildType="BUILD" Toolchain="">pathfinding.h</File>
+          <File BuildType="BUILD" Toolchain="">map.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Generated_Source\PSoC5">
