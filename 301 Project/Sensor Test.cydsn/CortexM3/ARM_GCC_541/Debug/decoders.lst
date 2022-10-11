@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
   40 0008 0A4C     		ldr	r4, .L3
   41 000a 2080     		strh	r0, [r4]	@ movhi
   16:decoders.c    ****     countR = QuadDec_R_GetCounter();
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 2
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 2
 
 
   42              		.loc 1 16 0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
   28:decoders.c    **** void decoderInit(){
   85              		.loc 1 28 0
   86              		.cfi_startproc
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 3
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 3
 
 
   87              		@ args = 0, pretend = 0, frame = 0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  129              		.section	.text.speedAdjust,"ax",%progbits
  130              		.align	2
  131              		.global	speedAdjust
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 4
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 4
 
 
  132              		.thumb
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  175 0034 DBB2     		uxtb	r3, r3
  176 0036 1370     		strb	r3, [r2]
  177 0038 7047     		bx	lr
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 5
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 5
 
 
  178              	.L12:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  230 0026 01       		.byte	0x1
  231 0027 06       		.byte	0x6
  232 0028 BB020000 		.4byte	.LASF0
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 6
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 6
 
 
  233 002c 02       		.uleb128 0x2
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  287 0093 E801     		.2byte	0x1e8
  288 0095 3A000000 		.4byte	0x3a
  289 0099 02       		.uleb128 0x2
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 7
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 7
 
 
  290 009a 04       		.byte	0x4
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  344 010c 01       		.uleb128 0x1
  345 010d 30       		.byte	0x30
  346 010e 00       		.byte	0
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 8
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 8
 
 
  347 010f 00       		.byte	0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  401 018b 0F       		.uleb128 0xf
  402 018c C7020000 		.4byte	.LASF20
  403 0190 06       		.byte	0x6
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 9
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 9
 
 
  404 0191 0C       		.byte	0xc
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  458 0206 4E       		.byte	0x4e
  459 0207 10       		.uleb128 0x10
  460 0208 D5010000 		.4byte	.LASF28
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 10
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 10
 
 
  461 020c D5010000 		.4byte	.LASF28
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  515 0017 0B       		.uleb128 0xb
  516 0018 3E       		.uleb128 0x3e
  517 0019 0B       		.uleb128 0xb
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 11
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 11
 
 
  518 001a 03       		.uleb128 0x3
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  572 0050 0E       		.uleb128 0xe
  573 0051 3A       		.uleb128 0x3a
  574 0052 0B       		.uleb128 0xb
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 12
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 12
 
 
  575 0053 3B       		.uleb128 0x3b
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  629 0093 0C       		.uleb128 0xc
  630 0094 2E       		.uleb128 0x2e
  631 0095 01       		.byte	0x1
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 13
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 13
 
 
  632 0096 3F       		.uleb128 0x3f
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  686 00ce 3C       		.uleb128 0x3c
  687 00cf 19       		.uleb128 0x19
  688 00d0 00       		.byte	0
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 14
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 14
 
 
  689 00d1 00       		.byte	0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  743 0000 00000000 		.4byte	.LFB63
  744 0004 44000000 		.4byte	.LFE63
  745 0008 00000000 		.4byte	.LFB64
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 15
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 15
 
 
  746 000c 38000000 		.4byte	.LFE64
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  774              	.LASF1:
  775 007b 756E7369 		.ascii	"unsigned char\000"
  775      676E6564 
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 16
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 16
 
 
  775      20636861 
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  793      725F5374 
  793      61727400 
  794              	.LASF32:
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 17
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 17
 
 
  795 01c5 51756164 		.ascii	"QuadDec_L_Start\000"
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 1
  819      00
  820              	.LASF27:
  821 0267 51756164 		.ascii	"QuadDec_R_GetCounter\000"
-ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccE14sxe.s 			page 18
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\cca2YGUd.s 			page 18
 
 
  821      4465635F 

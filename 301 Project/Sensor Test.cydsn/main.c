@@ -8,7 +8,7 @@
 #include "USBUART.h"
 #include "decoders.h"
 #include <stdio.h>
-#include "algorithm.h"
+#include "pathfinding.h"
 // ADD THIS
 
 #define ON 1
@@ -330,7 +330,7 @@ int main(void) {
             }
             reset = 0;
             
-        }     
+             
         
         // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
         if (pastValues[channel] >= 500) {

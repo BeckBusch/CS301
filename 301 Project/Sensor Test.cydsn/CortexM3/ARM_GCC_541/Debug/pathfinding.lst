@@ -1,0 +1,4393 @@
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"pathfinding.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.makeQueue,"ax",%progbits
+  20              		.align	2
+  21              		.global	makeQueue
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	makeQueue, %function
+  25              	makeQueue:
+  26              	.LFB64:
+  27              		.file 1 "pathfinding.c"
+   1:pathfinding.c **** /* ========================================
+   2:pathfinding.c ****  * motors.c
+   3:pathfinding.c ****  * ========================================
+   4:pathfinding.c **** */
+   5:pathfinding.c **** 
+   6:pathfinding.c **** #include "pathfinding.h"
+   7:pathfinding.c **** 
+   8:pathfinding.c **** struct Queue* makeQueue(unsigned size) {
+  28              		.loc 1 8 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 38B5     		push	{r3, r4, r5, lr}
+  34              		.cfi_def_cfa_offset 16
+  35              		.cfi_offset 3, -16
+  36              		.cfi_offset 4, -12
+  37              		.cfi_offset 5, -8
+  38              		.cfi_offset 14, -4
+  39 0002 0546     		mov	r5, r0
+   9:pathfinding.c **** 
+  10:pathfinding.c ****     // We need to make a pointer to the queue so that we can pass it by reference from the function
+  11:pathfinding.c ****     struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
+  40              		.loc 1 11 0
+  41 0004 1020     		movs	r0, #16
+  42              	.LVL1:
+  43 0006 FFF7FEFF 		bl	malloc
+  44              	.LVL2:
+  45 000a 0446     		mov	r4, r0
+  46              	.LVL3:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 2
+
+
+  12:pathfinding.c ****     queue->capacity = size;
+  47              		.loc 1 12 0
+  48 000c 8560     		str	r5, [r0, #8]
+  13:pathfinding.c ****     queue->start = 0; // Setting up the queue so that the start of the queue (next item) is always 
+  49              		.loc 1 13 0
+  50 000e 0023     		movs	r3, #0
+  51 0010 0380     		strh	r3, [r0]	@ movhi
+  14:pathfinding.c ****     queue->size = 0; // Queue is empty to begin with.
+  52              		.loc 1 14 0
+  53 0012 8380     		strh	r3, [r0, #4]	@ movhi
+  15:pathfinding.c ****     queue->end = queue->capacity - 1;
+  54              		.loc 1 15 0
+  55 0014 6B1E     		subs	r3, r5, #1
+  56 0016 4380     		strh	r3, [r0, #2]	@ movhi
+  16:pathfinding.c ****     queue->array = (struct PriorityVertex *) malloc(queue->capacity * sizeof(struct PriorityVertex)
+  57              		.loc 1 16 0
+  58 0018 A800     		lsls	r0, r5, #2
+  59              	.LVL4:
+  60 001a FFF7FEFF 		bl	malloc
+  61              	.LVL5:
+  62 001e E060     		str	r0, [r4, #12]
+  17:pathfinding.c **** 
+  18:pathfinding.c ****     return queue;
+  19:pathfinding.c **** }
+  63              		.loc 1 19 0
+  64 0020 2046     		mov	r0, r4
+  65 0022 38BD     		pop	{r3, r4, r5, pc}
+  66              		.cfi_endproc
+  67              	.LFE64:
+  68              		.size	makeQueue, .-makeQueue
+  69              		.section	.text.init,"ax",%progbits
+  70              		.align	2
+  71              		.global	init
+  72              		.thumb
+  73              		.thumb_func
+  74              		.type	init, %function
+  75              	init:
+  76              	.LFB65:
+  20:pathfinding.c **** 
+  21:pathfinding.c **** void init(struct Queue* queue, uint16_t size) {
+  77              		.loc 1 21 0
+  78              		.cfi_startproc
+  79              		@ args = 0, pretend = 0, frame = 8
+  80              		@ frame_needed = 0, uses_anonymous_args = 0
+  81              		@ link register save eliminated.
+  82              	.LVL6:
+  83 0000 10B4     		push	{r4}
+  84              		.cfi_def_cfa_offset 4
+  85              		.cfi_offset 4, -4
+  86 0002 83B0     		sub	sp, sp, #12
+  87              		.cfi_def_cfa_offset 16
+  88 0004 0446     		mov	r4, r0
+  89              	.LVL7:
+  90              	.LBB2:
+  22:pathfinding.c **** 
+  23:pathfinding.c ****     // Initialise all values to minus one so that we can tell if the queue is empty or not (there i
+  24:pathfinding.c ****     for (uint16_t i = 0; i < size; i++) {
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 3
+
+
+  91              		.loc 1 24 0
+  92 0006 0023     		movs	r3, #0
+  93 0008 08E0     		b	.L4
+  94              	.LVL8:
+  95              	.L5:
+  96              	.LBB3:
+  25:pathfinding.c ****         struct PriorityVertex defaultValue = { .value = -1, .priority = UINT16_MAX, };
+  97              		.loc 1 25 0 discriminator 3
+  98 000a 074A     		ldr	r2, .L7
+  99 000c 1068     		ldr	r0, [r2]	@ unaligned
+ 100 000e 0190     		str	r0, [sp, #4]	@ unaligned
+  26:pathfinding.c ****         queue->array[i] = defaultValue;
+ 101              		.loc 1 26 0 discriminator 3
+ 102 0010 E268     		ldr	r2, [r4, #12]
+ 103 0012 0198     		ldr	r0, [sp, #4]	@ unaligned
+ 104 0014 42F82300 		str	r0, [r2, r3, lsl #2]	@ unaligned
+ 105              	.LBE3:
+  24:pathfinding.c ****         struct PriorityVertex defaultValue = { .value = -1, .priority = UINT16_MAX, };
+ 106              		.loc 1 24 0 discriminator 3
+ 107 0018 0133     		adds	r3, r3, #1
+ 108              	.LVL9:
+ 109 001a 9BB2     		uxth	r3, r3
+ 110              	.LVL10:
+ 111              	.L4:
+  24:pathfinding.c ****         struct PriorityVertex defaultValue = { .value = -1, .priority = UINT16_MAX, };
+ 112              		.loc 1 24 0 is_stmt 0 discriminator 1
+ 113 001c 8B42     		cmp	r3, r1
+ 114 001e F4D3     		bcc	.L5
+ 115              	.LBE2:
+  27:pathfinding.c ****     }
+  28:pathfinding.c **** 
+  29:pathfinding.c **** }
+ 116              		.loc 1 29 0 is_stmt 1
+ 117 0020 03B0     		add	sp, sp, #12
+ 118              		.cfi_def_cfa_offset 4
+ 119              		@ sp needed
+ 120 0022 10BC     		pop	{r4}
+ 121              		.cfi_restore 4
+ 122              		.cfi_def_cfa_offset 0
+ 123              	.LVL11:
+ 124 0024 7047     		bx	lr
+ 125              	.L8:
+ 126 0026 00BF     		.align	2
+ 127              	.L7:
+ 128 0028 00000000 		.word	.LANCHOR0
+ 129              		.cfi_endproc
+ 130              	.LFE65:
+ 131              		.size	init, .-init
+ 132              		.section	.text.push,"ax",%progbits
+ 133              		.align	2
+ 134              		.global	push
+ 135              		.thumb
+ 136              		.thumb_func
+ 137              		.type	push, %function
+ 138              	push:
+ 139              	.LFB66:
+  30:pathfinding.c **** 
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 4
+
+
+  31:pathfinding.c **** void push(struct Queue* queue, int16_t vertex, uint16_t priority) {
+ 140              		.loc 1 31 0
+ 141              		.cfi_startproc
+ 142              		@ args = 0, pretend = 0, frame = 8
+ 143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 144              		@ link register save eliminated.
+ 145              	.LVL12:
+ 146 0000 30B4     		push	{r4, r5}
+ 147              		.cfi_def_cfa_offset 8
+ 148              		.cfi_offset 4, -8
+ 149              		.cfi_offset 5, -4
+ 150 0002 82B0     		sub	sp, sp, #8
+ 151              		.cfi_def_cfa_offset 16
+ 152 0004 0346     		mov	r3, r0
+  32:pathfinding.c **** 
+  33:pathfinding.c ****     // Move the end marker along one, if we reach capacity, go back to the beginning.
+  34:pathfinding.c ****     queue->end = (queue->end + 1) % queue->capacity;
+ 153              		.loc 1 34 0
+ 154 0006 B0F90240 		ldrsh	r4, [r0, #2]
+ 155 000a 0134     		adds	r4, r4, #1
+ 156 000c 8568     		ldr	r5, [r0, #8]
+ 157 000e B4FBF5F0 		udiv	r0, r4, r5
+ 158              	.LVL13:
+ 159 0012 05FB1044 		mls	r4, r5, r0, r4
+ 160 0016 24B2     		sxth	r4, r4
+ 161 0018 5C80     		strh	r4, [r3, #2]	@ movhi
+  35:pathfinding.c ****     struct PriorityVertex newVertex = { .value = vertex, .priority = priority };
+ 162              		.loc 1 35 0
+ 163 001a ADF80410 		strh	r1, [sp, #4]	@ movhi
+ 164 001e ADF80620 		strh	r2, [sp, #6]	@ movhi
+  36:pathfinding.c ****     queue->array[queue->end] = newVertex;
+ 165              		.loc 1 36 0
+ 166 0022 DA68     		ldr	r2, [r3, #12]
+ 167              	.LVL14:
+ 168 0024 0198     		ldr	r0, [sp, #4]	@ unaligned
+ 169 0026 42F82400 		str	r0, [r2, r4, lsl #2]	@ unaligned
+  37:pathfinding.c ****     queue->size = queue->size + 1;
+ 170              		.loc 1 37 0
+ 171 002a B3F90420 		ldrsh	r2, [r3, #4]
+ 172 002e 0132     		adds	r2, r2, #1
+ 173 0030 9A80     		strh	r2, [r3, #4]	@ movhi
+  38:pathfinding.c **** 
+  39:pathfinding.c **** }
+ 174              		.loc 1 39 0
+ 175 0032 02B0     		add	sp, sp, #8
+ 176              		.cfi_def_cfa_offset 8
+ 177              		@ sp needed
+ 178 0034 30BC     		pop	{r4, r5}
+ 179              		.cfi_restore 5
+ 180              		.cfi_restore 4
+ 181              		.cfi_def_cfa_offset 0
+ 182              	.LVL15:
+ 183 0036 7047     		bx	lr
+ 184              		.cfi_endproc
+ 185              	.LFE66:
+ 186              		.size	push, .-push
+ 187              		.section	.text.pop,"ax",%progbits
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 5
+
+
+ 188              		.align	2
+ 189              		.global	pop
+ 190              		.thumb
+ 191              		.thumb_func
+ 192              		.type	pop, %function
+ 193              	pop:
+ 194              	.LFB67:
+  40:pathfinding.c **** 
+  41:pathfinding.c **** int16_t pop(struct Queue* queue) {
+ 195              		.loc 1 41 0
+ 196              		.cfi_startproc
+ 197              		@ args = 0, pretend = 0, frame = 8
+ 198              		@ frame_needed = 0, uses_anonymous_args = 0
+ 199              		@ link register save eliminated.
+ 200              	.LVL16:
+ 201 0000 82B0     		sub	sp, sp, #8
+ 202              		.cfi_def_cfa_offset 8
+ 203 0002 0346     		mov	r3, r0
+  42:pathfinding.c **** 
+  43:pathfinding.c ****     // Get the vertex from the start of the queue.
+  44:pathfinding.c ****     struct PriorityVertex vertex = queue->array[queue->start];
+ 204              		.loc 1 44 0
+ 205 0004 C268     		ldr	r2, [r0, #12]
+ 206 0006 B0F90010 		ldrsh	r1, [r0]
+ 207 000a 52F82100 		ldr	r0, [r2, r1, lsl #2]	@ unaligned
+ 208              	.LVL17:
+ 209 000e 0190     		str	r0, [sp, #4]	@ unaligned
+  45:pathfinding.c ****     // Reset to empty value of -1.
+  46:pathfinding.c ****     struct PriorityVertex defaultValue = { .value = -1, .priority = UINT16_MAX };
+ 210              		.loc 1 46 0
+ 211 0010 0B48     		ldr	r0, .L13
+ 212 0012 0068     		ldr	r0, [r0]	@ unaligned
+ 213 0014 0090     		str	r0, [sp]	@ unaligned
+  47:pathfinding.c ****     queue->array[queue->start] = defaultValue;
+ 214              		.loc 1 47 0
+ 215 0016 0098     		ldr	r0, [sp]	@ unaligned
+ 216 0018 42F82100 		str	r0, [r2, r1, lsl #2]	@ unaligned
+  48:pathfinding.c ****     // Move the start marker along one, if we reach capacity, go back to the beginning.
+  49:pathfinding.c ****     queue->start = (queue->start + 1) % queue->capacity;
+ 217              		.loc 1 49 0
+ 218 001c B3F90020 		ldrsh	r2, [r3]
+ 219 0020 0132     		adds	r2, r2, #1
+ 220 0022 9868     		ldr	r0, [r3, #8]
+ 221 0024 B2FBF0F1 		udiv	r1, r2, r0
+ 222 0028 00FB1122 		mls	r2, r0, r1, r2
+ 223 002c 1A80     		strh	r2, [r3]	@ movhi
+  50:pathfinding.c ****     queue->size = queue->size - 1;
+ 224              		.loc 1 50 0
+ 225 002e B3F90420 		ldrsh	r2, [r3, #4]
+ 226 0032 013A     		subs	r2, r2, #1
+ 227 0034 9A80     		strh	r2, [r3, #4]	@ movhi
+  51:pathfinding.c ****     return vertex.value;
+  52:pathfinding.c **** 
+  53:pathfinding.c **** }
+ 228              		.loc 1 53 0
+ 229 0036 BDF90400 		ldrsh	r0, [sp, #4]
+ 230 003a 02B0     		add	sp, sp, #8
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 6
+
+
+ 231              		.cfi_def_cfa_offset 0
+ 232              		@ sp needed
+ 233 003c 7047     		bx	lr
+ 234              	.L14:
+ 235 003e 00BF     		.align	2
+ 236              	.L13:
+ 237 0040 00000000 		.word	.LANCHOR0
+ 238              		.cfi_endproc
+ 239              	.LFE67:
+ 240              		.size	pop, .-pop
+ 241              		.section	.text.delete,"ax",%progbits
+ 242              		.align	2
+ 243              		.global	delete
+ 244              		.thumb
+ 245              		.thumb_func
+ 246              		.type	delete, %function
+ 247              	delete:
+ 248              	.LFB68:
+  54:pathfinding.c **** 
+  55:pathfinding.c **** void delete(struct Queue* queue, uint16_t pos) {
+ 249              		.loc 1 55 0
+ 250              		.cfi_startproc
+ 251              		@ args = 0, pretend = 0, frame = 0
+ 252              		@ frame_needed = 0, uses_anonymous_args = 0
+ 253              		@ link register save eliminated.
+ 254              	.LVL18:
+ 255 0000 30B4     		push	{r4, r5}
+ 256              		.cfi_def_cfa_offset 8
+ 257              		.cfi_offset 4, -8
+ 258              		.cfi_offset 5, -4
+ 259              	.LVL19:
+ 260              	.LBB4:
+  56:pathfinding.c **** 
+  57:pathfinding.c ****     // Replace each entry in the array with the next entry until the end.
+  58:pathfinding.c ****     for (uint16_t i = 0; i < queue->end - pos; i++) {
+ 261              		.loc 1 58 0
+ 262 0002 0023     		movs	r3, #0
+ 263 0004 08E0     		b	.L16
+ 264              	.LVL20:
+ 265              	.L17:
+  59:pathfinding.c ****         queue->array[pos + i] = queue->array[pos + i + 1];
+ 266              		.loc 1 59 0 discriminator 3
+ 267 0006 C268     		ldr	r2, [r0, #12]
+ 268 0008 5C18     		adds	r4, r3, r1
+ 269 000a 651C     		adds	r5, r4, #1
+ 270 000c 52F82550 		ldr	r5, [r2, r5, lsl #2]	@ unaligned
+ 271 0010 42F82450 		str	r5, [r2, r4, lsl #2]	@ unaligned
+  58:pathfinding.c ****         queue->array[pos + i] = queue->array[pos + i + 1];
+ 272              		.loc 1 58 0 discriminator 3
+ 273 0014 0133     		adds	r3, r3, #1
+ 274              	.LVL21:
+ 275 0016 9BB2     		uxth	r3, r3
+ 276              	.LVL22:
+ 277              	.L16:
+  58:pathfinding.c ****         queue->array[pos + i] = queue->array[pos + i + 1];
+ 278              		.loc 1 58 0 is_stmt 0 discriminator 1
+ 279 0018 B0F90220 		ldrsh	r2, [r0, #2]
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 7
+
+
+ 280 001c 541A     		subs	r4, r2, r1
+ 281 001e A342     		cmp	r3, r4
+ 282 0020 F1DB     		blt	.L17
+ 283              	.LBE4:
+  60:pathfinding.c ****     }
+  61:pathfinding.c ****     // Move the end pointer over.
+  62:pathfinding.c ****     queue->end--;
+ 284              		.loc 1 62 0 is_stmt 1
+ 285 0022 013A     		subs	r2, r2, #1
+ 286 0024 4280     		strh	r2, [r0, #2]	@ movhi
+  63:pathfinding.c ****     queue->size--;
+ 287              		.loc 1 63 0
+ 288 0026 B0F90430 		ldrsh	r3, [r0, #4]
+ 289              	.LVL23:
+ 290 002a 013B     		subs	r3, r3, #1
+ 291 002c 8380     		strh	r3, [r0, #4]	@ movhi
+  64:pathfinding.c **** 
+  65:pathfinding.c **** }
+ 292              		.loc 1 65 0
+ 293 002e 30BC     		pop	{r4, r5}
+ 294              		.cfi_restore 5
+ 295              		.cfi_restore 4
+ 296              		.cfi_def_cfa_offset 0
+ 297 0030 7047     		bx	lr
+ 298              		.cfi_endproc
+ 299              	.LFE68:
+ 300              		.size	delete, .-delete
+ 301 0032 00BF     		.section	.text.queueContains,"ax",%progbits
+ 302              		.align	2
+ 303              		.global	queueContains
+ 304              		.thumb
+ 305              		.thumb_func
+ 306              		.type	queueContains, %function
+ 307              	queueContains:
+ 308              	.LFB69:
+  66:pathfinding.c **** 
+  67:pathfinding.c **** bool queueContains(struct Queue* queue, int16_t vertex) {
+ 309              		.loc 1 67 0
+ 310              		.cfi_startproc
+ 311              		@ args = 0, pretend = 0, frame = 0
+ 312              		@ frame_needed = 0, uses_anonymous_args = 0
+ 313              		@ link register save eliminated.
+ 314              	.LVL24:
+ 315 0000 10B4     		push	{r4}
+ 316              		.cfi_def_cfa_offset 4
+ 317              		.cfi_offset 4, -4
+ 318              	.LVL25:
+ 319              	.LBB5:
+  68:pathfinding.c **** 
+  69:pathfinding.c ****     // If the queue contains the vertex return true, else return false.
+  70:pathfinding.c ****     for (uint16_t i = 0; i < queue->size; i++) {
+ 320              		.loc 1 70 0
+ 321 0002 0023     		movs	r3, #0
+ 322 0004 09E0     		b	.L20
+ 323              	.LVL26:
+ 324              	.L22:
+  71:pathfinding.c ****         if (queue->array[queue->start + i].value == vertex) {
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 8
+
+
+ 325              		.loc 1 71 0
+ 326 0006 C468     		ldr	r4, [r0, #12]
+ 327 0008 B0F90020 		ldrsh	r2, [r0]
+ 328 000c 1A44     		add	r2, r2, r3
+ 329 000e 34F92220 		ldrsh	r2, [r4, r2, lsl #2]
+ 330 0012 8A42     		cmp	r2, r1
+ 331 0014 07D0     		beq	.L23
+  70:pathfinding.c ****         if (queue->array[queue->start + i].value == vertex) {
+ 332              		.loc 1 70 0 discriminator 2
+ 333 0016 0133     		adds	r3, r3, #1
+ 334              	.LVL27:
+ 335 0018 9BB2     		uxth	r3, r3
+ 336              	.LVL28:
+ 337              	.L20:
+  70:pathfinding.c ****         if (queue->array[queue->start + i].value == vertex) {
+ 338              		.loc 1 70 0 is_stmt 0 discriminator 1
+ 339 001a B0F90420 		ldrsh	r2, [r0, #4]
+ 340 001e 9342     		cmp	r3, r2
+ 341 0020 F1DB     		blt	.L22
+ 342              	.LBE5:
+  72:pathfinding.c ****             return true;
+  73:pathfinding.c ****         }
+  74:pathfinding.c ****     }
+  75:pathfinding.c ****     return false;
+ 343              		.loc 1 75 0 is_stmt 1
+ 344 0022 0020     		movs	r0, #0
+ 345              	.LVL29:
+ 346              	.LBB6:
+ 347 0024 00E0     		b	.L21
+ 348              	.LVL30:
+ 349              	.L23:
+  72:pathfinding.c ****             return true;
+ 350              		.loc 1 72 0
+ 351 0026 0120     		movs	r0, #1
+ 352              	.LVL31:
+ 353              	.L21:
+ 354              	.LBE6:
+  76:pathfinding.c **** }
+ 355              		.loc 1 76 0
+ 356 0028 10BC     		pop	{r4}
+ 357              		.cfi_restore 4
+ 358              		.cfi_def_cfa_offset 0
+ 359 002a 7047     		bx	lr
+ 360              		.cfi_endproc
+ 361              	.LFE69:
+ 362              		.size	queueContains, .-queueContains
+ 363              		.section	.text.heuristic,"ax",%progbits
+ 364              		.align	2
+ 365              		.global	heuristic
+ 366              		.thumb
+ 367              		.thumb_func
+ 368              		.type	heuristic, %function
+ 369              	heuristic:
+ 370              	.LFB70:
+  77:pathfinding.c **** 
+  78:pathfinding.c **** uint16_t heuristic(int16_t entry, uint16_t target, uint16_t xdim) {
+ 371              		.loc 1 78 0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 9
+
+
+ 372              		.cfi_startproc
+ 373              		@ args = 0, pretend = 0, frame = 0
+ 374              		@ frame_needed = 0, uses_anonymous_args = 0
+ 375              		@ link register save eliminated.
+ 376              	.LVL32:
+ 377 0000 30B4     		push	{r4, r5}
+ 378              		.cfi_def_cfa_offset 8
+ 379              		.cfi_offset 4, -8
+ 380              		.cfi_offset 5, -4
+  79:pathfinding.c **** 
+  80:pathfinding.c ****     // Calculate square of horizontal using modulo.
+  81:pathfinding.c ****     uint16_t horiz = (target % xdim - entry % xdim) * (target % xdim - entry % xdim);
+ 381              		.loc 1 81 0
+ 382 0002 B1FBF2F4 		udiv	r4, r1, r2
+ 383 0006 02FB1411 		mls	r1, r2, r4, r1
+ 384              	.LVL33:
+ 385 000a 89B2     		uxth	r1, r1
+ 386 000c 90FBF2F5 		sdiv	r5, r0, r2
+ 387 0010 02FB1503 		mls	r3, r2, r5, r0
+ 388 0014 CB1A     		subs	r3, r1, r3
+ 389 0016 9BB2     		uxth	r3, r3
+ 390 0018 03FB03F3 		mul	r3, r3, r3
+ 391 001c 9BB2     		uxth	r3, r3
+ 392              	.LVL34:
+  82:pathfinding.c **** 
+  83:pathfinding.c ****     // Calculate square of vertical using division (truncation).
+  84:pathfinding.c ****     uint16_t vert = (target / xdim - entry / xdim) * (target / xdim - entry / xdim);
+ 393              		.loc 1 84 0
+ 394 001e A4B2     		uxth	r4, r4
+ 395 0020 621B     		subs	r2, r4, r5
+ 396              	.LVL35:
+ 397 0022 92B2     		uxth	r2, r2
+ 398 0024 02FB02F2 		mul	r2, r2, r2
+ 399 0028 92B2     		uxth	r2, r2
+ 400              	.LVL36:
+  85:pathfinding.c **** 
+  86:pathfinding.c ****     return (horiz + vert) / 10;
+ 401              		.loc 1 86 0
+ 402 002a 1344     		add	r3, r3, r2
+ 403              	.LVL37:
+ 404 002c 0448     		ldr	r0, .L27
+ 405              	.LVL38:
+ 406 002e 80FB0320 		smull	r2, r0, r0, r3
+ 407              	.LVL39:
+ 408 0032 DB17     		asrs	r3, r3, #31
+ 409 0034 C3EBA000 		rsb	r0, r3, r0, asr #2
+  87:pathfinding.c **** 
+  88:pathfinding.c **** }
+ 410              		.loc 1 88 0
+ 411 0038 80B2     		uxth	r0, r0
+ 412 003a 30BC     		pop	{r4, r5}
+ 413              		.cfi_restore 5
+ 414              		.cfi_restore 4
+ 415              		.cfi_def_cfa_offset 0
+ 416              	.LVL40:
+ 417 003c 7047     		bx	lr
+ 418              	.L28:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 10
+
+
+ 419 003e 00BF     		.align	2
+ 420              	.L27:
+ 421 0040 67666666 		.word	1717986919
+ 422              		.cfi_endproc
+ 423              	.LFE70:
+ 424              		.size	heuristic, .-heuristic
+ 425              		.section	.text.removeVertex,"ax",%progbits
+ 426              		.align	2
+ 427              		.global	removeVertex
+ 428              		.thumb
+ 429              		.thumb_func
+ 430              		.type	removeVertex, %function
+ 431              	removeVertex:
+ 432              	.LFB71:
+  89:pathfinding.c **** 
+  90:pathfinding.c **** struct PriorityVertex removeVertex(struct Queue* queue) {
+ 433              		.loc 1 90 0
+ 434              		.cfi_startproc
+ 435              		@ args = 0, pretend = 0, frame = 8
+ 436              		@ frame_needed = 0, uses_anonymous_args = 0
+ 437              	.LVL41:
+ 438 0000 70B5     		push	{r4, r5, r6, lr}
+ 439              		.cfi_def_cfa_offset 16
+ 440              		.cfi_offset 4, -16
+ 441              		.cfi_offset 5, -12
+ 442              		.cfi_offset 6, -8
+ 443              		.cfi_offset 14, -4
+ 444 0002 82B0     		sub	sp, sp, #8
+ 445              		.cfi_def_cfa_offset 24
+ 446              	.LVL42:
+ 447              	.LBB7:
+  91:pathfinding.c **** 
+  92:pathfinding.c ****     // This function operates like pop but differs in that the priority queue is out of order.
+  93:pathfinding.c ****     uint16_t maxPriority = UINT16_MAX;
+  94:pathfinding.c ****     uint16_t pos;
+  95:pathfinding.c ****     for (uint16_t i = 0; i < queue->size; i++) {
+ 448              		.loc 1 95 0
+ 449 0004 0023     		movs	r3, #0
+ 450              	.LBE7:
+  93:pathfinding.c ****     uint16_t pos;
+ 451              		.loc 1 93 0
+ 452 0006 4FF6FF76 		movw	r6, #65535
+ 453              	.LBB8:
+ 454              		.loc 1 95 0
+ 455 000a 0CE0     		b	.L30
+ 456              	.LVL43:
+ 457              	.L32:
+  96:pathfinding.c ****         // Although maxPriority is an indicator of what to prioritise, lower values should be visit
+  97:pathfinding.c ****         if (queue->array[queue->start + i].priority < maxPriority) {
+ 458              		.loc 1 97 0
+ 459 000c C268     		ldr	r2, [r0, #12]
+ 460 000e B0F90040 		ldrsh	r4, [r0]
+ 461 0012 E518     		adds	r5, r4, r3
+ 462 0014 02EB8502 		add	r2, r2, r5, lsl #2
+ 463 0018 5288     		ldrh	r2, [r2, #2]
+ 464 001a 9642     		cmp	r6, r2
+ 465 001c 01D9     		bls	.L31
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 11
+
+
+ 466              	.LVL44:
+  98:pathfinding.c ****             maxPriority = queue->array[queue->start + i].priority;
+  99:pathfinding.c ****             pos = queue->start + i;
+ 467              		.loc 1 99 0
+ 468 001e A9B2     		uxth	r1, r5
+ 469              	.LVL45:
+  98:pathfinding.c ****             maxPriority = queue->array[queue->start + i].priority;
+ 470              		.loc 1 98 0
+ 471 0020 1646     		mov	r6, r2
+ 472              	.LVL46:
+ 473              	.L31:
+  95:pathfinding.c ****         // Although maxPriority is an indicator of what to prioritise, lower values should be visit
+ 474              		.loc 1 95 0 discriminator 2
+ 475 0022 0133     		adds	r3, r3, #1
+ 476              	.LVL47:
+ 477 0024 9BB2     		uxth	r3, r3
+ 478              	.LVL48:
+ 479              	.L30:
+  95:pathfinding.c ****         // Although maxPriority is an indicator of what to prioritise, lower values should be visit
+ 480              		.loc 1 95 0 is_stmt 0 discriminator 1
+ 481 0026 B0F90420 		ldrsh	r2, [r0, #4]
+ 482 002a 9342     		cmp	r3, r2
+ 483 002c EEDB     		blt	.L32
+ 484              	.LBE8:
+ 100:pathfinding.c ****         }
+ 101:pathfinding.c ****     }
+ 102:pathfinding.c **** 
+ 103:pathfinding.c ****     struct PriorityVertex returnVertex = { .value = queue->array[pos].value, .priority = queue->arr
+ 485              		.loc 1 103 0 is_stmt 1
+ 486 002e C368     		ldr	r3, [r0, #12]
+ 487              	.LVL49:
+ 488 0030 03EB8102 		add	r2, r3, r1, lsl #2
+ 489 0034 33F92130 		ldrsh	r3, [r3, r1, lsl #2]
+ 490 0038 ADF80030 		strh	r3, [sp]	@ movhi
+ 491 003c 5388     		ldrh	r3, [r2, #2]
+ 492 003e ADF80230 		strh	r3, [sp, #2]	@ movhi
+ 104:pathfinding.c ****     // Call to delete subroutine.
+ 105:pathfinding.c ****     delete(queue, pos);
+ 493              		.loc 1 105 0
+ 494 0042 FFF7FEFF 		bl	delete
+ 495              	.LVL50:
+ 106:pathfinding.c ****     // Return the vertex.
+ 107:pathfinding.c ****     return returnVertex;
+ 496              		.loc 1 107 0
+ 497 0046 009B     		ldr	r3, [sp]
+ 498 0048 0020     		movs	r0, #0
+ 499 004a 9AB2     		uxth	r2, r3
+ 500 004c 62F30F00 		bfi	r0, r2, #0, #16
+ 501 0050 1B0C     		lsrs	r3, r3, #16
+ 502 0052 63F31F40 		bfi	r0, r3, #16, #16
+ 108:pathfinding.c **** 
+ 109:pathfinding.c **** }
+ 503              		.loc 1 109 0
+ 504 0056 02B0     		add	sp, sp, #8
+ 505              		.cfi_def_cfa_offset 16
+ 506              		@ sp needed
+ 507 0058 70BD     		pop	{r4, r5, r6, pc}
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 12
+
+
+ 508              		.cfi_endproc
+ 509              	.LFE71:
+ 510              		.size	removeVertex, .-removeVertex
+ 511 005a 00BF     		.section	.text.ASTAR,"ax",%progbits
+ 512              		.align	2
+ 513              		.global	ASTAR
+ 514              		.thumb
+ 515              		.thumb_func
+ 516              		.type	ASTAR, %function
+ 517              	ASTAR:
+ 518              	.LFB72:
+ 110:pathfinding.c **** 
+ 111:pathfinding.c **** // Implementation of the A* algorithm.
+ 112:pathfinding.c **** uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydi
+ 519              		.loc 1 112 0
+ 520              		.cfi_startproc
+ 521              		@ args = 8, pretend = 0, frame = 40
+ 522              		@ frame_needed = 1, uses_anonymous_args = 0
+ 523              	.LVL51:
+ 524 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 525              		.cfi_def_cfa_offset 36
+ 526              		.cfi_offset 4, -36
+ 527              		.cfi_offset 5, -32
+ 528              		.cfi_offset 6, -28
+ 529              		.cfi_offset 7, -24
+ 530              		.cfi_offset 8, -20
+ 531              		.cfi_offset 9, -16
+ 532              		.cfi_offset 10, -12
+ 533              		.cfi_offset 11, -8
+ 534              		.cfi_offset 14, -4
+ 535 0004 8BB0     		sub	sp, sp, #44
+ 536              		.cfi_def_cfa_offset 80
+ 537 0006 00AF     		add	r7, sp, #0
+ 538              		.cfi_def_cfa_register 7
+ 539 0008 0646     		mov	r6, r0
+ 540 000a F860     		str	r0, [r7, #12]
+ 541 000c 8B46     		mov	fp, r1
+ 542 000e 9246     		mov	r10, r2
+ 543 0010 1A46     		mov	r2, r3
+ 544              	.LVL52:
+ 545 0012 3B61     		str	r3, [r7, #16]
+ 546              	.LVL53:
+ 113:pathfinding.c **** 
+ 114:pathfinding.c ****     // Dimension.
+ 115:pathfinding.c ****     uint16_t size = xdim * ydim;
+ 547              		.loc 1 115 0
+ 548 0014 B7F85030 		ldrh	r3, [r7, #80]
+ 549              	.LVL54:
+ 550 0018 03FB02F3 		mul	r3, r3, r2
+ 551 001c 9BB2     		uxth	r3, r3
+ 552 001e 1D46     		mov	r5, r3
+ 553 0020 BB60     		str	r3, [r7, #8]
+ 554              	.LVL55:
+ 116:pathfinding.c **** 
+ 117:pathfinding.c ****     // Set up the queue.
+ 118:pathfinding.c ****     struct Queue* queue = makeQueue(size);
+ 555              		.loc 1 118 0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 13
+
+
+ 556 0022 1846     		mov	r0, r3
+ 557              	.LVL56:
+ 558 0024 FFF7FEFF 		bl	makeQueue
+ 559              	.LVL57:
+ 560 0028 0446     		mov	r4, r0
+ 561 002a F861     		str	r0, [r7, #28]
+ 562              	.LVL58:
+ 119:pathfinding.c ****     init(queue, size);
+ 563              		.loc 1 119 0
+ 564 002c 2946     		mov	r1, r5
+ 565 002e FFF7FEFF 		bl	init
+ 566              	.LVL59:
+ 120:pathfinding.c ****     push(queue, source, 0);
+ 567              		.loc 1 120 0
+ 568 0032 0022     		movs	r2, #0
+ 569 0034 31B2     		sxth	r1, r6
+ 570 0036 2046     		mov	r0, r4
+ 571 0038 FFF7FEFF 		bl	push
+ 572              	.LVL60:
+ 121:pathfinding.c **** 
+ 122:pathfinding.c ****     // Set up an array to track vertices and their distances (INT_MAX means a vertex has yet to be 
+ 123:pathfinding.c ****     struct Vertex vertices[size];
+ 573              		.loc 1 123 0
+ 574 003c 05EB4503 		add	r3, r5, r5, lsl #1
+ 575 0040 5B00     		lsls	r3, r3, #1
+ 576 0042 0833     		adds	r3, r3, #8
+ 577 0044 23F00703 		bic	r3, r3, #7
+ 578 0048 ADEB030D 		sub	sp, sp, r3
+ 579 004c E846     		mov	r8, sp
+ 580              	.LVL61:
+ 581              	.LBB9:
+ 124:pathfinding.c ****     for (uint16_t i = 0; i < size; i++) {
+ 582              		.loc 1 124 0
+ 583 004e 0023     		movs	r3, #0
+ 584 0050 0CE0     		b	.L35
+ 585              	.LVL62:
+ 586              	.L36:
+ 125:pathfinding.c **** 
+ 126:pathfinding.c ****         // We don't care about vertex colour for this implementation.
+ 127:pathfinding.c ****         vertices[i].pred = -1;
+ 587              		.loc 1 127 0 discriminator 3
+ 588 0052 5A00     		lsls	r2, r3, #1
+ 589 0054 D018     		adds	r0, r2, r3
+ 590 0056 08EB4004 		add	r4, r8, r0, lsl #1
+ 591 005a 4FF6FF71 		movw	r1, #65535
+ 592 005e 28F81010 		strh	r1, [r8, r0, lsl #1]	@ movhi
+ 128:pathfinding.c ****         vertices[i].distance = UINT16_MAX;
+ 593              		.loc 1 128 0 discriminator 3
+ 594 0062 6180     		strh	r1, [r4, #2]	@ movhi
+ 129:pathfinding.c ****         vertices[i].visited = false;
+ 595              		.loc 1 129 0 discriminator 3
+ 596 0064 0021     		movs	r1, #0
+ 597 0066 2171     		strb	r1, [r4, #4]
+ 124:pathfinding.c **** 
+ 598              		.loc 1 124 0 discriminator 3
+ 599 0068 0133     		adds	r3, r3, #1
+ 600              	.LVL63:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 14
+
+
+ 601 006a 9BB2     		uxth	r3, r3
+ 602              	.LVL64:
+ 603              	.L35:
+ 124:pathfinding.c **** 
+ 604              		.loc 1 124 0 is_stmt 0 discriminator 1
+ 605 006c AB42     		cmp	r3, r5
+ 606 006e F0D3     		bcc	.L36
+ 607              	.LBE9:
+ 130:pathfinding.c **** 
+ 131:pathfinding.c ****     }
+ 132:pathfinding.c **** 
+ 133:pathfinding.c ****     // In our implementation we should count the source block as having a distance of 1.
+ 134:pathfinding.c ****     vertices[source].distance = 1;
+ 608              		.loc 1 134 0 is_stmt 1
+ 609 0070 FB68     		ldr	r3, [r7, #12]
+ 610              	.LVL65:
+ 611 0072 7B60     		str	r3, [r7, #4]
+ 612 0074 03EB4303 		add	r3, r3, r3, lsl #1
+ 613 0078 08EB4303 		add	r3, r8, r3, lsl #1
+ 614 007c 0122     		movs	r2, #1
+ 615 007e 5A80     		strh	r2, [r3, #2]	@ movhi
+ 616 0080 C7F818B0 		str	fp, [r7, #24]
+ 135:pathfinding.c **** 
+ 136:pathfinding.c ****     // While we have yet to reach the destination, keep looping.
+ 137:pathfinding.c ****     while (queue->size != 0) {
+ 617              		.loc 1 137 0
+ 618 0084 9EE0     		b	.L37
+ 619              	.LVL66:
+ 620              	.L48:
+ 621              	.LBB10:
+ 138:pathfinding.c **** 
+ 139:pathfinding.c ****         // Get the vertex with the highest priority.
+ 140:pathfinding.c ****         struct PriorityVertex key = removeVertex(queue);
+ 622              		.loc 1 140 0
+ 623 0086 F869     		ldr	r0, [r7, #28]
+ 624 0088 FFF7FEFF 		bl	removeVertex
+ 625              	.LVL67:
+ 626 008c 7862     		str	r0, [r7, #36]
+ 141:pathfinding.c **** 
+ 142:pathfinding.c ****         // Set the visited status to true.
+ 143:pathfinding.c ****         vertices[key.value].visited = true;
+ 627              		.loc 1 143 0
+ 628 008e 06B2     		sxth	r6, r0
+ 629 0090 B346     		mov	fp, r6
+ 630 0092 06EB4603 		add	r3, r6, r6, lsl #1
+ 631 0096 08EB4303 		add	r3, r8, r3, lsl #1
+ 632 009a 0122     		movs	r2, #1
+ 633 009c 1A71     		strb	r2, [r3, #4]
+ 144:pathfinding.c **** 
+ 145:pathfinding.c ****         // If we have reached our target, then we can stop searching.
+ 146:pathfinding.c ****         if (key.value == target) {
+ 634              		.loc 1 146 0
+ 635 009e BB69     		ldr	r3, [r7, #24]
+ 636 00a0 1C46     		mov	r4, r3
+ 637 00a2 9E42     		cmp	r6, r3
+ 638 00a4 40F08B80 		bne	.L49
+ 639 00a8 9B46     		mov	fp, r3
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 15
+
+
+ 640              	.LVL68:
+ 641              	.LBB11:
+ 147:pathfinding.c **** 
+ 148:pathfinding.c ****             // printf("The target is %d blocks from the source.\n", vertices[target].distance );
+ 149:pathfinding.c **** 
+ 150:pathfinding.c ****             // Initialise an array to store the shortest path (with blanks).
+ 151:pathfinding.c ****             int16_t shortestPath[size];
+ 642              		.loc 1 151 0 discriminator 1
+ 643 00aa B968     		ldr	r1, [r7, #8]
+ 644 00ac 0B46     		mov	r3, r1
+ 645 00ae 9340     		lsls	r3, r3, r2
+ 646 00b0 0833     		adds	r3, r3, #8
+ 647 00b2 23F00703 		bic	r3, r3, #7
+ 648 00b6 ADEB030D 		sub	sp, sp, r3
+ 649 00ba 6D46     		mov	r5, sp
+ 650              	.LVL69:
+ 651              	.LBB12:
+ 152:pathfinding.c ****             for (uint16_t i = 0; i < size; i++) {
+ 652              		.loc 1 152 0 discriminator 1
+ 653 00bc 0023     		movs	r3, #0
+ 654 00be 05E0     		b	.L39
+ 655              	.LVL70:
+ 656              	.L40:
+ 153:pathfinding.c ****                 shortestPath[i] = -1;
+ 657              		.loc 1 153 0 discriminator 3
+ 658 00c0 4FF6FF72 		movw	r2, #65535
+ 659 00c4 25F81320 		strh	r2, [r5, r3, lsl #1]	@ movhi
+ 152:pathfinding.c ****             for (uint16_t i = 0; i < size; i++) {
+ 660              		.loc 1 152 0 discriminator 3
+ 661 00c8 0133     		adds	r3, r3, #1
+ 662              	.LVL71:
+ 663 00ca 9BB2     		uxth	r3, r3
+ 664              	.LVL72:
+ 665              	.L39:
+ 152:pathfinding.c ****             for (uint16_t i = 0; i < size; i++) {
+ 666              		.loc 1 152 0 is_stmt 0 discriminator 1
+ 667 00cc 8B42     		cmp	r3, r1
+ 668 00ce F7D3     		bcc	.L40
+ 669              	.LVL73:
+ 670              	.LBE12:
+ 154:pathfinding.c ****             }
+ 155:pathfinding.c **** 
+ 156:pathfinding.c ****             // Index and order are both required for successful formatting.
+ 157:pathfinding.c ****             uint16_t index = target;
+ 158:pathfinding.c ****             uint16_t order = vertices[target].distance;
+ 671              		.loc 1 158 0 is_stmt 1
+ 672 00d0 04EB4403 		add	r3, r4, r4, lsl #1
+ 673              	.LVL74:
+ 674 00d4 08EB4303 		add	r3, r8, r3, lsl #1
+ 675 00d8 5B88     		ldrh	r3, [r3, #2]
+ 676              	.LVL75:
+ 677 00da 7868     		ldr	r0, [r7, #4]
+ 159:pathfinding.c **** 
+ 160:pathfinding.c ****             while (vertices[index].pred != source) { 
+ 678              		.loc 1 160 0
+ 679 00dc 07E0     		b	.L41
+ 680              	.L42:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 16
+
+
+ 161:pathfinding.c ****                 // Order is very important here, we need it to make sure that the order we visit ve
+ 162:pathfinding.c ****                 shortestPath[index] = order;
+ 681              		.loc 1 162 0
+ 682 00de 25F81B30 		strh	r3, [r5, fp, lsl #1]	@ movhi
+ 163:pathfinding.c ****                 index = vertices[index].pred;
+ 683              		.loc 1 163 0
+ 684 00e2 0BEB4B0B 		add	fp, fp, fp, lsl #1
+ 685              	.LVL76:
+ 686 00e6 38F81BB0 		ldrh	fp, [r8, fp, lsl #1]
+ 687              	.LVL77:
+ 164:pathfinding.c ****                 order--;
+ 688              		.loc 1 164 0
+ 689 00ea 013B     		subs	r3, r3, #1
+ 690              	.LVL78:
+ 691 00ec 9BB2     		uxth	r3, r3
+ 692              	.LVL79:
+ 693              	.L41:
+ 160:pathfinding.c ****                 // Order is very important here, we need it to make sure that the order we visit ve
+ 694              		.loc 1 160 0
+ 695 00ee 0BEB4B02 		add	r2, fp, fp, lsl #1
+ 696 00f2 38F91220 		ldrsh	r2, [r8, r2, lsl #1]
+ 697 00f6 9042     		cmp	r0, r2
+ 698 00f8 F1D1     		bne	.L42
+ 165:pathfinding.c ****             }
+ 166:pathfinding.c ****             
+ 167:pathfinding.c ****             // Add the last 2 vertices.
+ 168:pathfinding.c ****             shortestPath[index] = order;
+ 699              		.loc 1 168 0
+ 700 00fa 25F81B30 		strh	r3, [r5, fp, lsl #1]	@ movhi
+ 169:pathfinding.c ****             order--;
+ 701              		.loc 1 169 0
+ 702 00fe 013B     		subs	r3, r3, #1
+ 703              	.LVL80:
+ 170:pathfinding.c ****             shortestPath[source] = order;
+ 704              		.loc 1 170 0
+ 705 0100 FA68     		ldr	r2, [r7, #12]
+ 706 0102 25F81230 		strh	r3, [r5, r2, lsl #1]	@ movhi
+ 171:pathfinding.c **** 
+ 172:pathfinding.c ****             // Array to return. Need to allocate space for an additional int so we can store the si
+ 173:pathfinding.c ****             uint16_t *finalPath = malloc((vertices[target].distance + 1) * sizeof(uint16_t));
+ 707              		.loc 1 173 0
+ 708 0106 04EB4403 		add	r3, r4, r4, lsl #1
+ 709              	.LVL81:
+ 710 010a 08EB4303 		add	r3, r8, r3, lsl #1
+ 711 010e 5888     		ldrh	r0, [r3, #2]
+ 712 0110 0130     		adds	r0, r0, #1
+ 713 0112 4000     		lsls	r0, r0, #1
+ 714 0114 FFF7FEFF 		bl	malloc
+ 715              	.LVL82:
+ 716              	.LBB13:
+ 174:pathfinding.c ****             for (uint16_t i = 0; i < size; i++) {
+ 717              		.loc 1 174 0
+ 718 0118 0023     		movs	r3, #0
+ 719 011a B968     		ldr	r1, [r7, #8]
+ 720 011c 09E0     		b	.L43
+ 721              	.LVL83:
+ 722              	.L45:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 17
+
+
+ 175:pathfinding.c ****                 if (shortestPath[i] != -1) {
+ 723              		.loc 1 175 0
+ 724 011e 35F91320 		ldrsh	r2, [r5, r3, lsl #1]
+ 725 0122 B2F1FF3F 		cmp	r2, #-1
+ 726 0126 02D0     		beq	.L44
+ 176:pathfinding.c ****                     order = shortestPath[i];
+ 727              		.loc 1 176 0
+ 728 0128 92B2     		uxth	r2, r2
+ 729              	.LVL84:
+ 177:pathfinding.c ****                     finalPath[order] = i;
+ 730              		.loc 1 177 0
+ 731 012a 20F81230 		strh	r3, [r0, r2, lsl #1]	@ movhi
+ 732              	.LVL85:
+ 733              	.L44:
+ 174:pathfinding.c ****                 if (shortestPath[i] != -1) {
+ 734              		.loc 1 174 0 discriminator 2
+ 735 012e 0133     		adds	r3, r3, #1
+ 736              	.LVL86:
+ 737 0130 9BB2     		uxth	r3, r3
+ 738              	.LVL87:
+ 739              	.L43:
+ 174:pathfinding.c ****                 if (shortestPath[i] != -1) {
+ 740              		.loc 1 174 0 is_stmt 0 discriminator 1
+ 741 0132 8B42     		cmp	r3, r1
+ 742 0134 F3D3     		bcc	.L45
+ 743              	.LBE13:
+ 178:pathfinding.c ****                 }
+ 179:pathfinding.c ****             }
+ 180:pathfinding.c **** 
+ 181:pathfinding.c ****             // Set the size at position 0.
+ 182:pathfinding.c ****             finalPath[0] = vertices[target].distance;
+ 744              		.loc 1 182 0 is_stmt 1
+ 745 0136 04EB4404 		add	r4, r4, r4, lsl #1
+ 746 013a 08EB4408 		add	r8, r8, r4, lsl #1
+ 747              	.LVL88:
+ 748 013e B8F80230 		ldrh	r3, [r8, #2]
+ 749              	.LVL89:
+ 750 0142 0380     		strh	r3, [r0]	@ movhi
+ 183:pathfinding.c **** 
+ 184:pathfinding.c ****             // Return the formatted shortest path.
+ 185:pathfinding.c ****             return finalPath;
+ 751              		.loc 1 185 0
+ 752 0144 44E0     		b	.L34
+ 753              	.LVL90:
+ 754              	.L47:
+ 755              	.LBE11:
+ 756              	.LBB14:
+ 757              	.LBB15:
+ 186:pathfinding.c **** 
+ 187:pathfinding.c ****         }
+ 188:pathfinding.c **** 
+ 189:pathfinding.c ****         // Search through all possible neighbours.
+ 190:pathfinding.c ****         for (uint8_t i = 0; i < 4; i++) {
+ 191:pathfinding.c ****             int16_t entry = adjlist[key.value][i];
+ 758              		.loc 1 191 0
+ 759 0146 0AEBC603 		add	r3, r10, r6, lsl #3
+ 760 014a 33F91450 		ldrsh	r5, [r3, r4, lsl #1]
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 18
+
+
+ 761              	.LVL91:
+ 192:pathfinding.c **** 
+ 193:pathfinding.c ****             // If entry is -1 it means there is no valid entry here (vacancy).
+ 194:pathfinding.c ****             if (entry != -1) {
+ 762              		.loc 1 194 0
+ 763 014e B5F1FF3F 		cmp	r5, #-1
+ 764 0152 31D0     		beq	.L46
+ 765              	.LBB16:
+ 195:pathfinding.c ****                 // If we have already visited this neighbour just continue.
+ 196:pathfinding.c ****                 if (vertices[entry].visited == true) { continue; }
+ 766              		.loc 1 196 0
+ 767 0154 05EB4503 		add	r3, r5, r5, lsl #1
+ 768 0158 08EB4303 		add	r3, r8, r3, lsl #1
+ 769 015c 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 770 015e 5BBB     		cbnz	r3, .L46
+ 197:pathfinding.c **** 
+ 198:pathfinding.c ****                 // Update the distances.
+ 199:pathfinding.c ****                 uint16_t newDistance = vertices[key.value].distance + 1;
+ 771              		.loc 1 199 0
+ 772 0160 0BEB4B03 		add	r3, fp, fp, lsl #1
+ 773 0164 08EB4303 		add	r3, r8, r3, lsl #1
+ 774 0168 B3F80290 		ldrh	r9, [r3, #2]
+ 775 016c 09F10109 		add	r9, r9, #1
+ 776 0170 1FFA89F9 		uxth	r9, r9
+ 777              	.LVL92:
+ 200:pathfinding.c ****                 if (newDistance < vertices[entry].distance) {
+ 778              		.loc 1 200 0
+ 779 0174 05EB4503 		add	r3, r5, r5, lsl #1
+ 780 0178 08EB4303 		add	r3, r8, r3, lsl #1
+ 781 017c 5B88     		ldrh	r3, [r3, #2]
+ 782 017e 9945     		cmp	r9, r3
+ 783 0180 1AD2     		bcs	.L46
+ 784              	.LBB17:
+ 201:pathfinding.c **** 
+ 202:pathfinding.c ****                     // Priority is the sum of the new distance plus the heuristic function result.
+ 203:pathfinding.c ****                     uint16_t priority = newDistance + heuristic(entry, target, xdim);
+ 785              		.loc 1 203 0
+ 786 0182 3A69     		ldr	r2, [r7, #16]
+ 787 0184 B969     		ldr	r1, [r7, #24]
+ 788 0186 2846     		mov	r0, r5
+ 789 0188 FFF7FEFF 		bl	heuristic
+ 790              	.LVL93:
+ 791 018c 4844     		add	r0, r0, r9
+ 792 018e 83B2     		uxth	r3, r0
+ 793 0190 7B61     		str	r3, [r7, #20]
+ 794              	.LVL94:
+ 204:pathfinding.c ****                     vertices[entry].distance = newDistance;
+ 795              		.loc 1 204 0
+ 796 0192 6B00     		lsls	r3, r5, #1
+ 797 0194 5A19     		adds	r2, r3, r5
+ 798 0196 08EB4202 		add	r2, r8, r2, lsl #1
+ 799 019a A2F80290 		strh	r9, [r2, #2]	@ movhi
+ 205:pathfinding.c **** 
+ 206:pathfinding.c ****                     // Set the predecessor (we want to take the newly discovered shortest path to e
+ 207:pathfinding.c ****                     vertices[entry].pred = key.value;
+ 800              		.loc 1 207 0
+ 801 019e 2B44     		add	r3, r3, r5
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 19
+
+
+ 802 01a0 28F81360 		strh	r6, [r8, r3, lsl #1]	@ movhi
+ 208:pathfinding.c **** 
+ 209:pathfinding.c ****                     if (!queueContains(queue, entry)) {
+ 803              		.loc 1 209 0
+ 804 01a4 2946     		mov	r1, r5
+ 805 01a6 F869     		ldr	r0, [r7, #28]
+ 806 01a8 FFF7FEFF 		bl	queueContains
+ 807              	.LVL95:
+ 808 01ac 20B9     		cbnz	r0, .L46
+ 210:pathfinding.c ****                         // If the neighbour is not in the priority queue already, add it.
+ 211:pathfinding.c ****                         push(queue, entry, priority);
+ 809              		.loc 1 211 0
+ 810 01ae 7A69     		ldr	r2, [r7, #20]
+ 811 01b0 2946     		mov	r1, r5
+ 812 01b2 F869     		ldr	r0, [r7, #28]
+ 813 01b4 FFF7FEFF 		bl	push
+ 814              	.LVL96:
+ 815              	.L46:
+ 816              	.LBE17:
+ 817              	.LBE16:
+ 818              	.LBE15:
+ 190:pathfinding.c ****             int16_t entry = adjlist[key.value][i];
+ 819              		.loc 1 190 0 discriminator 2
+ 820 01b8 0134     		adds	r4, r4, #1
+ 821              	.LVL97:
+ 822 01ba E4B2     		uxtb	r4, r4
+ 823              	.LVL98:
+ 824 01bc 00E0     		b	.L38
+ 825              	.LVL99:
+ 826              	.L49:
+ 827              	.LBE14:
+ 828 01be 0024     		movs	r4, #0
+ 829              	.L38:
+ 830              	.LVL100:
+ 831              	.LBB18:
+ 190:pathfinding.c ****             int16_t entry = adjlist[key.value][i];
+ 832              		.loc 1 190 0 is_stmt 0 discriminator 1
+ 833 01c0 032C     		cmp	r4, #3
+ 834 01c2 C0D9     		bls	.L47
+ 835              	.LVL101:
+ 836              	.L37:
+ 837              	.LBE18:
+ 838              	.LBE10:
+ 137:pathfinding.c **** 
+ 839              		.loc 1 137 0 is_stmt 1
+ 840 01c4 FB69     		ldr	r3, [r7, #28]
+ 841 01c6 B3F90430 		ldrsh	r3, [r3, #4]
+ 842 01ca 002B     		cmp	r3, #0
+ 843 01cc 7FF45BAF 		bne	.L48
+ 844              	.LVL102:
+ 845              	.L34:
+ 212:pathfinding.c ****                     }
+ 213:pathfinding.c **** 
+ 214:pathfinding.c ****                 }
+ 215:pathfinding.c ****             }
+ 216:pathfinding.c ****         }
+ 217:pathfinding.c **** 
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 20
+
+
+ 218:pathfinding.c ****     }
+ 219:pathfinding.c **** 
+ 220:pathfinding.c **** }
+ 846              		.loc 1 220 0
+ 847 01d0 2C37     		adds	r7, r7, #44
+ 848              		.cfi_def_cfa_offset 36
+ 849              	.LVL103:
+ 850 01d2 BD46     		mov	sp, r7
+ 851              		.cfi_def_cfa_register 13
+ 852              		@ sp needed
+ 853 01d4 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 854              		.cfi_endproc
+ 855              	.LFE72:
+ 856              		.size	ASTAR, .-ASTAR
+ 857              		.section	.text.decode,"ax",%progbits
+ 858              		.align	2
+ 859              		.global	decode
+ 860              		.thumb
+ 861              		.thumb_func
+ 862              		.type	decode, %function
+ 863              	decode:
+ 864              	.LFB73:
+ 221:pathfinding.c **** 
+ 222:pathfinding.c **** // Decode an array of vertices representing the shortest path into a list of directions.
+ 223:pathfinding.c **** int8_t *decode(uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target) {
+ 865              		.loc 1 223 0
+ 866              		.cfi_startproc
+ 867              		@ args = 0, pretend = 0, frame = 0
+ 868              		@ frame_needed = 0, uses_anonymous_args = 0
+ 869              	.LVL104:
+ 870 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 871              		.cfi_def_cfa_offset 24
+ 872              		.cfi_offset 4, -24
+ 873              		.cfi_offset 5, -20
+ 874              		.cfi_offset 6, -16
+ 875              		.cfi_offset 7, -12
+ 876              		.cfi_offset 8, -8
+ 877              		.cfi_offset 14, -4
+ 878 0004 0446     		mov	r4, r0
+ 879 0006 0F46     		mov	r7, r1
+ 880 0008 1546     		mov	r5, r2
+ 881 000a 1E46     		mov	r6, r3
+ 224:pathfinding.c **** 
+ 225:pathfinding.c ****     // Get the length of the final path and store it in size.
+ 226:pathfinding.c ****     uint16_t size = finalPath[0];
+ 882              		.loc 1 226 0
+ 883 000c B0F80080 		ldrh	r8, [r0]
+ 884              	.LVL105:
+ 227:pathfinding.c ****     
+ 228:pathfinding.c ****     // Allocate space for our return array.
+ 229:pathfinding.c ****     int8_t *instructionSet = malloc(size * sizeof(int8_t));
+ 885              		.loc 1 229 0
+ 886 0010 4046     		mov	r0, r8
+ 887              	.LVL106:
+ 888 0012 FFF7FEFF 		bl	malloc
+ 889              	.LVL107:
+ 890              	.LBB19:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 21
+
+
+ 230:pathfinding.c ****     for (uint16_t i = 0; i < size; i++) {
+ 891              		.loc 1 230 0
+ 892 0016 0023     		movs	r3, #0
+ 893 0018 03E0     		b	.L52
+ 894              	.LVL108:
+ 895              	.L53:
+ 231:pathfinding.c ****         instructionSet[i] = NULLDIR;
+ 896              		.loc 1 231 0 discriminator 3
+ 897 001a FF22     		movs	r2, #255
+ 898 001c C254     		strb	r2, [r0, r3]
+ 230:pathfinding.c ****     for (uint16_t i = 0; i < size; i++) {
+ 899              		.loc 1 230 0 discriminator 3
+ 900 001e 0133     		adds	r3, r3, #1
+ 901              	.LVL109:
+ 902 0020 9BB2     		uxth	r3, r3
+ 903              	.LVL110:
+ 904              	.L52:
+ 230:pathfinding.c ****     for (uint16_t i = 0; i < size; i++) {
+ 905              		.loc 1 230 0 is_stmt 0 discriminator 1
+ 906 0022 4345     		cmp	r3, r8
+ 907 0024 F9D3     		bcc	.L53
+ 908 0026 0421     		movs	r1, #4
+ 909 0028 4FF00008 		mov	r8, #0
+ 910              	.LVL111:
+ 911 002c 0123     		movs	r3, #1
+ 912              	.LVL112:
+ 913 002e 87E0     		b	.L54
+ 914              	.LVL113:
+ 915              	.L73:
+ 916              	.LBE19:
+ 232:pathfinding.c ****     }
+ 233:pathfinding.c **** 
+ 234:pathfinding.c ****     // Track the current and previous directions, and array indices.
+ 235:pathfinding.c ****     uint16_t i = 1, j = 0;
+ 236:pathfinding.c ****     uint8_t traversalDirection = UNINITIALISED;
+ 237:pathfinding.c ****     uint8_t prevDirection = UNINITIALISED;
+ 238:pathfinding.c **** 
+ 239:pathfinding.c ****     // While we have yet to reach the target vertex, walk through the shortest path, keeping track 
+ 240:pathfinding.c ****     while (finalPath[i] != target) {
+ 241:pathfinding.c ****         if (finalPath[i] - finalPath[i + 1] == xdim) {
+ 917              		.loc 1 241 0 is_stmt 1
+ 918 0030 5A1C     		adds	r2, r3, #1
+ 919 0032 34F81220 		ldrh	r2, [r4, r2, lsl #1]
+ 920 0036 C2EB0E0C 		rsb	ip, r2, lr
+ 921 003a AC45     		cmp	ip, r5
+ 922 003c 0AD0     		beq	.L74
+ 242:pathfinding.c ****             traversalDirection = NORTH;
+ 243:pathfinding.c ****         } else if (finalPath[i + 1] - finalPath[i] == xdim) {
+ 923              		.loc 1 243 0
+ 924 003e CEEB0202 		rsb	r2, lr, r2
+ 925 0042 9542     		cmp	r5, r2
+ 926 0044 08D0     		beq	.L75
+ 244:pathfinding.c ****             traversalDirection = SOUTH;
+ 245:pathfinding.c ****         } else if (finalPath[i + 1] - finalPath[i] == 1) {
+ 927              		.loc 1 245 0
+ 928 0046 012A     		cmp	r2, #1
+ 929 0048 08D0     		beq	.L76
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 22
+
+
+ 246:pathfinding.c ****             traversalDirection = EAST;
+ 247:pathfinding.c ****         } else if (finalPath[i] - finalPath[i + 1] == 1) {
+ 930              		.loc 1 247 0
+ 931 004a BCF1010F 		cmp	ip, #1
+ 932 004e 07D0     		beq	.L77
+ 933 0050 0A46     		mov	r2, r1
+ 934 0052 06E0     		b	.L55
+ 935              	.L74:
+ 242:pathfinding.c ****         } else if (finalPath[i + 1] - finalPath[i] == xdim) {
+ 936              		.loc 1 242 0
+ 937 0054 0022     		movs	r2, #0
+ 938 0056 04E0     		b	.L55
+ 939              	.L75:
+ 244:pathfinding.c ****             traversalDirection = SOUTH;
+ 940              		.loc 1 244 0
+ 941 0058 0222     		movs	r2, #2
+ 942 005a 02E0     		b	.L55
+ 943              	.L76:
+ 246:pathfinding.c ****             traversalDirection = EAST;
+ 944              		.loc 1 246 0
+ 945 005c 0122     		movs	r2, #1
+ 946 005e 00E0     		b	.L55
+ 947              	.L77:
+ 248:pathfinding.c ****             traversalDirection = WEST;
+ 948              		.loc 1 248 0
+ 949 0060 0322     		movs	r2, #3
+ 950              	.L55:
+ 951              	.LVL114:
+ 249:pathfinding.c ****         }
+ 250:pathfinding.c **** 
+ 251:pathfinding.c ****         /* If we have just started traversing, then we cannot have made a turn yet, so prevDirectio
+ 252:pathfinding.c ****            If the previous direction is different from our current one, then we have to had made a 
+ 253:pathfinding.c ****         if ((traversalDirection != prevDirection) && (prevDirection != UNINITIALISED)) {
+ 952              		.loc 1 253 0
+ 953 0062 8A42     		cmp	r2, r1
+ 954 0064 37D0     		beq	.L56
+ 955              		.loc 1 253 0 is_stmt 0 discriminator 1
+ 956 0066 0429     		cmp	r1, #4
+ 957 0068 35D0     		beq	.L56
+ 254:pathfinding.c **** 
+ 255:pathfinding.c ****             // We can determine whether we turned left or right based on our previous and current d
+ 256:pathfinding.c ****             switch (traversalDirection) 
+ 958              		.loc 1 256 0 is_stmt 1
+ 959 006a 032A     		cmp	r2, #3
+ 960 006c 2ED8     		bhi	.L57
+ 961 006e DFE802F0 		tbb	[pc, r2]
+ 962              	.L59:
+ 963 0072 02       		.byte	(.L58-.L59)/2
+ 964 0073 0E       		.byte	(.L60-.L59)/2
+ 965 0074 19       		.byte	(.L61-.L59)/2
+ 966 0075 24       		.byte	(.L62-.L59)/2
+ 967              		.p2align 1
+ 968              	.L58:
+ 257:pathfinding.c ****             {
+ 258:pathfinding.c ****                 case NORTH:
+ 259:pathfinding.c ****                     if (prevDirection == EAST) {
+ 969              		.loc 1 259 0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 23
+
+
+ 970 0076 0129     		cmp	r1, #1
+ 971 0078 03D1     		bne	.L63
+ 260:pathfinding.c ****                         instructionSet[j] = L;
+ 972              		.loc 1 260 0
+ 973 007a 0021     		movs	r1, #0
+ 974              	.LVL115:
+ 975 007c 00F80810 		strb	r1, [r0, r8]
+ 976 0080 24E0     		b	.L57
+ 977              	.LVL116:
+ 978              	.L63:
+ 261:pathfinding.c ****                     } else if (prevDirection == WEST) {
+ 979              		.loc 1 261 0
+ 980 0082 0329     		cmp	r1, #3
+ 981 0084 22D1     		bne	.L57
+ 262:pathfinding.c ****                         instructionSet[j] = R;
+ 982              		.loc 1 262 0
+ 983 0086 0121     		movs	r1, #1
+ 984              	.LVL117:
+ 985 0088 00F80810 		strb	r1, [r0, r8]
+ 986 008c 1EE0     		b	.L57
+ 987              	.LVL118:
+ 988              	.L60:
+ 263:pathfinding.c ****                     }
+ 264:pathfinding.c ****                     break;
+ 265:pathfinding.c **** 
+ 266:pathfinding.c ****                 case EAST:
+ 267:pathfinding.c ****                     if (prevDirection == NORTH) {
+ 989              		.loc 1 267 0
+ 990 008e 19B9     		cbnz	r1, .L64
+ 268:pathfinding.c ****                         instructionSet[j] = R;
+ 991              		.loc 1 268 0
+ 992 0090 0121     		movs	r1, #1
+ 993              	.LVL119:
+ 994 0092 00F80810 		strb	r1, [r0, r8]
+ 995 0096 19E0     		b	.L57
+ 996              	.LVL120:
+ 997              	.L64:
+ 269:pathfinding.c ****                     } else if (prevDirection == SOUTH) {
+ 998              		.loc 1 269 0
+ 999 0098 0229     		cmp	r1, #2
+ 1000 009a 17D1     		bne	.L57
+ 270:pathfinding.c ****                         instructionSet[j] = L;
+ 1001              		.loc 1 270 0
+ 1002 009c 0021     		movs	r1, #0
+ 1003              	.LVL121:
+ 1004 009e 00F80810 		strb	r1, [r0, r8]
+ 1005 00a2 13E0     		b	.L57
+ 1006              	.LVL122:
+ 1007              	.L61:
+ 271:pathfinding.c ****                     }
+ 272:pathfinding.c ****                     break;
+ 273:pathfinding.c **** 
+ 274:pathfinding.c ****                 case SOUTH:
+ 275:pathfinding.c ****                     if (prevDirection == EAST) {
+ 1008              		.loc 1 275 0
+ 1009 00a4 0129     		cmp	r1, #1
+ 1010 00a6 02D1     		bne	.L65
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 24
+
+
+ 276:pathfinding.c ****                         instructionSet[j] = R;
+ 1011              		.loc 1 276 0
+ 1012 00a8 00F80810 		strb	r1, [r0, r8]
+ 1013 00ac 0EE0     		b	.L57
+ 1014              	.L65:
+ 277:pathfinding.c ****                     } else if (prevDirection == WEST) {
+ 1015              		.loc 1 277 0
+ 1016 00ae 0329     		cmp	r1, #3
+ 1017 00b0 0CD1     		bne	.L57
+ 278:pathfinding.c ****                         instructionSet[j] = L;
+ 1018              		.loc 1 278 0
+ 1019 00b2 0021     		movs	r1, #0
+ 1020              	.LVL123:
+ 1021 00b4 00F80810 		strb	r1, [r0, r8]
+ 1022 00b8 08E0     		b	.L57
+ 1023              	.LVL124:
+ 1024              	.L62:
+ 279:pathfinding.c ****                     }
+ 280:pathfinding.c ****                     break;
+ 281:pathfinding.c **** 
+ 282:pathfinding.c ****                 case WEST:
+ 283:pathfinding.c ****                     if (prevDirection == NORTH) {
+ 1025              		.loc 1 283 0
+ 1026 00ba 11B9     		cbnz	r1, .L66
+ 284:pathfinding.c ****                         instructionSet[j] = L;
+ 1027              		.loc 1 284 0
+ 1028 00bc 00F80810 		strb	r1, [r0, r8]
+ 1029 00c0 04E0     		b	.L57
+ 1030              	.L66:
+ 285:pathfinding.c ****                     } else if (prevDirection == SOUTH) {
+ 1031              		.loc 1 285 0
+ 1032 00c2 0229     		cmp	r1, #2
+ 1033 00c4 02D1     		bne	.L57
+ 286:pathfinding.c ****                         instructionSet[j] = R;
+ 1034              		.loc 1 286 0
+ 1035 00c6 0121     		movs	r1, #1
+ 1036              	.LVL125:
+ 1037 00c8 00F80810 		strb	r1, [r0, r8]
+ 1038              	.L57:
+ 287:pathfinding.c ****                     }
+ 288:pathfinding.c ****                     break;
+ 289:pathfinding.c **** 
+ 290:pathfinding.c ****                 default:
+ 291:pathfinding.c ****                     break;
+ 292:pathfinding.c ****             }
+ 293:pathfinding.c ****             // Increment the index so that we can store the next instruction (if applicable).
+ 294:pathfinding.c ****             j++;
+ 1039              		.loc 1 294 0
+ 1040 00cc 08F10108 		add	r8, r8, #1
+ 1041              	.LVL126:
+ 1042 00d0 1FFA88F8 		uxth	r8, r8
+ 1043              	.LVL127:
+ 1044 00d4 31E0     		b	.L67
+ 1045              	.LVL128:
+ 1046              	.L56:
+ 295:pathfinding.c **** 
+ 296:pathfinding.c ****         } else if ((traversalDirection == prevDirection) && (prevDirection != UNINITIALISED)) {
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 25
+
+
+ 1047              		.loc 1 296 0
+ 1048 00d6 8A42     		cmp	r2, r1
+ 1049 00d8 2FD1     		bne	.L67
+ 1050              		.loc 1 296 0 is_stmt 0 discriminator 1
+ 1051 00da 0429     		cmp	r1, #4
+ 1052 00dc 2DD0     		beq	.L67
+ 297:pathfinding.c **** 
+ 298:pathfinding.c ****             // If we are travelling the same direction as before along the shortest path, but there
+ 299:pathfinding.c ****             if (prevDirection == NORTH || prevDirection == SOUTH) {
+ 1053              		.loc 1 299 0 is_stmt 1
+ 1054 00de 09B1     		cbz	r1, .L68
+ 1055              		.loc 1 299 0 is_stmt 0 discriminator 1
+ 1056 00e0 0229     		cmp	r1, #2
+ 1057 00e2 13D1     		bne	.L69
+ 1058              	.L68:
+ 300:pathfinding.c ****                 if (adjlist[finalPath[i]][2] != -1 || adjlist[finalPath[i]][3] != -1) {
+ 1059              		.loc 1 300 0 is_stmt 1
+ 1060 00e4 07EBCE0E 		add	lr, r7, lr, lsl #3
+ 1061 00e8 BEF90410 		ldrsh	r1, [lr, #4]
+ 1062              	.LVL129:
+ 1063 00ec B1F1FF3F 		cmp	r1, #-1
+ 1064 00f0 04D1     		bne	.L70
+ 1065              		.loc 1 300 0 is_stmt 0 discriminator 1
+ 1066 00f2 BEF90610 		ldrsh	r1, [lr, #6]
+ 1067 00f6 B1F1FF3F 		cmp	r1, #-1
+ 1068 00fa 1ED0     		beq	.L67
+ 1069              	.L70:
+ 301:pathfinding.c ****                     instructionSet[j] = J;
+ 1070              		.loc 1 301 0 is_stmt 1
+ 1071 00fc 0221     		movs	r1, #2
+ 1072 00fe 00F80810 		strb	r1, [r0, r8]
+ 302:pathfinding.c ****                     j++;
+ 1073              		.loc 1 302 0
+ 1074 0102 08F10108 		add	r8, r8, #1
+ 1075              	.LVL130:
+ 1076 0106 1FFA88F8 		uxth	r8, r8
+ 1077              	.LVL131:
+ 1078 010a 16E0     		b	.L67
+ 1079              	.LVL132:
+ 1080              	.L69:
+ 303:pathfinding.c ****                 }
+ 304:pathfinding.c ****             } else if (prevDirection == EAST || prevDirection == WEST) {
+ 1081              		.loc 1 304 0
+ 1082 010c 0129     		cmp	r1, #1
+ 1083 010e 01D0     		beq	.L71
+ 1084              		.loc 1 304 0 is_stmt 0 discriminator 1
+ 1085 0110 0329     		cmp	r1, #3
+ 1086 0112 12D1     		bne	.L67
+ 1087              	.L71:
+ 305:pathfinding.c ****                 if (adjlist[finalPath[i]][0] != -1 || adjlist[finalPath[i]][1] != -1) {
+ 1088              		.loc 1 305 0 is_stmt 1
+ 1089 0114 07EBCE0C 		add	ip, r7, lr, lsl #3
+ 1090 0118 37F93E10 		ldrsh	r1, [r7, lr, lsl #3]
+ 1091              	.LVL133:
+ 1092 011c B1F1FF3F 		cmp	r1, #-1
+ 1093 0120 04D1     		bne	.L72
+ 1094              		.loc 1 305 0 is_stmt 0 discriminator 1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 26
+
+
+ 1095 0122 BCF90210 		ldrsh	r1, [ip, #2]
+ 1096 0126 B1F1FF3F 		cmp	r1, #-1
+ 1097 012a 06D0     		beq	.L67
+ 1098              	.L72:
+ 306:pathfinding.c ****                     instructionSet[j] = J;
+ 1099              		.loc 1 306 0 is_stmt 1
+ 1100 012c 0221     		movs	r1, #2
+ 1101 012e 00F80810 		strb	r1, [r0, r8]
+ 307:pathfinding.c ****                     j++;
+ 1102              		.loc 1 307 0
+ 1103 0132 08F10108 		add	r8, r8, #1
+ 1104              	.LVL134:
+ 1105 0136 1FFA88F8 		uxth	r8, r8
+ 1106              	.LVL135:
+ 1107              	.L67:
+ 308:pathfinding.c ****                 }
+ 309:pathfinding.c ****             }
+ 310:pathfinding.c **** 
+ 311:pathfinding.c ****         }
+ 312:pathfinding.c ****         // Set the previous direction to our current one, and increment our position in the shortes
+ 313:pathfinding.c ****         prevDirection = traversalDirection;
+ 314:pathfinding.c ****         i++;
+ 1108              		.loc 1 314 0
+ 1109 013a 0133     		adds	r3, r3, #1
+ 1110              	.LVL136:
+ 1111 013c 9BB2     		uxth	r3, r3
+ 1112              	.LVL137:
+ 1113 013e 1146     		mov	r1, r2
+ 1114              	.LVL138:
+ 1115              	.L54:
+ 240:pathfinding.c ****         if (finalPath[i] - finalPath[i + 1] == xdim) {
+ 1116              		.loc 1 240 0
+ 1117 0140 34F813E0 		ldrh	lr, [r4, r3, lsl #1]
+ 1118 0144 B645     		cmp	lr, r6
+ 1119 0146 7FF473AF 		bne	.L73
+ 315:pathfinding.c **** 
+ 316:pathfinding.c ****     }
+ 317:pathfinding.c ****     // Return the set of instructions produced.
+ 318:pathfinding.c ****     return instructionSet;
+ 319:pathfinding.c **** 
+ 320:pathfinding.c **** }
+ 1120              		.loc 1 320 0
+ 1121 014a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1122              		.cfi_endproc
+ 1123              	.LFE73:
+ 1124              		.size	decode, .-decode
+ 1125              		.comm	Vertex,6,4
+ 1126              		.comm	Queue,16,4
+ 1127              		.comm	PriorityVertex,4,4
+ 1128 014e 00BF     		.section	.rodata
+ 1129              		.align	2
+ 1130              		.set	.LANCHOR0,. + 0
+ 1131              	.LC0:
+ 1132 0000 FFFF     		.short	-1
+ 1133 0002 FFFF     		.short	-1
+ 1134              		.text
+ 1135              	.Letext0:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 27
+
+
+ 1136              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1137              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1138              		.file 4 "pathfinding.h"
+ 1139              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 1140              		.file 6 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1141              		.section	.debug_info,"",%progbits
+ 1142              	.Ldebug_info0:
+ 1143 0000 87080000 		.4byte	0x887
+ 1144 0004 0400     		.2byte	0x4
+ 1145 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1146 000a 04       		.byte	0x4
+ 1147 000b 01       		.uleb128 0x1
+ 1148 000c F9020000 		.4byte	.LASF70
+ 1149 0010 0C       		.byte	0xc
+ 1150 0011 3A000000 		.4byte	.LASF71
+ 1151 0015 51010000 		.4byte	.LASF72
+ 1152 0019 48000000 		.4byte	.Ldebug_ranges0+0x48
+ 1153 001d 00000000 		.4byte	0
+ 1154 0021 00000000 		.4byte	.Ldebug_line0
+ 1155 0025 02       		.uleb128 0x2
+ 1156 0026 3E020000 		.4byte	.LASF0
+ 1157 002a 02       		.byte	0x2
+ 1158 002b 1B       		.byte	0x1b
+ 1159 002c 30000000 		.4byte	0x30
+ 1160 0030 03       		.uleb128 0x3
+ 1161 0031 01       		.byte	0x1
+ 1162 0032 06       		.byte	0x6
+ 1163 0033 DD010000 		.4byte	.LASF2
+ 1164 0037 02       		.uleb128 0x2
+ 1165 0038 13010000 		.4byte	.LASF1
+ 1166 003c 02       		.byte	0x2
+ 1167 003d 1D       		.byte	0x1d
+ 1168 003e 42000000 		.4byte	0x42
+ 1169 0042 03       		.uleb128 0x3
+ 1170 0043 01       		.byte	0x1
+ 1171 0044 08       		.byte	0x8
+ 1172 0045 C8010000 		.4byte	.LASF3
+ 1173 0049 02       		.uleb128 0x2
+ 1174 004a 00000000 		.4byte	.LASF4
+ 1175 004e 02       		.byte	0x2
+ 1176 004f 29       		.byte	0x29
+ 1177 0050 54000000 		.4byte	0x54
+ 1178 0054 03       		.uleb128 0x3
+ 1179 0055 02       		.byte	0x2
+ 1180 0056 05       		.byte	0x5
+ 1181 0057 30000000 		.4byte	.LASF5
+ 1182 005b 02       		.uleb128 0x2
+ 1183 005c 75000000 		.4byte	.LASF6
+ 1184 0060 02       		.byte	0x2
+ 1185 0061 2B       		.byte	0x2b
+ 1186 0062 66000000 		.4byte	0x66
+ 1187 0066 03       		.uleb128 0x3
+ 1188 0067 02       		.byte	0x2
+ 1189 0068 07       		.byte	0x7
+ 1190 0069 2B020000 		.4byte	.LASF7
+ 1191 006d 02       		.uleb128 0x2
+ 1192 006e B4020000 		.4byte	.LASF8
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 28
+
+
+ 1193 0072 02       		.byte	0x2
+ 1194 0073 3F       		.byte	0x3f
+ 1195 0074 78000000 		.4byte	0x78
+ 1196 0078 03       		.uleb128 0x3
+ 1197 0079 04       		.byte	0x4
+ 1198 007a 05       		.byte	0x5
+ 1199 007b 0A010000 		.4byte	.LASF9
+ 1200 007f 03       		.uleb128 0x3
+ 1201 0080 04       		.byte	0x4
+ 1202 0081 07       		.byte	0x7
+ 1203 0082 90020000 		.4byte	.LASF10
+ 1204 0086 03       		.uleb128 0x3
+ 1205 0087 08       		.byte	0x8
+ 1206 0088 05       		.byte	0x5
+ 1207 0089 D4000000 		.4byte	.LASF11
+ 1208 008d 03       		.uleb128 0x3
+ 1209 008e 08       		.byte	0x8
+ 1210 008f 07       		.byte	0x7
+ 1211 0090 F2010000 		.4byte	.LASF12
+ 1212 0094 04       		.uleb128 0x4
+ 1213 0095 04       		.byte	0x4
+ 1214 0096 05       		.byte	0x5
+ 1215 0097 696E7400 		.ascii	"int\000"
+ 1216 009b 03       		.uleb128 0x3
+ 1217 009c 04       		.byte	0x4
+ 1218 009d 07       		.byte	0x7
+ 1219 009e 09020000 		.4byte	.LASF13
+ 1220 00a2 02       		.uleb128 0x2
+ 1221 00a3 13000000 		.4byte	.LASF14
+ 1222 00a7 03       		.byte	0x3
+ 1223 00a8 14       		.byte	0x14
+ 1224 00a9 25000000 		.4byte	0x25
+ 1225 00ad 02       		.uleb128 0x2
+ 1226 00ae BE020000 		.4byte	.LASF15
+ 1227 00b2 03       		.byte	0x3
+ 1228 00b3 18       		.byte	0x18
+ 1229 00b4 37000000 		.4byte	0x37
+ 1230 00b8 02       		.uleb128 0x2
+ 1231 00b9 65020000 		.4byte	.LASF16
+ 1232 00bd 03       		.byte	0x3
+ 1233 00be 20       		.byte	0x20
+ 1234 00bf 49000000 		.4byte	0x49
+ 1235 00c3 02       		.uleb128 0x2
+ 1236 00c4 16020000 		.4byte	.LASF17
+ 1237 00c8 03       		.byte	0x3
+ 1238 00c9 24       		.byte	0x24
+ 1239 00ca 5B000000 		.4byte	0x5b
+ 1240 00ce 02       		.uleb128 0x2
+ 1241 00cf 5D020000 		.4byte	.LASF18
+ 1242 00d3 03       		.byte	0x3
+ 1243 00d4 2C       		.byte	0x2c
+ 1244 00d5 6D000000 		.4byte	0x6d
+ 1245 00d9 03       		.uleb128 0x3
+ 1246 00da 04       		.byte	0x4
+ 1247 00db 04       		.byte	0x4
+ 1248 00dc C2000000 		.4byte	.LASF19
+ 1249 00e0 03       		.uleb128 0x3
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 29
+
+
+ 1250 00e1 08       		.byte	0x8
+ 1251 00e2 04       		.byte	0x4
+ 1252 00e3 A2020000 		.4byte	.LASF20
+ 1253 00e7 03       		.uleb128 0x3
+ 1254 00e8 01       		.byte	0x1
+ 1255 00e9 08       		.byte	0x8
+ 1256 00ea 4F020000 		.4byte	.LASF21
+ 1257 00ee 03       		.uleb128 0x3
+ 1258 00ef 08       		.byte	0x8
+ 1259 00f0 04       		.byte	0x4
+ 1260 00f1 B6010000 		.4byte	.LASF22
+ 1261 00f5 03       		.uleb128 0x3
+ 1262 00f6 04       		.byte	0x4
+ 1263 00f7 07       		.byte	0x7
+ 1264 00f8 4F000000 		.4byte	.LASF23
+ 1265 00fc 05       		.uleb128 0x5
+ 1266 00fd 21000000 		.4byte	.LASF26
+ 1267 0101 04       		.byte	0x4
+ 1268 0102 04       		.byte	0x4
+ 1269 0103 1E       		.byte	0x1e
+ 1270 0104 21010000 		.4byte	0x121
+ 1271 0108 06       		.uleb128 0x6
+ 1272 0109 80000000 		.4byte	.LASF24
+ 1273 010d 04       		.byte	0x4
+ 1274 010e 1F       		.byte	0x1f
+ 1275 010f B8000000 		.4byte	0xb8
+ 1276 0113 00       		.byte	0
+ 1277 0114 06       		.uleb128 0x6
+ 1278 0115 0A000000 		.4byte	.LASF25
+ 1279 0119 04       		.byte	0x4
+ 1280 011a 20       		.byte	0x20
+ 1281 011b C3000000 		.4byte	0xc3
+ 1282 011f 02       		.byte	0x2
+ 1283 0120 00       		.byte	0
+ 1284 0121 05       		.uleb128 0x5
+ 1285 0122 7A020000 		.4byte	.LASF27
+ 1286 0126 10       		.byte	0x10
+ 1287 0127 04       		.byte	0x4
+ 1288 0128 23       		.byte	0x23
+ 1289 0129 6A010000 		.4byte	0x16a
+ 1290 012d 06       		.uleb128 0x6
+ 1291 012e 25020000 		.4byte	.LASF28
+ 1292 0132 04       		.byte	0x4
+ 1293 0133 24       		.byte	0x24
+ 1294 0134 B8000000 		.4byte	0xb8
+ 1295 0138 00       		.byte	0
+ 1296 0139 07       		.uleb128 0x7
+ 1297 013a 656E6400 		.ascii	"end\000"
+ 1298 013e 04       		.byte	0x4
+ 1299 013f 24       		.byte	0x24
+ 1300 0140 B8000000 		.4byte	0xb8
+ 1301 0144 02       		.byte	0x2
+ 1302 0145 06       		.uleb128 0x6
+ 1303 0146 AF020000 		.4byte	.LASF29
+ 1304 014a 04       		.byte	0x4
+ 1305 014b 24       		.byte	0x24
+ 1306 014c B8000000 		.4byte	0xb8
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 30
+
+
+ 1307 0150 04       		.byte	0x4
+ 1308 0151 06       		.uleb128 0x6
+ 1309 0152 E9010000 		.4byte	.LASF30
+ 1310 0156 04       		.byte	0x4
+ 1311 0157 25       		.byte	0x25
+ 1312 0158 9B000000 		.4byte	0x9b
+ 1313 015c 08       		.byte	0x8
+ 1314 015d 06       		.uleb128 0x6
+ 1315 015e A9020000 		.4byte	.LASF31
+ 1316 0162 04       		.byte	0x4
+ 1317 0163 26       		.byte	0x26
+ 1318 0164 6A010000 		.4byte	0x16a
+ 1319 0168 0C       		.byte	0xc
+ 1320 0169 00       		.byte	0
+ 1321 016a 08       		.uleb128 0x8
+ 1322 016b 04       		.byte	0x4
+ 1323 016c FC000000 		.4byte	0xfc
+ 1324 0170 05       		.uleb128 0x5
+ 1325 0171 73020000 		.4byte	.LASF32
+ 1326 0175 06       		.byte	0x6
+ 1327 0176 04       		.byte	0x4
+ 1328 0177 29       		.byte	0x29
+ 1329 0178 A1010000 		.4byte	0x1a1
+ 1330 017c 06       		.uleb128 0x6
+ 1331 017d D3020000 		.4byte	.LASF33
+ 1332 0181 04       		.byte	0x4
+ 1333 0182 2A       		.byte	0x2a
+ 1334 0183 B8000000 		.4byte	0xb8
+ 1335 0187 00       		.byte	0
+ 1336 0188 06       		.uleb128 0x6
+ 1337 0189 54020000 		.4byte	.LASF34
+ 1338 018d 04       		.byte	0x4
+ 1339 018e 2B       		.byte	0x2b
+ 1340 018f C3000000 		.4byte	0xc3
+ 1341 0193 02       		.byte	0x2
+ 1342 0194 06       		.uleb128 0x6
+ 1343 0195 A7000000 		.4byte	.LASF35
+ 1344 0199 04       		.byte	0x4
+ 1345 019a 2C       		.byte	0x2c
+ 1346 019b A1010000 		.4byte	0x1a1
+ 1347 019f 04       		.byte	0x4
+ 1348 01a0 00       		.byte	0
+ 1349 01a1 03       		.uleb128 0x3
+ 1350 01a2 01       		.byte	0x1
+ 1351 01a3 02       		.byte	0x2
+ 1352 01a4 6D020000 		.4byte	.LASF36
+ 1353 01a8 09       		.uleb128 0x9
+ 1354 01a9 E2020000 		.4byte	.LASF43
+ 1355 01ad 01       		.byte	0x1
+ 1356 01ae 08       		.byte	0x8
+ 1357 01af 05020000 		.4byte	0x205
+ 1358 01b3 00000000 		.4byte	.LFB64
+ 1359 01b7 24000000 		.4byte	.LFE64-.LFB64
+ 1360 01bb 01       		.uleb128 0x1
+ 1361 01bc 9C       		.byte	0x9c
+ 1362 01bd 05020000 		.4byte	0x205
+ 1363 01c1 0A       		.uleb128 0xa
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 31
+
+
+ 1364 01c2 AF020000 		.4byte	.LASF29
+ 1365 01c6 01       		.byte	0x1
+ 1366 01c7 08       		.byte	0x8
+ 1367 01c8 9B000000 		.4byte	0x9b
+ 1368 01cc 00000000 		.4byte	.LLST0
+ 1369 01d0 0B       		.uleb128 0xb
+ 1370 01d1 4B010000 		.4byte	.LASF37
+ 1371 01d5 01       		.byte	0x1
+ 1372 01d6 0B       		.byte	0xb
+ 1373 01d7 05020000 		.4byte	0x205
+ 1374 01db 1E000000 		.4byte	.LLST1
+ 1375 01df 0C       		.uleb128 0xc
+ 1376 01e0 0A000000 		.4byte	.LVL2
+ 1377 01e4 7F080000 		.4byte	0x87f
+ 1378 01e8 F2010000 		.4byte	0x1f2
+ 1379 01ec 0D       		.uleb128 0xd
+ 1380 01ed 01       		.uleb128 0x1
+ 1381 01ee 50       		.byte	0x50
+ 1382 01ef 01       		.uleb128 0x1
+ 1383 01f0 40       		.byte	0x40
+ 1384 01f1 00       		.byte	0
+ 1385 01f2 0E       		.uleb128 0xe
+ 1386 01f3 1E000000 		.4byte	.LVL5
+ 1387 01f7 7F080000 		.4byte	0x87f
+ 1388 01fb 0D       		.uleb128 0xd
+ 1389 01fc 01       		.uleb128 0x1
+ 1390 01fd 50       		.byte	0x50
+ 1391 01fe 04       		.uleb128 0x4
+ 1392 01ff 75       		.byte	0x75
+ 1393 0200 00       		.sleb128 0
+ 1394 0201 32       		.byte	0x32
+ 1395 0202 24       		.byte	0x24
+ 1396 0203 00       		.byte	0
+ 1397 0204 00       		.byte	0
+ 1398 0205 08       		.uleb128 0x8
+ 1399 0206 04       		.byte	0x4
+ 1400 0207 21010000 		.4byte	0x121
+ 1401 020b 0F       		.uleb128 0xf
+ 1402 020c 99030000 		.4byte	.LASF39
+ 1403 0210 01       		.byte	0x1
+ 1404 0211 15       		.byte	0x15
+ 1405 0212 00000000 		.4byte	.LFB65
+ 1406 0216 2C000000 		.4byte	.LFE65-.LFB65
+ 1407 021a 01       		.uleb128 0x1
+ 1408 021b 9C       		.byte	0x9c
+ 1409 021c 6C020000 		.4byte	0x26c
+ 1410 0220 0A       		.uleb128 0xa
+ 1411 0221 4B010000 		.4byte	.LASF37
+ 1412 0225 01       		.byte	0x1
+ 1413 0226 15       		.byte	0x15
+ 1414 0227 05020000 		.4byte	0x205
+ 1415 022b 3C000000 		.4byte	.LLST2
+ 1416 022f 10       		.uleb128 0x10
+ 1417 0230 AF020000 		.4byte	.LASF29
+ 1418 0234 01       		.byte	0x1
+ 1419 0235 15       		.byte	0x15
+ 1420 0236 C3000000 		.4byte	0xc3
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 32
+
+
+ 1421 023a 01       		.uleb128 0x1
+ 1422 023b 51       		.byte	0x51
+ 1423 023c 11       		.uleb128 0x11
+ 1424 023d 06000000 		.4byte	.LBB2
+ 1425 0241 1A000000 		.4byte	.LBE2-.LBB2
+ 1426 0245 12       		.uleb128 0x12
+ 1427 0246 6900     		.ascii	"i\000"
+ 1428 0248 01       		.byte	0x1
+ 1429 0249 18       		.byte	0x18
+ 1430 024a C3000000 		.4byte	0xc3
+ 1431 024e 68000000 		.4byte	.LLST3
+ 1432 0252 11       		.uleb128 0x11
+ 1433 0253 0A000000 		.4byte	.LBB3
+ 1434 0257 0E000000 		.4byte	.LBE3-.LBB3
+ 1435 025b 13       		.uleb128 0x13
+ 1436 025c C6020000 		.4byte	.LASF38
+ 1437 0260 01       		.byte	0x1
+ 1438 0261 19       		.byte	0x19
+ 1439 0262 FC000000 		.4byte	0xfc
+ 1440 0266 02       		.uleb128 0x2
+ 1441 0267 91       		.byte	0x91
+ 1442 0268 74       		.sleb128 -12
+ 1443 0269 00       		.byte	0
+ 1444 026a 00       		.byte	0
+ 1445 026b 00       		.byte	0
+ 1446 026c 0F       		.uleb128 0xf
+ 1447 026d 96000000 		.4byte	.LASF40
+ 1448 0271 01       		.byte	0x1
+ 1449 0272 1F       		.byte	0x1f
+ 1450 0273 00000000 		.4byte	.LFB66
+ 1451 0277 38000000 		.4byte	.LFE66-.LFB66
+ 1452 027b 01       		.uleb128 0x1
+ 1453 027c 9C       		.byte	0x9c
+ 1454 027d BB020000 		.4byte	0x2bb
+ 1455 0281 0A       		.uleb128 0xa
+ 1456 0282 4B010000 		.4byte	.LASF37
+ 1457 0286 01       		.byte	0x1
+ 1458 0287 1F       		.byte	0x1f
+ 1459 0288 05020000 		.4byte	0x205
+ 1460 028c 92000000 		.4byte	.LLST4
+ 1461 0290 10       		.uleb128 0x10
+ 1462 0291 D6010000 		.4byte	.LASF41
+ 1463 0295 01       		.byte	0x1
+ 1464 0296 1F       		.byte	0x1f
+ 1465 0297 B8000000 		.4byte	0xb8
+ 1466 029b 01       		.uleb128 0x1
+ 1467 029c 51       		.byte	0x51
+ 1468 029d 0A       		.uleb128 0xa
+ 1469 029e 0A000000 		.4byte	.LASF25
+ 1470 02a2 01       		.byte	0x1
+ 1471 02a3 1F       		.byte	0x1f
+ 1472 02a4 C3000000 		.4byte	0xc3
+ 1473 02a8 B0000000 		.4byte	.LLST5
+ 1474 02ac 13       		.uleb128 0x13
+ 1475 02ad 86000000 		.4byte	.LASF42
+ 1476 02b1 01       		.byte	0x1
+ 1477 02b2 23       		.byte	0x23
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 33
+
+
+ 1478 02b3 FC000000 		.4byte	0xfc
+ 1479 02b7 02       		.uleb128 0x2
+ 1480 02b8 91       		.byte	0x91
+ 1481 02b9 74       		.sleb128 -12
+ 1482 02ba 00       		.byte	0
+ 1483 02bb 14       		.uleb128 0x14
+ 1484 02bc 706F7000 		.ascii	"pop\000"
+ 1485 02c0 01       		.byte	0x1
+ 1486 02c1 29       		.byte	0x29
+ 1487 02c2 B8000000 		.4byte	0xb8
+ 1488 02c6 00000000 		.4byte	.LFB67
+ 1489 02ca 44000000 		.4byte	.LFE67-.LFB67
+ 1490 02ce 01       		.uleb128 0x1
+ 1491 02cf 9C       		.byte	0x9c
+ 1492 02d0 00030000 		.4byte	0x300
+ 1493 02d4 0A       		.uleb128 0xa
+ 1494 02d5 4B010000 		.4byte	.LASF37
+ 1495 02d9 01       		.byte	0x1
+ 1496 02da 29       		.byte	0x29
+ 1497 02db 05020000 		.4byte	0x205
+ 1498 02df DB000000 		.4byte	.LLST6
+ 1499 02e3 13       		.uleb128 0x13
+ 1500 02e4 D6010000 		.4byte	.LASF41
+ 1501 02e8 01       		.byte	0x1
+ 1502 02e9 2C       		.byte	0x2c
+ 1503 02ea FC000000 		.4byte	0xfc
+ 1504 02ee 02       		.uleb128 0x2
+ 1505 02ef 91       		.byte	0x91
+ 1506 02f0 7C       		.sleb128 -4
+ 1507 02f1 13       		.uleb128 0x13
+ 1508 02f2 C6020000 		.4byte	.LASF38
+ 1509 02f6 01       		.byte	0x1
+ 1510 02f7 2E       		.byte	0x2e
+ 1511 02f8 FC000000 		.4byte	0xfc
+ 1512 02fc 02       		.uleb128 0x2
+ 1513 02fd 91       		.byte	0x91
+ 1514 02fe 78       		.sleb128 -8
+ 1515 02ff 00       		.byte	0
+ 1516 0300 0F       		.uleb128 0xf
+ 1517 0301 80020000 		.4byte	.LASF44
+ 1518 0305 01       		.byte	0x1
+ 1519 0306 37       		.byte	0x37
+ 1520 0307 00000000 		.4byte	.LFB68
+ 1521 030b 32000000 		.4byte	.LFE68-.LFB68
+ 1522 030f 01       		.uleb128 0x1
+ 1523 0310 9C       		.byte	0x9c
+ 1524 0311 47030000 		.4byte	0x347
+ 1525 0315 10       		.uleb128 0x10
+ 1526 0316 4B010000 		.4byte	.LASF37
+ 1527 031a 01       		.byte	0x1
+ 1528 031b 37       		.byte	0x37
+ 1529 031c 05020000 		.4byte	0x205
+ 1530 0320 01       		.uleb128 0x1
+ 1531 0321 50       		.byte	0x50
+ 1532 0322 15       		.uleb128 0x15
+ 1533 0323 706F7300 		.ascii	"pos\000"
+ 1534 0327 01       		.byte	0x1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 34
+
+
+ 1535 0328 37       		.byte	0x37
+ 1536 0329 C3000000 		.4byte	0xc3
+ 1537 032d 01       		.uleb128 0x1
+ 1538 032e 51       		.byte	0x51
+ 1539 032f 11       		.uleb128 0x11
+ 1540 0330 02000000 		.4byte	.LBB4
+ 1541 0334 20000000 		.4byte	.LBE4-.LBB4
+ 1542 0338 12       		.uleb128 0x12
+ 1543 0339 6900     		.ascii	"i\000"
+ 1544 033b 01       		.byte	0x1
+ 1545 033c 3A       		.byte	0x3a
+ 1546 033d C3000000 		.4byte	0xc3
+ 1547 0341 F9000000 		.4byte	.LLST7
+ 1548 0345 00       		.byte	0
+ 1549 0346 00       		.byte	0
+ 1550 0347 09       		.uleb128 0x9
+ 1551 0348 58000000 		.4byte	.LASF45
+ 1552 034c 01       		.byte	0x1
+ 1553 034d 43       		.byte	0x43
+ 1554 034e A1010000 		.4byte	0x1a1
+ 1555 0352 00000000 		.4byte	.LFB69
+ 1556 0356 2C000000 		.4byte	.LFE69-.LFB69
+ 1557 035a 01       		.uleb128 0x1
+ 1558 035b 9C       		.byte	0x9c
+ 1559 035c 90030000 		.4byte	0x390
+ 1560 0360 0A       		.uleb128 0xa
+ 1561 0361 4B010000 		.4byte	.LASF37
+ 1562 0365 01       		.byte	0x1
+ 1563 0366 43       		.byte	0x43
+ 1564 0367 05020000 		.4byte	0x205
+ 1565 036b 23010000 		.4byte	.LLST8
+ 1566 036f 10       		.uleb128 0x10
+ 1567 0370 D6010000 		.4byte	.LASF41
+ 1568 0374 01       		.byte	0x1
+ 1569 0375 43       		.byte	0x43
+ 1570 0376 B8000000 		.4byte	0xb8
+ 1571 037a 01       		.uleb128 0x1
+ 1572 037b 51       		.byte	0x51
+ 1573 037c 16       		.uleb128 0x16
+ 1574 037d 00000000 		.4byte	.Ldebug_ranges0+0
+ 1575 0381 12       		.uleb128 0x12
+ 1576 0382 6900     		.ascii	"i\000"
+ 1577 0384 01       		.byte	0x1
+ 1578 0385 46       		.byte	0x46
+ 1579 0386 C3000000 		.4byte	0xc3
+ 1580 038a 5D010000 		.4byte	.LLST9
+ 1581 038e 00       		.byte	0
+ 1582 038f 00       		.byte	0
+ 1583 0390 09       		.uleb128 0x9
+ 1584 0391 D8020000 		.4byte	.LASF46
+ 1585 0395 01       		.byte	0x1
+ 1586 0396 4E       		.byte	0x4e
+ 1587 0397 C3000000 		.4byte	0xc3
+ 1588 039b 00000000 		.4byte	.LFB70
+ 1589 039f 44000000 		.4byte	.LFE70-.LFB70
+ 1590 03a3 01       		.uleb128 0x1
+ 1591 03a4 9C       		.byte	0x9c
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 35
+
+
+ 1592 03a5 F5030000 		.4byte	0x3f5
+ 1593 03a9 0A       		.uleb128 0xa
+ 1594 03aa C2010000 		.4byte	.LASF47
+ 1595 03ae 01       		.byte	0x1
+ 1596 03af 4E       		.byte	0x4e
+ 1597 03b0 B8000000 		.4byte	0xb8
+ 1598 03b4 87010000 		.4byte	.LLST10
+ 1599 03b8 0A       		.uleb128 0xa
+ 1600 03b9 1A000000 		.4byte	.LASF48
+ 1601 03bd 01       		.byte	0x1
+ 1602 03be 4E       		.byte	0x4e
+ 1603 03bf C3000000 		.4byte	0xc3
+ 1604 03c3 A8010000 		.4byte	.LLST11
+ 1605 03c7 0A       		.uleb128 0xa
+ 1606 03c8 70000000 		.4byte	.LASF49
+ 1607 03cc 01       		.byte	0x1
+ 1608 03cd 4E       		.byte	0x4e
+ 1609 03ce C3000000 		.4byte	0xc3
+ 1610 03d2 C9010000 		.4byte	.LLST12
+ 1611 03d6 0B       		.uleb128 0xb
+ 1612 03d7 1F020000 		.4byte	.LASF50
+ 1613 03db 01       		.byte	0x1
+ 1614 03dc 51       		.byte	0x51
+ 1615 03dd C3000000 		.4byte	0xc3
+ 1616 03e1 EA010000 		.4byte	.LLST13
+ 1617 03e5 0B       		.uleb128 0xb
+ 1618 03e6 87030000 		.4byte	.LASF51
+ 1619 03ea 01       		.byte	0x1
+ 1620 03eb 54       		.byte	0x54
+ 1621 03ec C3000000 		.4byte	0xc3
+ 1622 03f0 FD010000 		.4byte	.LLST14
+ 1623 03f4 00       		.byte	0
+ 1624 03f5 09       		.uleb128 0x9
+ 1625 03f6 29010000 		.4byte	.LASF52
+ 1626 03fa 01       		.byte	0x1
+ 1627 03fb 5A       		.byte	0x5a
+ 1628 03fc FC000000 		.4byte	0xfc
+ 1629 0400 00000000 		.4byte	.LFB71
+ 1630 0404 5A000000 		.4byte	.LFE71-.LFB71
+ 1631 0408 01       		.uleb128 0x1
+ 1632 0409 9C       		.byte	0x9c
+ 1633 040a 72040000 		.4byte	0x472
+ 1634 040e 0A       		.uleb128 0xa
+ 1635 040f 4B010000 		.4byte	.LASF37
+ 1636 0413 01       		.byte	0x1
+ 1637 0414 5A       		.byte	0x5a
+ 1638 0415 05020000 		.4byte	0x205
+ 1639 0419 2E020000 		.4byte	.LLST15
+ 1640 041d 0B       		.uleb128 0xb
+ 1641 041e 9B000000 		.4byte	.LASF53
+ 1642 0422 01       		.byte	0x1
+ 1643 0423 5D       		.byte	0x5d
+ 1644 0424 C3000000 		.4byte	0xc3
+ 1645 0428 4F020000 		.4byte	.LLST16
+ 1646 042c 12       		.uleb128 0x12
+ 1647 042d 706F7300 		.ascii	"pos\000"
+ 1648 0431 01       		.byte	0x1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 36
+
+
+ 1649 0432 5E       		.byte	0x5e
+ 1650 0433 C3000000 		.4byte	0xc3
+ 1651 0437 85020000 		.4byte	.LLST17
+ 1652 043b 13       		.uleb128 0x13
+ 1653 043c 8C030000 		.4byte	.LASF54
+ 1654 0440 01       		.byte	0x1
+ 1655 0441 67       		.byte	0x67
+ 1656 0442 FC000000 		.4byte	0xfc
+ 1657 0446 02       		.uleb128 0x2
+ 1658 0447 91       		.byte	0x91
+ 1659 0448 68       		.sleb128 -24
+ 1660 0449 17       		.uleb128 0x17
+ 1661 044a 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 1662 044e 60040000 		.4byte	0x460
+ 1663 0452 12       		.uleb128 0x12
+ 1664 0453 6900     		.ascii	"i\000"
+ 1665 0455 01       		.byte	0x1
+ 1666 0456 5F       		.byte	0x5f
+ 1667 0457 C3000000 		.4byte	0xc3
+ 1668 045b 98020000 		.4byte	.LLST18
+ 1669 045f 00       		.byte	0
+ 1670 0460 0E       		.uleb128 0xe
+ 1671 0461 46000000 		.4byte	.LVL50
+ 1672 0465 00030000 		.4byte	0x300
+ 1673 0469 0D       		.uleb128 0xd
+ 1674 046a 01       		.uleb128 0x1
+ 1675 046b 50       		.byte	0x50
+ 1676 046c 03       		.uleb128 0x3
+ 1677 046d F3       		.byte	0xf3
+ 1678 046e 01       		.uleb128 0x1
+ 1679 046f 50       		.byte	0x50
+ 1680 0470 00       		.byte	0
+ 1681 0471 00       		.byte	0
+ 1682 0472 09       		.uleb128 0x9
+ 1683 0473 BC000000 		.4byte	.LASF55
+ 1684 0477 01       		.byte	0x1
+ 1685 0478 70       		.byte	0x70
+ 1686 0479 FE060000 		.4byte	0x6fe
+ 1687 047d 00000000 		.4byte	.LFB72
+ 1688 0481 D8010000 		.4byte	.LFE72-.LFB72
+ 1689 0485 01       		.uleb128 0x1
+ 1690 0486 9C       		.byte	0x9c
+ 1691 0487 FE060000 		.4byte	0x6fe
+ 1692 048b 0A       		.uleb128 0xa
+ 1693 048c 1D010000 		.4byte	.LASF56
+ 1694 0490 01       		.byte	0x1
+ 1695 0491 70       		.byte	0x70
+ 1696 0492 C3000000 		.4byte	0xc3
+ 1697 0496 C2020000 		.4byte	.LLST19
+ 1698 049a 0A       		.uleb128 0xa
+ 1699 049b 1A000000 		.4byte	.LASF48
+ 1700 049f 01       		.byte	0x1
+ 1701 04a0 70       		.byte	0x70
+ 1702 04a1 C3000000 		.4byte	0xc3
+ 1703 04a5 E3020000 		.4byte	.LLST20
+ 1704 04a9 0A       		.uleb128 0xa
+ 1705 04aa 47020000 		.4byte	.LASF57
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 37
+
+
+ 1706 04ae 01       		.byte	0x1
+ 1707 04af 70       		.byte	0x70
+ 1708 04b0 14070000 		.4byte	0x714
+ 1709 04b4 04030000 		.4byte	.LLST21
+ 1710 04b8 0A       		.uleb128 0xa
+ 1711 04b9 70000000 		.4byte	.LASF49
+ 1712 04bd 01       		.byte	0x1
+ 1713 04be 70       		.byte	0x70
+ 1714 04bf C3000000 		.4byte	0xc3
+ 1715 04c3 22030000 		.4byte	.LLST22
+ 1716 04c7 0A       		.uleb128 0xa
+ 1717 04c8 24010000 		.4byte	.LASF58
+ 1718 04cc 01       		.byte	0x1
+ 1719 04cd 70       		.byte	0x70
+ 1720 04ce C3000000 		.4byte	0xc3
+ 1721 04d2 43030000 		.4byte	.LLST23
+ 1722 04d6 10       		.uleb128 0x10
+ 1723 04d7 A9020000 		.4byte	.LASF31
+ 1724 04db 01       		.byte	0x1
+ 1725 04dc 70       		.byte	0x70
+ 1726 04dd 2A070000 		.4byte	0x72a
+ 1727 04e1 02       		.uleb128 0x2
+ 1728 04e2 91       		.byte	0x91
+ 1729 04e3 04       		.sleb128 4
+ 1730 04e4 0B       		.uleb128 0xb
+ 1731 04e5 AF020000 		.4byte	.LASF29
+ 1732 04e9 01       		.byte	0x1
+ 1733 04ea 73       		.byte	0x73
+ 1734 04eb C3000000 		.4byte	0xc3
+ 1735 04ef 57030000 		.4byte	.LLST24
+ 1736 04f3 0B       		.uleb128 0xb
+ 1737 04f4 4B010000 		.4byte	.LASF37
+ 1738 04f8 01       		.byte	0x1
+ 1739 04f9 76       		.byte	0x76
+ 1740 04fa 05020000 		.4byte	0x205
+ 1741 04fe 81030000 		.4byte	.LLST25
+ 1742 0502 18       		.uleb128 0x18
+ 1743 0503 43070000 		.4byte	0x743
+ 1744 0507 AB030000 		.4byte	.LLST26
+ 1745 050b 0B       		.uleb128 0xb
+ 1746 050c 87020000 		.4byte	.LASF59
+ 1747 0510 01       		.byte	0x1
+ 1748 0511 7B       		.byte	0x7b
+ 1749 0512 30070000 		.4byte	0x730
+ 1750 0516 DB030000 		.4byte	.LLST27
+ 1751 051a 19       		.uleb128 0x19
+ 1752 051b 4E000000 		.4byte	.LBB9
+ 1753 051f 22000000 		.4byte	.LBE9-.LBB9
+ 1754 0523 35050000 		.4byte	0x535
+ 1755 0527 12       		.uleb128 0x12
+ 1756 0528 6900     		.ascii	"i\000"
+ 1757 052a 01       		.byte	0x1
+ 1758 052b 7C       		.byte	0x7c
+ 1759 052c C3000000 		.4byte	0xc3
+ 1760 0530 49040000 		.4byte	.LLST28
+ 1761 0534 00       		.byte	0
+ 1762 0535 19       		.uleb128 0x19
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 38
+
+
+ 1763 0536 86000000 		.4byte	.LBB10
+ 1764 053a 3E010000 		.4byte	.LBE10-.LBB10
+ 1765 053e AB060000 		.4byte	0x6ab
+ 1766 0542 1A       		.uleb128 0x1a
+ 1767 0543 6B657900 		.ascii	"key\000"
+ 1768 0547 01       		.byte	0x1
+ 1769 0548 8C       		.byte	0x8c
+ 1770 0549 FC000000 		.4byte	0xfc
+ 1771 054d 02       		.uleb128 0x2
+ 1772 054e 91       		.byte	0x91
+ 1773 054f 54       		.sleb128 -44
+ 1774 0550 19       		.uleb128 0x19
+ 1775 0551 AA000000 		.4byte	.LBB11
+ 1776 0555 9C000000 		.4byte	.LBE11-.LBB11
+ 1777 0559 D9050000 		.4byte	0x5d9
+ 1778 055d 0B       		.uleb128 0xb
+ 1779 055e AF000000 		.4byte	.LASF60
+ 1780 0562 01       		.byte	0x1
+ 1781 0563 97       		.byte	0x97
+ 1782 0564 48070000 		.4byte	0x748
+ 1783 0568 73040000 		.4byte	.LLST30
+ 1784 056c 0B       		.uleb128 0xb
+ 1785 056d 90000000 		.4byte	.LASF61
+ 1786 0571 01       		.byte	0x1
+ 1787 0572 9D       		.byte	0x9d
+ 1788 0573 C3000000 		.4byte	0xc3
+ 1789 0577 87040000 		.4byte	.LLST31
+ 1790 057b 0B       		.uleb128 0xb
+ 1791 057c 04010000 		.4byte	.LASF62
+ 1792 0580 01       		.byte	0x1
+ 1793 0581 9E       		.byte	0x9e
+ 1794 0582 C3000000 		.4byte	0xc3
+ 1795 0586 A5040000 		.4byte	.LLST32
+ 1796 058a 0B       		.uleb128 0xb
+ 1797 058b 66000000 		.4byte	.LASF63
+ 1798 058f 01       		.byte	0x1
+ 1799 0590 AD       		.byte	0xad
+ 1800 0591 FE060000 		.4byte	0x6fe
+ 1801 0595 DF040000 		.4byte	.LLST33
+ 1802 0599 19       		.uleb128 0x19
+ 1803 059a BC000000 		.4byte	.LBB12
+ 1804 059e 14000000 		.4byte	.LBE12-.LBB12
+ 1805 05a2 B4050000 		.4byte	0x5b4
+ 1806 05a6 12       		.uleb128 0x12
+ 1807 05a7 6900     		.ascii	"i\000"
+ 1808 05a9 01       		.byte	0x1
+ 1809 05aa 98       		.byte	0x98
+ 1810 05ab C3000000 		.4byte	0xc3
+ 1811 05af F2040000 		.4byte	.LLST34
+ 1812 05b3 00       		.byte	0
+ 1813 05b4 19       		.uleb128 0x19
+ 1814 05b5 18010000 		.4byte	.LBB13
+ 1815 05b9 1E000000 		.4byte	.LBE13-.LBB13
+ 1816 05bd CF050000 		.4byte	0x5cf
+ 1817 05c1 12       		.uleb128 0x12
+ 1818 05c2 6900     		.ascii	"i\000"
+ 1819 05c4 01       		.byte	0x1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 39
+
+
+ 1820 05c5 AE       		.byte	0xae
+ 1821 05c6 C3000000 		.4byte	0xc3
+ 1822 05ca 1C050000 		.4byte	.LLST35
+ 1823 05ce 00       		.byte	0
+ 1824 05cf 1B       		.uleb128 0x1b
+ 1825 05d0 18010000 		.4byte	.LVL82
+ 1826 05d4 7F080000 		.4byte	0x87f
+ 1827 05d8 00       		.byte	0
+ 1828 05d9 17       		.uleb128 0x17
+ 1829 05da 30000000 		.4byte	.Ldebug_ranges0+0x30
+ 1830 05de 99060000 		.4byte	0x699
+ 1831 05e2 12       		.uleb128 0x12
+ 1832 05e3 6900     		.ascii	"i\000"
+ 1833 05e5 01       		.byte	0x1
+ 1834 05e6 BE       		.byte	0xbe
+ 1835 05e7 AD000000 		.4byte	0xad
+ 1836 05eb 46050000 		.4byte	.LLST36
+ 1837 05ef 11       		.uleb128 0x11
+ 1838 05f0 46010000 		.4byte	.LBB15
+ 1839 05f4 72000000 		.4byte	.LBE15-.LBB15
+ 1840 05f8 0B       		.uleb128 0xb
+ 1841 05f9 C2010000 		.4byte	.LASF47
+ 1842 05fd 01       		.byte	0x1
+ 1843 05fe BF       		.byte	0xbf
+ 1844 05ff B8000000 		.4byte	0xb8
+ 1845 0603 6F050000 		.4byte	.LLST37
+ 1846 0607 11       		.uleb128 0x11
+ 1847 0608 54010000 		.4byte	.LBB16
+ 1848 060c 64000000 		.4byte	.LBE16-.LBB16
+ 1849 0610 0B       		.uleb128 0xb
+ 1850 0611 C8000000 		.4byte	.LASF64
+ 1851 0615 01       		.byte	0x1
+ 1852 0616 C7       		.byte	0xc7
+ 1853 0617 C3000000 		.4byte	0xc3
+ 1854 061b 82050000 		.4byte	.LLST38
+ 1855 061f 11       		.uleb128 0x11
+ 1856 0620 82010000 		.4byte	.LBB17
+ 1857 0624 36000000 		.4byte	.LBE17-.LBB17
+ 1858 0628 0B       		.uleb128 0xb
+ 1859 0629 0A000000 		.4byte	.LASF25
+ 1860 062d 01       		.byte	0x1
+ 1861 062e CB       		.byte	0xcb
+ 1862 062f C3000000 		.4byte	0xc3
+ 1863 0633 95050000 		.4byte	.LLST39
+ 1864 0637 0C       		.uleb128 0xc
+ 1865 0638 8C010000 		.4byte	.LVL93
+ 1866 063c 90030000 		.4byte	0x390
+ 1867 0640 5B060000 		.4byte	0x65b
+ 1868 0644 0D       		.uleb128 0xd
+ 1869 0645 01       		.uleb128 0x1
+ 1870 0646 50       		.byte	0x50
+ 1871 0647 02       		.uleb128 0x2
+ 1872 0648 75       		.byte	0x75
+ 1873 0649 00       		.sleb128 0
+ 1874 064a 0D       		.uleb128 0xd
+ 1875 064b 01       		.uleb128 0x1
+ 1876 064c 51       		.byte	0x51
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 40
+
+
+ 1877 064d 04       		.uleb128 0x4
+ 1878 064e 91       		.byte	0x91
+ 1879 064f 08       		.sleb128 8
+ 1880 0650 94       		.byte	0x94
+ 1881 0651 02       		.byte	0x2
+ 1882 0652 0D       		.uleb128 0xd
+ 1883 0653 01       		.uleb128 0x1
+ 1884 0654 52       		.byte	0x52
+ 1885 0655 04       		.uleb128 0x4
+ 1886 0656 91       		.byte	0x91
+ 1887 0657 00       		.sleb128 0
+ 1888 0658 94       		.byte	0x94
+ 1889 0659 02       		.byte	0x2
+ 1890 065a 00       		.byte	0
+ 1891 065b 0C       		.uleb128 0xc
+ 1892 065c AC010000 		.4byte	.LVL95
+ 1893 0660 47030000 		.4byte	0x347
+ 1894 0664 76060000 		.4byte	0x676
+ 1895 0668 0D       		.uleb128 0xd
+ 1896 0669 01       		.uleb128 0x1
+ 1897 066a 50       		.byte	0x50
+ 1898 066b 03       		.uleb128 0x3
+ 1899 066c 91       		.byte	0x91
+ 1900 066d 0C       		.sleb128 12
+ 1901 066e 06       		.byte	0x6
+ 1902 066f 0D       		.uleb128 0xd
+ 1903 0670 01       		.uleb128 0x1
+ 1904 0671 51       		.byte	0x51
+ 1905 0672 02       		.uleb128 0x2
+ 1906 0673 75       		.byte	0x75
+ 1907 0674 00       		.sleb128 0
+ 1908 0675 00       		.byte	0
+ 1909 0676 0E       		.uleb128 0xe
+ 1910 0677 B8010000 		.4byte	.LVL96
+ 1911 067b 6C020000 		.4byte	0x26c
+ 1912 067f 0D       		.uleb128 0xd
+ 1913 0680 01       		.uleb128 0x1
+ 1914 0681 50       		.byte	0x50
+ 1915 0682 03       		.uleb128 0x3
+ 1916 0683 91       		.byte	0x91
+ 1917 0684 0C       		.sleb128 12
+ 1918 0685 06       		.byte	0x6
+ 1919 0686 0D       		.uleb128 0xd
+ 1920 0687 01       		.uleb128 0x1
+ 1921 0688 51       		.byte	0x51
+ 1922 0689 02       		.uleb128 0x2
+ 1923 068a 75       		.byte	0x75
+ 1924 068b 00       		.sleb128 0
+ 1925 068c 0D       		.uleb128 0xd
+ 1926 068d 01       		.uleb128 0x1
+ 1927 068e 52       		.byte	0x52
+ 1928 068f 04       		.uleb128 0x4
+ 1929 0690 91       		.byte	0x91
+ 1930 0691 04       		.sleb128 4
+ 1931 0692 94       		.byte	0x94
+ 1932 0693 02       		.byte	0x2
+ 1933 0694 00       		.byte	0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 41
+
+
+ 1934 0695 00       		.byte	0
+ 1935 0696 00       		.byte	0
+ 1936 0697 00       		.byte	0
+ 1937 0698 00       		.byte	0
+ 1938 0699 0E       		.uleb128 0xe
+ 1939 069a 8C000000 		.4byte	.LVL67
+ 1940 069e F5030000 		.4byte	0x3f5
+ 1941 06a2 0D       		.uleb128 0xd
+ 1942 06a3 01       		.uleb128 0x1
+ 1943 06a4 50       		.byte	0x50
+ 1944 06a5 03       		.uleb128 0x3
+ 1945 06a6 91       		.byte	0x91
+ 1946 06a7 0C       		.sleb128 12
+ 1947 06a8 06       		.byte	0x6
+ 1948 06a9 00       		.byte	0
+ 1949 06aa 00       		.byte	0
+ 1950 06ab 18       		.uleb128 0x18
+ 1951 06ac 5B070000 		.4byte	0x75b
+ 1952 06b0 A9050000 		.4byte	.LLST29
+ 1953 06b4 0C       		.uleb128 0xc
+ 1954 06b5 28000000 		.4byte	.LVL57
+ 1955 06b9 A8010000 		.4byte	0x1a8
+ 1956 06bd C8060000 		.4byte	0x6c8
+ 1957 06c1 0D       		.uleb128 0xd
+ 1958 06c2 01       		.uleb128 0x1
+ 1959 06c3 50       		.byte	0x50
+ 1960 06c4 02       		.uleb128 0x2
+ 1961 06c5 75       		.byte	0x75
+ 1962 06c6 00       		.sleb128 0
+ 1963 06c7 00       		.byte	0
+ 1964 06c8 0C       		.uleb128 0xc
+ 1965 06c9 32000000 		.4byte	.LVL59
+ 1966 06cd 0B020000 		.4byte	0x20b
+ 1967 06d1 E2060000 		.4byte	0x6e2
+ 1968 06d5 0D       		.uleb128 0xd
+ 1969 06d6 01       		.uleb128 0x1
+ 1970 06d7 50       		.byte	0x50
+ 1971 06d8 02       		.uleb128 0x2
+ 1972 06d9 74       		.byte	0x74
+ 1973 06da 00       		.sleb128 0
+ 1974 06db 0D       		.uleb128 0xd
+ 1975 06dc 01       		.uleb128 0x1
+ 1976 06dd 51       		.byte	0x51
+ 1977 06de 02       		.uleb128 0x2
+ 1978 06df 75       		.byte	0x75
+ 1979 06e0 00       		.sleb128 0
+ 1980 06e1 00       		.byte	0
+ 1981 06e2 0E       		.uleb128 0xe
+ 1982 06e3 3C000000 		.4byte	.LVL60
+ 1983 06e7 6C020000 		.4byte	0x26c
+ 1984 06eb 0D       		.uleb128 0xd
+ 1985 06ec 01       		.uleb128 0x1
+ 1986 06ed 50       		.byte	0x50
+ 1987 06ee 02       		.uleb128 0x2
+ 1988 06ef 74       		.byte	0x74
+ 1989 06f0 00       		.sleb128 0
+ 1990 06f1 0D       		.uleb128 0xd
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 42
+
+
+ 1991 06f2 01       		.uleb128 0x1
+ 1992 06f3 51       		.byte	0x51
+ 1993 06f4 02       		.uleb128 0x2
+ 1994 06f5 76       		.byte	0x76
+ 1995 06f6 00       		.sleb128 0
+ 1996 06f7 0D       		.uleb128 0xd
+ 1997 06f8 01       		.uleb128 0x1
+ 1998 06f9 52       		.byte	0x52
+ 1999 06fa 01       		.uleb128 0x1
+ 2000 06fb 30       		.byte	0x30
+ 2001 06fc 00       		.byte	0
+ 2002 06fd 00       		.byte	0
+ 2003 06fe 08       		.uleb128 0x8
+ 2004 06ff 04       		.byte	0x4
+ 2005 0700 C3000000 		.4byte	0xc3
+ 2006 0704 1C       		.uleb128 0x1c
+ 2007 0705 B8000000 		.4byte	0xb8
+ 2008 0709 14070000 		.4byte	0x714
+ 2009 070d 1D       		.uleb128 0x1d
+ 2010 070e F5000000 		.4byte	0xf5
+ 2011 0712 03       		.byte	0x3
+ 2012 0713 00       		.byte	0
+ 2013 0714 08       		.uleb128 0x8
+ 2014 0715 04       		.byte	0x4
+ 2015 0716 04070000 		.4byte	0x704
+ 2016 071a 1C       		.uleb128 0x1c
+ 2017 071b C3000000 		.4byte	0xc3
+ 2018 071f 2A070000 		.4byte	0x72a
+ 2019 0723 1D       		.uleb128 0x1d
+ 2020 0724 F5000000 		.4byte	0xf5
+ 2021 0728 12       		.byte	0x12
+ 2022 0729 00       		.byte	0
+ 2023 072a 08       		.uleb128 0x8
+ 2024 072b 04       		.byte	0x4
+ 2025 072c 1A070000 		.4byte	0x71a
+ 2026 0730 1C       		.uleb128 0x1c
+ 2027 0731 70010000 		.4byte	0x170
+ 2028 0735 43070000 		.4byte	0x743
+ 2029 0739 1E       		.uleb128 0x1e
+ 2030 073a F5000000 		.4byte	0xf5
+ 2031 073e 02050000 		.4byte	0x502
+ 2032 0742 00       		.byte	0
+ 2033 0743 1F       		.uleb128 0x1f
+ 2034 0744 F5000000 		.4byte	0xf5
+ 2035 0748 1C       		.uleb128 0x1c
+ 2036 0749 B8000000 		.4byte	0xb8
+ 2037 074d 5B070000 		.4byte	0x75b
+ 2038 0751 1E       		.uleb128 0x1e
+ 2039 0752 F5000000 		.4byte	0xf5
+ 2040 0756 AB060000 		.4byte	0x6ab
+ 2041 075a 00       		.byte	0
+ 2042 075b 1F       		.uleb128 0x1f
+ 2043 075c F5000000 		.4byte	0xf5
+ 2044 0760 09       		.uleb128 0x9
+ 2045 0761 44010000 		.4byte	.LASF65
+ 2046 0765 01       		.byte	0x1
+ 2047 0766 DF       		.byte	0xdf
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 43
+
+
+ 2048 0767 35080000 		.4byte	0x835
+ 2049 076b 00000000 		.4byte	.LFB73
+ 2050 076f 4E010000 		.4byte	.LFE73-.LFB73
+ 2051 0773 01       		.uleb128 0x1
+ 2052 0774 9C       		.byte	0x9c
+ 2053 0775 35080000 		.4byte	0x835
+ 2054 0779 0A       		.uleb128 0xa
+ 2055 077a 66000000 		.4byte	.LASF63
+ 2056 077e 01       		.byte	0x1
+ 2057 077f DF       		.byte	0xdf
+ 2058 0780 FE060000 		.4byte	0x6fe
+ 2059 0784 C6050000 		.4byte	.LLST40
+ 2060 0788 0A       		.uleb128 0xa
+ 2061 0789 47020000 		.4byte	.LASF57
+ 2062 078d 01       		.byte	0x1
+ 2063 078e DF       		.byte	0xdf
+ 2064 078f 14070000 		.4byte	0x714
+ 2065 0793 E4050000 		.4byte	.LLST41
+ 2066 0797 0A       		.uleb128 0xa
+ 2067 0798 70000000 		.4byte	.LASF49
+ 2068 079c 01       		.byte	0x1
+ 2069 079d DF       		.byte	0xdf
+ 2070 079e C3000000 		.4byte	0xc3
+ 2071 07a2 02060000 		.4byte	.LLST42
+ 2072 07a6 0A       		.uleb128 0xa
+ 2073 07a7 1A000000 		.4byte	.LASF48
+ 2074 07ab 01       		.byte	0x1
+ 2075 07ac DF       		.byte	0xdf
+ 2076 07ad C3000000 		.4byte	0xc3
+ 2077 07b1 23060000 		.4byte	.LLST43
+ 2078 07b5 0B       		.uleb128 0xb
+ 2079 07b6 AF020000 		.4byte	.LASF29
+ 2080 07ba 01       		.byte	0x1
+ 2081 07bb E2       		.byte	0xe2
+ 2082 07bc C3000000 		.4byte	0xc3
+ 2083 07c0 44060000 		.4byte	.LLST44
+ 2084 07c4 13       		.uleb128 0x13
+ 2085 07c5 E2000000 		.4byte	.LASF66
+ 2086 07c9 01       		.byte	0x1
+ 2087 07ca E5       		.byte	0xe5
+ 2088 07cb 35080000 		.4byte	0x835
+ 2089 07cf 01       		.uleb128 0x1
+ 2090 07d0 50       		.byte	0x50
+ 2091 07d1 12       		.uleb128 0x12
+ 2092 07d2 6900     		.ascii	"i\000"
+ 2093 07d4 01       		.byte	0x1
+ 2094 07d5 EB       		.byte	0xeb
+ 2095 07d6 C3000000 		.4byte	0xc3
+ 2096 07da 57060000 		.4byte	.LLST45
+ 2097 07de 12       		.uleb128 0x12
+ 2098 07df 6A00     		.ascii	"j\000"
+ 2099 07e1 01       		.byte	0x1
+ 2100 07e2 EB       		.byte	0xeb
+ 2101 07e3 C3000000 		.4byte	0xc3
+ 2102 07e7 75060000 		.4byte	.LLST46
+ 2103 07eb 0B       		.uleb128 0xb
+ 2104 07ec F1000000 		.4byte	.LASF67
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 44
+
+
+ 2105 07f0 01       		.byte	0x1
+ 2106 07f1 EC       		.byte	0xec
+ 2107 07f2 AD000000 		.4byte	0xad
+ 2108 07f6 A9060000 		.4byte	.LLST47
+ 2109 07fa 0B       		.uleb128 0xb
+ 2110 07fb 36010000 		.4byte	.LASF68
+ 2111 07ff 01       		.byte	0x1
+ 2112 0800 ED       		.byte	0xed
+ 2113 0801 AD000000 		.4byte	0xad
+ 2114 0805 D2060000 		.4byte	.LLST48
+ 2115 0809 19       		.uleb128 0x19
+ 2116 080a 16000000 		.4byte	.LBB19
+ 2117 080e 1A000000 		.4byte	.LBE19-.LBB19
+ 2118 0812 24080000 		.4byte	0x824
+ 2119 0816 12       		.uleb128 0x12
+ 2120 0817 6900     		.ascii	"i\000"
+ 2121 0819 01       		.byte	0x1
+ 2122 081a E6       		.byte	0xe6
+ 2123 081b C3000000 		.4byte	0xc3
+ 2124 081f 48070000 		.4byte	.LLST49
+ 2125 0823 00       		.byte	0
+ 2126 0824 0E       		.uleb128 0xe
+ 2127 0825 16000000 		.4byte	.LVL107
+ 2128 0829 7F080000 		.4byte	0x87f
+ 2129 082d 0D       		.uleb128 0xd
+ 2130 082e 01       		.uleb128 0x1
+ 2131 082f 50       		.byte	0x50
+ 2132 0830 02       		.uleb128 0x2
+ 2133 0831 78       		.byte	0x78
+ 2134 0832 00       		.sleb128 0
+ 2135 0833 00       		.byte	0
+ 2136 0834 00       		.byte	0
+ 2137 0835 08       		.uleb128 0x8
+ 2138 0836 04       		.byte	0x4
+ 2139 0837 A2000000 		.4byte	0xa2
+ 2140 083b 20       		.uleb128 0x20
+ 2141 083c EC020000 		.4byte	.LASF69
+ 2142 0840 05       		.byte	0x5
+ 2143 0841 1207     		.2byte	0x712
+ 2144 0843 47080000 		.4byte	0x847
+ 2145 0847 21       		.uleb128 0x21
+ 2146 0848 CE000000 		.4byte	0xce
+ 2147 084c 22       		.uleb128 0x22
+ 2148 084d 21000000 		.4byte	.LASF26
+ 2149 0851 04       		.byte	0x4
+ 2150 0852 21       		.byte	0x21
+ 2151 0853 FC000000 		.4byte	0xfc
+ 2152 0857 05       		.uleb128 0x5
+ 2153 0858 03       		.byte	0x3
+ 2154 0859 00000000 		.4byte	PriorityVertex
+ 2155 085d 22       		.uleb128 0x22
+ 2156 085e 7A020000 		.4byte	.LASF27
+ 2157 0862 04       		.byte	0x4
+ 2158 0863 27       		.byte	0x27
+ 2159 0864 21010000 		.4byte	0x121
+ 2160 0868 05       		.uleb128 0x5
+ 2161 0869 03       		.byte	0x3
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 45
+
+
+ 2162 086a 00000000 		.4byte	Queue
+ 2163 086e 22       		.uleb128 0x22
+ 2164 086f 73020000 		.4byte	.LASF32
+ 2165 0873 04       		.byte	0x4
+ 2166 0874 2D       		.byte	0x2d
+ 2167 0875 70010000 		.4byte	0x170
+ 2168 0879 05       		.uleb128 0x5
+ 2169 087a 03       		.byte	0x3
+ 2170 087b 00000000 		.4byte	Vertex
+ 2171 087f 23       		.uleb128 0x23
+ 2172 0880 48000000 		.4byte	.LASF73
+ 2173 0884 48000000 		.4byte	.LASF73
+ 2174 0888 06       		.byte	0x6
+ 2175 0889 64       		.byte	0x64
+ 2176 088a 00       		.byte	0
+ 2177              		.section	.debug_abbrev,"",%progbits
+ 2178              	.Ldebug_abbrev0:
+ 2179 0000 01       		.uleb128 0x1
+ 2180 0001 11       		.uleb128 0x11
+ 2181 0002 01       		.byte	0x1
+ 2182 0003 25       		.uleb128 0x25
+ 2183 0004 0E       		.uleb128 0xe
+ 2184 0005 13       		.uleb128 0x13
+ 2185 0006 0B       		.uleb128 0xb
+ 2186 0007 03       		.uleb128 0x3
+ 2187 0008 0E       		.uleb128 0xe
+ 2188 0009 1B       		.uleb128 0x1b
+ 2189 000a 0E       		.uleb128 0xe
+ 2190 000b 55       		.uleb128 0x55
+ 2191 000c 17       		.uleb128 0x17
+ 2192 000d 11       		.uleb128 0x11
+ 2193 000e 01       		.uleb128 0x1
+ 2194 000f 10       		.uleb128 0x10
+ 2195 0010 17       		.uleb128 0x17
+ 2196 0011 00       		.byte	0
+ 2197 0012 00       		.byte	0
+ 2198 0013 02       		.uleb128 0x2
+ 2199 0014 16       		.uleb128 0x16
+ 2200 0015 00       		.byte	0
+ 2201 0016 03       		.uleb128 0x3
+ 2202 0017 0E       		.uleb128 0xe
+ 2203 0018 3A       		.uleb128 0x3a
+ 2204 0019 0B       		.uleb128 0xb
+ 2205 001a 3B       		.uleb128 0x3b
+ 2206 001b 0B       		.uleb128 0xb
+ 2207 001c 49       		.uleb128 0x49
+ 2208 001d 13       		.uleb128 0x13
+ 2209 001e 00       		.byte	0
+ 2210 001f 00       		.byte	0
+ 2211 0020 03       		.uleb128 0x3
+ 2212 0021 24       		.uleb128 0x24
+ 2213 0022 00       		.byte	0
+ 2214 0023 0B       		.uleb128 0xb
+ 2215 0024 0B       		.uleb128 0xb
+ 2216 0025 3E       		.uleb128 0x3e
+ 2217 0026 0B       		.uleb128 0xb
+ 2218 0027 03       		.uleb128 0x3
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 46
+
+
+ 2219 0028 0E       		.uleb128 0xe
+ 2220 0029 00       		.byte	0
+ 2221 002a 00       		.byte	0
+ 2222 002b 04       		.uleb128 0x4
+ 2223 002c 24       		.uleb128 0x24
+ 2224 002d 00       		.byte	0
+ 2225 002e 0B       		.uleb128 0xb
+ 2226 002f 0B       		.uleb128 0xb
+ 2227 0030 3E       		.uleb128 0x3e
+ 2228 0031 0B       		.uleb128 0xb
+ 2229 0032 03       		.uleb128 0x3
+ 2230 0033 08       		.uleb128 0x8
+ 2231 0034 00       		.byte	0
+ 2232 0035 00       		.byte	0
+ 2233 0036 05       		.uleb128 0x5
+ 2234 0037 13       		.uleb128 0x13
+ 2235 0038 01       		.byte	0x1
+ 2236 0039 03       		.uleb128 0x3
+ 2237 003a 0E       		.uleb128 0xe
+ 2238 003b 0B       		.uleb128 0xb
+ 2239 003c 0B       		.uleb128 0xb
+ 2240 003d 3A       		.uleb128 0x3a
+ 2241 003e 0B       		.uleb128 0xb
+ 2242 003f 3B       		.uleb128 0x3b
+ 2243 0040 0B       		.uleb128 0xb
+ 2244 0041 01       		.uleb128 0x1
+ 2245 0042 13       		.uleb128 0x13
+ 2246 0043 00       		.byte	0
+ 2247 0044 00       		.byte	0
+ 2248 0045 06       		.uleb128 0x6
+ 2249 0046 0D       		.uleb128 0xd
+ 2250 0047 00       		.byte	0
+ 2251 0048 03       		.uleb128 0x3
+ 2252 0049 0E       		.uleb128 0xe
+ 2253 004a 3A       		.uleb128 0x3a
+ 2254 004b 0B       		.uleb128 0xb
+ 2255 004c 3B       		.uleb128 0x3b
+ 2256 004d 0B       		.uleb128 0xb
+ 2257 004e 49       		.uleb128 0x49
+ 2258 004f 13       		.uleb128 0x13
+ 2259 0050 38       		.uleb128 0x38
+ 2260 0051 0B       		.uleb128 0xb
+ 2261 0052 00       		.byte	0
+ 2262 0053 00       		.byte	0
+ 2263 0054 07       		.uleb128 0x7
+ 2264 0055 0D       		.uleb128 0xd
+ 2265 0056 00       		.byte	0
+ 2266 0057 03       		.uleb128 0x3
+ 2267 0058 08       		.uleb128 0x8
+ 2268 0059 3A       		.uleb128 0x3a
+ 2269 005a 0B       		.uleb128 0xb
+ 2270 005b 3B       		.uleb128 0x3b
+ 2271 005c 0B       		.uleb128 0xb
+ 2272 005d 49       		.uleb128 0x49
+ 2273 005e 13       		.uleb128 0x13
+ 2274 005f 38       		.uleb128 0x38
+ 2275 0060 0B       		.uleb128 0xb
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 47
+
+
+ 2276 0061 00       		.byte	0
+ 2277 0062 00       		.byte	0
+ 2278 0063 08       		.uleb128 0x8
+ 2279 0064 0F       		.uleb128 0xf
+ 2280 0065 00       		.byte	0
+ 2281 0066 0B       		.uleb128 0xb
+ 2282 0067 0B       		.uleb128 0xb
+ 2283 0068 49       		.uleb128 0x49
+ 2284 0069 13       		.uleb128 0x13
+ 2285 006a 00       		.byte	0
+ 2286 006b 00       		.byte	0
+ 2287 006c 09       		.uleb128 0x9
+ 2288 006d 2E       		.uleb128 0x2e
+ 2289 006e 01       		.byte	0x1
+ 2290 006f 3F       		.uleb128 0x3f
+ 2291 0070 19       		.uleb128 0x19
+ 2292 0071 03       		.uleb128 0x3
+ 2293 0072 0E       		.uleb128 0xe
+ 2294 0073 3A       		.uleb128 0x3a
+ 2295 0074 0B       		.uleb128 0xb
+ 2296 0075 3B       		.uleb128 0x3b
+ 2297 0076 0B       		.uleb128 0xb
+ 2298 0077 27       		.uleb128 0x27
+ 2299 0078 19       		.uleb128 0x19
+ 2300 0079 49       		.uleb128 0x49
+ 2301 007a 13       		.uleb128 0x13
+ 2302 007b 11       		.uleb128 0x11
+ 2303 007c 01       		.uleb128 0x1
+ 2304 007d 12       		.uleb128 0x12
+ 2305 007e 06       		.uleb128 0x6
+ 2306 007f 40       		.uleb128 0x40
+ 2307 0080 18       		.uleb128 0x18
+ 2308 0081 9742     		.uleb128 0x2117
+ 2309 0083 19       		.uleb128 0x19
+ 2310 0084 01       		.uleb128 0x1
+ 2311 0085 13       		.uleb128 0x13
+ 2312 0086 00       		.byte	0
+ 2313 0087 00       		.byte	0
+ 2314 0088 0A       		.uleb128 0xa
+ 2315 0089 05       		.uleb128 0x5
+ 2316 008a 00       		.byte	0
+ 2317 008b 03       		.uleb128 0x3
+ 2318 008c 0E       		.uleb128 0xe
+ 2319 008d 3A       		.uleb128 0x3a
+ 2320 008e 0B       		.uleb128 0xb
+ 2321 008f 3B       		.uleb128 0x3b
+ 2322 0090 0B       		.uleb128 0xb
+ 2323 0091 49       		.uleb128 0x49
+ 2324 0092 13       		.uleb128 0x13
+ 2325 0093 02       		.uleb128 0x2
+ 2326 0094 17       		.uleb128 0x17
+ 2327 0095 00       		.byte	0
+ 2328 0096 00       		.byte	0
+ 2329 0097 0B       		.uleb128 0xb
+ 2330 0098 34       		.uleb128 0x34
+ 2331 0099 00       		.byte	0
+ 2332 009a 03       		.uleb128 0x3
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 48
+
+
+ 2333 009b 0E       		.uleb128 0xe
+ 2334 009c 3A       		.uleb128 0x3a
+ 2335 009d 0B       		.uleb128 0xb
+ 2336 009e 3B       		.uleb128 0x3b
+ 2337 009f 0B       		.uleb128 0xb
+ 2338 00a0 49       		.uleb128 0x49
+ 2339 00a1 13       		.uleb128 0x13
+ 2340 00a2 02       		.uleb128 0x2
+ 2341 00a3 17       		.uleb128 0x17
+ 2342 00a4 00       		.byte	0
+ 2343 00a5 00       		.byte	0
+ 2344 00a6 0C       		.uleb128 0xc
+ 2345 00a7 898201   		.uleb128 0x4109
+ 2346 00aa 01       		.byte	0x1
+ 2347 00ab 11       		.uleb128 0x11
+ 2348 00ac 01       		.uleb128 0x1
+ 2349 00ad 31       		.uleb128 0x31
+ 2350 00ae 13       		.uleb128 0x13
+ 2351 00af 01       		.uleb128 0x1
+ 2352 00b0 13       		.uleb128 0x13
+ 2353 00b1 00       		.byte	0
+ 2354 00b2 00       		.byte	0
+ 2355 00b3 0D       		.uleb128 0xd
+ 2356 00b4 8A8201   		.uleb128 0x410a
+ 2357 00b7 00       		.byte	0
+ 2358 00b8 02       		.uleb128 0x2
+ 2359 00b9 18       		.uleb128 0x18
+ 2360 00ba 9142     		.uleb128 0x2111
+ 2361 00bc 18       		.uleb128 0x18
+ 2362 00bd 00       		.byte	0
+ 2363 00be 00       		.byte	0
+ 2364 00bf 0E       		.uleb128 0xe
+ 2365 00c0 898201   		.uleb128 0x4109
+ 2366 00c3 01       		.byte	0x1
+ 2367 00c4 11       		.uleb128 0x11
+ 2368 00c5 01       		.uleb128 0x1
+ 2369 00c6 31       		.uleb128 0x31
+ 2370 00c7 13       		.uleb128 0x13
+ 2371 00c8 00       		.byte	0
+ 2372 00c9 00       		.byte	0
+ 2373 00ca 0F       		.uleb128 0xf
+ 2374 00cb 2E       		.uleb128 0x2e
+ 2375 00cc 01       		.byte	0x1
+ 2376 00cd 3F       		.uleb128 0x3f
+ 2377 00ce 19       		.uleb128 0x19
+ 2378 00cf 03       		.uleb128 0x3
+ 2379 00d0 0E       		.uleb128 0xe
+ 2380 00d1 3A       		.uleb128 0x3a
+ 2381 00d2 0B       		.uleb128 0xb
+ 2382 00d3 3B       		.uleb128 0x3b
+ 2383 00d4 0B       		.uleb128 0xb
+ 2384 00d5 27       		.uleb128 0x27
+ 2385 00d6 19       		.uleb128 0x19
+ 2386 00d7 11       		.uleb128 0x11
+ 2387 00d8 01       		.uleb128 0x1
+ 2388 00d9 12       		.uleb128 0x12
+ 2389 00da 06       		.uleb128 0x6
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 49
+
+
+ 2390 00db 40       		.uleb128 0x40
+ 2391 00dc 18       		.uleb128 0x18
+ 2392 00dd 9742     		.uleb128 0x2117
+ 2393 00df 19       		.uleb128 0x19
+ 2394 00e0 01       		.uleb128 0x1
+ 2395 00e1 13       		.uleb128 0x13
+ 2396 00e2 00       		.byte	0
+ 2397 00e3 00       		.byte	0
+ 2398 00e4 10       		.uleb128 0x10
+ 2399 00e5 05       		.uleb128 0x5
+ 2400 00e6 00       		.byte	0
+ 2401 00e7 03       		.uleb128 0x3
+ 2402 00e8 0E       		.uleb128 0xe
+ 2403 00e9 3A       		.uleb128 0x3a
+ 2404 00ea 0B       		.uleb128 0xb
+ 2405 00eb 3B       		.uleb128 0x3b
+ 2406 00ec 0B       		.uleb128 0xb
+ 2407 00ed 49       		.uleb128 0x49
+ 2408 00ee 13       		.uleb128 0x13
+ 2409 00ef 02       		.uleb128 0x2
+ 2410 00f0 18       		.uleb128 0x18
+ 2411 00f1 00       		.byte	0
+ 2412 00f2 00       		.byte	0
+ 2413 00f3 11       		.uleb128 0x11
+ 2414 00f4 0B       		.uleb128 0xb
+ 2415 00f5 01       		.byte	0x1
+ 2416 00f6 11       		.uleb128 0x11
+ 2417 00f7 01       		.uleb128 0x1
+ 2418 00f8 12       		.uleb128 0x12
+ 2419 00f9 06       		.uleb128 0x6
+ 2420 00fa 00       		.byte	0
+ 2421 00fb 00       		.byte	0
+ 2422 00fc 12       		.uleb128 0x12
+ 2423 00fd 34       		.uleb128 0x34
+ 2424 00fe 00       		.byte	0
+ 2425 00ff 03       		.uleb128 0x3
+ 2426 0100 08       		.uleb128 0x8
+ 2427 0101 3A       		.uleb128 0x3a
+ 2428 0102 0B       		.uleb128 0xb
+ 2429 0103 3B       		.uleb128 0x3b
+ 2430 0104 0B       		.uleb128 0xb
+ 2431 0105 49       		.uleb128 0x49
+ 2432 0106 13       		.uleb128 0x13
+ 2433 0107 02       		.uleb128 0x2
+ 2434 0108 17       		.uleb128 0x17
+ 2435 0109 00       		.byte	0
+ 2436 010a 00       		.byte	0
+ 2437 010b 13       		.uleb128 0x13
+ 2438 010c 34       		.uleb128 0x34
+ 2439 010d 00       		.byte	0
+ 2440 010e 03       		.uleb128 0x3
+ 2441 010f 0E       		.uleb128 0xe
+ 2442 0110 3A       		.uleb128 0x3a
+ 2443 0111 0B       		.uleb128 0xb
+ 2444 0112 3B       		.uleb128 0x3b
+ 2445 0113 0B       		.uleb128 0xb
+ 2446 0114 49       		.uleb128 0x49
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 50
+
+
+ 2447 0115 13       		.uleb128 0x13
+ 2448 0116 02       		.uleb128 0x2
+ 2449 0117 18       		.uleb128 0x18
+ 2450 0118 00       		.byte	0
+ 2451 0119 00       		.byte	0
+ 2452 011a 14       		.uleb128 0x14
+ 2453 011b 2E       		.uleb128 0x2e
+ 2454 011c 01       		.byte	0x1
+ 2455 011d 3F       		.uleb128 0x3f
+ 2456 011e 19       		.uleb128 0x19
+ 2457 011f 03       		.uleb128 0x3
+ 2458 0120 08       		.uleb128 0x8
+ 2459 0121 3A       		.uleb128 0x3a
+ 2460 0122 0B       		.uleb128 0xb
+ 2461 0123 3B       		.uleb128 0x3b
+ 2462 0124 0B       		.uleb128 0xb
+ 2463 0125 27       		.uleb128 0x27
+ 2464 0126 19       		.uleb128 0x19
+ 2465 0127 49       		.uleb128 0x49
+ 2466 0128 13       		.uleb128 0x13
+ 2467 0129 11       		.uleb128 0x11
+ 2468 012a 01       		.uleb128 0x1
+ 2469 012b 12       		.uleb128 0x12
+ 2470 012c 06       		.uleb128 0x6
+ 2471 012d 40       		.uleb128 0x40
+ 2472 012e 18       		.uleb128 0x18
+ 2473 012f 9742     		.uleb128 0x2117
+ 2474 0131 19       		.uleb128 0x19
+ 2475 0132 01       		.uleb128 0x1
+ 2476 0133 13       		.uleb128 0x13
+ 2477 0134 00       		.byte	0
+ 2478 0135 00       		.byte	0
+ 2479 0136 15       		.uleb128 0x15
+ 2480 0137 05       		.uleb128 0x5
+ 2481 0138 00       		.byte	0
+ 2482 0139 03       		.uleb128 0x3
+ 2483 013a 08       		.uleb128 0x8
+ 2484 013b 3A       		.uleb128 0x3a
+ 2485 013c 0B       		.uleb128 0xb
+ 2486 013d 3B       		.uleb128 0x3b
+ 2487 013e 0B       		.uleb128 0xb
+ 2488 013f 49       		.uleb128 0x49
+ 2489 0140 13       		.uleb128 0x13
+ 2490 0141 02       		.uleb128 0x2
+ 2491 0142 18       		.uleb128 0x18
+ 2492 0143 00       		.byte	0
+ 2493 0144 00       		.byte	0
+ 2494 0145 16       		.uleb128 0x16
+ 2495 0146 0B       		.uleb128 0xb
+ 2496 0147 01       		.byte	0x1
+ 2497 0148 55       		.uleb128 0x55
+ 2498 0149 17       		.uleb128 0x17
+ 2499 014a 00       		.byte	0
+ 2500 014b 00       		.byte	0
+ 2501 014c 17       		.uleb128 0x17
+ 2502 014d 0B       		.uleb128 0xb
+ 2503 014e 01       		.byte	0x1
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 51
+
+
+ 2504 014f 55       		.uleb128 0x55
+ 2505 0150 17       		.uleb128 0x17
+ 2506 0151 01       		.uleb128 0x1
+ 2507 0152 13       		.uleb128 0x13
+ 2508 0153 00       		.byte	0
+ 2509 0154 00       		.byte	0
+ 2510 0155 18       		.uleb128 0x18
+ 2511 0156 34       		.uleb128 0x34
+ 2512 0157 00       		.byte	0
+ 2513 0158 34       		.uleb128 0x34
+ 2514 0159 19       		.uleb128 0x19
+ 2515 015a 49       		.uleb128 0x49
+ 2516 015b 13       		.uleb128 0x13
+ 2517 015c 02       		.uleb128 0x2
+ 2518 015d 17       		.uleb128 0x17
+ 2519 015e 00       		.byte	0
+ 2520 015f 00       		.byte	0
+ 2521 0160 19       		.uleb128 0x19
+ 2522 0161 0B       		.uleb128 0xb
+ 2523 0162 01       		.byte	0x1
+ 2524 0163 11       		.uleb128 0x11
+ 2525 0164 01       		.uleb128 0x1
+ 2526 0165 12       		.uleb128 0x12
+ 2527 0166 06       		.uleb128 0x6
+ 2528 0167 01       		.uleb128 0x1
+ 2529 0168 13       		.uleb128 0x13
+ 2530 0169 00       		.byte	0
+ 2531 016a 00       		.byte	0
+ 2532 016b 1A       		.uleb128 0x1a
+ 2533 016c 34       		.uleb128 0x34
+ 2534 016d 00       		.byte	0
+ 2535 016e 03       		.uleb128 0x3
+ 2536 016f 08       		.uleb128 0x8
+ 2537 0170 3A       		.uleb128 0x3a
+ 2538 0171 0B       		.uleb128 0xb
+ 2539 0172 3B       		.uleb128 0x3b
+ 2540 0173 0B       		.uleb128 0xb
+ 2541 0174 49       		.uleb128 0x49
+ 2542 0175 13       		.uleb128 0x13
+ 2543 0176 02       		.uleb128 0x2
+ 2544 0177 18       		.uleb128 0x18
+ 2545 0178 00       		.byte	0
+ 2546 0179 00       		.byte	0
+ 2547 017a 1B       		.uleb128 0x1b
+ 2548 017b 898201   		.uleb128 0x4109
+ 2549 017e 00       		.byte	0
+ 2550 017f 11       		.uleb128 0x11
+ 2551 0180 01       		.uleb128 0x1
+ 2552 0181 31       		.uleb128 0x31
+ 2553 0182 13       		.uleb128 0x13
+ 2554 0183 00       		.byte	0
+ 2555 0184 00       		.byte	0
+ 2556 0185 1C       		.uleb128 0x1c
+ 2557 0186 01       		.uleb128 0x1
+ 2558 0187 01       		.byte	0x1
+ 2559 0188 49       		.uleb128 0x49
+ 2560 0189 13       		.uleb128 0x13
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 52
+
+
+ 2561 018a 01       		.uleb128 0x1
+ 2562 018b 13       		.uleb128 0x13
+ 2563 018c 00       		.byte	0
+ 2564 018d 00       		.byte	0
+ 2565 018e 1D       		.uleb128 0x1d
+ 2566 018f 21       		.uleb128 0x21
+ 2567 0190 00       		.byte	0
+ 2568 0191 49       		.uleb128 0x49
+ 2569 0192 13       		.uleb128 0x13
+ 2570 0193 2F       		.uleb128 0x2f
+ 2571 0194 0B       		.uleb128 0xb
+ 2572 0195 00       		.byte	0
+ 2573 0196 00       		.byte	0
+ 2574 0197 1E       		.uleb128 0x1e
+ 2575 0198 21       		.uleb128 0x21
+ 2576 0199 00       		.byte	0
+ 2577 019a 49       		.uleb128 0x49
+ 2578 019b 13       		.uleb128 0x13
+ 2579 019c 2F       		.uleb128 0x2f
+ 2580 019d 13       		.uleb128 0x13
+ 2581 019e 00       		.byte	0
+ 2582 019f 00       		.byte	0
+ 2583 01a0 1F       		.uleb128 0x1f
+ 2584 01a1 26       		.uleb128 0x26
+ 2585 01a2 00       		.byte	0
+ 2586 01a3 49       		.uleb128 0x49
+ 2587 01a4 13       		.uleb128 0x13
+ 2588 01a5 00       		.byte	0
+ 2589 01a6 00       		.byte	0
+ 2590 01a7 20       		.uleb128 0x20
+ 2591 01a8 34       		.uleb128 0x34
+ 2592 01a9 00       		.byte	0
+ 2593 01aa 03       		.uleb128 0x3
+ 2594 01ab 0E       		.uleb128 0xe
+ 2595 01ac 3A       		.uleb128 0x3a
+ 2596 01ad 0B       		.uleb128 0xb
+ 2597 01ae 3B       		.uleb128 0x3b
+ 2598 01af 05       		.uleb128 0x5
+ 2599 01b0 49       		.uleb128 0x49
+ 2600 01b1 13       		.uleb128 0x13
+ 2601 01b2 3F       		.uleb128 0x3f
+ 2602 01b3 19       		.uleb128 0x19
+ 2603 01b4 3C       		.uleb128 0x3c
+ 2604 01b5 19       		.uleb128 0x19
+ 2605 01b6 00       		.byte	0
+ 2606 01b7 00       		.byte	0
+ 2607 01b8 21       		.uleb128 0x21
+ 2608 01b9 35       		.uleb128 0x35
+ 2609 01ba 00       		.byte	0
+ 2610 01bb 49       		.uleb128 0x49
+ 2611 01bc 13       		.uleb128 0x13
+ 2612 01bd 00       		.byte	0
+ 2613 01be 00       		.byte	0
+ 2614 01bf 22       		.uleb128 0x22
+ 2615 01c0 34       		.uleb128 0x34
+ 2616 01c1 00       		.byte	0
+ 2617 01c2 03       		.uleb128 0x3
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 53
+
+
+ 2618 01c3 0E       		.uleb128 0xe
+ 2619 01c4 3A       		.uleb128 0x3a
+ 2620 01c5 0B       		.uleb128 0xb
+ 2621 01c6 3B       		.uleb128 0x3b
+ 2622 01c7 0B       		.uleb128 0xb
+ 2623 01c8 49       		.uleb128 0x49
+ 2624 01c9 13       		.uleb128 0x13
+ 2625 01ca 3F       		.uleb128 0x3f
+ 2626 01cb 19       		.uleb128 0x19
+ 2627 01cc 02       		.uleb128 0x2
+ 2628 01cd 18       		.uleb128 0x18
+ 2629 01ce 00       		.byte	0
+ 2630 01cf 00       		.byte	0
+ 2631 01d0 23       		.uleb128 0x23
+ 2632 01d1 2E       		.uleb128 0x2e
+ 2633 01d2 00       		.byte	0
+ 2634 01d3 3F       		.uleb128 0x3f
+ 2635 01d4 19       		.uleb128 0x19
+ 2636 01d5 3C       		.uleb128 0x3c
+ 2637 01d6 19       		.uleb128 0x19
+ 2638 01d7 6E       		.uleb128 0x6e
+ 2639 01d8 0E       		.uleb128 0xe
+ 2640 01d9 03       		.uleb128 0x3
+ 2641 01da 0E       		.uleb128 0xe
+ 2642 01db 3A       		.uleb128 0x3a
+ 2643 01dc 0B       		.uleb128 0xb
+ 2644 01dd 3B       		.uleb128 0x3b
+ 2645 01de 0B       		.uleb128 0xb
+ 2646 01df 00       		.byte	0
+ 2647 01e0 00       		.byte	0
+ 2648 01e1 00       		.byte	0
+ 2649              		.section	.debug_loc,"",%progbits
+ 2650              	.Ldebug_loc0:
+ 2651              	.LLST0:
+ 2652 0000 00000000 		.4byte	.LVL0
+ 2653 0004 06000000 		.4byte	.LVL1
+ 2654 0008 0100     		.2byte	0x1
+ 2655 000a 50       		.byte	0x50
+ 2656 000b 06000000 		.4byte	.LVL1
+ 2657 000f 24000000 		.4byte	.LFE64
+ 2658 0013 0100     		.2byte	0x1
+ 2659 0015 55       		.byte	0x55
+ 2660 0016 00000000 		.4byte	0
+ 2661 001a 00000000 		.4byte	0
+ 2662              	.LLST1:
+ 2663 001e 0C000000 		.4byte	.LVL3
+ 2664 0022 1A000000 		.4byte	.LVL4
+ 2665 0026 0100     		.2byte	0x1
+ 2666 0028 50       		.byte	0x50
+ 2667 0029 1A000000 		.4byte	.LVL4
+ 2668 002d 24000000 		.4byte	.LFE64
+ 2669 0031 0100     		.2byte	0x1
+ 2670 0033 54       		.byte	0x54
+ 2671 0034 00000000 		.4byte	0
+ 2672 0038 00000000 		.4byte	0
+ 2673              	.LLST2:
+ 2674 003c 00000000 		.4byte	.LVL6
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 54
+
+
+ 2675 0040 0A000000 		.4byte	.LVL8
+ 2676 0044 0100     		.2byte	0x1
+ 2677 0046 50       		.byte	0x50
+ 2678 0047 0A000000 		.4byte	.LVL8
+ 2679 004b 24000000 		.4byte	.LVL11
+ 2680 004f 0100     		.2byte	0x1
+ 2681 0051 54       		.byte	0x54
+ 2682 0052 24000000 		.4byte	.LVL11
+ 2683 0056 2C000000 		.4byte	.LFE65
+ 2684 005a 0400     		.2byte	0x4
+ 2685 005c F3       		.byte	0xf3
+ 2686 005d 01       		.uleb128 0x1
+ 2687 005e 50       		.byte	0x50
+ 2688 005f 9F       		.byte	0x9f
+ 2689 0060 00000000 		.4byte	0
+ 2690 0064 00000000 		.4byte	0
+ 2691              	.LLST3:
+ 2692 0068 06000000 		.4byte	.LVL7
+ 2693 006c 0A000000 		.4byte	.LVL8
+ 2694 0070 0200     		.2byte	0x2
+ 2695 0072 30       		.byte	0x30
+ 2696 0073 9F       		.byte	0x9f
+ 2697 0074 0A000000 		.4byte	.LVL8
+ 2698 0078 1A000000 		.4byte	.LVL9
+ 2699 007c 0100     		.2byte	0x1
+ 2700 007e 53       		.byte	0x53
+ 2701 007f 1C000000 		.4byte	.LVL10
+ 2702 0083 2C000000 		.4byte	.LFE65
+ 2703 0087 0100     		.2byte	0x1
+ 2704 0089 53       		.byte	0x53
+ 2705 008a 00000000 		.4byte	0
+ 2706 008e 00000000 		.4byte	0
+ 2707              	.LLST4:
+ 2708 0092 00000000 		.4byte	.LVL12
+ 2709 0096 12000000 		.4byte	.LVL13
+ 2710 009a 0100     		.2byte	0x1
+ 2711 009c 50       		.byte	0x50
+ 2712 009d 12000000 		.4byte	.LVL13
+ 2713 00a1 38000000 		.4byte	.LFE66
+ 2714 00a5 0100     		.2byte	0x1
+ 2715 00a7 53       		.byte	0x53
+ 2716 00a8 00000000 		.4byte	0
+ 2717 00ac 00000000 		.4byte	0
+ 2718              	.LLST5:
+ 2719 00b0 00000000 		.4byte	.LVL12
+ 2720 00b4 24000000 		.4byte	.LVL14
+ 2721 00b8 0100     		.2byte	0x1
+ 2722 00ba 52       		.byte	0x52
+ 2723 00bb 24000000 		.4byte	.LVL14
+ 2724 00bf 36000000 		.4byte	.LVL15
+ 2725 00c3 0200     		.2byte	0x2
+ 2726 00c5 91       		.byte	0x91
+ 2727 00c6 76       		.sleb128 -10
+ 2728 00c7 36000000 		.4byte	.LVL15
+ 2729 00cb 38000000 		.4byte	.LFE66
+ 2730 00cf 0200     		.2byte	0x2
+ 2731 00d1 7D       		.byte	0x7d
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 55
+
+
+ 2732 00d2 76       		.sleb128 -10
+ 2733 00d3 00000000 		.4byte	0
+ 2734 00d7 00000000 		.4byte	0
+ 2735              	.LLST6:
+ 2736 00db 00000000 		.4byte	.LVL16
+ 2737 00df 0E000000 		.4byte	.LVL17
+ 2738 00e3 0100     		.2byte	0x1
+ 2739 00e5 50       		.byte	0x50
+ 2740 00e6 0E000000 		.4byte	.LVL17
+ 2741 00ea 44000000 		.4byte	.LFE67
+ 2742 00ee 0100     		.2byte	0x1
+ 2743 00f0 53       		.byte	0x53
+ 2744 00f1 00000000 		.4byte	0
+ 2745 00f5 00000000 		.4byte	0
+ 2746              	.LLST7:
+ 2747 00f9 02000000 		.4byte	.LVL19
+ 2748 00fd 06000000 		.4byte	.LVL20
+ 2749 0101 0200     		.2byte	0x2
+ 2750 0103 30       		.byte	0x30
+ 2751 0104 9F       		.byte	0x9f
+ 2752 0105 06000000 		.4byte	.LVL20
+ 2753 0109 16000000 		.4byte	.LVL21
+ 2754 010d 0100     		.2byte	0x1
+ 2755 010f 53       		.byte	0x53
+ 2756 0110 18000000 		.4byte	.LVL22
+ 2757 0114 2A000000 		.4byte	.LVL23
+ 2758 0118 0100     		.2byte	0x1
+ 2759 011a 53       		.byte	0x53
+ 2760 011b 00000000 		.4byte	0
+ 2761 011f 00000000 		.4byte	0
+ 2762              	.LLST8:
+ 2763 0123 00000000 		.4byte	.LVL24
+ 2764 0127 24000000 		.4byte	.LVL29
+ 2765 012b 0100     		.2byte	0x1
+ 2766 012d 50       		.byte	0x50
+ 2767 012e 24000000 		.4byte	.LVL29
+ 2768 0132 26000000 		.4byte	.LVL30
+ 2769 0136 0400     		.2byte	0x4
+ 2770 0138 F3       		.byte	0xf3
+ 2771 0139 01       		.uleb128 0x1
+ 2772 013a 50       		.byte	0x50
+ 2773 013b 9F       		.byte	0x9f
+ 2774 013c 26000000 		.4byte	.LVL30
+ 2775 0140 28000000 		.4byte	.LVL31
+ 2776 0144 0100     		.2byte	0x1
+ 2777 0146 50       		.byte	0x50
+ 2778 0147 28000000 		.4byte	.LVL31
+ 2779 014b 2C000000 		.4byte	.LFE69
+ 2780 014f 0400     		.2byte	0x4
+ 2781 0151 F3       		.byte	0xf3
+ 2782 0152 01       		.uleb128 0x1
+ 2783 0153 50       		.byte	0x50
+ 2784 0154 9F       		.byte	0x9f
+ 2785 0155 00000000 		.4byte	0
+ 2786 0159 00000000 		.4byte	0
+ 2787              	.LLST9:
+ 2788 015d 02000000 		.4byte	.LVL25
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 56
+
+
+ 2789 0161 06000000 		.4byte	.LVL26
+ 2790 0165 0200     		.2byte	0x2
+ 2791 0167 30       		.byte	0x30
+ 2792 0168 9F       		.byte	0x9f
+ 2793 0169 06000000 		.4byte	.LVL26
+ 2794 016d 18000000 		.4byte	.LVL27
+ 2795 0171 0100     		.2byte	0x1
+ 2796 0173 53       		.byte	0x53
+ 2797 0174 1A000000 		.4byte	.LVL28
+ 2798 0178 2C000000 		.4byte	.LFE69
+ 2799 017c 0100     		.2byte	0x1
+ 2800 017e 53       		.byte	0x53
+ 2801 017f 00000000 		.4byte	0
+ 2802 0183 00000000 		.4byte	0
+ 2803              	.LLST10:
+ 2804 0187 00000000 		.4byte	.LVL32
+ 2805 018b 2E000000 		.4byte	.LVL38
+ 2806 018f 0100     		.2byte	0x1
+ 2807 0191 50       		.byte	0x50
+ 2808 0192 2E000000 		.4byte	.LVL38
+ 2809 0196 44000000 		.4byte	.LFE70
+ 2810 019a 0400     		.2byte	0x4
+ 2811 019c F3       		.byte	0xf3
+ 2812 019d 01       		.uleb128 0x1
+ 2813 019e 50       		.byte	0x50
+ 2814 019f 9F       		.byte	0x9f
+ 2815 01a0 00000000 		.4byte	0
+ 2816 01a4 00000000 		.4byte	0
+ 2817              	.LLST11:
+ 2818 01a8 00000000 		.4byte	.LVL32
+ 2819 01ac 0A000000 		.4byte	.LVL33
+ 2820 01b0 0100     		.2byte	0x1
+ 2821 01b2 51       		.byte	0x51
+ 2822 01b3 0A000000 		.4byte	.LVL33
+ 2823 01b7 44000000 		.4byte	.LFE70
+ 2824 01bb 0400     		.2byte	0x4
+ 2825 01bd F3       		.byte	0xf3
+ 2826 01be 01       		.uleb128 0x1
+ 2827 01bf 51       		.byte	0x51
+ 2828 01c0 9F       		.byte	0x9f
+ 2829 01c1 00000000 		.4byte	0
+ 2830 01c5 00000000 		.4byte	0
+ 2831              	.LLST12:
+ 2832 01c9 00000000 		.4byte	.LVL32
+ 2833 01cd 22000000 		.4byte	.LVL35
+ 2834 01d1 0100     		.2byte	0x1
+ 2835 01d3 52       		.byte	0x52
+ 2836 01d4 22000000 		.4byte	.LVL35
+ 2837 01d8 44000000 		.4byte	.LFE70
+ 2838 01dc 0400     		.2byte	0x4
+ 2839 01de F3       		.byte	0xf3
+ 2840 01df 01       		.uleb128 0x1
+ 2841 01e0 52       		.byte	0x52
+ 2842 01e1 9F       		.byte	0x9f
+ 2843 01e2 00000000 		.4byte	0
+ 2844 01e6 00000000 		.4byte	0
+ 2845              	.LLST13:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 57
+
+
+ 2846 01ea 1E000000 		.4byte	.LVL34
+ 2847 01ee 2C000000 		.4byte	.LVL37
+ 2848 01f2 0100     		.2byte	0x1
+ 2849 01f4 53       		.byte	0x53
+ 2850 01f5 00000000 		.4byte	0
+ 2851 01f9 00000000 		.4byte	0
+ 2852              	.LLST14:
+ 2853 01fd 2A000000 		.4byte	.LVL36
+ 2854 0201 32000000 		.4byte	.LVL39
+ 2855 0205 0100     		.2byte	0x1
+ 2856 0207 52       		.byte	0x52
+ 2857 0208 32000000 		.4byte	.LVL39
+ 2858 020c 3C000000 		.4byte	.LVL40
+ 2859 0210 1400     		.2byte	0x14
+ 2860 0212 74       		.byte	0x74
+ 2861 0213 00       		.sleb128 0
+ 2862 0214 75       		.byte	0x75
+ 2863 0215 00       		.sleb128 0
+ 2864 0216 1C       		.byte	0x1c
+ 2865 0217 0A       		.byte	0xa
+ 2866 0218 FFFF     		.2byte	0xffff
+ 2867 021a 1A       		.byte	0x1a
+ 2868 021b 74       		.byte	0x74
+ 2869 021c 00       		.sleb128 0
+ 2870 021d 75       		.byte	0x75
+ 2871 021e 00       		.sleb128 0
+ 2872 021f 1C       		.byte	0x1c
+ 2873 0220 0A       		.byte	0xa
+ 2874 0221 FFFF     		.2byte	0xffff
+ 2875 0223 1A       		.byte	0x1a
+ 2876 0224 1E       		.byte	0x1e
+ 2877 0225 9F       		.byte	0x9f
+ 2878 0226 00000000 		.4byte	0
+ 2879 022a 00000000 		.4byte	0
+ 2880              	.LLST15:
+ 2881 022e 00000000 		.4byte	.LVL41
+ 2882 0232 45000000 		.4byte	.LVL50-1
+ 2883 0236 0100     		.2byte	0x1
+ 2884 0238 50       		.byte	0x50
+ 2885 0239 45000000 		.4byte	.LVL50-1
+ 2886 023d 5A000000 		.4byte	.LFE71
+ 2887 0241 0400     		.2byte	0x4
+ 2888 0243 F3       		.byte	0xf3
+ 2889 0244 01       		.uleb128 0x1
+ 2890 0245 50       		.byte	0x50
+ 2891 0246 9F       		.byte	0x9f
+ 2892 0247 00000000 		.4byte	0
+ 2893 024b 00000000 		.4byte	0
+ 2894              	.LLST16:
+ 2895 024f 04000000 		.4byte	.LVL42
+ 2896 0253 0C000000 		.4byte	.LVL43
+ 2897 0257 0300     		.2byte	0x3
+ 2898 0259 09       		.byte	0x9
+ 2899 025a FF       		.byte	0xff
+ 2900 025b 9F       		.byte	0x9f
+ 2901 025c 0C000000 		.4byte	.LVL43
+ 2902 0260 1E000000 		.4byte	.LVL44
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 58
+
+
+ 2903 0264 0100     		.2byte	0x1
+ 2904 0266 56       		.byte	0x56
+ 2905 0267 1E000000 		.4byte	.LVL44
+ 2906 026b 22000000 		.4byte	.LVL46
+ 2907 026f 0100     		.2byte	0x1
+ 2908 0271 52       		.byte	0x52
+ 2909 0272 22000000 		.4byte	.LVL46
+ 2910 0276 5A000000 		.4byte	.LFE71
+ 2911 027a 0100     		.2byte	0x1
+ 2912 027c 56       		.byte	0x56
+ 2913 027d 00000000 		.4byte	0
+ 2914 0281 00000000 		.4byte	0
+ 2915              	.LLST17:
+ 2916 0285 0C000000 		.4byte	.LVL43
+ 2917 0289 45000000 		.4byte	.LVL50-1
+ 2918 028d 0100     		.2byte	0x1
+ 2919 028f 51       		.byte	0x51
+ 2920 0290 00000000 		.4byte	0
+ 2921 0294 00000000 		.4byte	0
+ 2922              	.LLST18:
+ 2923 0298 04000000 		.4byte	.LVL42
+ 2924 029c 0C000000 		.4byte	.LVL43
+ 2925 02a0 0200     		.2byte	0x2
+ 2926 02a2 30       		.byte	0x30
+ 2927 02a3 9F       		.byte	0x9f
+ 2928 02a4 0C000000 		.4byte	.LVL43
+ 2929 02a8 24000000 		.4byte	.LVL47
+ 2930 02ac 0100     		.2byte	0x1
+ 2931 02ae 53       		.byte	0x53
+ 2932 02af 26000000 		.4byte	.LVL48
+ 2933 02b3 30000000 		.4byte	.LVL49
+ 2934 02b7 0100     		.2byte	0x1
+ 2935 02b9 53       		.byte	0x53
+ 2936 02ba 00000000 		.4byte	0
+ 2937 02be 00000000 		.4byte	0
+ 2938              	.LLST19:
+ 2939 02c2 00000000 		.4byte	.LVL51
+ 2940 02c6 24000000 		.4byte	.LVL56
+ 2941 02ca 0100     		.2byte	0x1
+ 2942 02cc 50       		.byte	0x50
+ 2943 02cd 24000000 		.4byte	.LVL56
+ 2944 02d1 D8010000 		.4byte	.LFE72
+ 2945 02d5 0400     		.2byte	0x4
+ 2946 02d7 F3       		.byte	0xf3
+ 2947 02d8 01       		.uleb128 0x1
+ 2948 02d9 50       		.byte	0x50
+ 2949 02da 9F       		.byte	0x9f
+ 2950 02db 00000000 		.4byte	0
+ 2951 02df 00000000 		.4byte	0
+ 2952              	.LLST20:
+ 2953 02e3 00000000 		.4byte	.LVL51
+ 2954 02e7 27000000 		.4byte	.LVL57-1
+ 2955 02eb 0100     		.2byte	0x1
+ 2956 02ed 51       		.byte	0x51
+ 2957 02ee 27000000 		.4byte	.LVL57-1
+ 2958 02f2 D8010000 		.4byte	.LFE72
+ 2959 02f6 0400     		.2byte	0x4
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 59
+
+
+ 2960 02f8 F3       		.byte	0xf3
+ 2961 02f9 01       		.uleb128 0x1
+ 2962 02fa 51       		.byte	0x51
+ 2963 02fb 9F       		.byte	0x9f
+ 2964 02fc 00000000 		.4byte	0
+ 2965 0300 00000000 		.4byte	0
+ 2966              	.LLST21:
+ 2967 0304 00000000 		.4byte	.LVL51
+ 2968 0308 12000000 		.4byte	.LVL52
+ 2969 030c 0100     		.2byte	0x1
+ 2970 030e 52       		.byte	0x52
+ 2971 030f 12000000 		.4byte	.LVL52
+ 2972 0313 D8010000 		.4byte	.LFE72
+ 2973 0317 0100     		.2byte	0x1
+ 2974 0319 5A       		.byte	0x5a
+ 2975 031a 00000000 		.4byte	0
+ 2976 031e 00000000 		.4byte	0
+ 2977              	.LLST22:
+ 2978 0322 00000000 		.4byte	.LVL51
+ 2979 0326 18000000 		.4byte	.LVL54
+ 2980 032a 0100     		.2byte	0x1
+ 2981 032c 53       		.byte	0x53
+ 2982 032d 18000000 		.4byte	.LVL54
+ 2983 0331 D8010000 		.4byte	.LFE72
+ 2984 0335 0400     		.2byte	0x4
+ 2985 0337 F3       		.byte	0xf3
+ 2986 0338 01       		.uleb128 0x1
+ 2987 0339 53       		.byte	0x53
+ 2988 033a 9F       		.byte	0x9f
+ 2989 033b 00000000 		.4byte	0
+ 2990 033f 00000000 		.4byte	0
+ 2991              	.LLST23:
+ 2992 0343 00000000 		.4byte	.LVL51
+ 2993 0347 14000000 		.4byte	.LVL53
+ 2994 034b 0200     		.2byte	0x2
+ 2995 034d 91       		.byte	0x91
+ 2996 034e 00       		.sleb128 0
+ 2997 034f 00000000 		.4byte	0
+ 2998 0353 00000000 		.4byte	0
+ 2999              	.LLST24:
+ 3000 0357 22000000 		.4byte	.LVL55
+ 3001 035b 27000000 		.4byte	.LVL57-1
+ 3002 035f 0100     		.2byte	0x1
+ 3003 0361 53       		.byte	0x53
+ 3004 0362 27000000 		.4byte	.LVL57-1
+ 3005 0366 86000000 		.4byte	.LVL66
+ 3006 036a 0100     		.2byte	0x1
+ 3007 036c 55       		.byte	0x55
+ 3008 036d 86000000 		.4byte	.LVL66
+ 3009 0371 D8010000 		.4byte	.LFE72
+ 3010 0375 0200     		.2byte	0x2
+ 3011 0377 91       		.byte	0x91
+ 3012 0378 78       		.sleb128 -8
+ 3013 0379 00000000 		.4byte	0
+ 3014 037d 00000000 		.4byte	0
+ 3015              	.LLST25:
+ 3016 0381 2C000000 		.4byte	.LVL58
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 60
+
+
+ 3017 0385 31000000 		.4byte	.LVL59-1
+ 3018 0389 0100     		.2byte	0x1
+ 3019 038b 50       		.byte	0x50
+ 3020 038c 31000000 		.4byte	.LVL59-1
+ 3021 0390 52000000 		.4byte	.LVL62
+ 3022 0394 0100     		.2byte	0x1
+ 3023 0396 54       		.byte	0x54
+ 3024 0397 52000000 		.4byte	.LVL62
+ 3025 039b D8010000 		.4byte	.LFE72
+ 3026 039f 0200     		.2byte	0x2
+ 3027 03a1 91       		.byte	0x91
+ 3028 03a2 0C       		.sleb128 12
+ 3029 03a3 00000000 		.4byte	0
+ 3030 03a7 00000000 		.4byte	0
+ 3031              	.LLST26:
+ 3032 03ab 3C000000 		.4byte	.LVL60
+ 3033 03af 86000000 		.4byte	.LVL66
+ 3034 03b3 0900     		.2byte	0x9
+ 3035 03b5 75       		.byte	0x75
+ 3036 03b6 00       		.sleb128 0
+ 3037 03b7 0A       		.byte	0xa
+ 3038 03b8 FFFF     		.2byte	0xffff
+ 3039 03ba 1A       		.byte	0x1a
+ 3040 03bb 31       		.byte	0x31
+ 3041 03bc 1C       		.byte	0x1c
+ 3042 03bd 9F       		.byte	0x9f
+ 3043 03be 86000000 		.4byte	.LVL66
+ 3044 03c2 D8010000 		.4byte	.LFE72
+ 3045 03c6 0B00     		.2byte	0xb
+ 3046 03c8 91       		.byte	0x91
+ 3047 03c9 78       		.sleb128 -8
+ 3048 03ca 94       		.byte	0x94
+ 3049 03cb 02       		.byte	0x2
+ 3050 03cc 0A       		.byte	0xa
+ 3051 03cd FFFF     		.2byte	0xffff
+ 3052 03cf 1A       		.byte	0x1a
+ 3053 03d0 31       		.byte	0x31
+ 3054 03d1 1C       		.byte	0x1c
+ 3055 03d2 9F       		.byte	0x9f
+ 3056 03d3 00000000 		.4byte	0
+ 3057 03d7 00000000 		.4byte	0
+ 3058              	.LLST27:
+ 3059 03db 4E000000 		.4byte	.LVL61
+ 3060 03df 3E010000 		.4byte	.LVL88
+ 3061 03e3 0200     		.2byte	0x2
+ 3062 03e5 78       		.byte	0x78
+ 3063 03e6 00       		.sleb128 0
+ 3064 03e7 3E010000 		.4byte	.LVL88
+ 3065 03eb 46010000 		.4byte	.LVL90
+ 3066 03ef 0F00     		.2byte	0xf
+ 3067 03f1 77       		.byte	0x77
+ 3068 03f2 00       		.sleb128 0
+ 3069 03f3 91       		.byte	0x91
+ 3070 03f4 78       		.sleb128 -8
+ 3071 03f5 06       		.byte	0x6
+ 3072 03f6 33       		.byte	0x33
+ 3073 03f7 1E       		.byte	0x1e
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 61
+
+
+ 3074 03f8 31       		.byte	0x31
+ 3075 03f9 24       		.byte	0x24
+ 3076 03fa 23       		.byte	0x23
+ 3077 03fb 08       		.uleb128 0x8
+ 3078 03fc 09       		.byte	0x9
+ 3079 03fd F8       		.byte	0xf8
+ 3080 03fe 1A       		.byte	0x1a
+ 3081 03ff 1C       		.byte	0x1c
+ 3082 0400 46010000 		.4byte	.LVL90
+ 3083 0404 D0010000 		.4byte	.LVL102
+ 3084 0408 0200     		.2byte	0x2
+ 3085 040a 78       		.byte	0x78
+ 3086 040b 00       		.sleb128 0
+ 3087 040c D0010000 		.4byte	.LVL102
+ 3088 0410 D2010000 		.4byte	.LVL103
+ 3089 0414 0F00     		.2byte	0xf
+ 3090 0416 77       		.byte	0x77
+ 3091 0417 00       		.sleb128 0
+ 3092 0418 91       		.byte	0x91
+ 3093 0419 78       		.sleb128 -8
+ 3094 041a 06       		.byte	0x6
+ 3095 041b 33       		.byte	0x33
+ 3096 041c 1E       		.byte	0x1e
+ 3097 041d 31       		.byte	0x31
+ 3098 041e 24       		.byte	0x24
+ 3099 041f 23       		.byte	0x23
+ 3100 0420 08       		.uleb128 0x8
+ 3101 0421 09       		.byte	0x9
+ 3102 0422 F8       		.byte	0xf8
+ 3103 0423 1A       		.byte	0x1a
+ 3104 0424 1C       		.byte	0x1c
+ 3105 0425 D2010000 		.4byte	.LVL103
+ 3106 0429 D8010000 		.4byte	.LFE72
+ 3107 042d 1200     		.2byte	0x12
+ 3108 042f 91       		.byte	0x91
+ 3109 0430 00       		.sleb128 0
+ 3110 0431 91       		.byte	0x91
+ 3111 0432 78       		.sleb128 -8
+ 3112 0433 06       		.byte	0x6
+ 3113 0434 33       		.byte	0x33
+ 3114 0435 1E       		.byte	0x1e
+ 3115 0436 31       		.byte	0x31
+ 3116 0437 24       		.byte	0x24
+ 3117 0438 23       		.byte	0x23
+ 3118 0439 08       		.uleb128 0x8
+ 3119 043a 09       		.byte	0x9
+ 3120 043b F8       		.byte	0xf8
+ 3121 043c 1A       		.byte	0x1a
+ 3122 043d 1C       		.byte	0x1c
+ 3123 043e 08       		.byte	0x8
+ 3124 043f 50       		.byte	0x50
+ 3125 0440 1C       		.byte	0x1c
+ 3126 0441 00000000 		.4byte	0
+ 3127 0445 00000000 		.4byte	0
+ 3128              	.LLST28:
+ 3129 0449 4E000000 		.4byte	.LVL61
+ 3130 044d 52000000 		.4byte	.LVL62
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 62
+
+
+ 3131 0451 0200     		.2byte	0x2
+ 3132 0453 30       		.byte	0x30
+ 3133 0454 9F       		.byte	0x9f
+ 3134 0455 52000000 		.4byte	.LVL62
+ 3135 0459 6A000000 		.4byte	.LVL63
+ 3136 045d 0100     		.2byte	0x1
+ 3137 045f 53       		.byte	0x53
+ 3138 0460 6C000000 		.4byte	.LVL64
+ 3139 0464 72000000 		.4byte	.LVL65
+ 3140 0468 0100     		.2byte	0x1
+ 3141 046a 53       		.byte	0x53
+ 3142 046b 00000000 		.4byte	0
+ 3143 046f 00000000 		.4byte	0
+ 3144              	.LLST30:
+ 3145 0473 BC000000 		.4byte	.LVL69
+ 3146 0477 46010000 		.4byte	.LVL90
+ 3147 047b 0200     		.2byte	0x2
+ 3148 047d 75       		.byte	0x75
+ 3149 047e 00       		.sleb128 0
+ 3150 047f 00000000 		.4byte	0
+ 3151 0483 00000000 		.4byte	0
+ 3152              	.LLST31:
+ 3153 0487 D0000000 		.4byte	.LVL73
+ 3154 048b E6000000 		.4byte	.LVL76
+ 3155 048f 0100     		.2byte	0x1
+ 3156 0491 5B       		.byte	0x5b
+ 3157 0492 EA000000 		.4byte	.LVL77
+ 3158 0496 46010000 		.4byte	.LVL90
+ 3159 049a 0100     		.2byte	0x1
+ 3160 049c 5B       		.byte	0x5b
+ 3161 049d 00000000 		.4byte	0
+ 3162 04a1 00000000 		.4byte	0
+ 3163              	.LLST32:
+ 3164 04a5 DA000000 		.4byte	.LVL75
+ 3165 04a9 EC000000 		.4byte	.LVL78
+ 3166 04ad 0100     		.2byte	0x1
+ 3167 04af 53       		.byte	0x53
+ 3168 04b0 EE000000 		.4byte	.LVL79
+ 3169 04b4 0A010000 		.4byte	.LVL81
+ 3170 04b8 0100     		.2byte	0x1
+ 3171 04ba 53       		.byte	0x53
+ 3172 04bb 0A010000 		.4byte	.LVL81
+ 3173 04bf 17010000 		.4byte	.LVL82-1
+ 3174 04c3 0700     		.2byte	0x7
+ 3175 04c5 72       		.byte	0x72
+ 3176 04c6 00       		.sleb128 0
+ 3177 04c7 31       		.byte	0x31
+ 3178 04c8 24       		.byte	0x24
+ 3179 04c9 75       		.byte	0x75
+ 3180 04ca 00       		.sleb128 0
+ 3181 04cb 22       		.byte	0x22
+ 3182 04cc 2A010000 		.4byte	.LVL84
+ 3183 04d0 2E010000 		.4byte	.LVL85
+ 3184 04d4 0100     		.2byte	0x1
+ 3185 04d6 52       		.byte	0x52
+ 3186 04d7 00000000 		.4byte	0
+ 3187 04db 00000000 		.4byte	0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 63
+
+
+ 3188              	.LLST33:
+ 3189 04df 18010000 		.4byte	.LVL82
+ 3190 04e3 46010000 		.4byte	.LVL90
+ 3191 04e7 0100     		.2byte	0x1
+ 3192 04e9 50       		.byte	0x50
+ 3193 04ea 00000000 		.4byte	0
+ 3194 04ee 00000000 		.4byte	0
+ 3195              	.LLST34:
+ 3196 04f2 BC000000 		.4byte	.LVL69
+ 3197 04f6 C0000000 		.4byte	.LVL70
+ 3198 04fa 0200     		.2byte	0x2
+ 3199 04fc 30       		.byte	0x30
+ 3200 04fd 9F       		.byte	0x9f
+ 3201 04fe C0000000 		.4byte	.LVL70
+ 3202 0502 CA000000 		.4byte	.LVL71
+ 3203 0506 0100     		.2byte	0x1
+ 3204 0508 53       		.byte	0x53
+ 3205 0509 CC000000 		.4byte	.LVL72
+ 3206 050d D4000000 		.4byte	.LVL74
+ 3207 0511 0100     		.2byte	0x1
+ 3208 0513 53       		.byte	0x53
+ 3209 0514 00000000 		.4byte	0
+ 3210 0518 00000000 		.4byte	0
+ 3211              	.LLST35:
+ 3212 051c 18010000 		.4byte	.LVL82
+ 3213 0520 1E010000 		.4byte	.LVL83
+ 3214 0524 0200     		.2byte	0x2
+ 3215 0526 30       		.byte	0x30
+ 3216 0527 9F       		.byte	0x9f
+ 3217 0528 1E010000 		.4byte	.LVL83
+ 3218 052c 30010000 		.4byte	.LVL86
+ 3219 0530 0100     		.2byte	0x1
+ 3220 0532 53       		.byte	0x53
+ 3221 0533 32010000 		.4byte	.LVL87
+ 3222 0537 42010000 		.4byte	.LVL89
+ 3223 053b 0100     		.2byte	0x1
+ 3224 053d 53       		.byte	0x53
+ 3225 053e 00000000 		.4byte	0
+ 3226 0542 00000000 		.4byte	0
+ 3227              	.LLST36:
+ 3228 0546 46010000 		.4byte	.LVL90
+ 3229 054a BA010000 		.4byte	.LVL97
+ 3230 054e 0100     		.2byte	0x1
+ 3231 0550 54       		.byte	0x54
+ 3232 0551 BC010000 		.4byte	.LVL98
+ 3233 0555 BE010000 		.4byte	.LVL99
+ 3234 0559 0100     		.2byte	0x1
+ 3235 055b 54       		.byte	0x54
+ 3236 055c C0010000 		.4byte	.LVL100
+ 3237 0560 C4010000 		.4byte	.LVL101
+ 3238 0564 0100     		.2byte	0x1
+ 3239 0566 54       		.byte	0x54
+ 3240 0567 00000000 		.4byte	0
+ 3241 056b 00000000 		.4byte	0
+ 3242              	.LLST37:
+ 3243 056f 4E010000 		.4byte	.LVL91
+ 3244 0573 BE010000 		.4byte	.LVL99
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 64
+
+
+ 3245 0577 0100     		.2byte	0x1
+ 3246 0579 55       		.byte	0x55
+ 3247 057a 00000000 		.4byte	0
+ 3248 057e 00000000 		.4byte	0
+ 3249              	.LLST38:
+ 3250 0582 74010000 		.4byte	.LVL92
+ 3251 0586 B8010000 		.4byte	.LVL96
+ 3252 058a 0100     		.2byte	0x1
+ 3253 058c 59       		.byte	0x59
+ 3254 058d 00000000 		.4byte	0
+ 3255 0591 00000000 		.4byte	0
+ 3256              	.LLST39:
+ 3257 0595 92010000 		.4byte	.LVL94
+ 3258 0599 B8010000 		.4byte	.LVL96
+ 3259 059d 0200     		.2byte	0x2
+ 3260 059f 91       		.byte	0x91
+ 3261 05a0 04       		.sleb128 4
+ 3262 05a1 00000000 		.4byte	0
+ 3263 05a5 00000000 		.4byte	0
+ 3264              	.LLST29:
+ 3265 05a9 AA000000 		.4byte	.LVL68
+ 3266 05ad 46010000 		.4byte	.LVL90
+ 3267 05b1 0B00     		.2byte	0xb
+ 3268 05b3 91       		.byte	0x91
+ 3269 05b4 78       		.sleb128 -8
+ 3270 05b5 94       		.byte	0x94
+ 3271 05b6 02       		.byte	0x2
+ 3272 05b7 0A       		.byte	0xa
+ 3273 05b8 FFFF     		.2byte	0xffff
+ 3274 05ba 1A       		.byte	0x1a
+ 3275 05bb 31       		.byte	0x31
+ 3276 05bc 1C       		.byte	0x1c
+ 3277 05bd 9F       		.byte	0x9f
+ 3278 05be 00000000 		.4byte	0
+ 3279 05c2 00000000 		.4byte	0
+ 3280              	.LLST40:
+ 3281 05c6 00000000 		.4byte	.LVL104
+ 3282 05ca 12000000 		.4byte	.LVL106
+ 3283 05ce 0100     		.2byte	0x1
+ 3284 05d0 50       		.byte	0x50
+ 3285 05d1 12000000 		.4byte	.LVL106
+ 3286 05d5 4E010000 		.4byte	.LFE73
+ 3287 05d9 0100     		.2byte	0x1
+ 3288 05db 54       		.byte	0x54
+ 3289 05dc 00000000 		.4byte	0
+ 3290 05e0 00000000 		.4byte	0
+ 3291              	.LLST41:
+ 3292 05e4 00000000 		.4byte	.LVL104
+ 3293 05e8 15000000 		.4byte	.LVL107-1
+ 3294 05ec 0100     		.2byte	0x1
+ 3295 05ee 51       		.byte	0x51
+ 3296 05ef 15000000 		.4byte	.LVL107-1
+ 3297 05f3 4E010000 		.4byte	.LFE73
+ 3298 05f7 0100     		.2byte	0x1
+ 3299 05f9 57       		.byte	0x57
+ 3300 05fa 00000000 		.4byte	0
+ 3301 05fe 00000000 		.4byte	0
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 65
+
+
+ 3302              	.LLST42:
+ 3303 0602 00000000 		.4byte	.LVL104
+ 3304 0606 15000000 		.4byte	.LVL107-1
+ 3305 060a 0100     		.2byte	0x1
+ 3306 060c 52       		.byte	0x52
+ 3307 060d 15000000 		.4byte	.LVL107-1
+ 3308 0611 4E010000 		.4byte	.LFE73
+ 3309 0615 0400     		.2byte	0x4
+ 3310 0617 F3       		.byte	0xf3
+ 3311 0618 01       		.uleb128 0x1
+ 3312 0619 52       		.byte	0x52
+ 3313 061a 9F       		.byte	0x9f
+ 3314 061b 00000000 		.4byte	0
+ 3315 061f 00000000 		.4byte	0
+ 3316              	.LLST43:
+ 3317 0623 00000000 		.4byte	.LVL104
+ 3318 0627 15000000 		.4byte	.LVL107-1
+ 3319 062b 0100     		.2byte	0x1
+ 3320 062d 53       		.byte	0x53
+ 3321 062e 15000000 		.4byte	.LVL107-1
+ 3322 0632 4E010000 		.4byte	.LFE73
+ 3323 0636 0400     		.2byte	0x4
+ 3324 0638 F3       		.byte	0xf3
+ 3325 0639 01       		.uleb128 0x1
+ 3326 063a 53       		.byte	0x53
+ 3327 063b 9F       		.byte	0x9f
+ 3328 063c 00000000 		.4byte	0
+ 3329 0640 00000000 		.4byte	0
+ 3330              	.LLST44:
+ 3331 0644 10000000 		.4byte	.LVL105
+ 3332 0648 2C000000 		.4byte	.LVL111
+ 3333 064c 0100     		.2byte	0x1
+ 3334 064e 58       		.byte	0x58
+ 3335 064f 00000000 		.4byte	0
+ 3336 0653 00000000 		.4byte	0
+ 3337              	.LLST45:
+ 3338 0657 30000000 		.4byte	.LVL113
+ 3339 065b 3C010000 		.4byte	.LVL136
+ 3340 065f 0100     		.2byte	0x1
+ 3341 0661 53       		.byte	0x53
+ 3342 0662 3E010000 		.4byte	.LVL137
+ 3343 0666 4E010000 		.4byte	.LFE73
+ 3344 066a 0100     		.2byte	0x1
+ 3345 066c 53       		.byte	0x53
+ 3346 066d 00000000 		.4byte	0
+ 3347 0671 00000000 		.4byte	0
+ 3348              	.LLST46:
+ 3349 0675 30000000 		.4byte	.LVL113
+ 3350 0679 D0000000 		.4byte	.LVL126
+ 3351 067d 0100     		.2byte	0x1
+ 3352 067f 58       		.byte	0x58
+ 3353 0680 D4000000 		.4byte	.LVL127
+ 3354 0684 06010000 		.4byte	.LVL130
+ 3355 0688 0100     		.2byte	0x1
+ 3356 068a 58       		.byte	0x58
+ 3357 068b 0A010000 		.4byte	.LVL131
+ 3358 068f 36010000 		.4byte	.LVL134
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 66
+
+
+ 3359 0693 0100     		.2byte	0x1
+ 3360 0695 58       		.byte	0x58
+ 3361 0696 3A010000 		.4byte	.LVL135
+ 3362 069a 4E010000 		.4byte	.LFE73
+ 3363 069e 0100     		.2byte	0x1
+ 3364 06a0 58       		.byte	0x58
+ 3365 06a1 00000000 		.4byte	0
+ 3366 06a5 00000000 		.4byte	0
+ 3367              	.LLST47:
+ 3368 06a9 30000000 		.4byte	.LVL113
+ 3369 06ad 62000000 		.4byte	.LVL114
+ 3370 06b1 0100     		.2byte	0x1
+ 3371 06b3 51       		.byte	0x51
+ 3372 06b4 62000000 		.4byte	.LVL114
+ 3373 06b8 40010000 		.4byte	.LVL138
+ 3374 06bc 0100     		.2byte	0x1
+ 3375 06be 52       		.byte	0x52
+ 3376 06bf 40010000 		.4byte	.LVL138
+ 3377 06c3 4E010000 		.4byte	.LFE73
+ 3378 06c7 0100     		.2byte	0x1
+ 3379 06c9 51       		.byte	0x51
+ 3380 06ca 00000000 		.4byte	0
+ 3381 06ce 00000000 		.4byte	0
+ 3382              	.LLST48:
+ 3383 06d2 30000000 		.4byte	.LVL113
+ 3384 06d6 7C000000 		.4byte	.LVL115
+ 3385 06da 0100     		.2byte	0x1
+ 3386 06dc 51       		.byte	0x51
+ 3387 06dd 82000000 		.4byte	.LVL116
+ 3388 06e1 88000000 		.4byte	.LVL117
+ 3389 06e5 0100     		.2byte	0x1
+ 3390 06e7 51       		.byte	0x51
+ 3391 06e8 8E000000 		.4byte	.LVL118
+ 3392 06ec 92000000 		.4byte	.LVL119
+ 3393 06f0 0100     		.2byte	0x1
+ 3394 06f2 51       		.byte	0x51
+ 3395 06f3 98000000 		.4byte	.LVL120
+ 3396 06f7 9E000000 		.4byte	.LVL121
+ 3397 06fb 0100     		.2byte	0x1
+ 3398 06fd 51       		.byte	0x51
+ 3399 06fe A4000000 		.4byte	.LVL122
+ 3400 0702 B4000000 		.4byte	.LVL123
+ 3401 0706 0100     		.2byte	0x1
+ 3402 0708 51       		.byte	0x51
+ 3403 0709 BA000000 		.4byte	.LVL124
+ 3404 070d C8000000 		.4byte	.LVL125
+ 3405 0711 0100     		.2byte	0x1
+ 3406 0713 51       		.byte	0x51
+ 3407 0714 D6000000 		.4byte	.LVL128
+ 3408 0718 EC000000 		.4byte	.LVL129
+ 3409 071c 0100     		.2byte	0x1
+ 3410 071e 51       		.byte	0x51
+ 3411 071f 0C010000 		.4byte	.LVL132
+ 3412 0723 1C010000 		.4byte	.LVL133
+ 3413 0727 0100     		.2byte	0x1
+ 3414 0729 51       		.byte	0x51
+ 3415 072a 3A010000 		.4byte	.LVL135
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 67
+
+
+ 3416 072e 40010000 		.4byte	.LVL138
+ 3417 0732 0100     		.2byte	0x1
+ 3418 0734 52       		.byte	0x52
+ 3419 0735 40010000 		.4byte	.LVL138
+ 3420 0739 4E010000 		.4byte	.LFE73
+ 3421 073d 0100     		.2byte	0x1
+ 3422 073f 51       		.byte	0x51
+ 3423 0740 00000000 		.4byte	0
+ 3424 0744 00000000 		.4byte	0
+ 3425              	.LLST49:
+ 3426 0748 16000000 		.4byte	.LVL107
+ 3427 074c 1A000000 		.4byte	.LVL108
+ 3428 0750 0200     		.2byte	0x2
+ 3429 0752 30       		.byte	0x30
+ 3430 0753 9F       		.byte	0x9f
+ 3431 0754 1A000000 		.4byte	.LVL108
+ 3432 0758 20000000 		.4byte	.LVL109
+ 3433 075c 0100     		.2byte	0x1
+ 3434 075e 53       		.byte	0x53
+ 3435 075f 22000000 		.4byte	.LVL110
+ 3436 0763 2E000000 		.4byte	.LVL112
+ 3437 0767 0100     		.2byte	0x1
+ 3438 0769 53       		.byte	0x53
+ 3439 076a 00000000 		.4byte	0
+ 3440 076e 00000000 		.4byte	0
+ 3441              		.section	.debug_aranges,"",%progbits
+ 3442 0000 64000000 		.4byte	0x64
+ 3443 0004 0200     		.2byte	0x2
+ 3444 0006 00000000 		.4byte	.Ldebug_info0
+ 3445 000a 04       		.byte	0x4
+ 3446 000b 00       		.byte	0
+ 3447 000c 0000     		.2byte	0
+ 3448 000e 0000     		.2byte	0
+ 3449 0010 00000000 		.4byte	.LFB64
+ 3450 0014 24000000 		.4byte	.LFE64-.LFB64
+ 3451 0018 00000000 		.4byte	.LFB65
+ 3452 001c 2C000000 		.4byte	.LFE65-.LFB65
+ 3453 0020 00000000 		.4byte	.LFB66
+ 3454 0024 38000000 		.4byte	.LFE66-.LFB66
+ 3455 0028 00000000 		.4byte	.LFB67
+ 3456 002c 44000000 		.4byte	.LFE67-.LFB67
+ 3457 0030 00000000 		.4byte	.LFB68
+ 3458 0034 32000000 		.4byte	.LFE68-.LFB68
+ 3459 0038 00000000 		.4byte	.LFB69
+ 3460 003c 2C000000 		.4byte	.LFE69-.LFB69
+ 3461 0040 00000000 		.4byte	.LFB70
+ 3462 0044 44000000 		.4byte	.LFE70-.LFB70
+ 3463 0048 00000000 		.4byte	.LFB71
+ 3464 004c 5A000000 		.4byte	.LFE71-.LFB71
+ 3465 0050 00000000 		.4byte	.LFB72
+ 3466 0054 D8010000 		.4byte	.LFE72-.LFB72
+ 3467 0058 00000000 		.4byte	.LFB73
+ 3468 005c 4E010000 		.4byte	.LFE73-.LFB73
+ 3469 0060 00000000 		.4byte	0
+ 3470 0064 00000000 		.4byte	0
+ 3471              		.section	.debug_ranges,"",%progbits
+ 3472              	.Ldebug_ranges0:
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 68
+
+
+ 3473 0000 02000000 		.4byte	.LBB5
+ 3474 0004 22000000 		.4byte	.LBE5
+ 3475 0008 24000000 		.4byte	.LBB6
+ 3476 000c 28000000 		.4byte	.LBE6
+ 3477 0010 00000000 		.4byte	0
+ 3478 0014 00000000 		.4byte	0
+ 3479 0018 04000000 		.4byte	.LBB7
+ 3480 001c 06000000 		.4byte	.LBE7
+ 3481 0020 0A000000 		.4byte	.LBB8
+ 3482 0024 2E000000 		.4byte	.LBE8
+ 3483 0028 00000000 		.4byte	0
+ 3484 002c 00000000 		.4byte	0
+ 3485 0030 46010000 		.4byte	.LBB14
+ 3486 0034 BE010000 		.4byte	.LBE14
+ 3487 0038 C0010000 		.4byte	.LBB18
+ 3488 003c C4010000 		.4byte	.LBE18
+ 3489 0040 00000000 		.4byte	0
+ 3490 0044 00000000 		.4byte	0
+ 3491 0048 00000000 		.4byte	.LFB64
+ 3492 004c 24000000 		.4byte	.LFE64
+ 3493 0050 00000000 		.4byte	.LFB65
+ 3494 0054 2C000000 		.4byte	.LFE65
+ 3495 0058 00000000 		.4byte	.LFB66
+ 3496 005c 38000000 		.4byte	.LFE66
+ 3497 0060 00000000 		.4byte	.LFB67
+ 3498 0064 44000000 		.4byte	.LFE67
+ 3499 0068 00000000 		.4byte	.LFB68
+ 3500 006c 32000000 		.4byte	.LFE68
+ 3501 0070 00000000 		.4byte	.LFB69
+ 3502 0074 2C000000 		.4byte	.LFE69
+ 3503 0078 00000000 		.4byte	.LFB70
+ 3504 007c 44000000 		.4byte	.LFE70
+ 3505 0080 00000000 		.4byte	.LFB71
+ 3506 0084 5A000000 		.4byte	.LFE71
+ 3507 0088 00000000 		.4byte	.LFB72
+ 3508 008c D8010000 		.4byte	.LFE72
+ 3509 0090 00000000 		.4byte	.LFB73
+ 3510 0094 4E010000 		.4byte	.LFE73
+ 3511 0098 00000000 		.4byte	0
+ 3512 009c 00000000 		.4byte	0
+ 3513              		.section	.debug_line,"",%progbits
+ 3514              	.Ldebug_line0:
+ 3515 0000 BF030000 		.section	.debug_str,"MS",%progbits,1
+ 3515      0200CB01 
+ 3515      00000201 
+ 3515      FB0E0D00 
+ 3515      01010101 
+ 3516              	.LASF4:
+ 3517 0000 5F5F696E 		.ascii	"__int16_t\000"
+ 3517      7431365F 
+ 3517      7400
+ 3518              	.LASF25:
+ 3519 000a 7072696F 		.ascii	"priority\000"
+ 3519      72697479 
+ 3519      00
+ 3520              	.LASF14:
+ 3521 0013 696E7438 		.ascii	"int8_t\000"
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 69
+
+
+ 3521      5F7400
+ 3522              	.LASF48:
+ 3523 001a 74617267 		.ascii	"target\000"
+ 3523      657400
+ 3524              	.LASF26:
+ 3525 0021 5072696F 		.ascii	"PriorityVertex\000"
+ 3525      72697479 
+ 3525      56657274 
+ 3525      657800
+ 3526              	.LASF5:
+ 3527 0030 73686F72 		.ascii	"short int\000"
+ 3527      7420696E 
+ 3527      7400
+ 3528              	.LASF71:
+ 3529 003a 70617468 		.ascii	"pathfinding.c\000"
+ 3529      66696E64 
+ 3529      696E672E 
+ 3529      6300
+ 3530              	.LASF73:
+ 3531 0048 6D616C6C 		.ascii	"malloc\000"
+ 3531      6F6300
+ 3532              	.LASF23:
+ 3533 004f 73697A65 		.ascii	"sizetype\000"
+ 3533      74797065 
+ 3533      00
+ 3534              	.LASF45:
+ 3535 0058 71756575 		.ascii	"queueContains\000"
+ 3535      65436F6E 
+ 3535      7461696E 
+ 3535      7300
+ 3536              	.LASF63:
+ 3537 0066 66696E61 		.ascii	"finalPath\000"
+ 3537      6C506174 
+ 3537      6800
+ 3538              	.LASF49:
+ 3539 0070 7864696D 		.ascii	"xdim\000"
+ 3539      00
+ 3540              	.LASF6:
+ 3541 0075 5F5F7569 		.ascii	"__uint16_t\000"
+ 3541      6E743136 
+ 3541      5F7400
+ 3542              	.LASF24:
+ 3543 0080 76616C75 		.ascii	"value\000"
+ 3543      6500
+ 3544              	.LASF42:
+ 3545 0086 6E657756 		.ascii	"newVertex\000"
+ 3545      65727465 
+ 3545      7800
+ 3546              	.LASF61:
+ 3547 0090 696E6465 		.ascii	"index\000"
+ 3547      7800
+ 3548              	.LASF40:
+ 3549 0096 70757368 		.ascii	"push\000"
+ 3549      00
+ 3550              	.LASF53:
+ 3551 009b 6D617850 		.ascii	"maxPriority\000"
+ 3551      72696F72 
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 70
+
+
+ 3551      69747900 
+ 3552              	.LASF35:
+ 3553 00a7 76697369 		.ascii	"visited\000"
+ 3553      74656400 
+ 3554              	.LASF60:
+ 3555 00af 73686F72 		.ascii	"shortestPath\000"
+ 3555      74657374 
+ 3555      50617468 
+ 3555      00
+ 3556              	.LASF55:
+ 3557 00bc 41535441 		.ascii	"ASTAR\000"
+ 3557      5200
+ 3558              	.LASF19:
+ 3559 00c2 666C6F61 		.ascii	"float\000"
+ 3559      7400
+ 3560              	.LASF64:
+ 3561 00c8 6E657744 		.ascii	"newDistance\000"
+ 3561      69737461 
+ 3561      6E636500 
+ 3562              	.LASF11:
+ 3563 00d4 6C6F6E67 		.ascii	"long long int\000"
+ 3563      206C6F6E 
+ 3563      6720696E 
+ 3563      7400
+ 3564              	.LASF66:
+ 3565 00e2 696E7374 		.ascii	"instructionSet\000"
+ 3565      72756374 
+ 3565      696F6E53 
+ 3565      657400
+ 3566              	.LASF67:
+ 3567 00f1 74726176 		.ascii	"traversalDirection\000"
+ 3567      65727361 
+ 3567      6C446972 
+ 3567      65637469 
+ 3567      6F6E00
+ 3568              	.LASF62:
+ 3569 0104 6F726465 		.ascii	"order\000"
+ 3569      7200
+ 3570              	.LASF9:
+ 3571 010a 6C6F6E67 		.ascii	"long int\000"
+ 3571      20696E74 
+ 3571      00
+ 3572              	.LASF1:
+ 3573 0113 5F5F7569 		.ascii	"__uint8_t\000"
+ 3573      6E74385F 
+ 3573      7400
+ 3574              	.LASF56:
+ 3575 011d 736F7572 		.ascii	"source\000"
+ 3575      636500
+ 3576              	.LASF58:
+ 3577 0124 7964696D 		.ascii	"ydim\000"
+ 3577      00
+ 3578              	.LASF52:
+ 3579 0129 72656D6F 		.ascii	"removeVertex\000"
+ 3579      76655665 
+ 3579      72746578 
+ 3579      00
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 71
+
+
+ 3580              	.LASF68:
+ 3581 0136 70726576 		.ascii	"prevDirection\000"
+ 3581      44697265 
+ 3581      6374696F 
+ 3581      6E00
+ 3582              	.LASF65:
+ 3583 0144 6465636F 		.ascii	"decode\000"
+ 3583      646500
+ 3584              	.LASF37:
+ 3585 014b 71756575 		.ascii	"queue\000"
+ 3585      6500
+ 3586              	.LASF72:
+ 3587 0151 5C5C6669 		.ascii	"\\\\files.auckland.ac.nz\\myhome\\Documents\\GitHub"
+ 3587      6C65732E 
+ 3587      6175636B 
+ 3587      6C616E64 
+ 3587      2E61632E 
+ 3588 017f 5C70726F 		.ascii	"\\project-project-group-7\\301 Project\\Sensor Test"
+ 3588      6A656374 
+ 3588      2D70726F 
+ 3588      6A656374 
+ 3588      2D67726F 
+ 3589 01af 2E637964 		.ascii	".cydsn\000"
+ 3589      736E00
+ 3590              	.LASF22:
+ 3591 01b6 6C6F6E67 		.ascii	"long double\000"
+ 3591      20646F75 
+ 3591      626C6500 
+ 3592              	.LASF47:
+ 3593 01c2 656E7472 		.ascii	"entry\000"
+ 3593      7900
+ 3594              	.LASF3:
+ 3595 01c8 756E7369 		.ascii	"unsigned char\000"
+ 3595      676E6564 
+ 3595      20636861 
+ 3595      7200
+ 3596              	.LASF41:
+ 3597 01d6 76657274 		.ascii	"vertex\000"
+ 3597      657800
+ 3598              	.LASF2:
+ 3599 01dd 7369676E 		.ascii	"signed char\000"
+ 3599      65642063 
+ 3599      68617200 
+ 3600              	.LASF30:
+ 3601 01e9 63617061 		.ascii	"capacity\000"
+ 3601      63697479 
+ 3601      00
+ 3602              	.LASF12:
+ 3603 01f2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3603      206C6F6E 
+ 3603      6720756E 
+ 3603      7369676E 
+ 3603      65642069 
+ 3604              	.LASF13:
+ 3605 0209 756E7369 		.ascii	"unsigned int\000"
+ 3605      676E6564 
+ 3605      20696E74 
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 72
+
+
+ 3605      00
+ 3606              	.LASF17:
+ 3607 0216 75696E74 		.ascii	"uint16_t\000"
+ 3607      31365F74 
+ 3607      00
+ 3608              	.LASF50:
+ 3609 021f 686F7269 		.ascii	"horiz\000"
+ 3609      7A00
+ 3610              	.LASF28:
+ 3611 0225 73746172 		.ascii	"start\000"
+ 3611      7400
+ 3612              	.LASF7:
+ 3613 022b 73686F72 		.ascii	"short unsigned int\000"
+ 3613      7420756E 
+ 3613      7369676E 
+ 3613      65642069 
+ 3613      6E7400
+ 3614              	.LASF0:
+ 3615 023e 5F5F696E 		.ascii	"__int8_t\000"
+ 3615      74385F74 
+ 3615      00
+ 3616              	.LASF57:
+ 3617 0247 61646A6C 		.ascii	"adjlist\000"
+ 3617      69737400 
+ 3618              	.LASF21:
+ 3619 024f 63686172 		.ascii	"char\000"
+ 3619      00
+ 3620              	.LASF34:
+ 3621 0254 64697374 		.ascii	"distance\000"
+ 3621      616E6365 
+ 3621      00
+ 3622              	.LASF18:
+ 3623 025d 696E7433 		.ascii	"int32_t\000"
+ 3623      325F7400 
+ 3624              	.LASF16:
+ 3625 0265 696E7431 		.ascii	"int16_t\000"
+ 3625      365F7400 
+ 3626              	.LASF36:
+ 3627 026d 5F426F6F 		.ascii	"_Bool\000"
+ 3627      6C00
+ 3628              	.LASF32:
+ 3629 0273 56657274 		.ascii	"Vertex\000"
+ 3629      657800
+ 3630              	.LASF27:
+ 3631 027a 51756575 		.ascii	"Queue\000"
+ 3631      6500
+ 3632              	.LASF44:
+ 3633 0280 64656C65 		.ascii	"delete\000"
+ 3633      746500
+ 3634              	.LASF59:
+ 3635 0287 76657274 		.ascii	"vertices\000"
+ 3635      69636573 
+ 3635      00
+ 3636              	.LASF10:
+ 3637 0290 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3637      20756E73 
+ 3637      69676E65 
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 73
+
+
+ 3637      6420696E 
+ 3637      7400
+ 3638              	.LASF20:
+ 3639 02a2 646F7562 		.ascii	"double\000"
+ 3639      6C6500
+ 3640              	.LASF31:
+ 3641 02a9 61727261 		.ascii	"array\000"
+ 3641      7900
+ 3642              	.LASF29:
+ 3643 02af 73697A65 		.ascii	"size\000"
+ 3643      00
+ 3644              	.LASF8:
+ 3645 02b4 5F5F696E 		.ascii	"__int32_t\000"
+ 3645      7433325F 
+ 3645      7400
+ 3646              	.LASF15:
+ 3647 02be 75696E74 		.ascii	"uint8_t\000"
+ 3647      385F7400 
+ 3648              	.LASF38:
+ 3649 02c6 64656661 		.ascii	"defaultValue\000"
+ 3649      756C7456 
+ 3649      616C7565 
+ 3649      00
+ 3650              	.LASF33:
+ 3651 02d3 70726564 		.ascii	"pred\000"
+ 3651      00
+ 3652              	.LASF46:
+ 3653 02d8 68657572 		.ascii	"heuristic\000"
+ 3653      69737469 
+ 3653      6300
+ 3654              	.LASF43:
+ 3655 02e2 6D616B65 		.ascii	"makeQueue\000"
+ 3655      51756575 
+ 3655      6500
+ 3656              	.LASF69:
+ 3657 02ec 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 3657      52784275 
+ 3657      66666572 
+ 3657      00
+ 3658              	.LASF70:
+ 3659 02f9 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 3659      43313120 
+ 3659      352E342E 
+ 3659      31203230 
+ 3659      31363036 
+ 3660 032c 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 3660      20726576 
+ 3660      6973696F 
+ 3660      6E203233 
+ 3660      37373135 
+ 3661 035f 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 3661      66756E63 
+ 3661      74696F6E 
+ 3661      2D736563 
+ 3661      74696F6E 
+ 3662              	.LASF51:
+ 3663 0387 76657274 		.ascii	"vert\000"
+ARM GAS  C:\Users\bbus692\AppData\Local\Temp\ccNfhypp.s 			page 74
+
+
+ 3663      00
+ 3664              	.LASF54:
+ 3665 038c 72657475 		.ascii	"returnVertex\000"
+ 3665      726E5665 
+ 3665      72746578 
+ 3665      00
+ 3666              	.LASF39:
+ 3667 0399 696E6974 		.ascii	"init\000"
+ 3667      00
+ 3668              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
