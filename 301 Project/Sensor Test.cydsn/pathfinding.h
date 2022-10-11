@@ -35,7 +35,7 @@ struct PriorityVertex {
 struct Queue {
     int16_t start, end, size;
     unsigned capacity;
-    struct PriorityVertex *array;
+    struct PriorityVertex array[285];
 } Queue;
 
 struct Vertex {
@@ -52,7 +52,7 @@ void delete(struct Queue* queue, uint16_t pos);
 bool queueContains(struct Queue* queue, int16_t vertex);
 uint16_t heuristic(int16_t entry, uint16_t target, uint16_t xdim);
 struct PriorityVertex removeVertex(struct Queue* queue);
-uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim, uint16_t array[15][19]);
+uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim);
 int8_t *decode(uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target);
 
 #endif /* PATHFINDING_H_ */

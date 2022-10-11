@@ -79,6 +79,9 @@ CY_ISR(isr_timer_1) {
 
 int main(void) {
 
+    // Write debugging led high.
+    led_Write(1);
+    
     // Store the dimensions of the map so we can't go outside of it later on. Hard coding this.
     uint16_t xdim = 19, ydim = 15;
     uint16_t xydim = xdim * ydim;
@@ -174,8 +177,11 @@ int main(void) {
     uint16_t source = ((sycord - offset) * xdim + sxcord - offset);
     uint16_t target = ((tycord - offset) * xdim + txcord - offset);
 
-    uint16_t *finalPath = ASTAR(source, target, adjlist, xdim, ydim, array);
+    uint16_t *finalPath = ASTAR(source, target, adjlist, xdim, ydim);
     int8_t *instructionSet = decode(finalPath, adjlist, xdim, target);
+    
+    // Write the debugging led low.
+    led_Write(0);
     
     // Enable global interrupts as well as start and enable the isr.
     CyGlobalIntEnable;

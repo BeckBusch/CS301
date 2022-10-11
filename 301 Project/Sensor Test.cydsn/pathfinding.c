@@ -8,12 +8,12 @@
 struct Queue* makeQueue(unsigned size) {
 
     // We need to make a pointer to the queue so that we can pass it by reference from the function we call push/pop from.
-    struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
+    struct Queue* queue = (struct Queue*)malloc(sizeof(queue));
     queue->capacity = size;
     queue->start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
     queue->size = 0; // Queue is empty to begin with.
     queue->end = queue->capacity - 1;
-    queue->array = (struct PriorityVertex *) malloc(queue->capacity * sizeof(struct PriorityVertex)); // Using sizeof(int) means we allocate enough memory.
+    //queue->array = (struct PriorityVertex *) malloc(queue->capacity * sizeof(struct PriorityVertex)); // Using sizeof(int) means we allocate enough memory.
 
     return queue;
 }
@@ -109,7 +109,7 @@ struct PriorityVertex removeVertex(struct Queue* queue) {
 }
 
 // Implementation of the A* algorithm.
-uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim, uint16_t array[15][19]) {
+uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim) {
 
     // Dimension.
     uint16_t size = xdim * ydim;
@@ -216,7 +216,7 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
         }
 
     }
-
+    return 0;
 }
 
 // Decode an array of vertices representing the shortest path into a list of directions.
