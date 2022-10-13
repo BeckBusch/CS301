@@ -9,6 +9,7 @@
 #include "decoders.h"
 #include <stdio.h>
 #include "pathfinding.h"
+#include <stdint.h>
 
 #include "map.h"
 
@@ -58,7 +59,7 @@ uint8 disable_toggle = DISABLE_NONE;
 uint16 ADCResult;
 uint16 milliVoltReading;
 uint8 state = FORWARD;
-volatile uint8 reset = 0;
+volatile uint8_t reset = 0;
 
 uint16 maxValues[5] = {0};
 uint16 pastValues[5] = {0};
@@ -171,12 +172,14 @@ int main(void) {
     PWM_2_Start();
     stop();
     Timer_1_Start();
+    
+    move_forward();
     //turn_left();
     //stop();
     //turn_right();
 
     int8_t nextInstruction = instructionSet[instructionCursor];
-        
+    
     while(1) {
         
         // If the conversion result is ready, put it into a variable and convert it into millivolts.
@@ -196,9 +199,11 @@ int main(void) {
         if (milliVoltReading > maxValues[channel]) {
             maxValues[channel] = milliVoltReading;
         }
+        //led_Write(1);
         
         if (reset == 1) {
-
+            reset = 0;
+            if (sensor_state[FR] == ON) { led_Write(!led_Read()); }
             // Fill the pastValues array with the new set of values.
             for (int i = 0; i < 5; i++) {
                 pastValues[i] = maxValues[i];
@@ -286,8 +291,7 @@ int main(void) {
                 } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF && disable_toggle != DISABLE_RIGHT_TURN) {
                     // Right turning.
                     state = TURNING_RIGHT;
-                    turn_right();
-                } 
+                    turn_right(); 
                 } else {
                     // If no other condition has been met, continue to move forward.
                     move_forward();
@@ -300,9 +304,8 @@ int main(void) {
                     state = FORWARD;
                 }
             }
-            reset = 0;
-            
-             
+            //reset = 0;
+        }   
         
         // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
         if (pastValues[channel] >= 500) {
@@ -331,8 +334,8 @@ int main(void) {
                 sensor_state[BC] = OFF;
             }
         }
-                
     }
+                
     return 0;
                
 }

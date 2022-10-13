@@ -44,7 +44,7 @@ struct Vertex {
     bool visited;
 } Vertex;
 
-struct Queue* makeQueue(unsigned size);
+struct Queue* makeQueue(uint16_t size);
 void init(struct Queue* queue, uint16_t size);
 void push(struct Queue* queue, int16_t vertex, uint16_t priority);
 int16_t pop(struct Queue* queue);

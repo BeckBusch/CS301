@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="301 Project\Sensor Test\Header Files\map.h">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="301 Project\Sensor Test">
 <ExpandedNodeIds>
 <v>301 Project</v>
 <v>301 Project\Sensor Test</v>
@@ -238,7 +238,7 @@
 <CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf type_name="CyDesigner.Common.ProjMgmt.GUI.CyBookmarkData" version="1">
 <indicators>
 <CyGuid_67999771-01c6-4f62-90b3-2054bb36a318 type_name="CyDesigner.Framework.CyBookmark" version="1">
-<CyGuid_a1027fc4-3497-43a6-85d7-b91ffa0029b7 type_name="CyDesigner.Framework.CySerializableMarginIndicator" version="1" LineNumber="67" DocumentName=".\Sensor Test.cydsn\main.c" />
+<CyGuid_a1027fc4-3497-43a6-85d7-b91ffa0029b7 type_name="CyDesigner.Framework.CySerializableMarginIndicator" version="1" LineNumber="68" DocumentName=".\Sensor Test.cydsn\main.c" />
 </CyGuid_67999771-01c6-4f62-90b3-2054bb36a318>
 </indicators>
 </CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf>
@@ -249,6 +249,11 @@
 <OpenDocs>
 <name v=".\Sensor Test.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\Sensor Test.cydsn\Sensor Test.cydwr" />
+<name v=".\Sensor Test.cydsn\main.c" />
+<name v=".\Sensor Test.cydsn\pathfinding.c" />
+<name v=".\Sensor Test.cydsn\pathfinding.h" />
+<name v=".\Sensor Test.cydsn\map.h" />
+<name v=".\Sensor Test.cydsn\motors.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -256,7 +261,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 831" SelectedTabbedMdiWindow="4b165d10-2451-48cc-bb58-db189add9858"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="fc223762-6941-4955-8528-6aab89336f3c" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\301 Project\301 Project\Sensor Test.cydsn\TopDesign\TopDesign.cysch" Guid="4b165d10-2451-48cc-bb58-db189add9858" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\301 Project\301 Project\Sensor Test.cydsn\Sensor Test.cydwr" Guid="3d4d0f4c-952b-4bd4-b518-d37cb8568475" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 831" SelectedTabbedMdiWindow="4ef3d26b-ae70-400c-b4ad-e95c01d20306"><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\TopDesign\TopDesign.cysch" Guid="ada8b02d-9d2a-4e8f-aca1-82279c845c6f" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Sensor Test.cydwr" Guid="60bf3087-bcad-4c31-8c4f-0e820c3c77b1" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\main.c" Guid="57e2d4c7-ed94-4a01-a184-ee2615f62a74" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\pathfinding.c" Guid="f9efd816-b054-48ae-93e8-fb17ba93cf14" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\pathfinding.h" Guid="4ef3d26b-ae70-400c-b4ad-e95c01d20306" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\map.h" Guid="5ca48604-0721-48f2-9f28-2067749a86e6" /><DocumentWindow Key="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\motors.c" Guid="f11cd84c-40de-49ec-9061-9b5c999536a9" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
