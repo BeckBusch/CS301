@@ -5,70 +5,66 @@
 
 #include "pathfinding.h"
 
-struct Queue* makeQueue(unsigned size) {
+void makeQueue(unsigned size) {
+    Queue.capacity = size;
+    Queue.start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
+    Queue.size = 0; // Queue is empty to begin with.
+    Queue.end = Queue.capacity - 1;
+    Queue.array = (struct PriorityVertex *) malloc(Queue.capacity * sizeof(struct PriorityVertex)); // Using sizeof(int) means we allocate enough memory.
 
-    // We need to make a pointer to the queue so that we can pass it by reference from the function we call push/pop from.
-    struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
-    queue->capacity = size;
-    queue->start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
-    queue->size = 0; // Queue is empty to begin with.
-    queue->end = queue->capacity - 1;
-    queue->array = (struct PriorityVertex *) malloc(queue->capacity * sizeof(struct PriorityVertex)); // Using sizeof(int) means we allocate enough memory.
-
-    return queue;
 }
 
-void init(struct Queue* queue, uint16_t size) {
+void init(uint16_t size) {
 
     // Initialise all values to minus one so that we can tell if the queue is empty or not (there is a vertex zero).
     for (uint16_t i = 0; i < size; i++) {
         struct PriorityVertex defaultValue = { .value = -1, .priority = UINT16_MAX, };
-        queue->array[i] = defaultValue;
+        Queue.array[i] = defaultValue;
     }
 
 }
 
-void push(struct Queue* queue, int16_t vertex, uint16_t priority) {
+void push(int16_t vertex, uint16_t priority) {
 
     // Move the end marker along one, if we reach capacity, go back to the beginning.
-    queue->end = (queue->end + 1) % queue->capacity;
+    Queue.end = (Queue.end + 1) % Queue.capacity;
     struct PriorityVertex newVertex = { .value = vertex, .priority = priority };
-    queue->array[queue->end] = newVertex;
-    queue->size = queue->size + 1;
+    Queue.array[Queue.end] = newVertex;
+    Queue.size = Queue.size + 1;
 
 }
 
-int16_t pop(struct Queue* queue) {
+int16_t pop() {
 
     // Get the vertex from the start of the queue.
-    struct PriorityVertex vertex = queue->array[queue->start];
+    struct PriorityVertex vertex = Queue.array[Queue.start];
     // Reset to empty value of -1.
     struct PriorityVertex defaultValue = { .value = -1, .priority = UINT16_MAX };
-    queue->array[queue->start] = defaultValue;
+    Queue.array[Queue.start] = defaultValue;
     // Move the start marker along one, if we reach capacity, go back to the beginning.
-    queue->start = (queue->start + 1) % queue->capacity;
-    queue->size = queue->size - 1;
+    Queue.start = (Queue.start + 1) % Queue.capacity;
+    Queue.size = Queue.size - 1;
     return vertex.value;
 
 }
 
-void delete(struct Queue* queue, uint16_t pos) {
+void delete(uint16_t pos) {
 
     // Replace each entry in the array with the next entry until the end.
-    for (uint16_t i = 0; i < queue->end - pos; i++) {
-        queue->array[pos + i] = queue->array[pos + i + 1];
+    for (uint16_t i = 0; i < Queue.end - pos; i++) {
+        Queue.array[pos + i] = Queue.array[pos + i + 1];
     }
     // Move the end pointer over.
-    queue->end--;
-    queue->size--;
+    Queue.end--;
+    Queue.size--;
 
 }
 
-bool queueContains(struct Queue* queue, int16_t vertex) {
+bool queueContains(int16_t vertex) {
 
     // If the queue contains the vertex return true, else return false.
-    for (uint16_t i = 0; i < queue->size; i++) {
-        if (queue->array[queue->start + i].value == vertex) {
+    for (uint16_t i = 0; i < Queue.size; i++) {
+        if (Queue.array[Queue.start + i].value == vertex) {
             return true;
         }
     }
@@ -87,22 +83,22 @@ uint16_t heuristic(int16_t entry, uint16_t target, uint16_t xdim) {
 
 }
 
-struct PriorityVertex removeVertex(struct Queue* queue) {
+struct PriorityVertex removeVertex() {
 
     // This function operates like pop but differs in that the priority queue is out of order.
     uint16_t maxPriority = UINT16_MAX;
     uint16_t pos;
-    for (uint16_t i = 0; i < queue->size; i++) {
+    for (uint16_t i = 0; i < Queue.size; i++) {
         // Although maxPriority is an indicator of what to prioritise, lower values should be visited first despite the name.
-        if (queue->array[queue->start + i].priority < maxPriority) {
-            maxPriority = queue->array[queue->start + i].priority;
-            pos = queue->start + i;
+        if (Queue.array[Queue.start + i].priority < maxPriority) {
+            maxPriority = Queue.array[Queue.start + i].priority;
+            pos = Queue.start + i;
         }
     }
 
-    struct PriorityVertex returnVertex = { .value = queue->array[pos].value, .priority = queue->array[pos].priority };
+    struct PriorityVertex returnVertex = { .value = Queue.array[pos].value, .priority = Queue.array[pos].priority };
     // Call to delete subroutine.
-    delete(queue, pos);
+    delete(pos);
     // Return the vertex.
     return returnVertex;
 
@@ -115,9 +111,9 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
     uint16_t size = xdim * ydim;
 
     // Set up the queue.
-    struct Queue* queue = makeQueue(size);
-    init(queue, size);
-    push(queue, source, 0);
+    makeQueue(size);
+    init(size);
+    push(source, 0);
 
     // Set up an array to track vertices and their distances (INT_MAX means a vertex has yet to be visited).
     struct Vertex vertices[size];
@@ -134,10 +130,10 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
     vertices[source].distance = 1;
 
     // While we have yet to reach the destination, keep looping.
-    while (queue->size != 0) {
+    while (Queue.size != 0) {
 
         // Get the vertex with the highest priority.
-        struct PriorityVertex key = removeVertex(queue);
+        struct PriorityVertex key = removeVertex();
 
         // Set the visited status to true.
         vertices[key.value].visited = true;
@@ -206,9 +202,9 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
                     // Set the predecessor (we want to take the newly discovered shortest path to entry vertex).
                     vertices[entry].pred = key.value;
 
-                    if (!queueContains(queue, entry)) {
+                    if (!queueContains(entry)) {
                         // If the neighbour is not in the priority queue already, add it.
-                        push(queue, entry, priority);
+                        push(entry, priority);
                     }
 
                 }
@@ -216,7 +212,7 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
         }
 
     }
-    return 0;
+
 }
 
 // Decode an array of vertices representing the shortest path into a list of directions.

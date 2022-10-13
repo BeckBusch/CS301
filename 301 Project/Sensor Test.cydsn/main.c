@@ -50,10 +50,7 @@ volatile uint8 channel = 0;
 volatile uint16 instructionCursor = 0;
 
 // Move these inside main???? (volatile may need to be kept outside, among others potentially)
-uint32 i = 0;
-uint16 turn_count = 0;
 
-uint8 disable_toggle = DISABLE_NONE;
 
 uint16 ADCResult;
 uint16 milliVoltReading;
@@ -79,81 +76,21 @@ CY_ISR(isr_timer_1) {
 }
 
 int main(void) {
+    uint32 i = 0;
+    uint16 turn_count = 0;
+
+    uint8 disable_toggle;
 
     // Write debugging led high.
     led_Write(1);
     
-    // Store the dimensions of the map so we can't go outside of it later on. Hard coding this.
-    uint16_t xdim = 19, ydim = 15;
-    uint16_t xydim = xdim * ydim;
-    
-    // Each zero can only be adjacent to 4 zeroes maximum.
-    int16_t adjlist[xydim][4];
-    for (uint16_t i = 0; i < xydim; i++) {
-        for (uint8_t j = 0; j < 4; j++) {
-            adjlist[i][j] = -1;
-        }
-    }
-    uint16_t cnode;
-
-    /* Construct the adjacency list.
-       Numbered reading from left to right, top down. */
-    for (uint16_t i = 0; i < ydim; i++) {
-        for (uint16_t j = 0; j < xdim; j++) {
-            // For loops go through rows, cols.
-            if (array[i][j] == 0) {
-                cnode = i * xdim + j; 
-                if (i >= 1) {
-                    if (array[i - 1][j] == 0) {
-                        // Row above.
-                        adjlist[cnode][0] = (i - 1) * xdim + j;
-                    }
-                } if (i <= ydim - 2) {
-                    if (array[i + 1][j] == 0) {
-                        // Row below.
-                        adjlist[cnode][1] = (i + 1) * xdim + j;
-                    }
-                } if (j >= 1) {
-                    if (array[i][j - 1] == 0) {
-                        // Column left.
-                        adjlist[cnode][2] = i * xdim + j - 1;
-                    }
-                } if (j <= xdim - 2) {
-                    if (array[i][j + 1] == 0) {
-                        // Column right.
-                        adjlist[cnode][3] = i * xdim + j + 1;
-                    }
-                }
-            }
-        }
-    }
-
-    // Source x and y co-ordinates.
-    uint16_t sxcord = 1;
-    uint16_t sycord = 1;
-
-    // Target x and y co-ordinates.
-    uint16_t txcord = 9;//5;
-    uint16_t tycord = 6;//13;
-
-    // The offset value - if we are indexing starting at 0, this should be 0, if we are indexing starting at 1, this should be 1 etc.
-    uint16_t offset = 0;
-
-    // Calculation for the source and target co-ordinates.
-    uint16_t source = ((sycord - offset) * xdim + sxcord - offset);
-    uint16_t target = ((tycord - offset) * xdim + txcord - offset);
-    
-    uint16_t *finalPath = ASTAR(source, target, adjlist, xdim, ydim);
-    int8_t *instructionSet = decode(finalPath, adjlist, xdim, target);
+    int8_t instructionSet[9] = {R, L, J, R, J, L, R, L, L};
     
     // Enable global interrupts as well as start and enable the isr.
     CyGlobalIntEnable;
     isr_eoc_1_StartEx(isr_eoc_1);
     isr_timer_1_StartEx(isr_timer_1);
     ADC_SAR_Seq_1_IRQ_Enable();
-    
-    // Init the decoders and related tools
-    decoderInit();
     
     // Start the ADC and begin conversions (in free running mode so will continue to convert).
     ADC_SAR_Seq_1_Start();
@@ -176,19 +113,10 @@ int main(void) {
       
     while(1) {
         
-        
         // If the conversion result is ready, put it into a variable and convert it into millivolts.
         ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
         ADCResult = ADC_SAR_Seq_1_GetResult16(channel);
         milliVoltReading = ADC_SAR_Seq_1_CountsTo_mVolts(ADCResult);
-
-        /* disabled uart code
-        char send[100];
-        sprintf(send,"%d\r\n",milliVoltReading);
-        USBUART_1_PutString(send);
-        
-        CyDelay(100);
-        */
         
         // If we read in a value higher than the current maximum for this period, replace the corresponding value in the maxValues array.
         if (milliVoltReading > maxValues[channel]) {
@@ -196,7 +124,7 @@ int main(void) {
         }
         
         if (reset == 1) {
-
+            
             // Fill the pastValues array with the new set of values.
             for (int i = 0; i < 5; i++) {
                 pastValues[i] = maxValues[i];
@@ -223,6 +151,7 @@ int main(void) {
                     // Go to the next movement instruction.
                     instructionCursor++;
                     nextInstruction = instructionSet[instructionCursor];
+                    led_Write(!led_Read());
                     state = FORWARD;
                 }
                 move_forward();
@@ -242,6 +171,7 @@ int main(void) {
                     // Go to the next movement instruction.
                     instructionCursor++;
                     nextInstruction = instructionSet[instructionCursor];
+                    led_Write(!led_Read());
                     state = FORWARD;
                 }
             } else if (state == TURNING_RIGHT) {
@@ -260,6 +190,7 @@ int main(void) {
                     // Go to the next movement instruction.
                     instructionCursor++;
                     nextInstruction = instructionSet[instructionCursor];
+                    led_Write(!led_Read());
                     state = FORWARD;
                 }
             } else if (state == FORWARD) {

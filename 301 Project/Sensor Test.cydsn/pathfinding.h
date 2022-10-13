@@ -44,14 +44,14 @@ struct Vertex {
     bool visited;
 } Vertex;
 
-struct Queue* makeQueue(unsigned size);
-void init(struct Queue* queue, uint16_t size);
-void push(struct Queue* queue, int16_t vertex, uint16_t priority);
-int16_t pop(struct Queue* queue);
-void delete(struct Queue* queue, uint16_t pos);
-bool queueContains(struct Queue* queue, int16_t vertex);
+void makeQueue(unsigned size);
+void init(uint16_t size);
+void push(int16_t vertex, uint16_t priority);
+int16_t pop();
+void delete(uint16_t pos);
+bool queueContains(int16_t vertex);
 uint16_t heuristic(int16_t entry, uint16_t target, uint16_t xdim);
-struct PriorityVertex removeVertex(struct Queue* queue);
+struct PriorityVertex removeVertex();
 uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim);
 int8_t *decode(uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target);
 
