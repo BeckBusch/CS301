@@ -1742,18 +1742,7 @@
 <dep name=".\CortexM3\ARM_GCC_541\Debug\pathfinding.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\cymetadata.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\Cm3Start.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\CyDmac.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\CyFlash.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\CyLib.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\cyPm.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\CySpc.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\cyutils.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\isr_eoc_1.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\Timer_1.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\Timer_1_PM.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\M2_IN2.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_PM.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_INT.o" />
@@ -1762,24 +1751,19 @@
 <dep name=".\CortexM3\ARM_GCC_541\Debug\PWM_1_PM.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\input_signal_1.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\input_signal_2.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\isr_eoc_1.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\PWM_2.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\PWM_2_PM.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\input_signal_3.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\input_signal_4.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\Clock_PWM.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR_INT.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR_PM.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_IntClock.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_TempBuf_dma.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_FinalBuf_dma.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_IRQ.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\M2_IN2.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\M1_IN2.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\M2_IN1.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\M1_IN1.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\isr_timer_1.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\input_signal_3.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\input_signal_4.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\Clock_PWM.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\timer_clock.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\Timer_1.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\Timer_1_PM.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\isr_timer_1.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\QuadDec_L.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\QuadDec_L_PM.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\QuadDec_R.o" />
@@ -1793,11 +1777,27 @@
 <dep name=".\CortexM3\ARM_GCC_541\Debug\Dec_Timer.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\Dec_Timer_PM.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\Dec_Timer_ISR.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\led.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR_INT.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR_PM.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_IntClock.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_TempBuf_dma.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_FinalBuf_dma.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_IRQ.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\QuadDec_L_Cnt16.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\QuadDec_L_Cnt16_PM.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\QuadDec_R_Cnt16_PM.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\led.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\Cm3Start.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\CyDmac.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\CyFlash.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\CyLib.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\cyPm.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\CySpc.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\cyutils.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\Sensor Test.a" />
 <dep name="${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" />
 </file>
@@ -2013,19 +2013,17 @@
 <dataGuid v="504337dd-7d07-4bc7-9057-90e60cf6c469">
 <CyGuid_504337dd-7d07-4bc7-9057-90e60cf6c469 type_name="CyDesigner.Common.Debugger.CyBreakpointList" version="1">
 <debugger_breakpoint_list>
-<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename=".\pathfinding.c" linenumber="119" />
-<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename=".\pathfinding.c" linenumber="112" />
-<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename=".\pathfinding.c" linenumber="29" />
-<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename=".\pathfinding.c" linenumber="132" />
-<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename=".\main.c" linenumber="96" />
-<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename=".\main.c" linenumber="102" />
+<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="False" hardware="True" temparary="False" filename=".\main.c" linenumber="147" />
+<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename=".\pathfinding.c" linenumber="137" />
+<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename=".\pathfinding.c" linenumber="140" />
+<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename=".\pathfinding.c" linenumber="103" />
 </debugger_breakpoint_list>
 </CyGuid_504337dd-7d07-4bc7-9057-90e60cf6c469>
 </dataGuid>
 <dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
 <CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
 <link_deps_times>
-<name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3" v="133099519803467863" />
+<name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3" v="133101097428476267" />
 </link_deps_times>
 </CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
 </dataGuid>
@@ -2356,85 +2354,9 @@
 <v>Generated_Source\PSoC5\cyfitteriar.inc</v>
 <v>Generated_Source\PSoC5\cyfitter.h</v>
 <v>Generated_Source\PSoC5\cydisabledsheets.h</v>
-<v>Generated_Source\PSoC5\LED_1_aliases.h</v>
-<v>Generated_Source\PSoC5\LED_1.c</v>
-<v>Generated_Source\PSoC5\LED_1.h</v>
-<v>Generated_Source\PSoC5\LED_2_aliases.h</v>
-<v>Generated_Source\PSoC5\LED_2.c</v>
-<v>Generated_Source\PSoC5\LED_2.h</v>
-<v>Generated_Source\PSoC5\singal_in_1_aliases.h</v>
-<v>Generated_Source\PSoC5\singal_in_1.c</v>
-<v>Generated_Source\PSoC5\singal_in_1.h</v>
-<v>Generated_Source\PSoC5\singal_in_2_aliases.h</v>
-<v>Generated_Source\PSoC5\singal_in_2.c</v>
-<v>Generated_Source\PSoC5\singal_in_2.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_1.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_1.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_1_INT.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_1_PM.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_2.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_2.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_2_INT.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_2_PM.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_1_IRQ.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_1_IRQ.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_1_theACLK.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_1_theACLK.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_1_Bypass_aliases.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_1_Bypass.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_1_Bypass.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_2_IRQ.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_2_IRQ.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_2_theACLK.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_2_theACLK.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_2_Bypass_aliases.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_2_Bypass.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_2_Bypass.h</v>
-<v>Generated_Source\PSoC5\cm3gcc.ld</v>
-<v>Generated_Source\PSoC5\Cm3RealView.scat</v>
-<v>Generated_Source\PSoC5\Cm3Start.c</v>
-<v>Generated_Source\PSoC5\core_cm3.h</v>
-<v>Generated_Source\PSoC5\core_cm3_psoc5.h</v>
-<v>Generated_Source\PSoC5\CyBootAsmGnu.s</v>
-<v>Generated_Source\PSoC5\CyBootAsmRv.s</v>
-<v>Generated_Source\PSoC5\CyDmac.c</v>
-<v>Generated_Source\PSoC5\CyDmac.h</v>
-<v>Generated_Source\PSoC5\CyFlash.c</v>
-<v>Generated_Source\PSoC5\CyFlash.h</v>
-<v>Generated_Source\PSoC5\CyLib.c</v>
-<v>Generated_Source\PSoC5\CyLib.h</v>
-<v>Generated_Source\PSoC5\cypins.h</v>
-<v>Generated_Source\PSoC5\cyPm.c</v>
-<v>Generated_Source\PSoC5\cyPm.h</v>
-<v>Generated_Source\PSoC5\CySpc.c</v>
-<v>Generated_Source\PSoC5\CySpc.h</v>
-<v>Generated_Source\PSoC5\cytypes.h</v>
-<v>Generated_Source\PSoC5\cyutils.c</v>
-<v>Generated_Source\PSoC5\core_cmFunc.h</v>
-<v>Generated_Source\PSoC5\core_cmInstr.h</v>
-<v>Generated_Source\PSoC5\Cm3Iar.icf</v>
-<v>Generated_Source\PSoC5\CyBootAsmIar.s</v>
-<v>Generated_Source\PSoC5\cmsis_armcc.h</v>
-<v>Generated_Source\PSoC5\cmsis_gcc.h</v>
-<v>Generated_Source\PSoC5\cmsis_compiler.h</v>
-<v>Generated_Source\PSoC5\cy_em_eeprom.c</v>
-<v>Generated_Source\PSoC5\cy_em_eeprom.h</v>
-<v>Generated_Source\PSoC5\project.h</v>
-<v>Generated_Source\PSoC5\cycodeshareimport.ld</v>
-<v>Generated_Source\PSoC5\cycodeshareexport.ld</v>
-<v>Generated_Source\PSoC5\cycodeshareimport.scat</v>
-<v>Generated_Source\PSoC5\isr_eoc_1.c</v>
-<v>Generated_Source\PSoC5\isr_eoc_1.h</v>
-<v>Generated_Source\PSoC5\isr_eoc_2.c</v>
-<v>Generated_Source\PSoC5\isr_eoc_2.h</v>
-<v>Generated_Source\PSoC5\LED_3_aliases.h</v>
-<v>Generated_Source\PSoC5\LED_3.c</v>
-<v>Generated_Source\PSoC5\LED_3.h</v>
-<v>Generated_Source\PSoC5\Timer_1.c</v>
-<v>Generated_Source\PSoC5\Timer_1.h</v>
-<v>Generated_Source\PSoC5\Timer_1_PM.c</v>
-<v>Generated_Source\PSoC5\isr_timer.c</v>
-<v>Generated_Source\PSoC5\isr_timer.h</v>
+<v>Generated_Source\PSoC5\M2_IN2_aliases.h</v>
+<v>Generated_Source\PSoC5\M2_IN2.c</v>
+<v>Generated_Source\PSoC5\M2_IN2.h</v>
 <v>Generated_Source\PSoC5\ADC_SAR_Seq_1.c</v>
 <v>Generated_Source\PSoC5\ADC_SAR_Seq_1.h</v>
 <v>Generated_Source\PSoC5\ADC_SAR_Seq_1_PM.c</v>
@@ -2451,32 +2373,11 @@
 <v>Generated_Source\PSoC5\input_signal_2_aliases.h</v>
 <v>Generated_Source\PSoC5\input_signal_2.c</v>
 <v>Generated_Source\PSoC5\input_signal_2.h</v>
+<v>Generated_Source\PSoC5\isr_eoc_1.c</v>
+<v>Generated_Source\PSoC5\isr_eoc_1.h</v>
 <v>Generated_Source\PSoC5\PWM_2.c</v>
 <v>Generated_Source\PSoC5\PWM_2.h</v>
 <v>Generated_Source\PSoC5\PWM_2_PM.c</v>
-<v>Generated_Source\PSoC5\input_signal_3_aliases.h</v>
-<v>Generated_Source\PSoC5\input_signal_3.c</v>
-<v>Generated_Source\PSoC5\input_signal_3.h</v>
-<v>Generated_Source\PSoC5\input_signal_4_aliases.h</v>
-<v>Generated_Source\PSoC5\input_signal_4.c</v>
-<v>Generated_Source\PSoC5\input_signal_4.h</v>
-<v>Generated_Source\PSoC5\Clock_PWM.c</v>
-<v>Generated_Source\PSoC5\Clock_PWM.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR_INT.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR_PM.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_IntClock.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_IntClock.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_TempBuf_dma.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_TempBuf_dma.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_FinalBuf_dma.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_FinalBuf_dma.h</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_IRQ.c</v>
-<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_IRQ.h</v>
-<v>Generated_Source\PSoC5\M2_IN2_aliases.h</v>
-<v>Generated_Source\PSoC5\M2_IN2.c</v>
-<v>Generated_Source\PSoC5\M2_IN2.h</v>
 <v>Generated_Source\PSoC5\M1_IN2_aliases.h</v>
 <v>Generated_Source\PSoC5\M1_IN2.c</v>
 <v>Generated_Source\PSoC5\M1_IN2.h</v>
@@ -2486,42 +2387,21 @@
 <v>Generated_Source\PSoC5\M1_IN1_aliases.h</v>
 <v>Generated_Source\PSoC5\M1_IN1.c</v>
 <v>Generated_Source\PSoC5\M1_IN1.h</v>
-<v>Generated_Source\PSoC5\Pin_1_aliases.h</v>
-<v>Generated_Source\PSoC5\Pin_1.c</v>
-<v>Generated_Source\PSoC5\Pin_1.h</v>
-<v>Generated_Source\PSoC5\isr_timer_1.c</v>
-<v>Generated_Source\PSoC5\isr_timer_1.h</v>
+<v>Generated_Source\PSoC5\input_signal_3_aliases.h</v>
+<v>Generated_Source\PSoC5\input_signal_3.c</v>
+<v>Generated_Source\PSoC5\input_signal_3.h</v>
+<v>Generated_Source\PSoC5\input_signal_4_aliases.h</v>
+<v>Generated_Source\PSoC5\input_signal_4.c</v>
+<v>Generated_Source\PSoC5\input_signal_4.h</v>
+<v>Generated_Source\PSoC5\Clock_PWM.c</v>
+<v>Generated_Source\PSoC5\Clock_PWM.h</v>
 <v>Generated_Source\PSoC5\timer_clock.c</v>
 <v>Generated_Source\PSoC5\timer_clock.h</v>
-<v>Generated_Source\PSoC5\USBUART_1.c</v>
-<v>Generated_Source\PSoC5\USBUART_1.h</v>
-<v>Generated_Source\PSoC5\USBUART_1_audio.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_audio.h</v>
-<v>Generated_Source\PSoC5\USBUART_1_boot.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_cdc.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_cdc.h</v>
-<v>Generated_Source\PSoC5\USBUART_1_cls.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_descr.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_drv.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_episr.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_hid.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_hid.h</v>
-<v>Generated_Source\PSoC5\USBUART_1_pm.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_std.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_vnd.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_cdc.inf</v>
-<v>Generated_Source\PSoC5\USBUART_1_midi.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_midi.h</v>
-<v>Generated_Source\PSoC5\USBUART_1_pvt.h</v>
-<v>Generated_Source\PSoC5\USBUART_1_cydmac.h</v>
-<v>Generated_Source\PSoC5\USBUART_1_msc.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_msc.h</v>
-<v>Generated_Source\PSoC5\USBUART_1_Dm_aliases.h</v>
-<v>Generated_Source\PSoC5\USBUART_1_Dm.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_Dm.h</v>
-<v>Generated_Source\PSoC5\USBUART_1_Dp_aliases.h</v>
-<v>Generated_Source\PSoC5\USBUART_1_Dp.c</v>
-<v>Generated_Source\PSoC5\USBUART_1_Dp.h</v>
+<v>Generated_Source\PSoC5\Timer_1.c</v>
+<v>Generated_Source\PSoC5\Timer_1.h</v>
+<v>Generated_Source\PSoC5\Timer_1_PM.c</v>
+<v>Generated_Source\PSoC5\isr_timer_1.c</v>
+<v>Generated_Source\PSoC5\isr_timer_1.h</v>
 <v>Generated_Source\PSoC5\QuadDec_L.c</v>
 <v>Generated_Source\PSoC5\QuadDec_L.h</v>
 <v>Generated_Source\PSoC5\QuadDec_L_PM.c</v>
@@ -2549,22 +2429,60 @@
 <v>Generated_Source\PSoC5\Dec_Timer_PM.c</v>
 <v>Generated_Source\PSoC5\Dec_Timer_ISR.c</v>
 <v>Generated_Source\PSoC5\Dec_Timer_ISR.h</v>
-<v>Generated_Source\PSoC5\UART_1.c</v>
-<v>Generated_Source\PSoC5\UART_1.h</v>
-<v>Generated_Source\PSoC5\UART_1_PM.c</v>
-<v>Generated_Source\PSoC5\UART_1_INT.c</v>
-<v>Generated_Source\PSoC5\UART_1_BOOT.c</v>
+<v>Generated_Source\PSoC5\led_aliases.h</v>
+<v>Generated_Source\PSoC5\led.c</v>
+<v>Generated_Source\PSoC5\led.h</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR.c</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR.h</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR_INT.c</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR_PM.c</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_IntClock.c</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_IntClock.h</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_TempBuf_dma.c</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_TempBuf_dma.h</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_FinalBuf_dma.c</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_FinalBuf_dma.h</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_IRQ.c</v>
+<v>Generated_Source\PSoC5\ADC_SAR_Seq_1_IRQ.h</v>
 <v>Generated_Source\PSoC5\QuadDec_L_Cnt16.c</v>
 <v>Generated_Source\PSoC5\QuadDec_L_Cnt16.h</v>
 <v>Generated_Source\PSoC5\QuadDec_L_Cnt16_PM.c</v>
 <v>Generated_Source\PSoC5\QuadDec_R_Cnt16.c</v>
 <v>Generated_Source\PSoC5\QuadDec_R_Cnt16.h</v>
 <v>Generated_Source\PSoC5\QuadDec_R_Cnt16_PM.c</v>
-<v>Generated_Source\PSoC5\UART_1_IntClock.c</v>
-<v>Generated_Source\PSoC5\UART_1_IntClock.h</v>
-<v>Generated_Source\PSoC5\led_aliases.h</v>
-<v>Generated_Source\PSoC5\led.c</v>
-<v>Generated_Source\PSoC5\led.h</v>
+<v>Generated_Source\PSoC5\cy_em_eeprom.c</v>
+<v>Generated_Source\PSoC5\cy_em_eeprom.h</v>
+<v>Generated_Source\PSoC5\cm3gcc.ld</v>
+<v>Generated_Source\PSoC5\Cm3RealView.scat</v>
+<v>Generated_Source\PSoC5\Cm3Start.c</v>
+<v>Generated_Source\PSoC5\core_cm3.h</v>
+<v>Generated_Source\PSoC5\core_cm3_psoc5.h</v>
+<v>Generated_Source\PSoC5\CyBootAsmGnu.s</v>
+<v>Generated_Source\PSoC5\CyBootAsmRv.s</v>
+<v>Generated_Source\PSoC5\CyDmac.c</v>
+<v>Generated_Source\PSoC5\CyDmac.h</v>
+<v>Generated_Source\PSoC5\CyFlash.c</v>
+<v>Generated_Source\PSoC5\CyFlash.h</v>
+<v>Generated_Source\PSoC5\CyLib.c</v>
+<v>Generated_Source\PSoC5\CyLib.h</v>
+<v>Generated_Source\PSoC5\cypins.h</v>
+<v>Generated_Source\PSoC5\cyPm.c</v>
+<v>Generated_Source\PSoC5\cyPm.h</v>
+<v>Generated_Source\PSoC5\CySpc.c</v>
+<v>Generated_Source\PSoC5\CySpc.h</v>
+<v>Generated_Source\PSoC5\cytypes.h</v>
+<v>Generated_Source\PSoC5\cyutils.c</v>
+<v>Generated_Source\PSoC5\core_cmFunc.h</v>
+<v>Generated_Source\PSoC5\core_cmInstr.h</v>
+<v>Generated_Source\PSoC5\Cm3Iar.icf</v>
+<v>Generated_Source\PSoC5\CyBootAsmIar.s</v>
+<v>Generated_Source\PSoC5\cmsis_armcc.h</v>
+<v>Generated_Source\PSoC5\cmsis_gcc.h</v>
+<v>Generated_Source\PSoC5\cmsis_compiler.h</v>
+<v>Generated_Source\PSoC5\project.h</v>
+<v>Generated_Source\PSoC5\cycodeshareimport.ld</v>
+<v>Generated_Source\PSoC5\cycodeshareexport.ld</v>
+<v>Generated_Source\PSoC5\cycodeshareimport.scat</v>
 </gen_list>
 <warp_dep>
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\ieee\work\stdlogic.vif</v>
@@ -2574,7 +2492,7 @@
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif</v>
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif</v>
 </warp_dep>
-<deps_time v="133099299850388162" />
+<deps_time v="133101006346762939" />
 <top_block v="TopDesign" />
 <last_generation v="1" />
 <pdl_path v="" />

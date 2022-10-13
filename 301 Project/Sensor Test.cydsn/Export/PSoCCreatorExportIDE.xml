@@ -67,44 +67,9 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyfitteriar.inc</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyfitter.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cydisabledsheets.h</File>
-          <File BuildType="BUILD" Toolchain="ARM GCC Generic">Generated_Source\PSoC5\cm3gcc.ld</File>
-          <File BuildType="BUILD" Toolchain="ARM MDK Generic">Generated_Source\PSoC5\Cm3RealView.scat</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Cm3Start.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\core_cm3.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\core_cm3_psoc5.h</File>
-          <File BuildType="BUILD" Toolchain="ARM GCC Generic">Generated_Source\PSoC5\CyBootAsmGnu.s</File>
-          <File BuildType="BUILD" Toolchain="ARM MDK Generic">Generated_Source\PSoC5\CyBootAsmRv.s</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyDmac.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyDmac.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyFlash.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyFlash.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyLib.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyLib.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cypins.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyPm.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyPm.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CySpc.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CySpc.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cytypes.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyutils.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\core_cmFunc.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\core_cmInstr.h</File>
-          <File BuildType="BUILD" Toolchain="ARM IAR Generic">Generated_Source\PSoC5\Cm3Iar.icf</File>
-          <File BuildType="BUILD" Toolchain="ARM IAR Generic">Generated_Source\PSoC5\CyBootAsmIar.s</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cmsis_armcc.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cmsis_gcc.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cmsis_compiler.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cy_em_eeprom.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cy_em_eeprom.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\project.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareimport.ld</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareexport.ld</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareimport.scat</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_eoc_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_eoc_1.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_1.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_IN2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_IN2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_IN2.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_PM.c</File>
@@ -121,32 +86,11 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_2_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_2.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_eoc_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_eoc_1.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\PWM_2.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\PWM_2.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\PWM_2_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_3_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_3.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_3.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_4_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_4.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_4.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_PWM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_PWM.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_IntClock.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_IntClock.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_TempBuf_dma.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_TempBuf_dma.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_FinalBuf_dma.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_FinalBuf_dma.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_IRQ.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_IRQ.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_IN2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_IN2.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_IN2.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_IN2_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_IN2.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_IN2.h</File>
@@ -156,10 +100,21 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_IN1_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_IN1.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_IN1.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_timer_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_timer_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_3_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_3.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_3.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_4_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_4.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\input_signal_4.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_PWM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_PWM.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\timer_clock.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\timer_clock.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_timer_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_timer_1.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_L.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_L.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_L_PM.c</File>
@@ -187,15 +142,60 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Dec_Timer_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Dec_Timer_ISR.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Dec_Timer_ISR.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\led_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\led.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\led.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_IntClock.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_IntClock.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_TempBuf_dma.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_TempBuf_dma.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_FinalBuf_dma.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_FinalBuf_dma.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_IRQ.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_Seq_1_IRQ.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_L_Cnt16.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_L_Cnt16.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_L_Cnt16_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_R_Cnt16.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_R_Cnt16.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\QuadDec_R_Cnt16_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\led_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\led.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\led.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cy_em_eeprom.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cy_em_eeprom.h</File>
+          <File BuildType="BUILD" Toolchain="ARM GCC Generic">Generated_Source\PSoC5\cm3gcc.ld</File>
+          <File BuildType="BUILD" Toolchain="ARM MDK Generic">Generated_Source\PSoC5\Cm3RealView.scat</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Cm3Start.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\core_cm3.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\core_cm3_psoc5.h</File>
+          <File BuildType="BUILD" Toolchain="ARM GCC Generic">Generated_Source\PSoC5\CyBootAsmGnu.s</File>
+          <File BuildType="BUILD" Toolchain="ARM MDK Generic">Generated_Source\PSoC5\CyBootAsmRv.s</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyDmac.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyDmac.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyFlash.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyFlash.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyLib.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CyLib.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cypins.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyPm.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyPm.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CySpc.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CySpc.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cytypes.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyutils.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\core_cmFunc.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\core_cmInstr.h</File>
+          <File BuildType="BUILD" Toolchain="ARM IAR Generic">Generated_Source\PSoC5\Cm3Iar.icf</File>
+          <File BuildType="BUILD" Toolchain="ARM IAR Generic">Generated_Source\PSoC5\CyBootAsmIar.s</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cmsis_armcc.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cmsis_gcc.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cmsis_compiler.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\project.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareimport.ld</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareexport.ld</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareimport.scat</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="\\files.auckland.ac.nz\myhome\Documents\GitHub\project-project-group-7\301 Project\Sensor Test.cydsn\Export\ARM_GCC_Generic">

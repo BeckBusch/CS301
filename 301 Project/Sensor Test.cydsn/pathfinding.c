@@ -8,12 +8,12 @@
 struct Queue* makeQueue(unsigned size) {
 
     // We need to make a pointer to the queue so that we can pass it by reference from the function we call push/pop from.
-    struct Queue* queue = (struct Queue*)malloc(sizeof(queue));
+    struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
     queue->capacity = size;
     queue->start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
     queue->size = 0; // Queue is empty to begin with.
     queue->end = queue->capacity - 1;
-    //queue->array = (struct PriorityVertex *) malloc(queue->capacity * sizeof(struct PriorityVertex)); // Using sizeof(int) means we allocate enough memory.
+    queue->array = (struct PriorityVertex *) malloc(queue->capacity * sizeof(struct PriorityVertex)); // Using sizeof(int) means we allocate enough memory.
 
     return queue;
 }

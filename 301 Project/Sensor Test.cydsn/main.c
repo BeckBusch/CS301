@@ -134,7 +134,7 @@ int main(void) {
 
     // Target x and y co-ordinates.
     uint16_t txcord = 9;//5;
-    uint16_t tycord = 9;//13;
+    uint16_t tycord = 6;//13;
 
     // The offset value - if we are indexing starting at 0, this should be 0, if we are indexing starting at 1, this should be 1 etc.
     uint16_t offset = 0;
@@ -145,9 +145,6 @@ int main(void) {
     
     uint16_t *finalPath = ASTAR(source, target, adjlist, xdim, ydim);
     int8_t *instructionSet = decode(finalPath, adjlist, xdim, target);
-    
-    // Write the debugging led low.
-    led_Write(0);
     
     // Enable global interrupts as well as start and enable the isr.
     CyGlobalIntEnable;
@@ -171,13 +168,14 @@ int main(void) {
     PWM_2_Start();
     stop();
     Timer_1_Start();
-    //turn_left();
-    //stop();
-    //turn_right();
-
+    
     int8_t nextInstruction = instructionSet[instructionCursor];
-        
+    
+    // Write the debugging led low.
+    led_Write(0);
+      
     while(1) {
+        
         
         // If the conversion result is ready, put it into a variable and convert it into millivolts.
         ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
@@ -300,9 +298,8 @@ int main(void) {
                     state = FORWARD;
                 }
             }
-            reset = 0;
             
-             
+            reset = 0;
         
         // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
         if (pastValues[channel] >= 500) {

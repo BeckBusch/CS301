@@ -35,7 +35,7 @@ struct PriorityVertex {
 struct Queue {
     int16_t start, end, size;
     unsigned capacity;
-    struct PriorityVertex array[285];
+    struct PriorityVertex *array;
 } Queue;
 
 struct Vertex {
