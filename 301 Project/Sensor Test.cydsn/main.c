@@ -83,7 +83,8 @@ int main(void) {
 
     // Write debugging led high.
     led_Write(1);
-    
+    led_1_Write(1);
+    led_2_Write(1);
     int8_t instructionSet[9] = {R, L, J, R, J, L, R, L, L};
     
     // Enable global interrupts as well as start and enable the isr.
@@ -110,7 +111,7 @@ int main(void) {
     
     // Write the debugging led low.
     led_Write(0);
-      
+      move_forward();
     while(1) {
         
         // If the conversion result is ready, put it into a variable and convert it into millivolts.
@@ -201,21 +202,23 @@ int main(void) {
                 } else if (sensor_state[FL] == OFF) {
                     // Correct to the left.
                     turn_left();
+                    move_forward();
                 } else if (sensor_state[FR] == OFF) {
                     // Correct to the right.
                     turn_right();
+                    move_forward();
                 } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && ((sensor_state[CL] == ON && sensor_state[CR] == OFF) || (sensor_state[CL] == OFF && sensor_state[CR] == ON)) && disable_toggle == DISABLE_ALL) {
                     // Pass through the junction.
                     state = TURNING_ENABLE;
                     move_forward();
-                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == OFF && sensor_state[CR] == ON && disable_toggle != DISABLE_LEFT_TURN) {
+                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == OFF && sensor_state[CR] == ON && (disable_toggle != DISABLE_LEFT_TURN && disable_toggle != DISABLE_ALL)) {
                     // Left turning.
                     state = TURNING_LEFT;
                     turn_left();
-                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF && disable_toggle != DISABLE_RIGHT_TURN) {
+                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF && (disable_toggle != DISABLE_RIGHT_TURN && disable_toggle != DISABLE_ALL)) {
                     // Right turning.
                     state = TURNING_RIGHT;
-                    turn_right();
+                    turn_right();;
                 } 
                 } else {
                     // If no other condition has been met, continue to move forward.
