@@ -25,7 +25,7 @@ struct PriorityVertex {
 struct Queue {
     int16_t start, end, size;
     unsigned capacity;
-    struct PriorityVertex *array;
+    struct PriorityVertex array[285];
 } Queue;
 
 struct Vertex {
@@ -34,29 +34,31 @@ struct Vertex {
     bool visited;
 } Vertex;
 
-struct Queue* makeQueue(unsigned size) {
+void makeQueue(struct Queue *queue, unsigned size) {
 
-    // We need to make a pointer to the queue so that we can pass it by reference from the function we call push/pop from.
-    struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
+    // Iitialise the values for the queue one by one.
     queue->capacity = size;
     queue->start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
     queue->size = 0; // Queue is empty to begin with.
     queue->end = queue->capacity - 1;
-    queue->array = (struct PriorityVertex *) malloc(queue->capacity * sizeof(struct PriorityVertex)); // Using sizeof(int) means we allocate enough memory.
+    for (int i = 0; i < size; i++) {
+        struct PriorityVertex newVertex = { .value = 0, .priority = 0 };
+        queue->array[i] = newVertex; // Initialise array values to zero.
+    }
 
 }
 
-void init(struct Queue* queue, uint16_t size) {
+void init(struct Queue *queue, uint16_t size) {
 
     // Initialise all values to minus one so that we can tell if the queue is empty or not (there is a vertex zero).
     for (uint16_t i = 0; i < size; i++) {
-        struct PriorityVertex defaultValue = { .value = -1, .priority = UINT16_MAX, };
+        struct PriorityVertex defaultValue = { .value = -1, .priority = UINT16_MAX };
         queue->array[i] = defaultValue;
     }
 
 }
 
-void push(struct Queue* queue, int16_t vertex, uint16_t priority) {
+void push(struct Queue *queue, int16_t vertex, uint16_t priority) {
 
     // Move the end marker along one, if we reach capacity, go back to the beginning.
     queue->end = (queue->end + 1) % queue->capacity;
@@ -66,7 +68,7 @@ void push(struct Queue* queue, int16_t vertex, uint16_t priority) {
 
 }
 
-int16_t pop(struct Queue* queue) {
+int16_t pop(struct Queue *queue) {
 
     // Get the vertex from the start of the queue.
     struct PriorityVertex vertex = queue->array[queue->start];
@@ -80,7 +82,7 @@ int16_t pop(struct Queue* queue) {
 
 }
 
-void delete(struct Queue* queue, uint16_t pos) {
+void delete(struct Queue *queue, uint16_t pos) {
 
     // Replace each entry in the array with the next entry until the end.
     for (uint16_t i = 0; i < queue->end - pos; i++) {
@@ -92,7 +94,7 @@ void delete(struct Queue* queue, uint16_t pos) {
 
 }
 
-bool queueContains(struct Queue* queue, int16_t vertex) {
+bool queueContains(struct Queue *queue, int16_t vertex) {
 
     // If the queue contains the vertex return true, else return false.
     for (uint16_t i = 0; i < queue->size; i++) {
@@ -115,7 +117,7 @@ uint16_t heuristic(int16_t entry, uint16_t target, uint16_t xdim) {
 
 }
 
-struct PriorityVertex removeVertex(struct Queue* queue) {
+struct PriorityVertex removeVertex(struct Queue *queue) {
 
     // This function operates like pop but differs in that the priority queue is out of order.
     uint16_t maxPriority = UINT16_MAX;
@@ -137,15 +139,17 @@ struct PriorityVertex removeVertex(struct Queue* queue) {
 }
 
 // Implementation of the A* algorithm.
-uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim, uint16_t array[15][19]) {
+void ASTAR(uint16_t *finalPath, uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim, uint16_t array[15][19]) {
 
     // Dimension.
     uint16_t size = xdim * ydim;
 
     // Set up the queue.
-    struct Queue* queue = makeQueue(size);
-    init(queue, size);
-    push(queue, source, 0);
+    struct Queue queue;
+    makeQueue(&queue, size);
+
+    init(&queue, size);
+    push(&queue, source, 0);
 
     // Set up an array to track vertices and their distances (INT_MAX means a vertex has yet to be visited).
     struct Vertex vertices[size];
@@ -162,10 +166,10 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
     vertices[source].distance = 1;
 
     // While we have yet to reach the destination, keep looping.
-    while (queue->size != 0) {
+    while (queue.size != 0) {
 
         // Get the vertex with the highest priority.
-        struct PriorityVertex key = removeVertex(queue);
+        struct PriorityVertex key = removeVertex(&queue);
 
         // Set the visited status to true.
         vertices[key.value].visited = true;
@@ -197,8 +201,7 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
             order--;
             shortestPath[source] = order;
 
-            // Array to return. Need to allocate space for an additional int so we can store the size as well.
-            uint16_t *finalPath = malloc((vertices[target].distance + 1) * sizeof(uint16_t));
+            // Need to allocate space for an additional int so we can store the size as well.
             for (uint16_t i = 0; i < size; i++) {
                 if (shortestPath[i] != -1) {
                     order = shortestPath[i];
@@ -208,9 +211,6 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
 
             // Set the size at position 0.
             finalPath[0] = vertices[target].distance;
-
-            // Return the formatted shortest path.
-            return finalPath;
 
         }
 
@@ -234,9 +234,9 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
                     // Set the predecessor (we want to take the newly discovered shortest path to entry vertex).
                     vertices[entry].pred = key.value;
 
-                    if (!queueContains(queue, entry)) {
+                    if (!queueContains(&queue, entry)) {
                         // If the neighbour is not in the priority queue already, add it.
-                        push(queue, entry, priority);
+                        push(&queue, entry, priority);
                     }
 
                 }
@@ -248,17 +248,11 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
 }
 
 // Decode an array of vertices representing the shortest path into a list of directions.
-int8_t *decode(uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target) {
+void decode(uint8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target) {
 
     // Get the length of the final path and store it in size.
     uint16_t size = finalPath[0];
     
-    // Allocate space for our return array.
-    int8_t *instructionSet = malloc(size * sizeof(int8_t));
-    for (uint16_t i = 0; i < size; i++) {
-        instructionSet[i] = NULLDIR;
-    }
-
     // Track the current and previous directions, and array indices.
     uint16_t i = 1, j = 0;
     uint8_t traversalDirection = UNINITIALISED;
@@ -342,8 +336,6 @@ int8_t *decode(uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_
         i++;
 
     }
-    // Return the set of instructions produced.
-    return instructionSet;
 
 }
 
@@ -412,18 +404,26 @@ int main() {
             // For loops go through rows, cols.
             if (array[i][j] == 0) {
                 cnode = i * xdim + j; 
-                if (array[i - 1][j] == 0) {
-                    // Row above.
-                    adjlist[cnode][0] = (i - 1) * xdim + j;
-                } if (array[i + 1][j] == 0) {
-                    // Row below.
-                    adjlist[cnode][1] = (i + 1) * xdim + j;
-                } if (array[i][j - 1] == 0) {
-                    // Column left.
-                    adjlist[cnode][2] = i * xdim + j - 1;
-                } if (array[i][j + 1] == 0) {
-                    // Column right.
-                    adjlist[cnode][3] = i * xdim + j + 1;
+                if (i >= 1) {
+                    if (array[i - 1][j] == 0) {
+                        // Row above.
+                        adjlist[cnode][0] = (i - 1) * xdim + j;
+                    }
+                } if (i <= ydim - 2) {
+                    if (array[i + 1][j] == 0) {
+                        // Row below.
+                        adjlist[cnode][1] = (i + 1) * xdim + j;
+                    }
+                } if (j >= 1) {
+                    if (array[i][j - 1] == 0) {
+                        // Column left.
+                        adjlist[cnode][2] = i * xdim + j - 1;
+                    }
+                } if (j <= xdim - 2) {
+                    if (array[i][j + 1] == 0) {
+                        // Column right.
+                        adjlist[cnode][3] = i * xdim + j + 1;
+                    }
                 }
             }
         }
@@ -444,8 +444,12 @@ int main() {
     uint16_t source = ((sycord - offset) * xdim + sxcord - offset);
     uint16_t target = ((tycord - offset) * xdim + txcord - offset);
 
-    uint16_t *finalPath = ASTAR(source, target, adjlist, xdim, ydim, array);
-    int8_t *instructionSet = decode(finalPath, adjlist, xdim, target);
+    // Initialise return arrays.
+    uint16_t finalPath[xydim];
+    uint8_t instructionSet[xydim];
+
+    ASTAR(finalPath, source, target, adjlist, xdim, ydim, array);
+    decode(instructionSet, finalPath, adjlist, xdim, target);
 
     // Print statements for debugging - this is the output we use for turning.
     for (uint16_t i = 0; i < finalPath[0] + 1; i++) {
