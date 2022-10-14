@@ -36,11 +36,11 @@
 #define TURNING_ENABLE 5
 #define STOPPED 6
 
-// Disable left and right turns at appropriate times.
-#define DISABLE_LEFT_TURN 0
-#define DISABLE_RIGHT_TURN 1
-#define DISABLE_ALL 2
-#define DISABLE_NONE 3
+// Enable left and right turning at appropriate times.
+#define LEFT_ENABLE 0
+#define LEFT_DISABLE 1
+#define RIGHT_ENABLE 2
+#define RIGHT_DISABLE 3
 
 // Prototype declarations.
 CY_ISR_PROTO(isr_eoc_1);
@@ -79,12 +79,13 @@ int main(void) {
     uint32 i = 0;
     uint16 turn_count = 0;
 
-    uint8 disable_toggle;
+    uint8 left_en_toggle = LEFT_ENABLE;
+    uint8 right_en_toggle = RIGHT_ENABLE;
 
     // Write debugging led high.
     led_Write(1);
-    led_1_Write(1);
-    led_2_Write(1);
+    //led_1_Write(1);
+    //led_2_Write(1);
     int8_t instructionSet[9] = {R, L, J, R, J, L, R, L, L};
     
     // Enable global interrupts as well as start and enable the isr.
@@ -107,11 +108,12 @@ int main(void) {
     stop();
     Timer_1_Start();
     
-    int8_t nextInstruction = instructionSet[instructionCursor];
+    int8_t nextInstruction;
+    nextInstruction = instructionSet[instructionCursor];
     
     // Write the debugging led low.
     led_Write(0);
-      move_forward();
+      //move_forward();
     while(1) {
         
         // If the conversion result is ready, put it into a variable and convert it into millivolts.
@@ -123,7 +125,7 @@ int main(void) {
         if (milliVoltReading > maxValues[channel]) {
             maxValues[channel] = milliVoltReading;
         }
-        
+                           
         if (reset == 1) {
             
             // Fill the pastValues array with the new set of values.
@@ -131,20 +133,29 @@ int main(void) {
                 pastValues[i] = maxValues[i];
                 maxValues[i] = 0;
             }
-
+            
             if (nextInstruction == L) {
                 // For left turning.
-                disable_toggle = DISABLE_RIGHT_TURN;
+                left_en_toggle = LEFT_ENABLE;
+                right_en_toggle = RIGHT_DISABLE;
+                led_Write(!led_Read());
             } else if (nextInstruction == R) {
                 // For right turning.
-                disable_toggle = DISABLE_LEFT_TURN;
+                left_en_toggle = LEFT_DISABLE;
+                right_en_toggle = RIGHT_ENABLE;
+                led_Write(!led_Read());
             } else if (nextInstruction == J) {
                 // For junctions.
-                disable_toggle = DISABLE_ALL;
+                left_en_toggle = LEFT_DISABLE;
+                right_en_toggle = RIGHT_DISABLE;
+                led_Write(!led_Read());
             } else if (nextInstruction == NULLDIR) {
                 // For uninitialised or reset.
-                disable_toggle = DISABLE_NONE;
+                left_en_toggle = LEFT_ENABLE;
+                right_en_toggle = RIGHT_ENABLE;
+                led_Write(!led_Read());
             }
+            
             
             if (state == TURNING_ENABLE) {
                 // If we have passed the junction, return to the forward state.
@@ -152,11 +163,10 @@ int main(void) {
                     // Go to the next movement instruction.
                     instructionCursor++;
                     nextInstruction = instructionSet[instructionCursor];
-                    led_Write(!led_Read());
                     state = FORWARD;
                 }
                 move_forward();
-            } else if (state == TURNING_LEFT) {
+            } if (state == TURNING_LEFT) {
                 // Exit left if we have done (most of) the 90 degree turn.
                 if (sensor_state[FL] == OFF) {
                     state = EXIT_LEFT;
@@ -172,7 +182,6 @@ int main(void) {
                     // Go to the next movement instruction.
                     instructionCursor++;
                     nextInstruction = instructionSet[instructionCursor];
-                    led_Write(!led_Read());
                     state = FORWARD;
                 }
             } else if (state == TURNING_RIGHT) {
@@ -191,7 +200,6 @@ int main(void) {
                     // Go to the next movement instruction.
                     instructionCursor++;
                     nextInstruction = instructionSet[instructionCursor];
-                    led_Write(!led_Read());
                     state = FORWARD;
                 }
             } else if (state == FORWARD) {
@@ -202,24 +210,21 @@ int main(void) {
                 } else if (sensor_state[FL] == OFF) {
                     // Correct to the left.
                     turn_left();
-                    move_forward();
                 } else if (sensor_state[FR] == OFF) {
                     // Correct to the right.
                     turn_right();
-                    move_forward();
-                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && ((sensor_state[CL] == ON && sensor_state[CR] == OFF) || (sensor_state[CL] == OFF && sensor_state[CR] == ON)) && disable_toggle == DISABLE_ALL) {
+                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && ((sensor_state[CL] == ON && sensor_state[CR] == OFF) || (sensor_state[CL] == OFF && sensor_state[CR] == ON)) && (left_en_toggle == LEFT_DISABLE && right_en_toggle == RIGHT_DISABLE)) {
                     // Pass through the junction.
                     state = TURNING_ENABLE;
                     move_forward();
-                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == OFF && sensor_state[CR] == ON && (disable_toggle != DISABLE_LEFT_TURN && disable_toggle != DISABLE_ALL)) {
+                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == OFF && sensor_state[CR] == ON && left_en_toggle == LEFT_ENABLE) {
                     // Left turning.
                     state = TURNING_LEFT;
                     turn_left();
-                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF && (disable_toggle != DISABLE_RIGHT_TURN && disable_toggle != DISABLE_ALL)) {
+                } else if (sensor_state[FL] == ON && sensor_state[FR] == ON && sensor_state[CL] == ON && sensor_state[CR] == OFF && right_en_toggle == RIGHT_ENABLE) {
                     // Right turning.
                     state = TURNING_RIGHT;
-                    turn_right();;
-                } 
+                    turn_right();
                 } else {
                     // If no other condition has been met, continue to move forward.
                     move_forward();
@@ -233,36 +238,37 @@ int main(void) {
                 }
             }
             
-            reset = 0;
+            reset = 0;   
+        }
         
         // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
         if (pastValues[channel] >= 500) {
             // Change the position in the sensor_state array depending on the channel being read.
             if (channel == 0) {
-                sensor_state[FL] = ON;
-            } else if (channel == 1) {
-                sensor_state[FR] = ON;
-            } else if (channel == 2) {
                 sensor_state[CL] = ON;
-            } else if (channel == 3) {
+            } else if (channel == 1) {
                 sensor_state[CR] = ON;
+            } else if (channel == 2) {
+                sensor_state[FL] = ON;
+            } else if (channel == 3) {
+                sensor_state[FR] = ON;
             } else if (channel == 4) {
-                sensor_state[BC] = ON;
+                sensor_state[BC] = OFF;
             }
         } else {
             if (channel == 0) {
-                sensor_state[FL] = OFF;
-            } else if (channel == 1) {
-                sensor_state[FR] = OFF;
-            } else if (channel == 2) {
                 sensor_state[CL] = OFF;
-            } else if (channel == 3) {
+            } else if (channel == 1) {
                 sensor_state[CR] = OFF;
+            } else if (channel == 2) {
+                sensor_state[FL] = OFF;
+            } else if (channel == 3) {
+                sensor_state[FR] = OFF;
             } else if (channel == 4) {
                 sensor_state[BC] = OFF;
             }
         }
-                
+                               
     }
     return 0;
                
