@@ -69,14 +69,15 @@ void abs_right_turn() {
     PWM_1_WriteCompare(125);
 }
 
-void abs_left_spot_turn() {  
+void abs_left_spot_turn() {
+    // set forward speed
     PWM_1_WriteCompare(163);
     PWM_2_WriteCompare(170);
-    
+    // reset flags and counters
     QuadDec_R_SetCounter(0);
     QuadDec_L_SetCounter(0);
     uint8_t flags[2] = {1, 1};
-    
+    // while flags poll turn
     while (flags[L] || flags[R]) { // while less than two motors finished
         if(QuadDec_R_GetCounter() > QUART_TURN * 0.75){
             PWM_2_WriteCompare(125);
@@ -87,14 +88,15 @@ void abs_left_spot_turn() {
             flags[L] = 0;
         }
     }
-    while(1);
-    PWM_1_WriteCompare(80);
-    PWM_2_WriteCompare(170);
     
+    // set new speeds
+    PWM_1_WriteCompare(87);
+    PWM_2_WriteCompare(170);
+    // reset counters and flags
     QuadDec_R_SetCounter(0);
     QuadDec_L_SetCounter(HALF_TURN + 500);
     flags[L] = 1; flags[R] = 1;
-    
+    // while flags poll turn
     while (flags[L] || flags[R]) { // while less than two motors finished
         if(QuadDec_R_GetCounter() > HALF_TURN){
             PWM_2_WriteCompare(125);
@@ -105,9 +107,10 @@ void abs_left_spot_turn() {
             flags[L] = 0;
         }
     }
-    
+    // stop motors
     PWM_1_WriteCompare(125);
     PWM_2_WriteCompare(125);
+    while(1);//hang
 }
 
 void abs_right_spot_turn() {    
@@ -129,7 +132,7 @@ void abs_right_spot_turn() {
         }
     }
 
-    PWM_1_WriteCompare(170);
+    PWM_1_WriteCompare(163);
     PWM_2_WriteCompare(80);
     
     QuadDec_L_SetCounter(0);
@@ -149,7 +152,7 @@ void abs_right_spot_turn() {
     
     PWM_1_WriteCompare(125);
     PWM_2_WriteCompare(125);
-        while(1);
+        while(1);//hang
 }
 
 void speedAdjust() {
