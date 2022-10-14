@@ -353,6 +353,7 @@
     </Group>
     <Group key="Pin">
       <Data key="0dc3ed87-3ccc-4ec6-aac0-2537f5320ef0" value="M1_IN2" />
+      <Data key="3a0fca8c-f3ab-4021-86e4-2838aaa1cb3e" value="led_2" />
       <Data key="3d116659-0abf-44fe-abf4-8d90b63bee4b" value="ENCD_R_1" />
       <Data key="4a73d0e7-e462-44b0-9e5e-6e4da307dbbb/16a808f6-2e13-45b9-bce0-b001c8655113" value="ADC_SAR_1_Bypass" />
       <Data key="4c686335-22c2-4d80-ab95-fb07537cd2c5" value="M1_IN1" />
@@ -367,6 +368,7 @@
       <Data key="beca5e2d-f70f-4900-a4db-7eca1ed3126e/8b77a6c4-10a0-4390-971c-672353e2a49c" value="USBUART_1_Dm" />
       <Data key="beca5e2d-f70f-4900-a4db-7eca1ed3126e/618a72fc-5ddd-4df5-958f-a3d55102db42" value="USBUART_1_Dp" />
       <Data key="c7511739-14c8-4992-a899-303f44a8668b" value="ENCD_L_2" />
+      <Data key="cacb8e0e-8e2e-4576-a7f9-cef4c3a4ba45" value="led_1" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="led" />
       <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="Tx_1" />
       <Data key="f2e86151-f646-40e6-a633-d5cc510bc9b7" value="singal_in_2" />
@@ -3465,6 +3467,11 @@
         <Data key="Port Format" value="15,5" />
       </Group>
     </Group>
+    <Group key="3a0fca8c-f3ab-4021-86e4-2838aaa1cb3e">
+      <Group key="0">
+        <Data key="Port Format" value="2,2" />
+      </Group>
+    </Group>
     <Group key="3d116659-0abf-44fe-abf4-8d90b63bee4b">
       <Group key="0">
         <Data key="Port Format" value="1,6" />
@@ -3518,6 +3525,11 @@
     <Group key="c7511739-14c8-4992-a899-303f44a8668b">
       <Group key="0">
         <Data key="Port Format" value="0,6" />
+      </Group>
+    </Group>
+    <Group key="cacb8e0e-8e2e-4576-a7f9-cef4c3a4ba45">
+      <Group key="0">
+        <Data key="Port Format" value="2,0" />
       </Group>
     </Group>
     <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">

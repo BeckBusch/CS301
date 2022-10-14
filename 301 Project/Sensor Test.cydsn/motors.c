@@ -46,7 +46,7 @@ void turn_left() {
     // Left turning.
     PWM_1_WriteCompare(125);
     PWM_2_Start();
-    PWM_2_WriteCompare(170);
+    PWM_2_WriteCompare(160);
 
 }
 
@@ -55,25 +55,7 @@ void turn_right() {
     // Right turning.
     PWM_2_WriteCompare(125);
     PWM_1_Start();
-    PWM_1_WriteCompare(163);
-    
-}    
-
-void turn_left_sharp() {
-    
-    // Left turning.
-    PWM_1_WriteCompare(75);
-    PWM_2_Start();
-    PWM_2_WriteCompare(170);
-    
-}
-
-void turn_right_sharp() {
-    
-    // Right turning.
-    PWM_2_WriteCompare(75);
-    PWM_1_Start();
-    PWM_1_WriteCompare(163);
+    PWM_1_WriteCompare(153);
     
 }
 
