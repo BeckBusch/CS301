@@ -84,7 +84,78 @@ int main(void) {
     led_Write(1);
     //led_1_Write(1);
     //led_2_Write(1);
-    int8_t instructionSet[9] = {R, L, J, R, J, L, R, L, L};
+    //int8_t instructionSet[9] = {R, L, J, R, J, L, R, L, L};
+    
+    // ALGORITHM CODE BEGINS HERE!!!
+    // Store the dimensions of the map so we can't go outside of it later on. Hard coding this.
+    uint16_t xdim = 19, ydim = 15;
+    uint16_t xydim = xdim * ydim;
+    
+    // Each zero can only be adjacent to 4 zeroes maximum.
+    int16_t adjlist[xydim][4];
+    for (uint16_t i = 0; i < xydim; i++) {
+        for (uint8_t j = 0; j < 4; j++) {
+            adjlist[i][j] = -1;
+        }
+    }
+    uint16_t cnode;
+
+    /* Construct the adjacency list.
+       Numbered reading from left to right, top down. */
+    for (uint16_t i = 0; i < ydim; i++) {
+        for (uint16_t j = 0; j < xdim; j++) {
+            // For loops go through rows, cols.
+            if (array[i][j] == 0) {
+                cnode = i * xdim + j; 
+                if (i >= 1) {
+                    if (array[i - 1][j] == 0) {
+                        // Row above.
+                        adjlist[cnode][0] = (i - 1) * xdim + j;
+                    }
+                } if (i <= ydim - 2) {
+                    if (array[i + 1][j] == 0) {
+                        // Row below.
+                        adjlist[cnode][1] = (i + 1) * xdim + j;
+                    }
+                } if (j >= 1) {
+                    if (array[i][j - 1] == 0) {
+                        // Column left.
+                        adjlist[cnode][2] = i * xdim + j - 1;
+                    }
+                } if (j <= xdim - 2) {
+                    if (array[i][j + 1] == 0) {
+                        // Column right.
+                        adjlist[cnode][3] = i * xdim + j + 1;
+                    }
+                }
+            }
+        }
+    }
+
+    // Source x and y co-ordinates.
+    uint16_t sxcord = 1;
+    uint16_t sycord = 1;
+
+    // Target x and y co-ordinates.
+    uint16_t txcord = 16;
+    uint16_t tycord = 13;
+
+    // The offset value - if we are indexing starting at 0, this should be 0, if we are indexing starting at 1, this should be 1 etc.
+    uint16_t offset = 0;
+
+    // Calculation for the source and target co-ordinates.
+    uint16_t source = ((sycord - offset) * xdim + sxcord - offset);
+    uint16_t target = ((tycord - offset) * xdim + txcord - offset);
+        
+    // Initialise return arrays.
+    uint16_t finalPath[xydim];
+    int8_t instructionSet[xydim];
+    
+    ASTAR(finalPath, source, target, adjlist, xdim, ydim);
+    decode(instructionSet, finalPath, adjlist, xdim, target);
+    
+    // ALGORITHM CODE ENDS HERE!!!
+    
     
     // Enable global interrupts as well as start and enable the isr.
     CyGlobalIntEnable;
@@ -167,13 +238,13 @@ int main(void) {
                 }
                 move_forward();
             } else if (state == TURNING_LEFT) {
-                abs_left_spot_turn();
+                abs_left_turn();
                 // Go to the next movement instruction.
                 instructionCursor++;
                 nextInstruction = instructionSet[instructionCursor];
                 state = FORWARD;
             } else if (state == TURNING_RIGHT) {
-                abs_right_spot_turn();
+                abs_right_turn();
                 // Go to the next movement instruction.
                 instructionCursor++;
                 nextInstruction = instructionSet[instructionCursor];

@@ -35,7 +35,7 @@ struct PriorityVertex {
 struct Queue {
     int16_t start, end, size;
     unsigned capacity;
-    struct PriorityVertex *array;
+    struct PriorityVertex array[285];
 } Queue;
 
 struct Vertex {
@@ -44,16 +44,16 @@ struct Vertex {
     bool visited;
 } Vertex;
 
-void makeQueue(unsigned size);
-void init(uint16_t size);
-void push(int16_t vertex, uint16_t priority);
-int16_t pop();
-void delete(uint16_t pos);
-bool queueContains(int16_t vertex);
+void makeQueue(struct Queue *queue, unsigned size);
+void init(struct Queue *queue, uint16_t size);
+void push(struct Queue *queue, int16_t vertex, uint16_t priority);
+int16_t pop(struct Queue* queue);
+void delete(struct Queue *queue, uint16_t pos);
+bool queueContains(struct Queue *queue, int16_t vertex);
 uint16_t heuristic(int16_t entry, uint16_t target, uint16_t xdim);
-struct PriorityVertex removeVertex();
-uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim);
-int8_t *decode(uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target);
+struct PriorityVertex removeVertex(struct Queue *queue);
+void ASTAR(uint16_t *finalPath, uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim);
+void decode(uint8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target);
 
 #endif /* PATHFINDING_H_ */
 /* [] END OF FILE */

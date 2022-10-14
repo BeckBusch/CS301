@@ -110,7 +110,7 @@ void abs_left_spot_turn() {
     // stop motors
     PWM_1_WriteCompare(125);
     PWM_2_WriteCompare(125);
-    while(1);//hang
+    //while(1);//hang
 }
 
 void abs_right_spot_turn() {    
@@ -152,7 +152,7 @@ void abs_right_spot_turn() {
     
     PWM_1_WriteCompare(125);
     PWM_2_WriteCompare(125);
-        while(1);//hang
+    //while(1);//hang
 }
 
 void speedAdjust() {
