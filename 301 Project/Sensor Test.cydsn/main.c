@@ -48,6 +48,8 @@ CY_ISR_PROTO(isr_timer_1);
 volatile uint8 channel = 0;
 volatile uint16 instructionCursor = 0;
 
+extern volatile uint8 resetQuad;
+
 // Move these inside main???? (volatile may need to be kept outside, among others potentially)
 uint32 i = 0;
 uint16 turn_count = 0;
@@ -168,7 +170,6 @@ int main(void) {
     decoderInit();
     PWM_1_Start();
     PWM_2_Start();
-    stop();
     Timer_1_Start();
 
     // Start the ADC and begin conversions (in free running mode so will continue to convert).
@@ -185,11 +186,31 @@ int main(void) {
     
     // init debugging led low
     led_1_Write(0);
-
+    reset = 0;
+    move_forward();
+    volatile uint16 count = 0;
+    while(count < 40) {
+        if (reset == 1) {
+            count++;
+            reset = 0;
+        }
+    }
+    led_Write(1);  
+    while(1) {
+        adjustSpeed();
+        if (resetQuad == 1) {
+            resetQuad = 0;
+            QuadDec_L_SetCounter(0);
+            QuadDec_R_SetCounter(0);
+        }
+            
+    }
+    
     while (1) {
         
-        speedAdjust();
-
+        // Call to adjust the speed - it only executes if the relevant interrupt has set a flag high, otherwise it just returns.
+        adjustSpeed();
+        
         // If the conversion result is ready, put it into a variable and convert it into millivolts.
         ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
         ADCResult = ADC_SAR_Seq_1_GetResult16(channel);
@@ -229,7 +250,6 @@ int main(void) {
                 right_en_toggle = RIGHT_ENABLE;
 
             }
-
 
             if (state == TURNING_ENABLE) {
                 // If we have passed the junction, return to the forward state.

@@ -219,10 +219,10 @@ void ASTAR(uint16_t *finalPath, uint16_t source, uint16_t target, int16_t adjlis
 }
 
 // Decode an array of vertices representing the shortest path into a list of directions.
-void decode(uint8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target) {
+void decode(int8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target) {
 
-    // Get the length of the final path and store it in size.
-    uint16_t size = finalPath[0];
+    // Get the length of the final path and store it in size. (No longer needed because we don't use dynamic allocation).
+    // uint16_t size = finalPath[0];
     
     // Track the current and previous directions, and array indices.
     uint16_t i = 1, j = 0;

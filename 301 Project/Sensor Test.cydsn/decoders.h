@@ -7,21 +7,16 @@
 #define DECODERS_H_
 
 #include "project.h"
+            
+volatile uint8_t resetQuad;
     
-volatile uint8 compareValueL; // to be used in other files for setting the compare value for the proper speed
-volatile uint8 compareValueR;
-    
-volatile uint8_t speedControlFlag;
-    
-uint8 goalSpeed; // in decoder count per timer period
+uint16 countTarget; // in decoder count per timer period
     
 volatile uint16 countL;
 volatile uint16 countR;
-volatile uint16 speedL;
-volatile uint16 speedR;
     
 void decoderInit();
-void speedAdjust();
+void adjustSpeed();
 
 void left_decode_turn();
 void right_decode_turn();

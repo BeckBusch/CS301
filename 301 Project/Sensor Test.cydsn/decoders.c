@@ -17,26 +17,29 @@
 #define L 0
 #define R 1
 
+uint8 compareValueL; // to be used in other files for setting the compare value for the proper speed
+uint8 compareValueR;
+
+uint8 toggle = 0;
 
 CY_ISR_PROTO(decTimerISR);
 
 CY_ISR(decTimerISR) {
     countL = QuadDec_L_GetCounter();
     countR = QuadDec_R_GetCounter();
+        
+    //QuadDec_L_SetCounter(0);
+    //QuadDec_R_SetCounter(0);   
     
-    speedL = countL;
-    speedR = countR;
-    
-    QuadDec_L_SetCounter(0);
-    QuadDec_R_SetCounter(0);
+    resetQuad = 1;
 }
 
 void decoderInit(){
     
-    speedControlFlag = 1;
+    resetQuad = 0;
     compareValueR = 45;
-    compareValueL = compareValueR - 6;
-    goalSpeed = 34;
+    compareValueL = 45;//compareValueR - 6;
+    countTarget = 34;
     
     //Clock_Dec_Start(); not needed maybe???
     //Dec_Timer_Clock_Start();
@@ -49,14 +52,14 @@ void decoderInit(){
 }
 
 void left_decode_turn(){
-    speedControlFlag = 0;
+    resetQuad = 0;
     Dec_Timer_ISR_Disable();
     abs_left_spot_turn();
     Dec_Timer_ISR_Enable();
     //move_forward();
 }
 void right_decode_turn(){
-    speedControlFlag = 0;
+    resetQuad = 0;
     Dec_Timer_ISR_Disable();
     abs_right_spot_turn();
     Dec_Timer_ISR_Enable();
@@ -187,20 +190,49 @@ void abs_right_spot_turn() {
     
 }
 
-void speedAdjust() {
-    if (speedControlFlag == 0){ return; }
+void adjustSpeed() {
     
-    if (speedL > goalSpeed){ // if speed greater than goal
-        compareValueL = compareValueL - 1; // decrease compare value
-    } else {
-        compareValueL = compareValueL + 1; // otherwise increase it
+    countTarget = 34;
+    if (resetQuad == 0){ led_1_Write(0); return; }
+    //toggle = !toggle;
+    //led_1_Write(toggle);
+    
+    for (uint16 i = 0; i < countL; i++) {
+        led_2_Write(1);
+        uint32 k = 0;
+        while(k < 1000) {
+            k++;
+        }
+        k = 0;
+        led_2_Write(0);
+        while(k < 1000) {
+            k++;
+        }
+        k = 0;
     }
     
-    if (speedR > goalSpeed){
-        compareValueR = compareValueR - 1;
-    } else {
-        compareValueR = compareValueR + 1;
-    }
+        volatile uint32 p = 0;
+        while(p < 5000) {
+            p++;
+        }
+    
+    //if (countL > countTarget){ // if speed greater than goal
+    //    compareValueL = compareValueL - 1; // decrease compare value
+    //} else if (countR < countTarget) {
+    //    compareValueL = compareValueL + 1; // otherwise increase it
+    //}
+    
+    //if (countR > countTarget){
+    //    compareValueR = compareValueR - 1;
+    //} else if (countR < countTarget) {
+    //    compareValueR = compareValueR + 1;
+    //}
+    //speedControlFlag = 0;
+    
+    //PWM_1_WriteCompare(compareValueL + 125);  
+    //PWM_2_Start();
+    //PWM_2_WriteCompare(compareValueR + 125);
+    
 }
 
 void calibrate(){
