@@ -33,7 +33,13 @@
 #define TURNING_LEFT 1
 #define TURNING_RIGHT 2
 #define TURNING_ENABLE 3
-#define STOPPED 4
+#define EXIT_LEFT 4
+#define EXIT_RIGHT 5
+#define STOPPED 6
+#define STOPPED_LEFT 19
+#define STOPPED_RIGHT 25
+#define ENTER_LEFT 7
+#define ENTER_RIGHT 50
 
 // Enable left and right turning at appropriate times.
 #define LEFT_ENABLE 0
@@ -48,7 +54,9 @@ CY_ISR_PROTO(isr_timer_1);
 volatile uint8 channel = 0;
 volatile uint16 instructionCursor = 0;
 
-extern volatile uint8 resetQuad;
+extern uint8 adjustOff;
+
+uint16 stopDuration = 0;
 
 // Move these inside main???? (volatile may need to be kept outside, among others potentially)
 uint32 i = 0;
@@ -84,7 +92,7 @@ int main(void) {
     // init debugging led
     led_1_Write(1);
 
-    //int8_t instructionSet[9] = {R, L, J, R, J, L, R, L, L};
+    //int8_t instructionSet[9] = {L, L, J, R, J, L, R, L, L};
 
     // Write algorithimdebugging led high.
     led_Write(1);
@@ -186,30 +194,28 @@ int main(void) {
     
     // init debugging led low
     led_1_Write(0);
-    reset = 0;
-    move_forward();
-    volatile uint16 count = 0;
-    while(count < 40) {
-        if (reset == 1) {
-            count++;
-            reset = 0;
-        }
-    }
-    led_Write(1);  
-    while(1) {
-        adjustSpeed();
-        if (resetQuad == 1) {
-            resetQuad = 0;
-            QuadDec_L_SetCounter(0);
-            QuadDec_R_SetCounter(0);
-        }
-            
-    }
+    //reset = 0;
+    //move_forward();
+    //move_forward();
+    //while(adjustOff != 5) {
+    //    adjustSpeed();
+    //}
+    //volatile uint16 count = 0;
+    //while(count < 40) {
+    //    if (reset == 1) {
+    //        count++;
+    //        reset = 0;
+    //    }
+    //}
+    //led_Write(1);  
+    //while(1) {
+    //    adjustSpeed();            
+    //}
     
     while (1) {
         
         // Call to adjust the speed - it only executes if the relevant interrupt has set a flag high, otherwise it just returns.
-        adjustSpeed();
+        //adjustSpeed();
         
         // If the conversion result is ready, put it into a variable and convert it into millivolts.
         ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
@@ -262,54 +268,76 @@ int main(void) {
                     state = FORWARD;
                 }
                 move_forward();
+            } else if (state == ENTER_LEFT) {
+                led_2_Write(!led_2_Read());
+                abs_right_spot_turn();
+                state = STOPPED_LEFT;
             } else if (state == TURNING_LEFT) {
-                left_decode_turn();
-                // Go to the next movement instruction.
-                instructionCursor++;
-                nextInstruction = instructionSet[instructionCursor];
-                // Toggle state change led
+                if (sensor_state[BC] == OFF) {
+                    //left_decode_turn();
+                    // Go to the next movement instruction.
+                    instructionCursor++;
+                    nextInstruction = instructionSet[instructionCursor];
+                    state = FORWARD;
+                }
+                turn_left_sharp();
+                //abs_left_spot_turn();
+            } else if (state == ENTER_RIGHT) {
                 led_2_Write(!led_2_Read());
-                state = FORWARD;
-
+                abs_right_spot_turn();
+                state = STOPPED_RIGHT;
             } else if (state == TURNING_RIGHT) {
-                right_decode_turn();
-                // Go to the next movement instruction.
-                instructionCursor++;
-                nextInstruction = instructionSet[instructionCursor];
-                // Toggle state change led
-                led_2_Write(!led_2_Read());
-                state = FORWARD;
-
+                if (sensor_state[BC] == OFF) {
+                    //right_decode_turn();
+                    // Go to the next movement instruction.
+                    instructionCursor++;
+                    nextInstruction = instructionSet[instructionCursor];
+                    state = FORWARD;
+                }
+                turn_right_sharp();
             } else if (state == FORWARD) {
                 // Default state of forward movement.
                 if (sensor_state[FL] == OFF && sensor_state[FR] == OFF && sensor_state[CL] == OFF && sensor_state[CR] == OFF && sensor_state[BC] == OFF) {
                     // If a shadow is hovered over the robot (all sensors), it will stop moving.
                     state = STOPPED;
+                } else if (sensor_state[CL] == ON && sensor_state[CR] == ON && ((sensor_state[FL] == ON && sensor_state[FR] == OFF) || (sensor_state[FL] == OFF && sensor_state[FR] == ON)) && (left_en_toggle == LEFT_DISABLE && right_en_toggle == RIGHT_DISABLE)) {
+                    // Pass through the junction.
+                    state = TURNING_ENABLE;
+                } else if (sensor_state[FL] == OFF && sensor_state[FR] == ON && left_en_toggle == LEFT_ENABLE) {
+                    // Left turning.
+                    state = ENTER_LEFT;
+                } else if (sensor_state[FL] == ON && sensor_state[FR] == OFF && right_en_toggle == RIGHT_ENABLE) {
+                    // Right turning.
+                    state = ENTER_RIGHT;
                 } else if (sensor_state[CL] == OFF) {
                     // Correct to the left.
                     turn_left();
                 } else if (sensor_state[CR] == OFF) {
                     // Correct to the right.
                     turn_right();
-                } else if (sensor_state[CL] == ON && sensor_state[CR] == ON && ((sensor_state[FL] == ON && sensor_state[FR] == OFF) || (sensor_state[FL] == OFF && sensor_state[FR] == ON)) && (left_en_toggle == LEFT_DISABLE && right_en_toggle == RIGHT_DISABLE)) {
-                    // Pass through the junction.
-                    state = TURNING_ENABLE;
-                } else if (sensor_state[CL] == ON && sensor_state[CR] == ON && sensor_state[FL] == OFF && sensor_state[FR] == ON && left_en_toggle == LEFT_ENABLE) {
-                    // Left turning.
-                    state = TURNING_LEFT;
-                } else if (sensor_state[CL] == ON && sensor_state[CR] == ON && sensor_state[FL] == ON && sensor_state[FR] == OFF && right_en_toggle == RIGHT_ENABLE) {
-                    // Right turning.
-                    state = TURNING_RIGHT;
                 } else {
                     // If no other condition has been met, continue to move forward.
                     move_forward();
                 }
             } else if (state == STOPPED) {
                 // Stop moving.
-                stop();
                 // If all the light sensors are on, start moving again.
                 if (sensor_state[FL] == ON || sensor_state[FR] == ON || sensor_state[CL] == ON || sensor_state[CR] == ON || sensor_state[BC] == ON) {
                     state = FORWARD;
+                }
+            } else if (state == STOPPED_LEFT) {
+                stop();
+                stopDuration++;
+                if (stopDuration > 100) {
+                    stopDuration = 0;
+                    state = TURNING_LEFT;
+                }
+            } else if (state == STOPPED_RIGHT) {
+                stop();
+                stopDuration++;
+                if (stopDuration > 100) {
+                    stopDuration = 0;
+                    state = TURNING_RIGHT;
                 }
             }
 
@@ -328,7 +356,7 @@ int main(void) {
             } else if (channel == 3) {
                 sensor_state[CR] = ON;
             } else if (channel == 4) {
-                sensor_state[BC] = OFF;
+                sensor_state[BC] = ON;
             }
         } else {
             if (channel == 0) {

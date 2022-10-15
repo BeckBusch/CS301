@@ -22,6 +22,8 @@ uint8 compareValueR;
 
 uint8 toggle = 0;
 
+uint8 adjustOff = 0;
+
 CY_ISR_PROTO(decTimerISR);
 
 CY_ISR(decTimerISR) {
@@ -39,7 +41,7 @@ void decoderInit(){
     resetQuad = 0;
     compareValueR = 45;
     compareValueL = 45;//compareValueR - 6;
-    countTarget = 34;
+    countTarget = 100;
     
     //Clock_Dec_Start(); not needed maybe???
     //Dec_Timer_Clock_Start();
@@ -89,8 +91,10 @@ void abs_right_turn() {
 void abs_left_spot_turn() {
     
     // set forward speed
-    PWM_1_WriteCompare(compareValueL + 125);
-    PWM_2_WriteCompare(compareValueR + 125);
+    //PWM_1_WriteCompare(compareValueL + 125);
+    //PWM_2_WriteCompare(compareValueR + 125);
+    PWM_1_WriteCompare(170);
+    PWM_2_WriteCompare(163);
     
     // reset flags and counters
     QuadDec_R_SetCounter(0);
@@ -99,50 +103,52 @@ void abs_left_spot_turn() {
     
     // while flags poll turn
     while (flags[L] || flags[R]) { // while less than two motors finished
-        if(QuadDec_R_GetCounter() > QUART_TURN){
+        if(QuadDec_R_GetCounter() > QUART_TURN * 0.7){
             PWM_2_WriteCompare(125);
             flags[R] = 0;
         }
-        if(QuadDec_L_GetCounter() > QUART_TURN){
+        if(QuadDec_L_GetCounter() > QUART_TURN * 0.7){
             PWM_1_WriteCompare(125);
             flags[L] = 0;
         }
     }
     
-    while(1);
+    //while(1);
     
     // set new speeds
-    PWM_1_WriteCompare(125 - compareValueL);
-    PWM_2_WriteCompare(125 + compareValueR);
+    //PWM_1_WriteCompare(125 - compareValueL);
+    //PWM_2_WriteCompare(125 + compareValueR);
     
     // reset counters and flags
-    QuadDec_R_SetCounter(0);
-    QuadDec_L_SetCounter(HALF_TURN + 500);
-    flags[L] = 1; flags[R] = 1;
+    //QuadDec_R_SetCounter(0);
+    //QuadDec_L_SetCounter(HALF_TURN + 500);
+    //flags[L] = 1; flags[R] = 1;
     
     // while flags poll turn
-    while (flags[L] || flags[R]) { // while less than two motors finished
-        if(QuadDec_R_GetCounter() > HALF_TURN){
-            PWM_2_WriteCompare(125);
-            flags[R] = 0;
-        }
-        if(QuadDec_L_GetCounter() < 500){
-            PWM_1_WriteCompare(125);
-            flags[L] = 0;
-        }
-    }
+    //while (flags[L] || flags[R]) { // while less than two motors finished
+    //    if(QuadDec_R_GetCounter() > HALF_TURN){
+    //        PWM_2_WriteCompare(125);
+    //        flags[R] = 0;
+    //    }
+    //    if(QuadDec_L_GetCounter() < 500){
+    //        PWM_1_WriteCompare(125);
+    //        flags[L] = 0;
+    //    }
+    //}
     
     // stop motors
-    PWM_1_WriteCompare(125);
-    PWM_2_WriteCompare(125);
+    //PWM_1_WriteCompare(125);
+    //PWM_2_WriteCompare(125);
     
 }
 
 void abs_right_spot_turn() {
     
     // set speeds for advance
-    PWM_1_WriteCompare(compareValueL + 125);
-    PWM_2_WriteCompare(compareValueR + 125);
+    //PWM_1_WriteCompare(compareValueL + 125);
+    //PWM_2_WriteCompare(compareValueR + 125);
+    PWM_1_WriteCompare(170);
+    PWM_2_WriteCompare(163);
     
     // reset counters and flags
     QuadDec_R_SetCounter(0);
@@ -151,87 +157,73 @@ void abs_right_spot_turn() {
     
     // poll motots
     while (flags[L] || flags[R]) { // while less than two motors finished
-        if(QuadDec_R_GetCounter() > QUART_TURN){
+        if(QuadDec_R_GetCounter() > QUART_TURN * 0.8){
             PWM_2_WriteCompare(125);
             flags[R] = 0;
         }
-        if(QuadDec_L_GetCounter() > QUART_TURN){
+        if(QuadDec_L_GetCounter() > QUART_TURN * 0.8){
             PWM_1_WriteCompare(125);
             flags[L] = 0;
         }
     }
-
-     while(1);
+    
+    //while(1);
     
     // set new speeds for turn
-    PWM_1_WriteCompare(125 + compareValueL);
-    PWM_2_WriteCompare(125 - compareValueR);
+    //PWM_1_WriteCompare(125 + compareValueL);
+    //PWM_2_WriteCompare(125 - compareValueR);
     
     // reset counters and flags
-    QuadDec_L_SetCounter(0);
-    QuadDec_R_SetCounter(HALF_TURN + 500);
-    flags[L] = 1; flags[R] = 1;
+    //QuadDec_L_SetCounter(0);
+    //QuadDec_R_SetCounter(HALF_TURN + 500);
+    //flags[L] = 1; flags[R] = 1;
     
     // poll motors
-    while (flags[L] || flags[R]) { // while less than two motors finished
-        if(QuadDec_L_GetCounter() > HALF_TURN){
-            PWM_1_WriteCompare(125);
-            flags[L] = 0;
-        }
-        if(QuadDec_R_GetCounter() < 500){
-            PWM_2_WriteCompare(125);
-            flags[R] = 0;
-        }
-    }
+    //while (flags[L] || flags[R]) { // while less than two motors finished
+    //    if(QuadDec_L_GetCounter() > HALF_TURN){
+    //        PWM_1_WriteCompare(125);
+    //        flags[L] = 0;
+    //    }
+    //    if(QuadDec_R_GetCounter() < 500){
+    //        PWM_2_WriteCompare(125);
+    //        flags[R] = 0;
+    //    }
+    //}
     
     // stop motor
-    PWM_1_WriteCompare(125);
-    PWM_2_WriteCompare(125);
+    //PWM_1_WriteCompare(125);
+    //PWM_2_WriteCompare(125);
     
 }
 
 void adjustSpeed() {
     
-    countTarget = 34;
-    if (resetQuad == 0){ led_1_Write(0); return; }
-    //toggle = !toggle;
-    //led_1_Write(toggle);
+    if (resetQuad == 0 || adjustOff == 5){ led_1_Write(0); return; } 
     
-    for (uint16 i = 0; i < countL; i++) {
-        led_2_Write(1);
-        uint32 k = 0;
-        while(k < 1000) {
-            k++;
-        }
-        k = 0;
-        led_2_Write(0);
-        while(k < 1000) {
-            k++;
-        }
-        k = 0;
+    if (countL > countTarget){ // if speed greater than goal
+        compareValueL = compareValueL - countTarget / 20; // decrease compare value
+    } else if (countL < countTarget) {
+        compareValueL = compareValueL + countTarget / 20; // otherwise increase it
     }
     
-        volatile uint32 p = 0;
-        while(p < 5000) {
-            p++;
-        }
+    if (countR > countTarget){
+        compareValueR = compareValueR - countTarget / 20;
+    } else if (countL < countTarget) {
+        compareValueR = compareValueR + countTarget / 20;
+    }
     
-    //if (countL > countTarget){ // if speed greater than goal
-    //    compareValueL = compareValueL - 1; // decrease compare value
-    //} else if (countR < countTarget) {
-    //    compareValueL = compareValueL + 1; // otherwise increase it
-    //}
-    
-    //if (countR > countTarget){
-    //    compareValueR = compareValueR - 1;
-    //} else if (countR < countTarget) {
-    //    compareValueR = compareValueR + 1;
-    //}
     //speedControlFlag = 0;
     
-    //PWM_1_WriteCompare(compareValueL + 125);  
+    PWM_1_WriteCompare(compareValueL + 125);  
     //PWM_2_Start();
-    //PWM_2_WriteCompare(compareValueR + 125);
+    PWM_2_WriteCompare(compareValueR + 125);
+    
+        if (resetQuad == 1) {
+            resetQuad = 0;
+            QuadDec_L_SetCounter(0);
+            QuadDec_R_SetCounter(0);
+        }
+        adjustOff++;
     
 }
 
