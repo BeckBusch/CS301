@@ -5,6 +5,7 @@
 
 #include "project.h"
 #include "motors.h"
+#include "decoders.h"
 
 /* STRAIGHT: 
  * MOVE forward
@@ -32,12 +33,12 @@
  */
 
 void move_forward() {
-    
+    speedControlFlag = 1;
     // Forward movement.
     PWM_1_Start();
-    PWM_1_WriteCompare(163);  
+    PWM_1_WriteCompare(compareValueL + 125);  
     PWM_2_Start();
-    PWM_2_WriteCompare(170);
+    PWM_2_WriteCompare(compareValueR + 125);
     
 }
 
@@ -60,7 +61,7 @@ void turn_right() {
 }
 
 void stop() {
-    
+    speedControlFlag = 0;
     // Stop both motors.
     PWM_1_WriteCompare(125);
     PWM_2_WriteCompare(125);

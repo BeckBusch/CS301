@@ -1054,6 +1054,7 @@
 <dep name=".\Generated_Source\PSoC5\timer_clock.h" />
 <dep name=".\decoders.c" />
 <dep name=".\decoders.h" />
+<dep name=".\motors.h" />
 </file>
 <file name=".\decoders.c" />
 <file name=".\CortexM3\ARM_GCC_541\Debug\motors.o">
@@ -1131,6 +1132,7 @@
 <dep name=".\Generated_Source\PSoC5\led_2_aliases.h" />
 <dep name=".\Generated_Source\PSoC5\led_aliases.h" />
 <dep name=".\Generated_Source\PSoC5\timer_clock.h" />
+<dep name=".\decoders.h" />
 <dep name=".\motors.c" />
 <dep name=".\motors.h" />
 </file>
@@ -1798,6 +1800,8 @@
 <dep name=".\CortexM3\ARM_GCC_541\Debug\Dec_Timer_PM.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\Dec_Timer_ISR.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\led.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\led_1.o" />
+<dep name=".\CortexM3\ARM_GCC_541\Debug\led_2.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR_INT.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\ADC_SAR_Seq_1_SAR_PM.o" />
@@ -1818,8 +1822,6 @@
 <dep name=".\CortexM3\ARM_GCC_541\Debug\cyPm.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\CySpc.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\cyutils.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\led_1.o" />
-<dep name=".\CortexM3\ARM_GCC_541\Debug\led_2.o" />
 <dep name=".\CortexM3\ARM_GCC_541\Debug\Sensor Test.a" />
 <dep name="${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" />
 </file>
@@ -2038,14 +2040,13 @@
 <CyGuid_504337dd-7d07-4bc7-9057-90e60cf6c469 type_name="CyDesigner.Common.Debugger.CyBreakpointList" version="1">
 <debugger_breakpoint_list>
 <CyGuid_da1648eb-f713-4789-813b-89e33e3769c0 type_name="CyDesigner.Common.Debugger.CyWatchpoint" version="1" hitcount="0" condition="" enabled="False" hardware="True" temparary="False" variable="queue.size" access="ACCESS" />
-<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename=".\main.c" linenumber="149" />
 </debugger_breakpoint_list>
 </CyGuid_504337dd-7d07-4bc7-9057-90e60cf6c469>
 </dataGuid>
 <dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
 <CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
 <link_deps_times>
-<name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3" v="133101218538846924" />
+<name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3" v="133102823035674091" />
 </link_deps_times>
 </CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
 </dataGuid>
@@ -2454,6 +2455,12 @@
 <v>Generated_Source\PSoC5\led_aliases.h</v>
 <v>Generated_Source\PSoC5\led.c</v>
 <v>Generated_Source\PSoC5\led.h</v>
+<v>Generated_Source\PSoC5\led_1_aliases.h</v>
+<v>Generated_Source\PSoC5\led_1.c</v>
+<v>Generated_Source\PSoC5\led_1.h</v>
+<v>Generated_Source\PSoC5\led_2_aliases.h</v>
+<v>Generated_Source\PSoC5\led_2.c</v>
+<v>Generated_Source\PSoC5\led_2.h</v>
 <v>Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR.c</v>
 <v>Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR.h</v>
 <v>Generated_Source\PSoC5\ADC_SAR_Seq_1_SAR_INT.c</v>
@@ -2505,12 +2512,6 @@
 <v>Generated_Source\PSoC5\cycodeshareimport.ld</v>
 <v>Generated_Source\PSoC5\cycodeshareexport.ld</v>
 <v>Generated_Source\PSoC5\cycodeshareimport.scat</v>
-<v>Generated_Source\PSoC5\led_1_aliases.h</v>
-<v>Generated_Source\PSoC5\led_1.c</v>
-<v>Generated_Source\PSoC5\led_1.h</v>
-<v>Generated_Source\PSoC5\led_2_aliases.h</v>
-<v>Generated_Source\PSoC5\led_2.c</v>
-<v>Generated_Source\PSoC5\led_2.h</v>
 </gen_list>
 <warp_dep>
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\ieee\work\stdlogic.vif</v>
@@ -2520,9 +2521,9 @@
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif</v>
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif</v>
 </warp_dep>
-<deps_time v="133101218230913195" />
+<deps_time v="133102821119365480" />
 <top_block v="TopDesign" />
-<last_generation v="1" />
+<last_generation v="9" />
 <pdl_path v="" />
 <sw_packages />
 </CyGuid_925cc1e1-309e-4e08-b0a1-09a83c35b157>

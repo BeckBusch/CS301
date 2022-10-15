@@ -3,14 +3,15 @@
  * ========================================
 */
 
+#include <stdio.h>
+
 #include "project.h"
+#include "map.h"
+
 #include "motors.h"
 #include "USBUART.h"
 #include "decoders.h"
-#include <stdio.h>
 #include "pathfinding.h"
-
-#include "map.h"
 
 #define ON 1
 #define OFF 0
@@ -48,15 +49,19 @@ volatile uint8 channel = 0;
 volatile uint16 instructionCursor = 0;
 
 // Move these inside main???? (volatile may need to be kept outside, among others potentially)
+uint32 i = 0;
+uint16 turn_count = 0;
 
+uint8 left_en_toggle = LEFT_ENABLE;
+uint8 right_en_toggle = RIGHT_ENABLE;
 
 uint16 ADCResult;
 uint16 milliVoltReading;
 uint8 state = FORWARD;
 volatile uint8 reset = 0;
 
-uint16 maxValues[5] = {0};
-uint16 pastValues[5] = {0};
+uint16 maxValues[5] = { 0 };
+uint16 pastValues[5] = { 0 };
 volatile uint16 count = 0;
 uint8 sensor_state[5];
 
@@ -66,7 +71,7 @@ CY_ISR(isr_eoc_1) {
         channel = 0;
     } else {
         channel++;
-    }   
+    }
 }
 
 CY_ISR(isr_timer_1) {
@@ -74,23 +79,19 @@ CY_ISR(isr_timer_1) {
 }
 
 int main(void) {
-    uint32 i = 0;
-    uint16 turn_count = 0;
+    // init debugging led
+    led_1_Write(1);
 
-    uint8 left_en_toggle = LEFT_ENABLE;
-    uint8 right_en_toggle = RIGHT_ENABLE;
-
-    // Write debugging led high.
-    led_Write(1);
-    //led_1_Write(1);
-    //led_2_Write(1);
     //int8_t instructionSet[9] = {R, L, J, R, J, L, R, L, L};
-    
+
+    // Write algorithimdebugging led high.
+    led_Write(1);
+
     // ALGORITHM CODE BEGINS HERE!!!
     // Store the dimensions of the map so we can't go outside of it later on. Hard coding this.
     uint16_t xdim = 19, ydim = 15;
     uint16_t xydim = xdim * ydim;
-    
+
     // Each zero can only be adjacent to 4 zeroes maximum.
     int16_t adjlist[xydim][4];
     for (uint16_t i = 0; i < xydim; i++) {
@@ -106,7 +107,7 @@ int main(void) {
         for (uint16_t j = 0; j < xdim; j++) {
             // For loops go through rows, cols.
             if (array[i][j] == 0) {
-                cnode = i * xdim + j; 
+                cnode = i * xdim + j;
                 if (i >= 1) {
                     if (array[i - 1][j] == 0) {
                         // Row above.
@@ -146,109 +147,119 @@ int main(void) {
     // Calculation for the source and target co-ordinates.
     uint16_t source = ((sycord - offset) * xdim + sxcord - offset);
     uint16_t target = ((tycord - offset) * xdim + txcord - offset);
-        
+
     // Initialise return arrays.
     uint16_t finalPath[xydim];
     int8_t instructionSet[xydim];
-    
+
     ASTAR(finalPath, source, target, adjlist, xdim, ydim);
     decode(instructionSet, finalPath, adjlist, xdim, target);
-    
+
     // ALGORITHM CODE ENDS HERE!!!
-    
-    
+    // Write the algorithim debugging led low.
+    led_Write(0);
+
     // Enable global interrupts as well as start and enable the isr.
     CyGlobalIntEnable;
     isr_eoc_1_StartEx(isr_eoc_1);
     isr_timer_1_StartEx(isr_timer_1);
     ADC_SAR_Seq_1_IRQ_Enable();
-    
+
+    decoderInit();
+    PWM_1_Start();
+    PWM_2_Start();
+    stop();
+    Timer_1_Start();
+
     // Start the ADC and begin conversions (in free running mode so will continue to convert).
     ADC_SAR_Seq_1_Start();
     ADC_SAR_Seq_1_StartConvert();
-    
+
     // Initialise sensor states.
     for (int i = 0; i < 5; i++) {
         sensor_state[i] = ON;
     }
     
-    decoderInit();
-    
-    PWM_1_Start();
-    PWM_2_Start();
-    stop();
-    Timer_1_Start();
-    
     int8_t nextInstruction;
     nextInstruction = instructionSet[instructionCursor];
-            
-    // Write the debugging led low.
-    led_Write(0);
-      
-    while(1) {
+    
+    // init debugging led low
+    led_1_Write(0);
+
+    while (1) {
         
+        speedAdjust();
+
         // If the conversion result is ready, put it into a variable and convert it into millivolts.
         ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
         ADCResult = ADC_SAR_Seq_1_GetResult16(channel);
         milliVoltReading = ADC_SAR_Seq_1_CountsTo_mVolts(ADCResult);
-        
+
         // If we read in a value higher than the current maximum for this period, replace the corresponding value in the maxValues array.
         if (milliVoltReading > maxValues[channel]) {
             maxValues[channel] = milliVoltReading;
         }
-                           
+
         if (reset == 1) {
-            
+
             // Fill the pastValues array with the new set of values.
             for (int i = 0; i < 5; i++) {
                 pastValues[i] = maxValues[i];
                 maxValues[i] = 0;
             }
-            
+
             if (nextInstruction == L) {
                 // For left turning.
                 left_en_toggle = LEFT_ENABLE;
                 right_en_toggle = RIGHT_DISABLE;
-                //led_Write(!led_Read());
+
             } else if (nextInstruction == R) {
                 // For right turning.
                 left_en_toggle = LEFT_DISABLE;
                 right_en_toggle = RIGHT_ENABLE;
-                //led_Write(!led_Read());
+
             } else if (nextInstruction == J) {
                 // For junctions.
                 left_en_toggle = LEFT_DISABLE;
                 right_en_toggle = RIGHT_DISABLE;
-                //led_Write(!led_Read());
+
             } else if (nextInstruction == NULLDIR) {
                 // For uninitialised or reset.
                 left_en_toggle = LEFT_ENABLE;
                 right_en_toggle = RIGHT_ENABLE;
-                //led_Write(!led_Read());
+
             }
-            
-            
+
+
             if (state == TURNING_ENABLE) {
                 // If we have passed the junction, return to the forward state.
                 if (sensor_state[CL] == ON && sensor_state[CR] == ON) {
                     // Go to the next movement instruction.
                     instructionCursor++;
                     nextInstruction = instructionSet[instructionCursor];
+                    // Toggle state change led
+                    led_2_Write(!led_2_Read());
                     state = FORWARD;
                 }
                 move_forward();
             } else if (state == TURNING_LEFT) {
-                abs_left_turn();
+                left_decode_turn();
                 // Go to the next movement instruction.
                 instructionCursor++;
                 nextInstruction = instructionSet[instructionCursor];
+                // Toggle state change led
+                led_2_Write(!led_2_Read());
                 state = FORWARD;
+
             } else if (state == TURNING_RIGHT) {
-                abs_right_turn();
+                right_decode_turn();
                 // Go to the next movement instruction.
                 instructionCursor++;
                 nextInstruction = instructionSet[instructionCursor];
+                // Toggle state change led
+                led_2_Write(!led_2_Read());
                 state = FORWARD;
+
             } else if (state == FORWARD) {
                 // Default state of forward movement.
                 if (sensor_state[FL] == OFF && sensor_state[FR] == OFF && sensor_state[CL] == OFF && sensor_state[CR] == OFF && sensor_state[BC] == OFF) {
@@ -281,10 +292,10 @@ int main(void) {
                     state = FORWARD;
                 }
             }
-            
-            reset = 0;   
+
+            reset = 0;
         }
-        
+
         // If the milliVolt reading is above the required threshold, perform the requested operation depending on the channel.
         if (pastValues[channel] >= 500) {
             // Change the position in the sensor_state array depending on the channel being read.
@@ -312,10 +323,8 @@ int main(void) {
                 sensor_state[BC] = OFF;
             }
         }
-                               
     }
     return 0;
-               
 }
 
 /* [] END OF FILE */

@@ -8,6 +8,7 @@
 */
 
 #include "decoders.h"
+#include "motors.h"
 
 #define FULL_TURN 228
 #define QUART_TURN 57
@@ -16,36 +17,49 @@
 #define L 0
 #define R 1
 
-/*
+
 CY_ISR_PROTO(decTimerISR);
 
 CY_ISR(decTimerISR) {
     countL = QuadDec_L_GetCounter();
     countR = QuadDec_R_GetCounter();
     
-    // some code lol
-    // haven't decided on good units yet
-    
     speedL = countL;
     speedR = countR;
     
     QuadDec_L_SetCounter(0);
     QuadDec_R_SetCounter(0);
-}*/
+}
 
 void decoderInit(){
-    //compareValueL = 163;
-    //compareValueR = 170;
-    //goalSpeed = 65;
+    
+    speedControlFlag = 1;
+    compareValueR = 45;
+    compareValueL = compareValueR - 6;
+    goalSpeed = 34;
     
     //Clock_Dec_Start(); not needed maybe???
-    // Dec_Timer_Clock_Start();
+    //Dec_Timer_Clock_Start();
     
-    //Dec_Timer_Start(); // start the timer for the decoder polls
-    //Dec_Timer_ISR_StartEx(decTimerISR); // start the isr for the timer
+    Dec_Timer_Start(); // start the timer for the decoder polls
+    Dec_Timer_ISR_StartEx(decTimerISR); // start the isr for the timer
     
     QuadDec_L_Start();
     QuadDec_R_Start();
+}
+
+void left_decode_turn(){
+    speedControlFlag = 0;
+    Dec_Timer_ISR_Disable();
+    abs_left_spot_turn();
+    Dec_Timer_ISR_Enable();
+    //move_forward();
+}
+void right_decode_turn(){
+    speedControlFlag = 0;
+    Dec_Timer_ISR_Disable();
+    abs_right_spot_turn();
+    Dec_Timer_ISR_Enable();
 }
 
 void abs_left_turn() {  
@@ -72,8 +86,8 @@ void abs_right_turn() {
 void abs_left_spot_turn() {
     
     // set forward speed
-    PWM_1_WriteCompare(163);
-    PWM_2_WriteCompare(170);
+    PWM_1_WriteCompare(compareValueL + 125);
+    PWM_2_WriteCompare(compareValueR + 125);
     
     // reset flags and counters
     QuadDec_R_SetCounter(0);
@@ -92,9 +106,11 @@ void abs_left_spot_turn() {
         }
     }
     
+    while(1);
+    
     // set new speeds
-    PWM_1_WriteCompare(87);
-    PWM_2_WriteCompare(170);
+    PWM_1_WriteCompare(125 - compareValueL);
+    PWM_2_WriteCompare(125 + compareValueR);
     
     // reset counters and flags
     QuadDec_R_SetCounter(0);
@@ -116,14 +132,14 @@ void abs_left_spot_turn() {
     // stop motors
     PWM_1_WriteCompare(125);
     PWM_2_WriteCompare(125);
-
-    //while(1);//hang
+    
 }
 
 void abs_right_spot_turn() {
+    
     // set speeds for advance
-    PWM_2_WriteCompare(170);
-    PWM_1_WriteCompare(163);
+    PWM_1_WriteCompare(compareValueL + 125);
+    PWM_2_WriteCompare(compareValueR + 125);
     
     // reset counters and flags
     QuadDec_R_SetCounter(0);
@@ -142,9 +158,11 @@ void abs_right_spot_turn() {
         }
     }
 
+     while(1);
+    
     // set new speeds for turn
-    PWM_1_WriteCompare(163);
-    PWM_2_WriteCompare(80);
+    PWM_1_WriteCompare(125 + compareValueL);
+    PWM_2_WriteCompare(125 - compareValueR);
     
     // reset counters and flags
     QuadDec_L_SetCounter(0);
@@ -167,10 +185,11 @@ void abs_right_spot_turn() {
     PWM_1_WriteCompare(125);
     PWM_2_WriteCompare(125);
     
-    //while(1);//hang
 }
 
 void speedAdjust() {
+    if (speedControlFlag == 0){ return; }
+    
     if (speedL > goalSpeed){ // if speed greater than goal
         compareValueL = compareValueL - 1; // decrease compare value
     } else {
@@ -184,5 +203,26 @@ void speedAdjust() {
     }
 }
 
+void calibrate(){
+    PWM_1_WriteCompare(160);
+    PWM_2_WriteCompare(160);
+    
+    CyDelay(5000);
+    stop();
+    
+    uint16_t count1 = QuadDec_L_GetCounter();
+    uint16_t count2 = QuadDec_R_GetCounter();
+    
+    double diff = (double) count1 / count2;
+    diff = diff -1;
+    int printer = diff * 100;
+    
+    for (int i=0; i<printer; i++){
+        led_Write(1);
+        CyDelay(500);
+        led_Write(0);
+        CyDelay(200);
+    }
+}
 
 /* [] END OF FILE */

@@ -1,0 +1,40 @@
+oneVar = 3*19*4
+fullVar = oneVar*2.6
+
+9*4
+
+count1 = 300
+count2 = 340
+
+diffVar = count2/count1
+
+diffVar = diffVar -1
+
+diffVar * 100
+163-125
+
+displace = 200-125
+
+displace/1.07 + 125
+
+displace2 = 160-125
+
+displace2/1.19 + 125
+
+155cm/10s
+
+3*19*4
+
+20*10/
+
+3*19*4/4
+
+circum = 65*pi /10
+countPerRev = 3*19*4
+goalSpeed = 15.5
+timerPeriod = 200/1000
+
+revPerSec = goalSpeed/circum
+
+count per period at goal speed
+countPerRev * revPerSec * timerPeriod
