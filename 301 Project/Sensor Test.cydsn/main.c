@@ -19,6 +19,8 @@
 #define L 0
 #define R 1
 #define J 2
+#define T180 3
+#define P 4
 #define NULLDIR -1
 
 // FL, FR, CL, CR, BC = front left, front right, center left, center right, back center respectively.
@@ -27,6 +29,12 @@
 #define CL 2
 #define CR 3
 #define BC 4
+
+#define NORTH 0
+#define EAST 1
+#define SOUTH 2
+#define WEST 3
+#define UNINITIALISED 4
 
 // State values.
 #define FORWARD 0
@@ -52,9 +60,17 @@ CY_ISR_PROTO(isr_eoc_1);
 CY_ISR_PROTO(isr_timer_1);
 
 volatile uint8 channel = 0;
-volatile uint16 instructionCursor = 0;
+// Start the cursor at 1 because we need to make sure that 0 is reserved for the distance after the last turn.
+uint16 instructionCursor = 2;
 
 extern uint8 adjustOff;
+
+int8_t finalDistances[5];
+int8_t firstDirections[5];
+int8_t finalDirections[5];
+
+uint16_t sourceArray[5];
+uint16_t targetArray[5];
 
 uint16 stopDuration = 0;
 
@@ -142,29 +158,144 @@ int main(void) {
             }
         }
     }
+    
+    sourceArray[0] = 1;
+    sourceArray[1] = 1;
+    sourceArray[2] = 1;
+    sourceArray[3] = 1;
+    sourceArray[4] = 1;
+    
+    targetArray[0] = 1;
+    targetArray[1] = 1;
+    targetArray[2] = 1;
+    targetArray[3] = 1;
+    targetArray[4] = 1;
 
-    // Source x and y co-ordinates.
-    uint16_t sxcord = 1;
-    uint16_t sycord = 1;
+    // The below commented out code is for single values only
+    //// Source x and y co-ordinates.
+    //uint16_t sxcord = 1;
+    //uint16_t sycord = 1;
 
-    // Target x and y co-ordinates.
-    uint16_t txcord = 16;
-    uint16_t tycord = 13;
+    //// Target x and y co-ordinates.
+    //uint16_t txcord = 16;
+    //uint16_t tycord = 13;
 
-    // The offset value - if we are indexing starting at 0, this should be 0, if we are indexing starting at 1, this should be 1 etc.
-    uint16_t offset = 0;
+    //// The offset value - if we are indexing starting at 0, this should be 0, if we are indexing starting at 1, this should be 1 etc.
+    //uint16_t offset = 0;
 
-    // Calculation for the source and target co-ordinates.
-    uint16_t source = ((sycord - offset) * xdim + sxcord - offset);
-    uint16_t target = ((tycord - offset) * xdim + txcord - offset);
-
-    // Initialise return arrays.
+    //// Calculation for the source and target co-ordinates.
+    //uint16_t source = ((sycord - offset) * xdim + sxcord - offset);
+    //uint16_t target = ((tycord - offset) * xdim + txcord - offset);
+    
+    // Initialise return arrays. instructionSet is 2 greater to avoid indexing errors.
     uint16_t finalPath[xydim];
-    int8_t instructionSet[xydim];
+    int8_t instructionSet[xydim + 3];
+    
+    // Set all the values for the instruction set to be UNINITIALISED.
+    for (uint16_t u = 0; u < xydim + 3; u++) {
+        instructionSet[u] = UNINITIALISED;
+    }
+    
+    // We need to allocate sufficient space.
+    int8_t instructionArray[5 * xydim];
+    
+    // Set all the values for the instruction array to be UNINITIALISED.
+    for (uint16_t u = 0; u < 5 * xydim; u++) {
+        instructionArray[u] = UNINITIALISED;
+    }
+    
+    // k is used as an index for the final instruction array. Only incremented when there is a valid (not UNINITIALISED instruction in the corresponding instruction set).
+    uint16_t k = 0;
+    
+    // For each path that needs finding, solve it and store it in a final array of values.
+    for (uint8_t i = 0; i < 5; i++) {
+        ASTAR(finalPath, sourceArray[i], targetArray[i], adjlist, xdim, ydim);  
+        decode(instructionSet, finalPath, adjlist, xdim, targetArray[i]);
+        
+        // Append the final distances and directions for the current path to the final arrays.
+        finalDistances[i] = instructionSet[0];
+        firstDirections[i] = instructionSet[1];
+        finalDirections[i] = instructionSet[2];
+            
+        // Reset the buffer arrays passed in to the algorithm and decoder functions.
+        for (uint16_t j = 0; j < xydim; j++) {
+            finalPath[j] = 0;
 
-    ASTAR(finalPath, source, target, adjlist, xdim, ydim);
-    decode(instructionSet, finalPath, adjlist, xdim, target);
+            if (instructionSet[j + 3] != UNINITIALISED) {
+                // Fill the final instruction array with values from the current instruction set.
+                instructionArray[k] = instructionSet[j + 3];
+                k++;
+            }
+            
+            // Reset the instruction to UNINITIALISED for this value.
+            instructionSet[j + 3] = UNINITIALISED;
+            
+        }
+        
+        // Append the additional distance required to reach the food to the end of the current path.
+        for (uint8_t m = 0; m < finalDistances[i]; m++) {
+            instructionArray[k] = P;
+            k++;
+        }
+        
+        // If the current iteration is not for the final path.
+        if (i < 5) {
+            // If the first direction for the next path is not the same as the final direction for the current path, then we need to change the current orientation of the robot before moving on.
+            if (finalDirections[i] != firstDirections[i + 1]) {
+                
+            // Append an additional direction if we need to change after reaching the food item.
+            switch (firstDirections[i + 1]) 
+            {
+                case NORTH:
+                    if (finalDirections[i] == EAST) {
+                        instructionArray[k] = L;
+                    } else if (finalDirections[i] == WEST) {
+                        instructionArray[k] = R;
+                    } else if (finalDirections[i] == SOUTH) {
+                        instructionArray[k] = T180;
+                    }
+                    break;
 
+                case EAST:
+                    if (finalDirections[i] == NORTH) {
+                        instructionArray[k] = R;
+                    } else if (finalDirections[i] == SOUTH) {
+                        instructionArray[k] = L;
+                    } else if (finalDirections[i] == WEST) {
+                        instructionArray[k] = T180;
+                    }
+                    break;
+
+                case SOUTH:
+                    if (finalDirections[i] == EAST) {
+                        instructionArray[k] = R;
+                    } else if (finalDirections[i] == WEST) {
+                        instructionArray[k] = L;
+                    } else if (finalDirections[i] == NORTH) {
+                        instructionArray[k] = T180;
+                    }
+                    break;
+
+                case WEST:
+                    if (finalDirections[i] == NORTH) {
+                        instructionArray[k] = L;
+                    } else if (finalDirections[i] == SOUTH) {
+                        instructionArray[k] = R;
+                    } else if (finalDirections[i] == EAST) {
+                        instructionArray[k] = T180;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+            k++;
+            
+            }
+                
+        }
+    }
+    
     // ALGORITHM CODE ENDS HERE!!!
     // Write the algorithim debugging led low.
     led_Write(0);

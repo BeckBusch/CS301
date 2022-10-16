@@ -12,7 +12,7 @@ void makeQueue(struct Queue *queue, unsigned size) {
     queue->start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
     queue->size = 0; // Queue is empty to begin with.
     queue->end = queue->capacity - 1;
-    for (int i = 0; i < size; i++) {
+    for (unsigned i = 0; i < size; i++) {
         struct PriorityVertex newVertex = { .value = 0, .priority = 0 };
         queue->array[i] = newVertex; // Initialise array values to zero.
     }
@@ -224,8 +224,8 @@ void decode(int8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], u
     // Get the length of the final path and store it in size. (No longer needed because we don't use dynamic allocation).
     // uint16_t size = finalPath[0];
     
-    // Track the current and previous directions, and array indices.
-    uint16_t i = 1, j = 0;
+    // Track the current and previous directions, and array indices. (j = 3 because we reserve the first three indices for values).
+    uint16_t i = 1, j = 3, k = 1;
     uint8_t traversalDirection = UNINITIALISED;
     uint8_t prevDirection = UNINITIALISED;
 
@@ -240,11 +240,19 @@ void decode(int8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], u
         } else if (finalPath[i] - finalPath[i + 1] == 1) {
             traversalDirection = WEST;
         }
+        
+        // If we are just starting the traversal, then we need to store the first direction taken in the map.
+        if (i == 1) {
+           instructionSet[1] = traversalDirection; 
+        }
 
         /* If we have just started traversing, then we cannot have made a turn yet, so prevDirection needs to be initialised.
            If the previous direction is different from our current one, then we have to had made a turn. */
         if ((traversalDirection != prevDirection) && (prevDirection != UNINITIALISED)) {
 
+            // Reset the distance after the last turn to 1.
+            k = 1;
+            
             // We can determine whether we turned left or right based on our previous and current directions.
             switch (traversalDirection) 
             {
@@ -300,6 +308,9 @@ void decode(int8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], u
                     j++;
                 }
             }
+            
+            // Increment the distance after the last turn by 1.
+            k++;
 
         }
         // Set the previous direction to our current one, and increment our position in the shortest path.
@@ -307,6 +318,12 @@ void decode(int8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], u
         i++;
 
     }
+    
+    // Set the distance after the last turn with the final calculated value.
+    instructionSet[0] = k;
+    
+    // Set the traversal direction for the robot at the last instance of this shortest path (the final direction).
+    instructionSet[2] = traversalDirection;
 
 }
 
