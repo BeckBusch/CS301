@@ -61,7 +61,7 @@ CY_ISR_PROTO(isr_timer_1);
 
 volatile uint8 channel = 0;
 // Start the cursor at 1 because we need to make sure that 0 is reserved for the distance after the last turn.
-uint16 instructionCursor = 2;
+uint16 instructionCursor = 0;
 
 extern uint8 adjustOff;
 
@@ -321,7 +321,7 @@ int main(void) {
     }
     
     int8_t nextInstruction;
-    nextInstruction = instructionSet[instructionCursor];
+    nextInstruction = instructionArray[instructionCursor];
     
     // init debugging led low
     led_1_Write(0);
