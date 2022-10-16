@@ -6,6 +6,9 @@
 #include "project.h"
 #include "motors.h"
 
+#define normalLeft 163
+#define normalRight 168
+
 /* STRAIGHT: 
  * MOVE forward
  *
@@ -33,29 +36,25 @@
 
 void move_forward() {
     
-    // Forward movement.
-    PWM_1_Start();
-    PWM_1_WriteCompare(163);  
-    PWM_2_Start();
-    PWM_2_WriteCompare(170);
+    // Forward movement
+    PWM_1_WriteCompare(normalLeft);
+    PWM_2_WriteCompare(normalRight);
     
 }
 
 void turn_left() {
     
     // Left turning.
-    PWM_1_WriteCompare(125);
-    PWM_2_Start();
-    PWM_2_WriteCompare(160);
+    PWM_1_WriteCompare(normalLeft-8); //normalLeft - 8
+    PWM_2_WriteCompare(normalRight);
 
 }
 
 void turn_right() {
     
     // Right turning.
-    PWM_2_WriteCompare(125);
-    PWM_1_Start();
-    PWM_1_WriteCompare(153);
+    PWM_2_WriteCompare(normalRight-8);
+    PWM_1_WriteCompare(normalRight);
     
 }
 
@@ -64,7 +63,6 @@ void stop() {
     // Stop both motors.
     PWM_1_WriteCompare(125);
     PWM_2_WriteCompare(125);
-    //CyDelay(100);
     
 }
 

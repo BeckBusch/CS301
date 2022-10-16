@@ -9,7 +9,7 @@
 
 #include "decoders.h"
 
-#define FULL_TURN 228
+#define FULL_TURN 220 //228
 #define QUART_TURN 57
 #define HALF_TURN 114
 

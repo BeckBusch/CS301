@@ -239,12 +239,14 @@ int main(void) {
                 move_forward();
             } else if (state == TURNING_LEFT) {
                 abs_left_turn();
+                move_forward();
                 // Go to the next movement instruction.
                 instructionCursor++;
                 nextInstruction = instructionSet[instructionCursor];
                 state = FORWARD;
             } else if (state == TURNING_RIGHT) {
                 abs_right_turn();
+                move_forward();
                 // Go to the next movement instruction.
                 instructionCursor++;
                 nextInstruction = instructionSet[instructionCursor];
@@ -254,12 +256,6 @@ int main(void) {
                 if (sensor_state[FL] == OFF && sensor_state[FR] == OFF && sensor_state[CL] == OFF && sensor_state[CR] == OFF && sensor_state[BC] == OFF) {
                     // If a shadow is hovered over the robot (all sensors), it will stop moving.
                     state = STOPPED;
-                } else if (sensor_state[CL] == OFF) {
-                    // Correct to the left.
-                    turn_left();
-                } else if (sensor_state[CR] == OFF) {
-                    // Correct to the right.
-                    turn_right();
                 } else if (sensor_state[CL] == ON && sensor_state[CR] == ON && ((sensor_state[FL] == ON && sensor_state[FR] == OFF) || (sensor_state[FL] == OFF && sensor_state[FR] == ON)) && (left_en_toggle == LEFT_DISABLE && right_en_toggle == RIGHT_DISABLE)) {
                     // Pass through the junction.
                     state = TURNING_ENABLE;
@@ -269,6 +265,12 @@ int main(void) {
                 } else if (sensor_state[CL] == ON && sensor_state[CR] == ON && sensor_state[FL] == ON && sensor_state[FR] == OFF && right_en_toggle == RIGHT_ENABLE) {
                     // Right turning.
                     state = TURNING_RIGHT;
+                } else if (sensor_state[CL] == OFF) {
+                    // Correct to the left.
+                    turn_left();
+                } else if (sensor_state[CR] == OFF) {
+                    // Correct to the right.
+                    turn_right();
                 } else {
                     // If no other condition has been met, continue to move forward.
                     move_forward();
