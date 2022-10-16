@@ -53,7 +53,7 @@ bool queueContains(struct Queue *queue, int16_t vertex);
 uint16_t heuristic(int16_t entry, uint16_t target, uint16_t xdim);
 struct PriorityVertex removeVertex(struct Queue *queue);
 void ASTAR(uint16_t *finalPath, uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim);
-void decode(uint8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target);
+void decode(int8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target);
 
 #endif /* PATHFINDING_H_ */
 /* [] END OF FILE */

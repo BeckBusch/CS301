@@ -12,7 +12,7 @@ void makeQueue(struct Queue *queue, unsigned size) {
     queue->start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
     queue->size = 0; // Queue is empty to begin with.
     queue->end = queue->capacity - 1;
-    for (int i = 0; i < size; i++) {
+    for (unsigned i = 0; i < size; i++) {
         struct PriorityVertex newVertex = { .value = 0, .priority = 0 };
         queue->array[i] = newVertex; // Initialise array values to zero.
     }
@@ -219,7 +219,7 @@ void ASTAR(uint16_t *finalPath, uint16_t source, uint16_t target, int16_t adjlis
 }
 
 // Decode an array of vertices representing the shortest path into a list of directions.
-void decode(uint8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target) {
+void decode(int8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target) {
 
     // Get the length of the final path and store it in size.
     uint16_t size = finalPath[0];
@@ -228,6 +228,10 @@ void decode(uint8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], 
     uint16_t i = 1, j = 0;
     uint8_t traversalDirection = UNINITIALISED;
     uint8_t prevDirection = UNINITIALISED;
+    
+    for (uint16_t i = 0; i < 285; i++) {
+        instructionSet[i] = UNINITIALISED;
+    }
 
     // While we have yet to reach the target vertex, walk through the shortest path, keeping track of the direction we are moving in.
     while (finalPath[i] != target) {
@@ -307,6 +311,8 @@ void decode(uint8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], 
         i++;
 
     }
+    
+    instructionSet[j] = J;
 
 }
 

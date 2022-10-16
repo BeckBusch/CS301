@@ -74,8 +74,6 @@ CY_ISR(isr_timer_1) {
 }
 
 int main(void) {
-    uint32 i = 0;
-    uint16 turn_count = 0;
 
     uint8 left_en_toggle = LEFT_ENABLE;
     uint8 right_en_toggle = RIGHT_ENABLE;
@@ -150,12 +148,11 @@ int main(void) {
     // Initialise return arrays.
     uint16_t finalPath[xydim];
     int8_t instructionSet[xydim];
-    
+        
     ASTAR(finalPath, source, target, adjlist, xdim, ydim);
     decode(instructionSet, finalPath, adjlist, xdim, target);
     
     // ALGORITHM CODE ENDS HERE!!!
-    
     
     // Enable global interrupts as well as start and enable the isr.
     CyGlobalIntEnable;
@@ -222,8 +219,8 @@ int main(void) {
                 //led_Write(!led_Read());
             } else if (nextInstruction == NULLDIR) {
                 // For uninitialised or reset.
-                left_en_toggle = LEFT_ENABLE;
-                right_en_toggle = RIGHT_ENABLE;
+                left_en_toggle = LEFT_DISABLE;
+                right_en_toggle = RIGHT_DISABLE;
                 //led_Write(!led_Read());
             }
             
@@ -233,7 +230,7 @@ int main(void) {
                 if (sensor_state[CL] == ON && sensor_state[CR] == ON) {
                     // Go to the next movement instruction.
                     instructionCursor++;
-                    nextInstruction = instructionSet[instructionCursor];
+                    nextInstruction = instructionSet[instructionCursor];                
                     state = FORWARD;
                 }
                 move_forward();
@@ -256,13 +253,13 @@ int main(void) {
                 if (sensor_state[FL] == OFF && sensor_state[FR] == OFF && sensor_state[CL] == OFF && sensor_state[CR] == OFF && sensor_state[BC] == OFF) {
                     // If a shadow is hovered over the robot (all sensors), it will stop moving.
                     state = STOPPED;
-                } else if (sensor_state[CL] == ON && sensor_state[CR] == ON && ((sensor_state[FL] == ON && sensor_state[FR] == OFF) || (sensor_state[FL] == OFF && sensor_state[FR] == ON)) && (left_en_toggle == LEFT_DISABLE && right_en_toggle == RIGHT_DISABLE)) {
+                } else if (((sensor_state[FL] == ON && sensor_state[FR] == OFF) || (sensor_state[FL] == OFF && sensor_state[FR] == ON) || (sensor_state[FL] == OFF && sensor_state[FR] == OFF)) && (left_en_toggle == LEFT_DISABLE && right_en_toggle == RIGHT_DISABLE)) {
                     // Pass through the junction.
                     state = TURNING_ENABLE;
-                } else if (sensor_state[CL] == ON && sensor_state[CR] == ON && sensor_state[FL] == OFF && sensor_state[FR] == ON && left_en_toggle == LEFT_ENABLE) {
+                } else if (sensor_state[FL] == OFF && left_en_toggle == LEFT_ENABLE) {
                     // Left turning.
                     state = TURNING_LEFT;
-                } else if (sensor_state[CL] == ON && sensor_state[CR] == ON && sensor_state[FL] == ON && sensor_state[FR] == OFF && right_en_toggle == RIGHT_ENABLE) {
+                } else if (sensor_state[FR] == OFF && right_en_toggle == RIGHT_ENABLE) {
                     // Right turning.
                     state = TURNING_RIGHT;
                 } else if (sensor_state[CL] == OFF) {

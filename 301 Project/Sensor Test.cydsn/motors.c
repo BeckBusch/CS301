@@ -45,7 +45,7 @@ void move_forward() {
 void turn_left() {
     
     // Left turning.
-    PWM_1_WriteCompare(normalLeft-8); //normalLeft - 8
+    PWM_1_WriteCompare(normalLeft-10); //normalLeft - 8
     PWM_2_WriteCompare(normalRight);
 
 }
