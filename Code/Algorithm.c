@@ -15,6 +15,8 @@
 #define L 0
 #define R 1
 #define J 2
+#define P 3
+#define T180 4
 #define NULLDIR -1
 
 struct PriorityVertex {
@@ -25,7 +27,7 @@ struct PriorityVertex {
 struct Queue {
     int16_t start, end, size;
     unsigned capacity;
-    struct PriorityVertex *array;
+    struct PriorityVertex array[285];
 } Queue;
 
 struct Vertex {
@@ -34,66 +36,71 @@ struct Vertex {
     bool visited;
 } Vertex;
 
-void makeQueue(unsigned size) {
-    Queue.capacity = size;
-    Queue.start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
-    Queue.size = 0; // Queue is empty to begin with.
-    Queue.end = Queue.capacity - 1;
-    Queue.array = (struct PriorityVertex *) malloc(Queue.capacity * sizeof(struct PriorityVertex)); // Using sizeof(int) means we allocate enough memory.
+void makeQueue(struct Queue *queue, unsigned size) {
 
-}
-
-void init(uint16_t size) {
-
-    // Initialise all values to minus one so that we can tell if the queue is empty or not (there is a vertex zero).
-    for (uint16_t i = 0; i < size; i++) {
-        struct PriorityVertex defaultValue = { .value = -1, .priority = UINT16_MAX, };
-        Queue.array[i] = defaultValue;
+    // Iitialise the values for the queue one by one.
+    queue->capacity = size;
+    queue->start = 0; // Setting up the queue so that the start of the queue (next item) is always at zero.
+    queue->size = 0; // Queue is empty to begin with.
+    queue->end = queue->capacity - 1;
+    for (unsigned i = 0; i < size; i++) {
+        struct PriorityVertex newVertex = { .value = 0, .priority = 0 };
+        queue->array[i] = newVertex; // Initialise array values to zero.
     }
 
 }
 
-void push(int16_t vertex, uint16_t priority) {
+void init(struct Queue *queue, uint16_t size) {
 
-    // Move the end marker along one, if we reach capacity, go back to the beginning.
-    Queue.end = (Queue.end + 1) % Queue.capacity;
-    struct PriorityVertex newVertex = { .value = vertex, .priority = priority };
-    Queue.array[Queue.end] = newVertex;
-    Queue.size = Queue.size + 1;
+    // Initialise all values to minus one so that we can tell if the queue is empty or not (there is a vertex zero).
+    for (uint16_t i = 0; i < size; i++) {
+        struct PriorityVertex defaultValue = { .value = -1, .priority = UINT16_MAX };
+        queue->array[i] = defaultValue;
+    }
 
 }
 
-int16_t pop() {
+void push(struct Queue *queue, int16_t vertex, uint16_t priority) {
+
+    // Move the end marker along one, if we reach capacity, go back to the beginning.
+    queue->end = (queue->end + 1) % queue->capacity;
+    struct PriorityVertex newVertex = { .value = vertex, .priority = priority };
+    queue->array[queue->end] = newVertex;
+    queue->size = queue->size + 1;
+
+}
+
+int16_t pop(struct Queue* queue) {
 
     // Get the vertex from the start of the queue.
-    struct PriorityVertex vertex = Queue.array[Queue.start];
+    struct PriorityVertex vertex = queue->array[queue->start];
     // Reset to empty value of -1.
     struct PriorityVertex defaultValue = { .value = -1, .priority = UINT16_MAX };
-    Queue.array[Queue.start] = defaultValue;
+    queue->array[queue->start] = defaultValue;
     // Move the start marker along one, if we reach capacity, go back to the beginning.
-    Queue.start = (Queue.start + 1) % Queue.capacity;
-    Queue.size = Queue.size - 1;
+    queue->start = (queue->start + 1) % queue->capacity;
+    queue->size = queue->size - 1;
     return vertex.value;
 
 }
 
-void delete(uint16_t pos) {
+void delete(struct Queue *queue, uint16_t pos) {
 
     // Replace each entry in the array with the next entry until the end.
-    for (uint16_t i = 0; i < Queue.end - pos; i++) {
-        Queue.array[pos + i] = Queue.array[pos + i + 1];
+    for (uint16_t i = 0; i < queue->end - pos; i++) {
+        queue->array[pos + i] = queue->array[pos + i + 1];
     }
     // Move the end pointer over.
-    Queue.end--;
-    Queue.size--;
+    queue->end--;
+    queue->size--;
 
 }
 
-bool queueContains(int16_t vertex) {
+bool queueContains(struct Queue *queue, int16_t vertex) {
 
     // If the queue contains the vertex return true, else return false.
-    for (uint16_t i = 0; i < Queue.size; i++) {
-        if (Queue.array[Queue.start + i].value == vertex) {
+    for (uint16_t i = 0; i < queue->size; i++) {
+        if (queue->array[queue->start + i].value == vertex) {
             return true;
         }
     }
@@ -112,37 +119,39 @@ uint16_t heuristic(int16_t entry, uint16_t target, uint16_t xdim) {
 
 }
 
-struct PriorityVertex removeVertex() {
+struct PriorityVertex removeVertex(struct Queue *queue) {
 
     // This function operates like pop but differs in that the priority queue is out of order.
     uint16_t maxPriority = UINT16_MAX;
     uint16_t pos;
-    for (uint16_t i = 0; i < Queue.size; i++) {
+    for (uint16_t i = 0; i < queue->size; i++) {
         // Although maxPriority is an indicator of what to prioritise, lower values should be visited first despite the name.
-        if (Queue.array[Queue.start + i].priority < maxPriority) {
-            maxPriority = Queue.array[Queue.start + i].priority;
-            pos = Queue.start + i;
+        if (queue->array[queue->start + i].priority < maxPriority) {
+            maxPriority = queue->array[queue->start + i].priority;
+            pos = queue->start + i;
         }
     }
 
-    struct PriorityVertex returnVertex = { .value = Queue.array[pos].value, .priority = Queue.array[pos].priority };
+    struct PriorityVertex returnVertex = { .value = queue->array[pos].value, .priority = queue->array[pos].priority };
     // Call to delete subroutine.
-    delete(pos);
+    delete(queue, pos);
     // Return the vertex.
     return returnVertex;
 
 }
 
 // Implementation of the A* algorithm.
-uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim) {
+void ASTAR(uint16_t *finalPath, uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t xdim, uint16_t ydim) {
 
     // Dimension.
     uint16_t size = xdim * ydim;
 
     // Set up the queue.
-    makeQueue(size);
-    init(size);
-    push(source, 0);
+    struct Queue queue;
+    makeQueue(&queue, size);
+
+    init(&queue, size);
+    push(&queue, source, 0);
 
     // Set up an array to track vertices and their distances (INT_MAX means a vertex has yet to be visited).
     struct Vertex vertices[size];
@@ -159,10 +168,10 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
     vertices[source].distance = 1;
 
     // While we have yet to reach the destination, keep looping.
-    while (Queue.size != 0) {
+    while (queue.size != 0) {
 
         // Get the vertex with the highest priority.
-        struct PriorityVertex key = removeVertex();
+        struct PriorityVertex key = removeVertex(&queue);
 
         // Set the visited status to true.
         vertices[key.value].visited = true;
@@ -194,8 +203,7 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
             order--;
             shortestPath[source] = order;
 
-            // Array to return. Need to allocate space for an additional int so we can store the size as well.
-            uint16_t *finalPath = malloc((vertices[target].distance + 1) * sizeof(uint16_t));
+            // Need to allocate space for an additional int so we can store the size as well.
             for (uint16_t i = 0; i < size; i++) {
                 if (shortestPath[i] != -1) {
                     order = shortestPath[i];
@@ -205,9 +213,6 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
 
             // Set the size at position 0.
             finalPath[0] = vertices[target].distance;
-
-            // Return the formatted shortest path.
-            return finalPath;
 
         }
 
@@ -231,9 +236,9 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
                     // Set the predecessor (we want to take the newly discovered shortest path to entry vertex).
                     vertices[entry].pred = key.value;
 
-                    if (!queueContains(entry)) {
+                    if (!queueContains(&queue, entry)) {
                         // If the neighbour is not in the priority queue already, add it.
-                        push(entry, priority);
+                        push(&queue, entry, priority);
                     }
 
                 }
@@ -245,19 +250,18 @@ uint16_t *ASTAR(uint16_t source, uint16_t target, int16_t adjlist[][4], uint16_t
 }
 
 // Decode an array of vertices representing the shortest path into a list of directions.
-int8_t *decode(uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target) {
+void decode(int8_t *instructionSet, uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_t target) {
 
-    // Get the length of the final path and store it in size.
-    uint16_t size = finalPath[0];
+    // Get the length of the final path and store it in size. (No longer needed because we don't use dynamic allocation).
+    // uint16_t size = finalPath[0];
     
-    // Allocate space for our return array.
-    int8_t *instructionSet = malloc(size * sizeof(int8_t));
-    for (uint16_t i = 0; i < size; i++) {
-        instructionSet[i] = NULLDIR;
-    }
-
-    // Track the current and previous directions, and array indices.
-    uint16_t i = 1, j = 0;
+    // Set all the values for the instruction set to be UNINITIALISED.
+    //for (uint16_t u = 0; u < 285 + 3; u++) {
+    //    instructionSet[u] = UNINITIALISED;
+    //}
+    
+    // Track the current and previous directions, and array indices. (j = 3 because we reserve the first three indices for values).
+    uint16_t i = 1, j = 3, k = 1;
     uint8_t traversalDirection = UNINITIALISED;
     uint8_t prevDirection = UNINITIALISED;
 
@@ -272,11 +276,19 @@ int8_t *decode(uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_
         } else if (finalPath[i] - finalPath[i + 1] == 1) {
             traversalDirection = WEST;
         }
+        
+        // If we are just starting the traversal, then we need to store the first direction taken in the map.
+        if (i == 1) {
+           instructionSet[1] = traversalDirection; 
+        }
 
         /* If we have just started traversing, then we cannot have made a turn yet, so prevDirection needs to be initialised.
            If the previous direction is different from our current one, then we have to had made a turn. */
         if ((traversalDirection != prevDirection) && (prevDirection != UNINITIALISED)) {
 
+            // Reset the distance after the last turn to 1.
+            k = 1;
+            
             // We can determine whether we turned left or right based on our previous and current directions.
             switch (traversalDirection) 
             {
@@ -332,6 +344,9 @@ int8_t *decode(uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_
                     j++;
                 }
             }
+            
+            // Increment the distance after the last turn by 1.
+            k++;
 
         }
         // Set the previous direction to our current one, and increment our position in the shortest path.
@@ -339,8 +354,12 @@ int8_t *decode(uint16_t *finalPath, int16_t adjlist[][4], uint16_t xdim, uint16_
         i++;
 
     }
-    // Return the set of instructions produced.
-    return instructionSet;
+    
+    // Set the distance after the last turn with the final calculated value.
+    instructionSet[0] = k;
+    
+    // Set the traversal direction for the robot at the last instance of this shortest path (the final direction).
+    instructionSet[2] = traversalDirection;
 
 }
 
@@ -350,25 +369,63 @@ int main() {
     uint16_t xdim = 19, ydim = 15;
     uint16_t xydim = xdim * ydim;
 
-    // Copy paste the map here - make sure to append backslashes after each line.
-    
+    // Map array goes here.
     int array[15][19] = {
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1},
-{1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1,0,1},
-{1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1},
-{1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,1},
-{1,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,1},
-{1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1},
-{1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,1},
-{1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,1,1,1},
-{1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,1},
-{1,1,1,1,1,1,1,0,1,1,1,0,1,0,1,1,1,0,1},
-{1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1},
-{1,0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1},
-{1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-};
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+    {1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1},
+    {1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,1},
+    {1,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,1},
+    {1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1},
+    {1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,1},
+    {1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,1,1,1},
+    {1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,1},
+    {1,1,1,1,1,1,1,0,1,1,1,0,1,0,1,1,1,0,1},
+    {1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1},
+    {1,0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1},
+    {1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+    };
+
+    int food_list[5][2]= {{1,9},
+    {5,5},
+    {7,1},
+    {13,5},
+    {9,9}};
+
+    // Set the offset.
+    uint16_t offset = 0;
+    
+    // Information relating to distances and rotations following path completion.
+    int8_t finalDistances[5];
+    int8_t firstDirections[5];
+    int8_t finalDirections[5];
+
+    for (int i = 0; i < 5; i++) {
+        finalDistances[i] = -1;
+        firstDirections[i] = -1;
+        finalDirections[i] = -1;
+    }
+
+    // Source and target vertex arrays.
+    uint16_t sourceArray[5];
+    uint16_t targetArray[5];
+    
+    // Set the source to 20. CANNOT be zero as invalid.
+    sourceArray[0] = 20;
+    
+    // For each target in the food list, set it in both the source and target arrays. This needs to be the case because of how the pathfinding works.
+    for (uint8_t j = 0; j < 5; j++) {
+        uint16_t sxcord = food_list[j][1];
+        uint16_t sycord = food_list[j][0];
+        uint16_t nextTarget = ((sycord - offset) * xdim + sxcord - offset);
+        // Note that here the source(0) has already been set.
+        if (j != 4) {
+            sourceArray[j + 1] = nextTarget;
+        }
+        targetArray[j] = nextTarget;
+    }  
     
     // Each zero can only be adjacent to 4 zeroes maximum.
     int16_t adjlist[xydim][4];
@@ -411,34 +468,133 @@ int main() {
         }
     }
 
-    // Source x and y co-ordinates.
-    uint16_t sxcord = 1;
-    uint16_t sycord = 1;
+    // Initialise return arrays.
+    uint16_t finalPath[xydim];
+    int8_t instructionSet[xydim + 3];
+            
+    // We need to allocate sufficient space.
+    int8_t instructionArray[5 * xydim];
+    
+    // Set all the values for the instruction set to be NULLDIR;
+    for (uint16_t u = 0; u < xydim + 3; u++) {
+        instructionSet[u] = NULLDIR;
+    }
 
-    // Target x and y co-ordinates.
-    uint16_t txcord = 16;
-    uint16_t tycord = 13;
+    // Set all the values for the instruction array to be NULLDIR;
+    for (uint16_t u = 0; u < 5 * xydim; u++) {
+        instructionArray[u] = NULLDIR;
+    }
+    
+    // k is used as an index for the final instruction array. Only incremented when there is a valid (not NULLDIR instruction in the corresponding instruction set).
+    uint16_t k = 0;
+    
+    // For each path that needs finding, solve it and store it in a final array of values.
+    for (uint8_t i = 0; i < 5; i++) {
 
-    // The offset value - if we are indexing starting at 0, this should be 0, if we are indexing starting at 1, this should be 1 etc.
-    uint16_t offset = 0;
+        // Find the shortest path for the current target.
+        ASTAR(finalPath, sourceArray[i], targetArray[i], adjlist, xdim, ydim);  
+        decode(instructionSet, finalPath, adjlist, xdim, targetArray[i]);
+        
+        // Append the final distances and directions for the current path to the final arrays.
+        finalDistances[i] = instructionSet[0];
+        firstDirections[i] = instructionSet[1];
+        finalDirections[i] = instructionSet[2];
+                    
+        if (i != 0) {
+            // If the current iteration is not for the final path.
+            if (i < 5) {
+                // If the first direction for the next path is not the same as the final direction for the current path, then we need to change the current orientation of the robot before moving on.
+                if (finalDirections[i - 1] != firstDirections[i]) {
+                    
+                    // Append an additional direction if we need to change after reaching the food item.
+                    switch (firstDirections[i]) 
+                    {
+                        case NORTH:
+                            if (finalDirections[i - 1] == EAST) {
+                                instructionArray[k] = L;
+                            } else if (finalDirections[i - 1] == WEST) {
+                                instructionArray[k] = R;
+                            } else if (finalDirections[i - 1] == SOUTH) {
+                                instructionArray[k] = T180;
+                            }
+                            break;
 
-    // Calculation for the source and target co-ordinates.
-    uint16_t source = ((sycord - offset) * xdim + sxcord - offset);
-    uint16_t target = ((tycord - offset) * xdim + txcord - offset);
+                        case EAST:
+                            if (finalDirections[i - 1] == NORTH) {
+                                instructionArray[k] = R;
+                            } else if (finalDirections[i - 1] == SOUTH) {
+                                instructionArray[k] = L;
+                            } else if (finalDirections[i - 1] == WEST) {
+                                instructionArray[k] = T180;
+                            }
+                            break;
 
-    uint16_t *finalPath = ASTAR(source, target, adjlist, xdim, ydim);
-    int8_t *instructionSet = decode(finalPath, adjlist, xdim, target);
+                        case SOUTH:
+                            if (finalDirections[i - 1] == EAST) {
+                                instructionArray[k] = R;
+                            } else if (finalDirections[i - 1] == WEST) {
+                                instructionArray[k] = L;
+                            } else if (finalDirections[i - 1] == NORTH) {
+                                instructionArray[k] = T180;
+                            }
+                            break;
+
+                        case WEST:
+                            if (finalDirections[i - 1] == NORTH) {
+                                instructionArray[k] = L;
+                            } else if (finalDirections[i - 1] == SOUTH) {
+                                instructionArray[k] = R;
+                            } else if (finalDirections[i - 1] == EAST) {
+                                instructionArray[k] = T180;
+                            }
+                            break;
+
+                        default:
+                            break;
+                    }
+                    k++;
+                
+                }
+                    
+            }
+
+        }
+
+        // Reset the buffer arrays passed in to the algorithm and decoder functions.
+        for (uint16_t j = 0; j < xydim; j++) {
+            finalPath[j] = 0;
+
+            if (instructionSet[j + 3] != NULLDIR) {
+                // Fill the final instruction array with values from the current instruction set.
+                instructionArray[k] = instructionSet[j + 3];
+                k++;
+            }
+            
+            // Reset the instruction to NULLDIR for this value.
+            instructionSet[j + 3] = NULLDIR;
+            
+        }
+        
+        // Append the additional distance required to reach the food to the end of the current path.
+        for (uint8_t m = 0; m < finalDistances[i]; m++) {
+            instructionArray[k] = P;
+            k++;
+        }
+
+    }
 
     // Print statements for debugging - this is the output we use for turning.
-    for (uint16_t i = 0; i < finalPath[0] + 1; i++) {
-        if (instructionSet[i] == L) {
+    for (uint16_t i = 0; i < 285; i++) {
+        if (instructionArray[i] == L) {
             printf("L");
-        }
-        if (instructionSet[i] == R) {
+        } else if (instructionArray[i] == R) {
             printf("R");
-        }
-        if (instructionSet[i] == J) {
+        } else if (instructionArray[i] == J) {
             printf("J");
+        } else if (instructionArray[i] == P) {
+            printf("P");
+        } else if (instructionArray[i] == T180) {
+            printf("T180");
         }
     }
     printf("\nPathfinding complete.");
