@@ -41,30 +41,50 @@ void decoderInit(){
     //Clock_Dec_Start(); not needed maybe???
     // Dec_Timer_Clock_Start();
     
-    //Dec_Timer_Start(); // start the timer for the decoder polls
-    //Dec_Timer_ISR_StartEx(decTimerISR); // start the isr for the timer
+    ; // start the isr for the timer
     
     QuadDec_L_Start();
     QuadDec_R_Start();
 }
 
-void abs_left_turn() {  
-    PWM_1_WriteCompare(125);
+void resetCounter() {
+    QuadDec_L_SetCounter(0);
+    QuadDec_R_SetCounter(0);
+}
+
+void abs_left_turn() {
+    
+
+}
+
+void abs_180() {
+    // set new speeds
+    PWM_1_WriteCompare(88);
     PWM_2_WriteCompare(170);
     
+    // reset counters and flags
     QuadDec_R_SetCounter(0);
+    QuadDec_L_SetCounter(205 + 500);
+    uint8_t flags[2] = {1, 1};;
     
-    while(QuadDec_R_GetCounter() < FULL_TURN);
-    PWM_2_WriteCompare(125);
+    // while flags poll turn
+    while (flags[L] || flags[R]) { // while less than two motors finished
+        if(QuadDec_R_GetCounter() > 205){
+            PWM_2_WriteCompare(125);
+            flags[R] = 0;
+        }
+        if(QuadDec_L_GetCounter() < 500){
+            PWM_1_WriteCompare(125);
+            flags[L] = 0;
+        }
+    }
 }
 
 void abs_right_turn() {    
     PWM_2_WriteCompare(125);
     PWM_1_WriteCompare(170);
-    
-    QuadDec_L_SetCounter(0);
-    
-    while(QuadDec_L_GetCounter() < FULL_TURN);
+        
+    if (QuadDec_L_GetCounter() < FULL_TURN);
     
     PWM_1_WriteCompare(125);
 }
@@ -105,15 +125,18 @@ void move_unit() {
     
     // while flags poll turn
     while (flags[L] || flags[R]) { // while less than two motors finished
-        if(QuadDec_R_GetCounter() > QUART_TURN){
+        if(QuadDec_R_GetCounter() > 10){//QUART_TURN
             PWM_2_WriteCompare(125);
             flags[R] = 0;
         }
-        if(QuadDec_L_GetCounter() > QUART_TURN){
+        if(QuadDec_L_GetCounter() > 10 ){//{QUART_TURN
             PWM_1_WriteCompare(125);
             flags[L] = 0;
         }
     }
+    
+    PWM_1_WriteCompare(125);
+    PWM_2_WriteCompare(125);
 }
 
 void abs_left_spot_turn() {

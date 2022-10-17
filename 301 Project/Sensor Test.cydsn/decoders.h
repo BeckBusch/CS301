@@ -21,10 +21,14 @@ volatile uint16 speedR;
 void decoderInit();
 void speedAdjust();
 
+void abs_180();
+void move_unit();
+
 void abs_left_turn();
 void abs_right_turn();
 void abs_left_spot_turn();
 void abs_right_spot_turn();
+void resetCounter();
 
 /* [] END OF FILE */
 #endif /* DECODERS_H_ */

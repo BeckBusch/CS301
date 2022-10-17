@@ -49,10 +49,12 @@
 #define ENTER_RIGHT 50
 
 // Enable left and right turning at appropriate times.
-#define LEFT_ENABLE 0
-#define LEFT_DISABLE 1
+#define LEFT_ENABLE 4
+#define LEFT_DISABLE 5
 #define RIGHT_ENABLE 2
 #define RIGHT_DISABLE 3
+
+#define FULL_TURN 210//220
 
 // Prototype declarations.
 CY_ISR_PROTO(isr_eoc_1);
@@ -66,6 +68,10 @@ uint16 ADCResult;
 uint16 milliVoltReading;
 uint8 state = FORWARD;
 volatile uint8 reset = 0;
+
+uint8 turning_stopper = 1;
+
+uint8_t turn_count = 0;
 
 uint16 maxValues[5] = {0};
 uint16 pastValues[5] = {0};
@@ -84,6 +90,13 @@ CY_ISR(isr_eoc_1) {
 CY_ISR(isr_timer_1) {
     reset = 1;
 }
+/*
+CY_ISR_PROTO(decTimerISR);
+
+CY_ISR(decTimerISR) {
+    turning_stopper = 1;
+    Dec_Timer_Stop();
+}*/
 
 int main(void) {
 
@@ -102,29 +115,7 @@ int main(void) {
     uint16_t xydim = xdim * ydim;
     
     // Map array goes here.
-    int array[15][19] = {
-    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-    {1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1},
-    {1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,1},
-    {1,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,1},
-    {1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1},
-    {1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,1},
-    {1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,1,1,1},
-    {1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,1},
-    {1,1,1,1,1,1,1,0,1,1,1,0,1,0,1,1,1,0,1},
-    {1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1},
-    {1,0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1},
-    {1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
-    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-    };
-
-    int food_list[5][2]= {{1,9},
-    {5,5},
-    {7,1},
-    {13,5},
-    {9,9}};
+  
 
     // Set the offset.
     uint16_t offset = 0;
@@ -145,12 +136,12 @@ int main(void) {
     uint16_t targetArray[5];
     
     // Set the source to 20. CANNOT be zero as invalid.
-    sourceArray[0] = 20;
+    sourceArray[0] = 69;
     
     // For each target in the food list, set it in both the source and target arrays. This needs to be the case because of how the pathfinding works.
     for (uint8_t j = 0; j < 5; j++) {
-        uint16_t sxcord = food_list[j][1];
-        uint16_t sycord = food_list[j][0];
+        uint16_t sxcord = food_list[j][0];
+        uint16_t sycord = food_list[j][1];
         uint16_t nextTarget = ((sycord - offset) * xdim + sxcord - offset);
         // Note that here the source(0) has already been set.
         if (j != 4) {
@@ -338,10 +329,14 @@ int main(void) {
     PWM_2_Start();
     stop();
     Timer_1_Start();
+    /*
+    Dec_Timer_Enable(); // start the timer for the decoder polls
+    Dec_Timer_ISR_StartEx(decTimerISR);
+    */
     
     int8_t nextInstruction;
     nextInstruction = instructionArray[instructionCursor];
-            
+  
     // Write the debugging led low.
     led_Write(0);
       
@@ -382,15 +377,18 @@ int main(void) {
                 //led_Write(!led_Read());
             } else if (nextInstruction == P) {
                 // Move 1 unit forward, increment the instruction cursor and continue.
-                move_unit();
+                //move_unit();
                 instructionCursor++;
                 nextInstruction = instructionArray[instructionCursor];
+                
                 continue;
             } else if (nextInstruction == T180) {
                 // Rotate 180 degrees, increment the instruction cursor and continue.
-                rotate();
+                //rotate();
                 instructionCursor++;
+                
                 nextInstruction = instructionArray[instructionCursor];
+                
                 continue;
             } else if (nextInstruction == NULLDIR) {
                 // For uninitialised or reset.
@@ -409,19 +407,32 @@ int main(void) {
                 }
                 move_forward();
             } else if (state == TURNING_LEFT) {
-                abs_left_turn();
-                move_forward();
-                // Go to the next movement instruction.
-                instructionCursor++;
-                nextInstruction = instructionArray[instructionCursor];
-                state = FORWARD;
+                
+                    PWM_1_WriteCompare(125);
+                    PWM_2_WriteCompare(170);
+        
+                    if (QuadDec_R_GetCounter() >= FULL_TURN) {
+                        state = FORWARD;
+                        // Go to the next movement instruction.
+                        instructionCursor++;
+                        nextInstruction = instructionArray[instructionCursor];
+                    }
             } else if (state == TURNING_RIGHT) {
-                abs_right_turn();
-                move_forward();
-                // Go to the next movement instruction.
-                instructionCursor++;
-                nextInstruction = instructionArray[instructionCursor];
-                state = FORWARD;
+                    PWM_1_WriteCompare(170);
+                    PWM_2_WriteCompare(125);
+        
+                    if (QuadDec_L_GetCounter() >= FULL_TURN) {
+                        state = FORWARD;
+                        // Go to the next movement instruction.
+                        instructionCursor++;
+                        nextInstruction = instructionArray[instructionCursor];
+                    }
+            } else if (state == ENTER_LEFT) {
+                resetCounter();
+                state = TURNING_LEFT;
+            } else if (state == ENTER_RIGHT) {
+                resetCounter();
+                state = TURNING_RIGHT;
             } else if (state == FORWARD) {
                 // Default state of forward movement.
                 if (sensor_state[FL] == OFF && sensor_state[FR] == OFF && sensor_state[CL] == OFF && sensor_state[CR] == OFF && sensor_state[BC] == OFF) {
@@ -432,10 +443,10 @@ int main(void) {
                     state = TURNING_ENABLE;
                 } else if (sensor_state[FL] == OFF && left_en_toggle == LEFT_ENABLE) {
                     // Left turning.
-                    state = TURNING_LEFT;
+                    state = ENTER_LEFT;
                 } else if (sensor_state[FR] == OFF && right_en_toggle == RIGHT_ENABLE) {
                     // Right turning.
-                    state = TURNING_RIGHT;
+                    state = ENTER_RIGHT;
                 } else if (sensor_state[CL] == OFF) {
                     // Correct to the left.
                     turn_left();
